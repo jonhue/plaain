@@ -23,8 +23,8 @@ class Movie extends Component {
         new Caption("Français", "https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt", "fr")
       ]
     )
-    // const movie = new Movie(299537, video).fetch()
-    const movie = new Movie(match.params.id, video).fetch()
+    // const movie = new MovieModel(299537, video).fetch()
+    const movie = new MovieModel(match.params.id, video).fetch()
     console.log(movie)
 
     return (

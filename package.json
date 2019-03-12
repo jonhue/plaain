@@ -2,9 +2,11 @@
   "name": "plaain",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jonhue.github.io/plaain",
+  "homepage": "https://plaain.com",
   "dependencies": {
+    "@microsoft/microsoft-graph-client": "^1.5.2",
     "gh-pages": "^2.0.1",
+    "msal": "^0.2.4",
     "node-sass": "^4.11.0",
     "plyr": "^3.5.2",
     "react": "^16.8.4",
