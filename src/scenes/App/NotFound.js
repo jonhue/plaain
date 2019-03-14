@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './NotFound.scss'
 
 class NotFound extends Component {
