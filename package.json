@@ -22,7 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "stylelint": "./node_modules/.bin/stylelint src/**/*.scss",
+    "eslint": "./node_modules/.bin/eslint src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,5 +34,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-plugin-react": "^7.12.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^0.8.1"
+  }
 }
