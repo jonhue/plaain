@@ -5,11 +5,11 @@ module.exports = {
       'node': true
     },
     'extends': ['eslint:recommended', 'plugin:react/recommended'],
-    'parser': 'babel-eslint',
     'globals': {
       'Atomics': 'readonly',
       'SharedArrayBuffer': 'readonly'
     },
+    'parser': 'babel-eslint',
     'parserOptions': {
       'ecmaFeatures': {
         'jsx': true
@@ -18,7 +18,7 @@ module.exports = {
       'sourceType': 'module'
     },
     'plugins': [
-        'react'
+      'react'
     ],
     'rules': {
       'indent': [
@@ -43,5 +43,10 @@ module.exports = {
         'error',
         'never'
       ]
+    },
+    'settings': {
+      'react': {
+        'version': 'detect'
+      }
     }
 }

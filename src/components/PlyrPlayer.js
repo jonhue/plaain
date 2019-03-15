@@ -29,7 +29,7 @@ class PlyrPlayer extends Component {
     }
 
     return (
-      <div>
+      <div className='PlyrPlayer'>
         <video
           poster={this.props.video.poster}
           src={this.props.video.sources[0].src}
