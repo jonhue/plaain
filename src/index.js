@@ -1,22 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
 import * as serviceWorker from './serviceWorker'
 
 import App from './scenes/App'
-import Home from './scenes/Home'
-import NotFound from './scenes/NotFound'
 
 import './index.scss'
 
 ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/app" component={App} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 

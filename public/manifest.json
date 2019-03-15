@@ -1,8 +1,8 @@
 {
   "short_name": "Plaain",
   "name": "Plaain",
-  "start_url": "/app",
-  "scope": "/app",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "dir": "rtl",
