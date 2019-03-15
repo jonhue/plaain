@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { UserAgentApplication } from 'msal'
-import logo from './logo.svg'
-import './App.scss'
+// import logo from './logo.svg'
+// import './App.scss'
 
 import { logIn } from '../redux/actions'
 
@@ -30,13 +30,13 @@ class App extends Component {
   render() {
     if (this.props.user) {
       return (
-        <div className="App">
+        <div className='App'>
           <Router>
             <Switch>
-              <Route path="/" exact component={ForYou} />
-              <Route path="/movies" component={Movies} />
-              <Route path="/shows" component={Shows} />
-              <Route path="/find" component={Find} />
+              <Route path='/' exact component={ForYou} />
+              <Route path='/movies' component={Movies} />
+              <Route path='/shows' component={Shows} />
+              <Route path='/find' component={Find} />
               <Route component={NotFound} />
             </Switch>
           </Router>
@@ -44,12 +44,12 @@ class App extends Component {
       )
     } else {
       return (
-        <div className="App">
+        <div className='App'>
           <button onClick={this.logIn}>Launch</button>
 
           <Router>
             <Switch>
-              <Route path="/" exact component={Welcome} />
+              <Route path='/' exact component={Welcome} />
               <Route component={NotFound} />
             </Switch>
           </Router>

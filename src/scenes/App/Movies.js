@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import './Movies.scss'
+// import './Movies.scss'
 
 import Movie from './Movies/Movie'
 
 class Movies extends Component {
   render({ match }) {
     return (
-      <div className="Movies">
+      <div className='Movies'>
         <Route path={`${match.path}/:id`} component={Movie}/>
         <Route
           exact

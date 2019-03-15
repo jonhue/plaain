@@ -14,7 +14,7 @@ class PlyrContinue extends Component {
 
     return (
       <button
-        id="continue"
+        id='continue'
         onClick={this.continueWatching.bind(this)}>
         Continue watching
       </button>

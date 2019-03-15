@@ -103,7 +103,7 @@ class Movie {
 
   get trailerUrl() {
     if (this._trailer_key == null) {
-      return
+      return null
     }
 
     return `https://www.youtube.com/watch?v=${this._trailer_key}`

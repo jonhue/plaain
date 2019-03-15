@@ -1,5 +1,5 @@
 class Caption {
-  constructor(label, src, src_lang = "en") {
+  constructor(label, src, src_lang = 'en') {
     this._label = label
     this._src = src
     this._src_lang = src_lang
