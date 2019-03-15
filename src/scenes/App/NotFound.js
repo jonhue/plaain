@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './NotFound.scss'
+// import './NotFound.scss'
 
 class NotFound extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Movie.scss'
+// import './Movie.scss'
 
 import Caption from './../../../models/Caption'
 import { default as MovieModel } from './../../../models/Movie'

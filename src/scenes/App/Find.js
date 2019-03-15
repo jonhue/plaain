@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Find.scss'
+// import './Find.scss'
 
 class Find extends Component {
   render() {
