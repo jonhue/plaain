@@ -4,7 +4,7 @@ import './Welcome.scss'
 class Welcome extends Component {
   render() {
     return (
-      <div className="Welcome">
+      <div className='Welcome'>
       </div>
     )
   }

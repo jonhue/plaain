@@ -4,7 +4,7 @@ import './Find.scss'
 class Find extends Component {
   render() {
     return (
-      <div className="Find">
+      <div className='Find'>
       </div>
     )
   }

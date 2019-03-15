@@ -8,14 +8,14 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOG_IN: {
-      return {
-        token: action.payload.token,
-        client: action.payload.client,
-        user: action.payload.user
-      }
+  case LOG_IN: {
+    return {
+      token: action.payload.token,
+      client: action.payload.client,
+      user: action.payload.user
     }
-    default:
-      return state;
+  }
+  default:
+    return state
   }
 }

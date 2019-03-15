@@ -33,7 +33,7 @@ class PlyrPlayer extends Component {
         <video
           poster={this.props.video.poster}
           src={this.props.video.sources[0].src}
-          id="player" crossOrigin="true" playsInline controls>
+          id='player' crossOrigin='true' playsInline controls>
           {this.props.video.sources.map((source, index) => {
             return (<PlyrSource source={source} key={index} />)
           })}

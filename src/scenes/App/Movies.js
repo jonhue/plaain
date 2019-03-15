@@ -7,7 +7,7 @@ import Movie from './Movies/Movie'
 class Movies extends Component {
   render({ match }) {
     return (
-      <div className="Movies">
+      <div className='Movies'>
         <Route path={`${match.path}/:id`} component={Movie}/>
         <Route
           exact

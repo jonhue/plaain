@@ -19,33 +19,32 @@ class MicrosoftAuth {
 
   retrieveClient() {
     return new Promise((resolve, reject) => {
-      this.logIn().then((accessToken) => {
-        console.log(`MicrosoftGraph access token: ${accessToken}`)
+      this.logIn().then(accessToken => {
         const graphClient = Client.init({
-          authProvider: (done) => done(null, accessToken)
+          authProvider: done => done(null, accessToken)
         })
         resolve({
           token: accessToken,
           client: graphClient,
           user: this.userAgentApplication.getUser()
         })
-      }, (error) => reject(error))
+      }, error => reject(error))
     })
   }
 
   logIn() {
     return new Promise((resolve, reject) => {
-      this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then((idToken) => {
-        this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then((accessToken) => {
+      this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
+        this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
           resolve(accessToken)
-        }, (error) => {
-          this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then((accessToken) => {
+        }, () => {
+          this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
             resolve(accessToken)
-          }, (error) => {
+          }, error => {
             reject(error)
           })
         })
-      }, (error) => {
+      }, error => {
         reject(error)
       })
     })

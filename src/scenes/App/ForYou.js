@@ -4,7 +4,7 @@ import './ForYou.scss'
 class ForYou extends Component {
   render() {
     return (
-      <div className="ForYou">
+      <div className='ForYou'>
       </div>
     )
   }

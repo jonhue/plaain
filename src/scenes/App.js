@@ -30,13 +30,13 @@ class App extends Component {
   render() {
     if (this.props.user) {
       return (
-        <div className="App">
+        <div className='App'>
           <Router>
             <Switch>
-              <Route path="/" exact component={ForYou} />
-              <Route path="/movies" component={Movies} />
-              <Route path="/shows" component={Shows} />
-              <Route path="/find" component={Find} />
+              <Route path='/' exact component={ForYou} />
+              <Route path='/movies' component={Movies} />
+              <Route path='/shows' component={Shows} />
+              <Route path='/find' component={Find} />
               <Route component={NotFound} />
             </Switch>
           </Router>
@@ -44,12 +44,12 @@ class App extends Component {
       )
     } else {
       return (
-        <div className="App">
+        <div className='App'>
           <button onClick={this.logIn}>Launch</button>
 
           <Router>
             <Switch>
-              <Route path="/" exact component={Welcome} />
+              <Route path='/' exact component={Welcome} />
               <Route component={NotFound} />
             </Switch>
           </Router>

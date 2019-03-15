@@ -23,8 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "stylelint": "./node_modules/.bin/stylelint src/**/*.scss",
-    "eslint": "./node_modules/.bin/eslint src/**/*.js"
+    "stylelint": "./node_modules/.bin/stylelint 'src/**/*.scss'",
+    "eslint": "./node_modules/.bin/eslint 'src/**/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
