@@ -1,1 +1,1 @@
-export const getMoviesState = state => state.movies
+export const getUserState = state => state.auth.user

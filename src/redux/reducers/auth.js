@@ -6,15 +6,14 @@ const initialState = {
   user: null
 }
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
-  case LOG_IN: {
+  case LOG_IN:
     return {
       token: action.payload.token,
       client: action.payload.client,
       user: action.payload.user
     }
-  }
   default:
     return state
   }

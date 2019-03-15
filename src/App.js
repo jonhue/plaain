@@ -6,6 +6,7 @@ import { UserAgentApplication } from 'msal'
 // import './App.scss'
 
 import { logIn } from './redux/actions'
+import { getUserState } from './redux/selectors'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
@@ -66,6 +67,8 @@ class App extends Component {
 }
 
 export default connect(
-  (state) => ({ user: state.auth.user }),
+  (state) => ({
+    user: getUserState(state)
+  }),
   { logIn }
 )(App)
