@@ -5,16 +5,16 @@ import { UserAgentApplication } from 'msal'
 // import logo from './logo.svg'
 // import './App.scss'
 
-import { logIn } from '../redux/actions'
+import { logIn } from './redux/actions'
 
-import MicrosoftAuth from '../services/auth/MicrosoftAuth'
+import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
-import ForYou from './App/ForYou'
-import Movies from './App/Movies'
-import Shows from './App/Shows'
-import Find from './App/Find'
-import Welcome from './App/Welcome'
-import NotFound from './App/NotFound'
+import ForYou from './scenes/ForYou'
+import Movies from './scenes/Movies'
+import Shows from './scenes/Shows'
+import Find from './scenes/Find'
+import Welcome from './scenes/Welcome'
+import NotFound from './scenes/NotFound'
 
 class App extends Component {
   constructor(props) {

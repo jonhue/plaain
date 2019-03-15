@@ -5,5 +5,6 @@ import auth from './auth'
 
 export default persistReducer({
   key: 'root',
-  storage: storage
+  storage: storage,
+  debug: process.env.NODE_ENV === 'development'
 }, combineReducers({ auth }))

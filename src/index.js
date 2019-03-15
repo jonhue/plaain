@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import * as serviceWorker from './serviceWorker'
 
-import App from './scenes/App'
+import App from './App'
 import Loading from './components/Loading'
 
 import './index.scss'
