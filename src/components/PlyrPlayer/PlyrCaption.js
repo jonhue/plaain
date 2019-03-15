@@ -8,7 +8,7 @@ class PlyrCaption extends Component {
         label={this.props.caption.label}
         src={this.props.caption.src}
         srcLang={this.props.caption.srclang || "en"}
-        default={this.props.index === 0} />
+        default={this.props.key === 0} />
     )
   }
 }

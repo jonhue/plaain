@@ -1,5 +1,7 @@
 import GetShow from './../services/tmdb/GetShow'
 
+import Season from './Season'
+
 class Show {
   constructor(id) {
     this._id = id
@@ -14,7 +16,7 @@ class Show {
         this._name = response.name
         this._overview = response.overview
         this._poster_path = response.poster_path
-        this._seasons = response.seasons.map((season) => new Season(ths.showId, season.season_number).fetch())
+        this._seasons = response.seasons.map((season) => new Season(this.id, season.season_number).fetch())
       })
       .catch((error) => {
         console.log(error)

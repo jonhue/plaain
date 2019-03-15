@@ -1,5 +1,7 @@
 import GetSeason from './../services/tmdb/GetSeason'
 
+import Episode from './Episode'
+
 class Season {
   constructor(show_id, season_number) {
     this._show_id = show_id

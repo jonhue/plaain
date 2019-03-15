@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { UserAgentApplication } from 'msal'
-import logo from './logo.svg'
+// import logo from './logo.svg'
 import './App.scss'
 
 import { logIn } from '../redux/actions'
