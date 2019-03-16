@@ -21,7 +21,7 @@ class IndexSeasons {
       id: id,
       seasonNumber: Number.parseInt(item.name),
       oneDriveId: item.id,
-      episoodes: await new IndexEpisodes(this.oneDrive, item.id).perform()
+      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform()
     }
   }
 

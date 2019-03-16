@@ -1,5 +1,6 @@
 import IndexItems from '../services/indexing/IndexItems'
 
+import { logIn } from './auth'
 import { addMovie, clearMovies, fetchMovie } from './movies'
 import { addShow, clearShows, fetchShow } from './shows'
 
@@ -12,7 +13,7 @@ export const index = () => {
     dispatch(indexBegin())
 
     new IndexItems(getState().auth.token).perform().then(({ movies, shows }) => {
-      dispatch(clearMovies())
+      dispatch(clearMovies()) // store play times
       movies.then(moviesArr => {
         moviesArr.filter(movie => movie != null).forEach(movie => {
           console.log(movie)
@@ -22,7 +23,7 @@ export const index = () => {
         })
       })
 
-      dispatch(clearShows())
+      dispatch(clearShows()) // store play times
       shows.then(showsArr => {
         showsArr.filter(movie => movie != null).forEach(show => {
           console.log(show)
@@ -33,7 +34,13 @@ export const index = () => {
       })
 
       dispatch(indexSuccess())
-    }).catch(error => dispatch(indexFailure(error)))
+    }).catch(error => {
+      dispatch(indexFailure(error))
+
+      if (error.statusCode === 401) {
+        dispatch(logIn())
+      }
+    })
   }
 }
 

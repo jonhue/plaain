@@ -8,24 +8,15 @@ class OneDrive {
   }
 
   movies() {
-    return new Promise((resolve, reject) => {
-      this.client.api('/me/drive/root:/Plaain/Movies:/children').get()
-        .then(response => resolve(response), error => reject(error))
-    })
+    return this.client.api('/me/drive/root:/Plaain/Movies:/children').get()
   }
 
   shows() {
-    return new Promise((resolve, reject) => {
-      this.client.api('/me/drive/root:/Plaain/Shows:/children').get()
-        .then(response => resolve(response), error => reject(error))
-    })
+    return this.client.api('/me/drive/root:/Plaain/Shows:/children').get()
   }
 
   children(itemId) {
-    return new Promise((resolve, reject) => {
-      this.client.api(`/me/drive/items/${itemId}/children`).get()
-        .then(response => resolve(response), error => reject(error))
-    })
+    return this.client.api(`/me/drive/items/${itemId}/children`).get()
   }
 
   get client() {
