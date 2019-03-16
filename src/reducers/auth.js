@@ -19,7 +19,6 @@ export default (state = initialState, action) => {
     return {
       ...state,
       token: action.payload.token,
-      client: action.payload.client,
       user: action.payload.user,
       loading: false
     }

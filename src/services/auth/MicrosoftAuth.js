@@ -25,10 +25,10 @@ class MicrosoftAuth {
 
   logIn() {
     return this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
-      this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
+      return this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
         return accessToken
       }).catch(() => {
-        this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
+        return this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
           return accessToken
         })
       })
