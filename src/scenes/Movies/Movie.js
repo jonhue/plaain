@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 // import './Movie.scss'
 
-import Caption from './../../../models/Caption'
-import { default as MovieModel } from './../../../models/Movie'
-import Source from './../../../models/Source'
-import Video from './../../../models/Video'
+import Caption from '../../models/Caption'
+import { default as MovieModel } from '../../models/Movie'
+import Source from '../../models/Source'
+import Video from '../../models/Video'
 
-import PlyrPlayer from './../../../components/PlyrPlayer'
+import PlyrPlayer from '../../components/PlyrPlayer'
 
 class Movie extends Component {
   render({ match }) {
