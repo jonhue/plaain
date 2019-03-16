@@ -4,16 +4,18 @@ import { Client } from '@microsoft/microsoft-graph-client'
 class MicrosoftAuth {
   static config = {
     clientID: process.env.REACT_APP_MICROSOFT_CLIENT_ID,
-    graphScopes: ['user.read', 'files.readwrite.all']
+    graphScopes: ['user.read', 'files.read.all']
+  }
+
+  constructor() {
+    this._userAgentApplication = new UserAgentApplication(
+      MicrosoftAuth.config.clientID,
+      'https://login.microsoftonline.com/common',
+      null
+    )
   }
 
   perform() {
-    this.userAgentApplication = new UserAgentApplication(
-      MicrosoftAuth.config.clientID,
-      'https://login.microsoftonline.com/organizations',
-      null
-    )
-
     return this.retrieveClient()
   }
 
@@ -52,10 +54,6 @@ class MicrosoftAuth {
 
   get userAgentApplication() {
     return this._userAgentApplication
-  }
-
-  set userAgentApplication(userAgentApplication) {
-    this._userAgentApplication = userAgentApplication
   }
 }
 

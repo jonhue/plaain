@@ -1,6 +1,32 @@
-import { LOG_IN } from './actionTypes'
+import MicrosoftAuth from '../../services/auth/MicrosoftAuth'
 
-export const logIn = auth => ({
-  type: LOG_IN,
+import { index } from './indexing'
+
+export const LOG_IN_BEGIN = 'LOG_IN_BEGIN'
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
+
+export const logIn = () => {
+  return dispatch => {
+    dispatch(logInBegin())
+
+    new MicrosoftAuth().perform().then(auth => {
+      dispatch(logInSuccess(auth))
+      dispatch(index())
+    }, error => dispatch(logInFailure(error)))
+  }
+}
+
+const logInBegin = () => ({
+  type: LOG_IN_BEGIN
+})
+
+const logInSuccess = auth => ({
+  type: LOG_IN_SUCCESS,
   payload: auth
+})
+
+const logInFailure = error => ({
+  type: LOG_IN_FAILURE,
+  payload: error
 })

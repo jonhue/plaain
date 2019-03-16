@@ -1,30 +1,24 @@
-import { LOG_IN_BEGIN, LOG_IN_SUCCESS, LOG_IN_FAILURE } from '../actions/auth'
+import { INDEX_BEGIN, INDEX_SUCCESS, INDEX_FAILURE } from '../actions/indexing'
 
 const initialState = {
-  token: null,
-  client: null,
-  user: null,
   loading: false,
   error: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  case LOG_IN_BEGIN:
+  case INDEX_BEGIN:
     return {
       ...state,
       loading: true,
       error: null
     }
-  case LOG_IN_SUCCESS:
+  case INDEX_SUCCESS:
     return {
       ...state,
-      token: action.payload.token,
-      client: action.payload.client,
-      user: action.payload.user,
       loading: false
     }
-  case LOG_IN_FAILURE:
+  case INDEX_FAILURE:
     return {
       ...state,
       loading: false,
