@@ -10,8 +10,8 @@ class IndexItems {
 
   perform() {
     return Promise.all([
-      new IndexMovies(this.oneDrive).perform().then(movies => ({ movies })),
-      new IndexShows(this.oneDrive).perform().then(shows => ({ shows }))
+      new IndexMovies(this.oneDrive).perform().then(movies => ({ movies: Promise.all(movies) })),
+      new IndexShows(this.oneDrive).perform().then(shows => ({ shows: Promise.all(shows) }))
     ]).then(data => Object.assign({}, data[0], data[1]))
   }
 

@@ -13,20 +13,23 @@ export const index = () => {
 
     new IndexItems(getState().auth.token).perform().then(({ movies, shows }) => {
       dispatch(clearMovies())
-      console.log(movies)
-      movies.forEach(movie => {
-        console.log(movie)
+      movies.then(moviesArr => {
+        moviesArr.filter(movie => movie != null).forEach(movie => {
+          console.log(movie)
 
-        dispatch(addMovie(movie))
-        dispatch(fetchMovie(movie))
+          dispatch(addMovie(movie))
+          // dispatch(fetchMovie(movie))
+        })
       })
-      dispatch(clearShows())
-      console.log(shows)
-      shows.forEach(show => {
-        console.log(show)
 
-        dispatch(addShow(show))
-        dispatch(fetchShow(show))
+      dispatch(clearShows())
+      shows.then(showsArr => {
+        showsArr.filter(movie => movie != null).forEach(show => {
+          console.log(show)
+
+          dispatch(addShow(show))
+          // dispatch(fetchShow(show))
+        })
       })
 
       dispatch(indexSuccess())

@@ -1,6 +1,6 @@
 import { ITEM_STATES } from '../../constants'
 
-// import IndexFiles from './IndexFiles'
+import IndexFiles from './IndexFiles'
 
 class IndexShows {
   constructor(oneDrive) {
@@ -8,20 +8,23 @@ class IndexShows {
   }
 
   perform() {
-    return this.oneDrive.shows().then(response => response.value.map((item, index) => {
-      console.log(item)
-      if (item.folder == null || item.folder.childCount < 1) {
-        return null
-      }
+    return this.oneDrive.shows().then(response => {
+      return response.value.map((item, index) => this.indexShow(item, index))
+    })
+  }
 
-      return {
-        state: ITEM_STATES.INDEXED,
-        id: index,
-        name: item.name,
-        oneDriveId: item.id,
-        // files: new IndexFiles(this.oneDrive, item.id).perform()
-      }
-    }).filter(show => show != null))
+  async indexShow(item, id){
+    if (item.folder == null || item.folder.childCount < 1) {
+      return null
+    }
+
+    return {
+      state: ITEM_STATES.INDEXED,
+      id: id,
+      name: item.name,
+      oneDriveId: item.id,
+      // files: await new IndexFiles(this.oneDrive, item.id).perform()
+    }
   }
 
   get oneDrive() {

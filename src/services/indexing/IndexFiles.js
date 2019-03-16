@@ -27,9 +27,9 @@ class IndexFiles {
   }
 
   static fileType(fileName) {
-    if (SOURCE_EXTENSIONS.include(IndexFiles.fileExtension(fileName))) {
+    if (SOURCE_EXTENSIONS.includes(IndexFiles.fileExtension(fileName))) {
       return FILE_TYPES.SOURCE
-    } else if (CAPTION_EXTENSIONS.include(IndexFiles.fileExtension(fileName))) {
+    } else if (CAPTION_EXTENSIONS.includes(IndexFiles.fileExtension(fileName))) {
       return FILE_TYPES.CAPTION
     } else {
       return null

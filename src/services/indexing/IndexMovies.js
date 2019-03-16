@@ -8,19 +8,23 @@ class IndexMovies {
   }
 
   perform() {
-    return this.oneDrive.movies().then(response => response.value.map((item, index) => {
-      if (item.folder == null || item.folder.childCount < 1) {
-        return null
-      }
+    return this.oneDrive.movies().then(response => {
+      return response.value.map((item, index) => this.indexMovie(item, index))
+    })
+  }
 
-      return {
-        state: ITEM_STATES.INDEXED,
-        id: index,
-        name: item.name,
-        oneDriveId: item.id,
-        files: new IndexFiles(this.oneDrive, item.id).perform()
-      }
-    }).filter(movie => movie != null))
+  async indexMovie(item, id){
+    if (item.folder == null || item.folder.childCount < 1) {
+      return null
+    }
+
+    return {
+      state: ITEM_STATES.INDEXED,
+      id: id,
+      name: item.name,
+      oneDriveId: item.id,
+      files: await new IndexFiles(this.oneDrive, item.id).perform()
+    }
   }
 
   get oneDrive() {
