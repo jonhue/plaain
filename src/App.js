@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { UserAgentApplication } from 'msal'
 // import logo from './logo.svg'
 // import './App.scss'
 
-import { logIn } from './redux/actions/auth'
-import { getUserState } from './redux/selectors/auth'
+import { logIn } from './actions/auth'
+import { index } from './actions/indexing'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
@@ -21,17 +20,16 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    new UserAgentApplication(
-      MicrosoftAuth.config.clientID,
-      'https://login.microsoftonline.com/common',
-      null
-    )
+    // this required for the login popup to close (https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/174)
+    new MicrosoftAuth()
   }
 
   render() {
     if (this.props.user) {
       return (
         <div className='App'>
+          <button onClick={this.props.index}>Index</button>
+
           <Router>
             <Switch>
               <Route path='/' exact component={ForYou} />
@@ -46,7 +44,7 @@ class App extends Component {
     } else {
       return (
         <div className='App'>
-          <button onClick={this.logIn}>Launch</button>
+          <button onClick={this.props.logIn}>Launch</button>
 
           <Router>
             <Switch>
@@ -58,17 +56,11 @@ class App extends Component {
       )
     }
   }
-
-  logIn = () => {
-    new MicrosoftAuth().perform().then((auth) => {
-      this.props.logIn(auth)
-    }, (error) => console.log(error))
-  }
 }
 
 export default connect(
-  (state) => ({
-    user: getUserState(state)
+  state => ({
+    user: state.auth.user
   }),
-  { logIn }
+  { logIn, index }
 )(App)
