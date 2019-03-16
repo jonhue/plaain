@@ -5,8 +5,8 @@ import { UserAgentApplication } from 'msal'
 // import logo from './logo.svg'
 // import './App.scss'
 
-import { logIn } from './redux/actions'
-import { getUserState } from './redux/selectors'
+import { logIn } from './redux/actions/auth'
+import { getUserState } from './redux/selectors/auth'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 

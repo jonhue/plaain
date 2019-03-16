@@ -16,7 +16,8 @@
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
