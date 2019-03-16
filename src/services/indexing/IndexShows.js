@@ -7,20 +7,19 @@ class IndexShows {
 
   perform() {
     return this.oneDrive.shows().then(response => {
-      return response.value.map((item, index) => this.indexShow(item, index))
+      return response.value.map(item => this.index(item))
     })
   }
 
-  async indexShow(item, id) {
-    if (item.folder == null || item.folder.childCount < 1) {
+  async index(item) {
+    if (item.folder == null) {
       return null
     }
 
     return {
-      id: id,
+      id: item.id,
       name: item.name,
-      oneDriveId: item.id,
-      seasons: await new IndexSeasons(this.oneDrive, item.id).perform().then(seasons => Promise.all(seasons).then(seasons => seasons.filter(season => season != null)))
+      seasons: await new IndexSeasons(this.oneDrive, item.id).perform()
     }
   }
 

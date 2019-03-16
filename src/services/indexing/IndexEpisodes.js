@@ -10,20 +10,21 @@ class IndexEpisodes {
 
   perform() {
     return this.oneDrive.children(this.folderId).then(response => {
-      return response.value.map((item, index) => this.indexSeason(item, index))
+      return response.value.map(item => this.index(item))
+    }).then(episodes => {
+      return Promise.all(episodes).then(episodes => episodes.filter(episode => episode != null))
     })
   }
 
-  async indexSeason(item, id) {
-    if (item.folder == null || item.folder.childCount < 1 || Number.isNaN(item.name)) {
+  async index(item) {
+    if (item.folder == null || Number.isNaN(item.name)) {
       return null
     }
 
     return {
       state: ITEM_STATES.INDEXED,
-      id: id,
+      id: item.id,
       episodeNumber: Number.parseInt(item.name),
-      oneDriveId: item.id,
       files: await new IndexFiles(this.oneDrive, item.id).perform()
     }
   }

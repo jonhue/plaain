@@ -13,17 +13,29 @@ export const index = () => {
     dispatch(indexBegin())
 
     new IndexItems(getState().auth.token).perform().then(({ movies, shows }) => {
-      dispatch(clearMovies()) // store play times
+      const movieProgress = {}
+      Object.values(getState().movies).forEach(movie => movieProgress[movie.id] = movie.progress)
+      dispatch(clearMovies())
       movies.then(moviesArr => {
-        moviesArr.filter(movie => movie != null).forEach(movie => {
+        moviesArr.forEach(movie => {
+          movie.progress = movieProgress[movie.id]
           dispatch(addMovie(movie))
           dispatch(fetchMovie(movie))
         })
       })
 
-      dispatch(clearShows()) // store play times
+      const episodeProgress = {}
+      Object.values(getState().shows).forEach(show => {
+        show.seasons.forEach(season => {
+          season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
+        })
+      })
+      dispatch(clearShows())
       shows.then(showsArr => {
-        showsArr.filter(show => show != null).forEach(show => {
+        showsArr.forEach(show => {
+          show.seasons.forEach(season => {
+            season.episodes.forEach(episode => episode.progress = episodeProgress[episode.id])
+          })
           dispatch(addShow(show))
           dispatch(fetchShow(show))
         })

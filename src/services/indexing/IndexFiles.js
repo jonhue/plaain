@@ -7,23 +7,26 @@ class IndexFiles {
   }
 
   perform() {
-    return this.oneDrive.children(this.folderId).then(response => response.value.map((item, index) => {
-      const type = IndexFiles.fileType(item.name)
-      if (item.file == null || type == null) {
-        return null
-      }
+    return this.oneDrive.children(this.folderId).then(response => {
+      return response.value.map(item => this.index(item)).filter(source => source != null)
+    })
+  }
 
-      return {
-        id: index,
-        type: type,
-        name: item.name,
-        extension: IndexFiles.fileExtension(item.name),
-        information: IndexFiles.fileInformation(item.name),
-        mimeType: item.file.mimeType,
-        url: item['@microsoft.graph.downloadUrl'],
-        oneDriveId: item.id
-      }
-    }).filter(source => source != null))
+  index(item) {
+    const type = IndexFiles.fileType(item.name)
+    if (item.file == null || type == null) {
+      return null
+    }
+
+    return {
+      id: item.id,
+      type: type,
+      name: item.name,
+      extension: IndexFiles.fileExtension(item.name),
+      information: IndexFiles.fileInformation(item.name),
+      mimeType: item.file.mimeType,
+      url: item['@microsoft.graph.downloadUrl']
+    }
   }
 
   static fileType(fileName) {

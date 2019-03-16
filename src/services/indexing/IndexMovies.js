@@ -9,20 +9,19 @@ class IndexMovies {
 
   perform() {
     return this.oneDrive.movies().then(response => {
-      return response.value.map((item, index) => this.indexMovie(item, index))
+      return response.value.map(item => this.index(item))
     })
   }
 
-  async indexMovie(item, id) {
-    if (item.folder == null || item.folder.childCount < 1) {
+  async index(item) {
+    if (item.folder == null) {
       return null
     }
 
     return {
       state: ITEM_STATES.INDEXED,
-      id: id,
+      id: item.id,
       name: item.name,
-      oneDriveId: item.id,
       files: await new IndexFiles(this.oneDrive, item.id).perform()
     }
   }

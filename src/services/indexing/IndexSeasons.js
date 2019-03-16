@@ -8,20 +8,21 @@ class IndexSeasons {
 
   perform() {
     return this.oneDrive.children(this.folderId).then(response => {
-      return response.value.map((item, index) => this.indexSeason(item, index))
+      return response.value.map(item => this.index(item))
+    }).then(seasons => {
+      return Promise.all(seasons).then(seasons => seasons.filter(season => season != null))
     })
   }
 
-  async indexSeason(item, id) {
-    if (item.folder == null || item.folder.childCount < 1 || Number.isNaN(item.name)) {
+  async index(item) {
+    if (item.folder == null || Number.isNaN(item.name)) {
       return null
     }
 
     return {
-      id: id,
+      id: item.id,
       seasonNumber: Number.parseInt(item.name),
-      oneDriveId: item.id,
-      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform().then(episodes => Promise.all(episodes).then(episodes => episodes.filter(episode => episode != null)))
+      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform()
     }
   }
 
