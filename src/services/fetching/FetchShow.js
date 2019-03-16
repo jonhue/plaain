@@ -4,9 +4,9 @@ class FetchShow {
   }
 
   perform() {
-    return new Promise((resolve, reject) => {
-      resolve({...this.show})
-    })
+    // return new Promise((resolve, reject) => {
+    //   resolve({...this.show})
+    // })
   }
 
   get show() {
