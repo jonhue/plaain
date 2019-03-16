@@ -1,4 +1,4 @@
-import FetchShow from '../../services/fetching/FetchShow'
+import FetchShow from '../services/fetching/FetchShow'
 
 import { showSelector } from '../selectors/shows'
 

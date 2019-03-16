@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 // import logo from './logo.svg'
 // import './App.scss'
 
-import { logIn } from './redux/actions/auth'
+import { logIn } from './actions/auth'
+import { index } from './actions/indexing'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
@@ -27,6 +28,8 @@ class App extends Component {
     if (this.props.user) {
       return (
         <div className='App'>
+          <button onClick={this.props.index}>Index</button>
+
           <Router>
             <Switch>
               <Route path='/' exact component={ForYou} />
@@ -59,5 +62,5 @@ export default connect(
   state => ({
     user: state.auth.user
   }),
-  { logIn }
+  { logIn, index }
 )(App)

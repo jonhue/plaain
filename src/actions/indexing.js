@@ -1,4 +1,4 @@
-import IndexItems from '../../services/indexing/IndexItems'
+import IndexItems from '../services/indexing/IndexItems'
 
 import { addMovie, fetchMovie } from './movies'
 import { addShow, fetchShow } from './shows'

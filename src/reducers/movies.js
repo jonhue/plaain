@@ -1,4 +1,4 @@
-import { ITEM_STATES } from '../../constants'
+import { ITEM_STATES } from '../constants'
 
 import { ADD_MOVIE, FETCH_MOVIE } from '../actions/movies'
 

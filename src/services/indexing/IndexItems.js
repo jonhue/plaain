@@ -4,6 +4,7 @@ class IndexItems {
   }
 
   perform() {
+    console.log('perform')
     return new Promise((resolve, reject) => {
       resolve({ movies: [], shows: [] })
     })

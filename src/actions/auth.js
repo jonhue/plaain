@@ -1,4 +1,4 @@
-import MicrosoftAuth from '../../services/auth/MicrosoftAuth'
+import MicrosoftAuth from '../services/auth/MicrosoftAuth'
 
 import { index } from './indexing'
 

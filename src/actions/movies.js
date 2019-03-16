@@ -1,4 +1,4 @@
-import FetchMovie from '../../services/fetching/FetchMovie'
+import FetchMovie from '../services/fetching/FetchMovie'
 
 import { movieSelector } from '../selectors/movies'
 
