@@ -14,7 +14,7 @@ class IndexEpisodes {
     })
   }
 
-  async indexSeason(item, id){
+  async indexSeason(item, id) {
     if (item.folder == null || item.folder.childCount < 1 || Number.isNaN(item.name)) {
       return null
     }

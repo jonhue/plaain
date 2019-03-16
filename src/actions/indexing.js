@@ -16,8 +16,6 @@ export const index = () => {
       dispatch(clearMovies()) // store play times
       movies.then(moviesArr => {
         moviesArr.filter(movie => movie != null).forEach(movie => {
-          console.log(movie)
-
           dispatch(addMovie(movie))
           dispatch(fetchMovie(movie))
         })
@@ -25,9 +23,7 @@ export const index = () => {
 
       dispatch(clearShows()) // store play times
       shows.then(showsArr => {
-        showsArr.filter(movie => movie != null).forEach(show => {
-          console.log(show)
-
+        showsArr.filter(show => show != null).forEach(show => {
           dispatch(addShow(show))
           dispatch(fetchShow(show))
         })

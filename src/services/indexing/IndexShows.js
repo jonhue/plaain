@@ -11,7 +11,7 @@ class IndexShows {
     })
   }
 
-  async indexShow(item, id){
+  async indexShow(item, id) {
     if (item.folder == null || item.folder.childCount < 1) {
       return null
     }
@@ -20,7 +20,7 @@ class IndexShows {
       id: id,
       name: item.name,
       oneDriveId: item.id,
-      seasons: await new IndexSeasons(this.oneDrive, item.id).perform()
+      seasons: await new IndexSeasons(this.oneDrive, item.id).perform().then(seasons => Promise.all(seasons).then(seasons => seasons.filter(season => season != null)))
     }
   }
 

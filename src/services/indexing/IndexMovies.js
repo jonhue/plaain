@@ -13,7 +13,7 @@ class IndexMovies {
     })
   }
 
-  async indexMovie(item, id){
+  async indexMovie(item, id) {
     if (item.folder == null || item.folder.childCount < 1) {
       return null
     }

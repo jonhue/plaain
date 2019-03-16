@@ -12,7 +12,7 @@ class IndexSeasons {
     })
   }
 
-  async indexSeason(item, id){
+  async indexSeason(item, id) {
     if (item.folder == null || item.folder.childCount < 1 || Number.isNaN(item.name)) {
       return null
     }
@@ -21,7 +21,7 @@ class IndexSeasons {
       id: id,
       seasonNumber: Number.parseInt(item.name),
       oneDriveId: item.id,
-      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform()
+      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform().then(episodes => Promise.all(episodes).then(episodes => episodes.filter(episode => episode != null)))
     }
   }
 
