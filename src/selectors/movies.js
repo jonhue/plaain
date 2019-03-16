@@ -5,6 +5,6 @@ const moviesSelector = state => state.movies
 export const movieSelector = movieId => {
   return createSelector(
     moviesSelector,
-    movies => movies.filter(movie => movie.id === movieId)
+    movies => movies[movieId]
   )
 }

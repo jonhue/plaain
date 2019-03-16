@@ -22,7 +22,7 @@ export const fetchMovie = movieId => {
     const movie = movieSelector(movieId)(getState())
     new FetchMovie(movie).perform().then(movie => {
       dispatch(addMovie(movie))
-    }, () => dispatch(fetchMovie(movieId)))
+    }).catch(() => dispatch(fetchMovie(movieId)))
   }
 }
 

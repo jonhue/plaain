@@ -22,7 +22,7 @@ export const fetchShow = showId => {
     const show = showSelector(showId)(getState())
     new FetchShow(show).perform().then(show => {
       dispatch(addShow(show))
-    }, () => dispatch(fetchShow(showId)))
+    }).catch(() => dispatch(fetchShow(showId)))
   }
 }
 

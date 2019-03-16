@@ -15,27 +15,23 @@ class MicrosoftAuth {
   }
 
   perform() {
-    return new Promise((resolve, reject) => {
-      this.logIn().then(accessToken => {
-        resolve({
-          token: accessToken,
-          user: this.userAgentApplication.getUser()
-        })
-      }, error => reject(error))
+    return this.logIn().then(accessToken => {
+      return {
+        token: accessToken,
+        user: this.userAgentApplication.getUser()
+      }
     })
   }
 
   logIn() {
-    return new Promise((resolve, reject) => {
-      this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
-        this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
-          resolve(accessToken)
-        }, () => {
-          this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
-            resolve(accessToken)
-          }, error => reject(error))
+    return this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
+      this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
+        return accessToken
+      }).catch(() => {
+        this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
+          return accessToken
         })
-      }, error => reject(error))
+      })
     })
   }
 

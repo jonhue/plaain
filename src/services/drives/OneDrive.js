@@ -10,21 +10,21 @@ class OneDrive {
   movies() {
     return new Promise((resolve, reject) => {
       this.client.api('/me/drive/root:/Plaain/Movies:/children').get()
-                 .then(response => resolve(response), error => reject(error))
+        .then(response => resolve(response), error => reject(error))
     })
   }
 
   shows() {
     return new Promise((resolve, reject) => {
       this.client.api('/me/drive/root:/Plaain/Shows:/children').get()
-                 .then(response => resolve(response), error => reject(error))
+        .then(response => resolve(response), error => reject(error))
     })
   }
 
   children(itemId) {
     return new Promise((resolve, reject) => {
       this.client.api(`/me/drive/items/${itemId}/children`).get()
-                 .then(response => resolve(response), error => reject(error))
+        .then(response => resolve(response), error => reject(error))
     })
   }
 

@@ -13,7 +13,7 @@ export const logIn = () => {
     new MicrosoftAuth().perform().then(auth => {
       dispatch(logInSuccess(auth))
       dispatch(index())
-    }, error => dispatch(logInFailure(error)))
+    }).catch(error => dispatch(logInFailure(error)))
   }
 }
 

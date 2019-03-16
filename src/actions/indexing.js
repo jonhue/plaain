@@ -18,7 +18,7 @@ export const index = () => {
           console.log(movie)
 
           dispatch(addMovie(movie))
-          // dispatch(fetchMovie(movie))
+          dispatch(fetchMovie(movie))
         })
       })
 
@@ -28,7 +28,7 @@ export const index = () => {
           console.log(show)
 
           dispatch(addShow(show))
-          // dispatch(fetchShow(show))
+          dispatch(fetchShow(show))
         })
       })
 

@@ -1,6 +1,4 @@
-import { ITEM_STATES } from '../../constants'
-
-import IndexFiles from './IndexFiles'
+import IndexSeasons from './IndexSeasons'
 
 class IndexShows {
   constructor(oneDrive) {
@@ -19,11 +17,10 @@ class IndexShows {
     }
 
     return {
-      state: ITEM_STATES.INDEXED,
       id: id,
       name: item.name,
       oneDriveId: item.id,
-      // files: await new IndexFiles(this.oneDrive, item.id).perform()
+      seasons: await new IndexSeasons(this.oneDrive, item.id).perform()
     }
   }
 
