@@ -1,17 +1,22 @@
+import OneDrive from '../drives/OneDrive'
+
+import IndexMovies from './IndexMovies'
+import IndexShows from './IndexShows'
+
 class IndexItems {
-  constructor(auth) {
-    this._auth = auth
+  constructor(accessToken) {
+    this._oneDrive = new OneDrive(accessToken)
   }
 
   perform() {
-    console.log('perform')
-    return new Promise((resolve, reject) => {
-      resolve({ movies: [], shows: [] })
-    })
+    return Promise.all([
+      new IndexMovies(this.oneDrive).perform().then(movies => ({ movies })),
+      new IndexShows(this.oneDrive).perform().then(shows => ({ shows }))
+    ]).then(data => Object.assign({}, data[0], data[1]))
   }
 
-  get auth() {
-    return this._auth
+  get oneDrive() {
+    return this._oneDrive
   }
 }
 

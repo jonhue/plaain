@@ -2,7 +2,6 @@ import { LOG_IN_BEGIN, LOG_IN_SUCCESS, LOG_IN_FAILURE } from '../actions/auth'
 
 const initialState = {
   token: null,
-  client: null,
   user: null,
   loading: false,
   error: null

@@ -1,6 +1,6 @@
 import { ITEM_STATES } from '../constants'
 
-import { ADD_MOVIE, FETCH_MOVIE } from '../actions/movies'
+import { ADD_MOVIE, CLEAR_MOVIES, FETCH_MOVIE } from '../actions/movies'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -9,6 +9,8 @@ export default (state = {}, action) => {
       ...state,
       [action.payload.id]: action.payload
     }
+  case CLEAR_MOVIES:
+    return {}
   case FETCH_MOVIE:
     return {
       ...state,

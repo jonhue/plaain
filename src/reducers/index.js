@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   auth: persistReducer({
     key: 'auth',
     storage: storage,
-    whitelist: ['token', 'client', 'user'],
+    whitelist: ['token', 'user'],
     debug: process.env.NODE_ENV === 'development'
   }, auth),
   indexing,
