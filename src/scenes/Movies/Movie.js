@@ -6,8 +6,6 @@ import React, { Component } from 'react'
 // import Source from '../../models/Source'
 // import Video from '../../models/Video'
 
-import PlyrPlayer from '../../components/PlyrPlayer'
-
 class Movie extends Component {
   render({ match }) {
     // const video = new Video(
@@ -25,6 +23,7 @@ class Movie extends Component {
     // // const movie = new MovieModel(299537, video).fetch()
     // const movie = new MovieModel(match.params.id, video).fetch()
     // console.log(movie)
+    console.log(match.params.id)
 
     return (
       <div className="Movie">
