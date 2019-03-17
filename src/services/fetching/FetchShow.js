@@ -20,15 +20,17 @@ class FetchShow {
 
   async fetch() {
     await this.tmdb.show(this.show.tmdbId)
-      .then(response => {
-        this.show.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
-        this.show.firstAirDate = response.first_air_date
-        this.show.lastAirDate = response.last_air_date
-        this.show.name = response.name
-        this.show.overview = response.overview
-        this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
-        this.show.seasons = await this.mergeSeasons(response.seasons)
-      })
+      .then(response => this.handleResponse(response))
+  }
+
+  async handleResponse(response) {
+    this.show.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
+    this.show.firstAirDate = response.first_air_date
+    this.show.lastAirDate = response.last_air_date
+    this.show.name = response.name
+    this.show.overview = response.overview
+    this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
+    this.show.seasons = await this.mergeSeasons(response.seasons)
   }
 
   async mergeSeasons(responseSeasons) {
@@ -38,7 +40,7 @@ class FetchShow {
       ...this.show.seasons.filter(indexedSeason => indexedSeason.seasonNumber === season.season_number).shift()
     }))
 
-    await Promise.all(seasons.map(season => new FetchSeason(season).perform()))
+    return await Promise.all(seasons.map(season => new FetchSeason(this.show.tmdbId, season).perform()))
   }
 
   get show() {

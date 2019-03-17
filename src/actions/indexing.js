@@ -20,24 +20,28 @@ export const index = () => {
         moviesArr.forEach(movie => {
           movie.progress = movieProgress[movie.id]
           dispatch(addMovie(movie))
-          dispatch(fetchMovie(movie))
+          dispatch(fetchMovie(movie.id))
         })
       })
 
+      console.log('movies')
       const episodeProgress = {}
-      Object.values(getState().shows).forEach(show => {
-        show.seasons.forEach(season => {
-          season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
-        })
-      })
+      // Object.values(getState().shows).forEach(show => {
+      //   show.seasons.forEach(season => {
+      //     season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
+      //   })
+      // })
+      console.log('zsfgr')
       dispatch(clearShows())
+      console.log(shows)
       shows.then(showsArr => {
         showsArr.forEach(show => {
+          console.log(show)
           show.seasons.forEach(season => {
             season.episodes.forEach(episode => episode.progress = episodeProgress[episode.id])
           })
           dispatch(addShow(show))
-          dispatch(fetchShow(show))
+          dispatch(fetchShow(show.id))
         })
       })
 

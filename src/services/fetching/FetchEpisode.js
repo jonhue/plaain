@@ -1,13 +1,15 @@
 import TMDb from '../databases/TMDb'
 
 class FetchEpisode {
-  constructor(season) {
-    this._season = episode
+  constructor(showTmdbId, seasonNumber, episode) {
+    this._showTmdbId = showTmdbId
+    this._seasonNumber = seasonNumber
+    this._episode = episode
     this._tmdb = new TMDb()
   }
 
   perform() {
-    this.tmdb.episode(this.episode.tmdbId)
+    return this.tmdb.episode(this.showTmdbId, this.seasonNumber, this.episode.episodeNumber)
       .then(response => {
         this.episode.airDate = response.air_date
         this.episode.name = response.name
@@ -15,6 +17,14 @@ class FetchEpisode {
 
         return this.episode
       })
+  }
+
+  get showTmdbId() {
+    return this._showTmdbId
+  }
+
+  get seasonNumber() {
+    return this._seasonNumber
   }
 
   get episode() {

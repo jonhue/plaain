@@ -20,6 +20,7 @@ export const fetchShow = showId => {
     dispatch(fetchShowBegin(showId))
 
     const show = showSelector(showId)(getState())
+    console.log(show)
     new FetchShow(show).perform().then(newShow => {
       newShow.seasons.forEach(season => {
         season.episodes.forEach(episode => {
@@ -32,6 +33,7 @@ export const fetchShow = showId => {
           }
         })
       })
+      console.log(newShow)
       dispatch(addShow(newShow))
     }).catch(() => dispatch(fetchShow(showId)))
   }
