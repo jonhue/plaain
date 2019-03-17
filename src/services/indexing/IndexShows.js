@@ -1,3 +1,5 @@
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+
 import IndexSeasons from './IndexSeasons'
 
 class IndexShows {
@@ -16,10 +18,14 @@ class IndexShows {
       return null
     }
 
+    const seasons = await new IndexSeasons(this.oneDrive, item.id).perform()
+
     return {
+      state: ITEM_STATES.INDEXED,
+      type: seasons.length > 0 ? ITEM_TYPES.LIBRARY : ITEM_TYPES.RECOMMENDED,
       id: item.id,
       name: item.name,
-      seasons: await new IndexSeasons(this.oneDrive, item.id).perform()
+      seasons: seasons
     }
   }
 

@@ -1,4 +1,4 @@
-import { ITEM_STATES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import IndexFiles from './IndexFiles'
 
@@ -18,11 +18,14 @@ class IndexMovies {
       return null
     }
 
+    const files = await new IndexFiles(this.oneDrive, item.id).perform()
+
     return {
       state: ITEM_STATES.INDEXED,
+      type: files.length > 0 ? ITEM_TYPES.LIBRARY : ITEM_TYPES.RECOMMENDED,
       id: item.id,
       name: item.name,
-      files: await new IndexFiles(this.oneDrive, item.id).perform()
+      files: files
     }
   }
 

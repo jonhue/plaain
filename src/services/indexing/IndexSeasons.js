@@ -1,3 +1,5 @@
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+
 import IndexEpisodes from './IndexEpisodes'
 
 class IndexSeasons {
@@ -19,10 +21,14 @@ class IndexSeasons {
       return null
     }
 
+    const episodes = await new IndexEpisodes(this.oneDrive, item.id).perform()
+
     return {
+      state: ITEM_STATES.INDEXED,
+      type: episodes.length > 0 ? ITEM_TYPES.LIBRARY : ITEM_TYPES.RECOMMENDED,
       id: item.id,
       seasonNumber: Number.parseInt(item.name),
-      episodes: await new IndexEpisodes(this.oneDrive, item.id).perform()
+      episodes: episodes
     }
   }
 
