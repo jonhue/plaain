@@ -3,14 +3,14 @@ import TMDb from '../databases/TMDb'
 import FetchEpisode from './FetchEpisode'
 
 class FetchSeason {
-  constructor(showTmdbId, season) {
-    this._showTmdbId = showTmdbId
+  constructor(show, season) {
+    this._show = show
     this._season = season
     this._tmdb = new TMDb()
   }
 
   perform() {
-    return this.tmdb.season(this.showTmdbId, this.season.seasonNumber)
+    return this.tmdb.season(this.show.tmdbId, this.season.seasonNumber)
       .then(response => this.handleResponse(response))
   }
 
@@ -19,6 +19,7 @@ class FetchSeason {
     this.season.name = response.name
     this.season.overview = response.overview
     this.season.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
+    this.season.affiliateLink = `https://www.amazon.com/s?k=${FetchSeason.parametrize(this.show.name)}+${FetchSeason.parametrize(this.season.name)}&i=movies-tv`
     this.season.episodes = await this.mergeEpisodes(response.episodes)
 
     return this.season
@@ -39,11 +40,11 @@ class FetchSeason {
       }))
     }
 
-    return await Promise.all(episodes.map(episode => new FetchEpisode(this.showTmdbId, this.season.seasonNumber, episode).perform()))
+    return await Promise.all(episodes.map(episode => new FetchEpisode(this.show, this.season, episode).perform()))
   }
 
-  get showTmdbId() {
-    return this._showTmdbId
+  get show() {
+    return this._show
   }
 
   get season() {
@@ -52,6 +53,10 @@ class FetchSeason {
 
   get tmdb() {
     return this._tmdb
+  }
+
+  static parametrize(string) {
+    return string.toLowerCase().replace(/\s/g, '+')
   }
 }
 

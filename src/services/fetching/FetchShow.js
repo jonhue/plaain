@@ -30,6 +30,7 @@ class FetchShow {
     this.show.name = response.name
     this.show.overview = response.overview
     this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
+    this.show.affiliateLink = `https://www.amazon.com/s?k=${FetchShow.parametrize(this.show.name)}&i=movies-tv`
     this.show.seasons = await this.mergeSeasons(response.seasons)
   }
 
@@ -40,7 +41,7 @@ class FetchShow {
       ...this.show.seasons.filter(indexedSeason => indexedSeason.seasonNumber === season.season_number).shift()
     }))
 
-    return await Promise.all(seasons.map(season => new FetchSeason(this.show.tmdbId, season).perform()))
+    return await Promise.all(seasons.map(season => new FetchSeason(this.show, season).perform()))
   }
 
   get show() {
@@ -49,6 +50,10 @@ class FetchShow {
 
   get tmdb() {
     return this._tmdb
+  }
+
+  static parametrize(string) {
+    return string.toLowerCase().replace(/\s/g, '+')
   }
 }
 
