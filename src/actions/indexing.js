@@ -20,7 +20,7 @@ export const index = () => {
         moviesArr.forEach(movie => {
           movie.progress = movieProgress[movie.id]
           dispatch(addMovie(movie))
-          dispatch(fetchMovie(movie))
+          dispatch(fetchMovie(movie.id))
         })
       })
 
@@ -37,7 +37,7 @@ export const index = () => {
             season.episodes.forEach(episode => episode.progress = episodeProgress[episode.id])
           })
           dispatch(addShow(show))
-          dispatch(fetchShow(show))
+          dispatch(fetchShow(show.id))
         })
       })
 

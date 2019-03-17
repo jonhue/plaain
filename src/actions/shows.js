@@ -20,8 +20,19 @@ export const fetchShow = showId => {
     dispatch(fetchShowBegin(showId))
 
     const show = showSelector(showId)(getState())
-    new FetchShow(show).perform().then(show => {
-      dispatch(addShow(show))
+    new FetchShow(show).perform().then(newShow => {
+      newShow.seasons.forEach(season => {
+        season.episodes.forEach(episode => {
+          const oldSeason = show.seasons.filter(oldSeason => oldSeason.id === season.id)
+          if (oldSeason != null) {
+            const oldEpisode = oldSeason.episodes.filter(oldEpisode => oldEpisode.id === episode.id)
+            if (oldEpisode != null) {
+              episode.progress = oldEpisode.progress
+            }
+          }
+        })
+      })
+      dispatch(addShow(newShow))
     }).catch(() => dispatch(fetchShow(showId)))
   }
 }

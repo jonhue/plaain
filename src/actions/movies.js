@@ -20,8 +20,9 @@ export const fetchMovie = movieId => {
     dispatch(fetchMovieBegin(movieId))
 
     const movie = movieSelector(movieId)(getState())
-    new FetchMovie(movie).perform().then(movie => {
-      dispatch(addMovie(movie))
+    new FetchMovie(movie).perform().then(newMovie => {
+      newMovie.progress = movie.progress
+      dispatch(addMovie(newMovie))
     }).catch(() => dispatch(fetchMovie(movieId)))
   }
 }
