@@ -1,7 +1,11 @@
 export const ITEM_STATES = {
   INDEXED: 'indexed',
   FETCHED: 'fetched',
-  IN_PROGRESS: 'in_progress'
+}
+
+export const ITEM_TYPES = {
+  LIBRARY: 'library',
+  RECOMMENDED: 'recommended',
 }
 
 export const FILE_TYPES = {
