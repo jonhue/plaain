@@ -1,8 +1,8 @@
 {
   "short_name": "Plaain",
   "name": "Plaain",
-  "start_url": "/app",
-  "scope": "/app",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "dir": "rtl",
@@ -11,43 +11,43 @@
   "background_color": "#283057",
   "icons": [
     {
-      "src": "icon_70x70.png",
+      "src": "logo_70.png",
       "sizes": "70x70",
       "type": "image/png"
     }, {
-      "src": "icon_76x76.png",
+      "src": "logo_76.png",
       "sizes": "76x76",
       "type": "image/png"
     }, {
-      "src": "icon_120x120.png",
+      "src": "logo_120.png",
       "sizes": "120x120",
       "type": "image/png"
     }, {
-      "src": "icon_150x150.png",
+      "src": "logo_150.png",
       "sizes": "150x150",
       "type": "image/png"
     }, {
-      "src": "icon_152x152.png",
+      "src": "logo_152.png",
       "sizes": "152x152",
       "type": "image/png"
     }, {
-      "src": "icon_192x192.png",
+      "src": "logo_192.png",
       "sizes": "192x192",
       "type": "image/png"
     }, {
-      "src": "icon_256x256.png",
+      "src": "logo_256.png",
       "sizes": "256x256",
       "type": "image/png"
     }, {
-      "src": "icon_310x310.png",
+      "src": "logo_310.png",
       "sizes": "310x310",
       "type": "image/png"
     }, {
-      "src": "icon_384x384.png",
+      "src": "logo_384.png",
       "sizes": "384x384",
       "type": "image/png"
     }, {
-      "src": "icon_512x512.png",
+      "src": "logo_512.png",
       "sizes": "512x512",
       "type": "image/png"
     }, {
