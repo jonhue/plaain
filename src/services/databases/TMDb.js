@@ -14,7 +14,8 @@ class TMDb {
 
   static base_uri = 'https://api.themoviedb.org/3'
 
-  findMovie(query) {
+  async findMovie(query) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/search/movie`, qs: {...TMDb.config.qs, query}}).then(response => {
       if (response.results.length < 1) {
         return null
@@ -24,7 +25,8 @@ class TMDb {
     })
   }
 
-  findShow(query) {
+  async findShow(query) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/search/tv`, qs: {...TMDb.config.qs, query}}).then(response => {
       if (response.results.length < 1) {
         return null
@@ -34,28 +36,39 @@ class TMDb {
     })
   }
 
-  movie(id) {
+  async movie(id) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}`})
   }
 
-  movieCredits(id) {
+  async movieCredits(id) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/credits`})
   }
 
-  movieVideos(id) {
+  async movieVideos(id) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/videos`})
   }
 
-  show(id) {
+  async show(id) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${id}`})
   }
 
-  season(showId, seasonNumber) {
+  async season(showId, seasonNumber) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}`})
   }
 
-  episode(showId, seasonNumber, episodeNumber) {
+  async episode(showId, seasonNumber, episodeNumber) {
+    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/episode/${episodeNumber}`})
+  }
+
+  // TMDb only allows for up to 4 requests per second (https://developers.themoviedb.org/3/getting-started/request-rate-limiting)
+  static async rateLimiting() {
+    await new Promise(resolve => setTimeout(resolve, 250))
   }
 }
 

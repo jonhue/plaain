@@ -33,7 +33,7 @@ class FetchMovie {
         this.movie.releaseDate = response.release_date
         this.movie.runtime = response.runtime
         this.movie.name = response.title
-        this.movie.affiliateLink = `https://www.amazon.com/s?k=${FetchMovie.parametrize(this.movie.title)}&i=movies-tv`
+        this.movie.affiliateLink = `https://www.amazon.com/s?k=${FetchMovie.parametrize(this.movie.name)}&i=movies-tv`
       })
   }
 

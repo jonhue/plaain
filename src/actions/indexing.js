@@ -24,19 +24,15 @@ export const index = () => {
         })
       })
 
-      console.log('movies')
       const episodeProgress = {}
-      // Object.values(getState().shows).forEach(show => {
-      //   show.seasons.forEach(season => {
-      //     season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
-      //   })
-      // })
-      console.log('zsfgr')
+      Object.values(getState().shows).forEach(show => {
+        show.seasons.forEach(season => {
+          season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
+        })
+      })
       dispatch(clearShows())
-      console.log(shows)
       shows.then(showsArr => {
         showsArr.forEach(show => {
-          console.log(show)
           show.seasons.forEach(season => {
             season.episodes.forEach(episode => episode.progress = episodeProgress[episode.id])
           })

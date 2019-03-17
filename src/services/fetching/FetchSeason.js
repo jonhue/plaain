@@ -27,7 +27,7 @@ class FetchSeason {
 
   async mergeEpisodes(responseEpisodes) {
     let episodes = []
-    if (this.season.episodes != undefined) {
+    if (this.season.episodes !== undefined) {
       episodes = responseEpisodes.map(episode => ({
         tmdbId: episode.id,
         episodeNumber: episode.episode_number,
