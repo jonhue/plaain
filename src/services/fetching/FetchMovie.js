@@ -19,13 +19,12 @@ class FetchMovie {
   async fetch() {
     await Promise.all([
       this.fetchDetails(),
-      this.fetchCredits(),
-      this.fetchVideos()
+      this.fetchCredits()
     ])
   }
 
   fetchDetails() {
-    this.tmdb.movie(this.movie.tmdbId)
+    return this.tmdb.movie(this.movie.tmdbId)
       .then(response => {
         this.movie.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
         this.movie.overview = response.overview
@@ -34,11 +33,12 @@ class FetchMovie {
         this.movie.runtime = response.runtime
         this.movie.name = response.title
         this.movie.affiliateLink = `https://www.amazon.com/s?k=${FetchMovie.parametrize(this.movie.name)}&i=movies-tv`
+        this.movie.trailerLink = `https://www.youtube.com/results?search_query=${FetchMovie.parametrize(this.movie.name)}+official+trailer`
       })
   }
 
   fetchCredits() {
-    this.tmdb.movieCredits(this.movie.tmdbId)
+    return this.tmdb.movieCredits(this.movie.tmdbId)
       .then(response => {
         this.movie.cast = response.cast.map(cast_member => ({
           character: cast_member.character,
@@ -48,16 +48,6 @@ class FetchMovie {
           job: crew_member.job,
           name: crew_member.name
         }))
-      })
-  }
-
-  fetchVideos() {
-    this.tmdb.movieVideos(this.movie.tmdbId)
-      .then(response => {
-        const videos = response.results.filter(video => video.type === 'YouTube')
-        if (videos.length > 0) {
-          this.trailerUrl = `https://youtube.com/watch?v=${videos[0].key}`
-        }
       })
   }
 

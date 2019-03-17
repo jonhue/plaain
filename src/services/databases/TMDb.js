@@ -61,6 +61,16 @@ class TMDb {
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}`})
   }
 
+  async seasonCredits(showId, seasonNumber) {
+    await TMDb.rateLimiting()
+    return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/credits`})
+  }
+
+  async seasonVideos(showId, seasonNumber) {
+    await TMDb.rateLimiting()
+    return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/videos`})
+  }
+
   async episode(showId, seasonNumber, episodeNumber) {
     await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/episode/${episodeNumber}`})

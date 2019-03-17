@@ -30,7 +30,7 @@ class FetchShow {
     this.show.name = response.name
     this.show.overview = response.overview
     this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
-    this.show.affiliateLink = `https://www.amazon.com/s?k=${FetchShow.parametrize(this.show.name)}&i=movies-tv`
+    this.show.affiliateLink = `https://www.amazon.com/s?k=${FetchShow.parametrize(this.show.name)}`
     this.show.seasons = await this.mergeSeasons(response.seasons)
   }
 

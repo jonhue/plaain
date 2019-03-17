@@ -9,17 +9,41 @@ class FetchSeason {
     this._tmdb = new TMDb()
   }
 
-  perform() {
-    return this.tmdb.season(this.show.tmdbId, this.season.seasonNumber)
-      .then(response => this.handleResponse(response))
+  async perform() {
+    await Promise.all([
+      this.fetchDetails(),
+      this.fetchCredits()
+    ])
+
+    return this.season
   }
 
-  async handleResponse(response) {
+  fetchDetails() {
+    return this.tmdb.season(this.show.tmdbId, this.season.seasonNumber)
+      .then(response => this.handleDetailsResponse(response))
+  }
+
+  fetchCredits() {
+    return this.tmdb.seasonCredits(this.show.tmdbId, this.season.seasonNumber)
+      .then(response => {
+        this.season.cast = response.cast.map(cast_member => ({
+          character: cast_member.character,
+          name: cast_member.name
+        }))
+        this.season.crew = response.crew.map(crew_member => ({
+          job: crew_member.job,
+          name: crew_member.name
+        }))
+      })
+  }
+
+  async handleDetailsResponse(response) {
     this.season.airDate = response.air_date
     this.season.name = response.name
     this.season.overview = response.overview
     this.season.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
     this.season.affiliateLink = `https://www.amazon.com/s?k=${FetchSeason.parametrize(this.show.name)}+${FetchSeason.parametrize(this.season.name)}&i=movies-tv`
+    this.season.trailerLink = `https://www.youtube.com/results?search_query=${FetchSeason.parametrize(this.show.name)}+${FetchSeason.parametrize(this.season.name)}+official+trailer&i=movies-tv`
     this.season.episodes = await this.mergeEpisodes(response.episodes)
 
     return this.season
