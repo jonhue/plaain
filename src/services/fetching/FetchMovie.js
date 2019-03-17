@@ -4,9 +4,9 @@ class FetchMovie {
   }
 
   perform() {
-    // return new Promise((resolve, reject) => {
-    //   resolve({...this.movie})
-    // })
+    return new Promise((resolve, reject) => {
+      resolve({...this.movie})
+    })
   }
 
   get movie() {

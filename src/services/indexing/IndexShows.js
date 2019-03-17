@@ -22,7 +22,7 @@ class IndexShows {
 
     return {
       state: ITEM_STATES.INDEXED,
-      type: seasons.length > 0 ? ITEM_TYPES.LIBRARY : ITEM_TYPES.RECOMMENDED,
+      type: seasons.filter(season => season.type == ITEM_TYPES.LIBRARY).length > 0 ? ITEM_TYPES.LIBRARY : ITEM_TYPES.RECOMMENDED,
       id: item.id,
       name: item.name,
       seasons: seasons
