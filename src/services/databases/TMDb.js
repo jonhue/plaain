@@ -15,7 +15,6 @@ class TMDb {
   static base_uri = 'https://api.themoviedb.org/3'
 
   async findMovie(query) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/search/movie`, qs: {...TMDb.config.qs, query}}).then(response => {
       if (response.results.length < 1) {
         return null
@@ -26,7 +25,6 @@ class TMDb {
   }
 
   async findShow(query) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/search/tv`, qs: {...TMDb.config.qs, query}}).then(response => {
       if (response.results.length < 1) {
         return null
@@ -37,48 +35,35 @@ class TMDb {
   }
 
   async movie(id) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}`})
   }
 
   async movieCredits(id) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/credits`})
   }
 
   async movieVideos(id) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/videos`})
   }
 
   async show(id) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${id}`})
   }
 
   async season(showId, seasonNumber) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}`})
   }
 
   async seasonCredits(showId, seasonNumber) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/credits`})
   }
 
   async seasonVideos(showId, seasonNumber) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/videos`})
   }
 
   async episode(showId, seasonNumber, episodeNumber) {
-    await TMDb.rateLimiting()
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/episode/${episodeNumber}`})
-  }
-
-  // TMDb only allows for up to 4 requests per second (https://developers.themoviedb.org/3/getting-started/request-rate-limiting)
-  static async rateLimiting() {
-    await new Promise(resolve => setTimeout(resolve, 250))
   }
 }
 

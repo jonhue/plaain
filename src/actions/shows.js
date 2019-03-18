@@ -4,7 +4,6 @@ import { showSelector } from '../selectors/shows'
 
 export const ADD_SHOW = 'ADD_SHOW'
 export const CLEAR_SHOWS = 'CLEAR_SHOWS'
-export const FETCH_SHOW = 'FETCH_SHOW'
 
 export const addShow = show => ({
   type: ADD_SHOW,
@@ -17,8 +16,6 @@ export const clearShows = () => ({
 
 export const fetchShow = showId => {
   return (dispatch, getState) => {
-    dispatch(fetchShowBegin(showId))
-
     const show = showSelector(showId)(getState())
     new FetchShow(show).perform().then(newShow => {
       newShow.seasons.forEach(season => {
@@ -36,8 +33,3 @@ export const fetchShow = showId => {
     }).catch(() => dispatch(fetchShow(showId)))
   }
 }
-
-const fetchShowBegin = showId => ({
-  type: FETCH_SHOW,
-  payload: showId
-})
