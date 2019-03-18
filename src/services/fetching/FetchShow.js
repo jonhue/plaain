@@ -1,3 +1,5 @@
+import { ITEM_STATES } from '../../constants'
+
 import TMDb from '../databases/TMDb'
 
 import FetchSeason from './FetchSeason'
@@ -24,6 +26,7 @@ class FetchShow {
   }
 
   async handleResponse(response) {
+    this.show.state = ITEM_STATES.FETCHED
     this.show.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
     this.show.firstAirDate = response.first_air_date
     this.show.lastAirDate = response.last_air_date
@@ -41,7 +44,14 @@ class FetchShow {
       ...this.show.seasons.filter(indexedSeason => indexedSeason.seasonNumber === season.season_number).shift()
     }))
 
-    return await Promise.all(seasons.map(season => new FetchSeason(this.show, season).perform()))
+    return await Promise.all(seasons.map(season => {
+      // TMDb only allows for up to 4 requests per second (https://developers.themoviedb.org/3/getting-started/request-rate-limiting)
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(new FetchSeason(this.show, season).perform())
+        })
+      })
+    }))
   }
 
   get show() {

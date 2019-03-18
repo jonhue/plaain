@@ -1,3 +1,5 @@
+import { ITEM_STATES } from '../../constants'
+
 import TMDb from '../databases/TMDb'
 
 class FetchMovie {
@@ -26,6 +28,7 @@ class FetchMovie {
   fetchDetails() {
     return this.tmdb.movie(this.movie.tmdbId)
       .then(response => {
+        this.movie.state = ITEM_STATES.FETCHED
         this.movie.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
         this.movie.overview = response.overview
         this.movie.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`

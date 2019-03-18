@@ -1,3 +1,5 @@
+import { ITEM_STATES } from '../../constants'
+
 import TMDb from '../databases/TMDb'
 
 import FetchEpisode from './FetchEpisode'
@@ -38,6 +40,7 @@ class FetchSeason {
   }
 
   async handleDetailsResponse(response) {
+    this.season.state = ITEM_STATES.FETCHED
     this.season.airDate = response.air_date
     this.season.name = response.name
     this.season.overview = response.overview
@@ -64,7 +67,14 @@ class FetchSeason {
       }))
     }
 
-    return await Promise.all(episodes.map(episode => new FetchEpisode(this.show, this.season, episode).perform()))
+    return await Promise.all(episodes.map(episode => {
+      // TMDb only allows for up to 4 requests per second (https://developers.themoviedb.org/3/getting-started/request-rate-limiting)
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(new FetchEpisode(this.show, this.season, episode).perform())
+        })
+      })
+    }))
   }
 
   get show() {

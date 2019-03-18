@@ -1,3 +1,5 @@
+import { ITEM_STATES } from '../../constants'
+
 import TMDb from '../databases/TMDb'
 
 class FetchEpisode {
@@ -11,6 +13,7 @@ class FetchEpisode {
   perform() {
     return this.tmdb.episode(this.show.tmdbId, this.season.seasonNumber, this.episode.episodeNumber)
       .then(response => {
+        this.episode.state = ITEM_STATES.FETCHED
         this.episode.airDate = response.air_date
         this.episode.name = response.name
         this.episode.overview = response.overview

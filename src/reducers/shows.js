@@ -1,6 +1,4 @@
-import { ITEM_STATES } from '../constants'
-
-import { ADD_SHOW, CLEAR_SHOWS, FETCH_SHOW } from '../actions/shows'
+import { ADD_SHOW, CLEAR_SHOWS } from '../actions/shows'
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -11,14 +9,6 @@ export default (state = {}, action) => {
     }
   case CLEAR_SHOWS:
     return {}
-  case FETCH_SHOW:
-    return {
-      ...state,
-      [action.payload]: {
-        ...state[action.payload],
-        state: ITEM_STATES.INDEXED
-      }
-    }
   default:
     return state
   }
