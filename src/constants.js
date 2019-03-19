@@ -1,11 +1,18 @@
+export const ITEM_ROLES = {
+  LIBRARY: 'library',
+  RECOMMENDED: 'recommended'
+}
+
 export const ITEM_STATES = {
   INDEXED: 'indexed',
-  FETCHED: 'fetched',
+  FETCHED: 'fetched'
 }
 
 export const ITEM_TYPES = {
-  LIBRARY: 'library',
-  RECOMMENDED: 'recommended',
+  MOVIE: 'movie',
+  SHOW: 'show',
+  SEASON: 'season',
+  EPISODE: 'episode'
 }
 
 export const FILE_TYPES = {

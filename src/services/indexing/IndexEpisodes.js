@@ -1,4 +1,4 @@
-import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import IndexFiles from './IndexFiles'
 
@@ -17,18 +17,16 @@ class IndexEpisodes {
   }
 
   async index(item) {
-    if (item.folder == null || item.folder.childCount < 1 || Number.isNaN(item.name)) {
+    if (item.folder == null || Number.isNaN(item.name)) {
       return null
     }
 
     const files = await new IndexFiles(this.oneDrive, item.id).perform()
-    if (files.length < 1) {
-      return null
-    }
 
     return {
+      type: ITEM_TYPES.EPISODE,
       state: ITEM_STATES.INDEXED,
-      type: ITEM_TYPES.LIBRARY,
+      role: files.length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
       episodeNumber: Number.parseInt(item.name),
       files: files
