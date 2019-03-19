@@ -1,4 +1,4 @@
-import { ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { FILE_TYPES, ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import IndexFiles from './IndexFiles'
 
@@ -23,7 +23,7 @@ class IndexMovies {
     return {
       type: ITEM_TYPES.MOVIE,
       state: ITEM_STATES.INDEXED,
-      role: files.length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
+      role: files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
       name: item.name,
       files: files
