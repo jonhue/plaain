@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Plaain
 
-## Available Scripts
+Stream your media from anywhere. No server. No fee.
 
-In the project directory, you can run:
+### Features
 
-### `npm start`
+#### Stream anywhere
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Stream your media library from wherever you are, with any device. Plaain is a Progressive Web App that runs in your browser and feels like a native app.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### No server
 
-### `npm test`
+You don't need to setup your own media server to run 24/7 with Plaain. Give Plaain access to your cloud provider and off you go.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Privacy first
 
-### `npm run build`
+Plaain runs in your browser. All the data it stores, it stores locally on your device.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Built using modern tools
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Plaain is built as a Progressive Web App with [React](https://reactjs.org/) & [Redux](https://redux.js.org/). It uses [TMDb](https://www.themoviedb.org/) to fetch metadata on your movies & tv shows.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Roadmap
 
-### `npm run eject`
+* Add support for Dropbox, Google Drive
+* Reviews from IMDb, Rotten Tomatoes
+* Content ratings from Common Sense Media
+* Media recommendations
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Development
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project uses [asdf](https://github.com/asdf-vm/asdf) as version manager and [Yarn](https://github.com/yarnpkg/yarn) as JavaScript package manager.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Dependencies are listed in the [.tool-versions](.tool-versions) file.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone this repository
 
-## Learn More
+    `$ git clone ssh://git@github.com/jonhue/plaain.git`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Install dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```
+    $ asdf install
+    $ yarn install
+    ```
 
-### Code Splitting
+3. Credentials setup
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+    Copy [.env.sample](.env.sample) to `.env` and customize
 
-### Analyzing the Bundle Size
+4. Start the development server
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+    `$ yarn start`
 
-### Making a Progressive Web App
+### Testing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+This project uses a react-scripts for testing and ESLint and StyleLint for linting:
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```
+yarn eslint
+yarn stylelint
+yarn test
+```
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Plaain is hosted on GitHub Pages.
 
-### `npm run build` fails to minify
+To deploy, run:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```
+$ yarn build
+$ yarn deploy
+```
