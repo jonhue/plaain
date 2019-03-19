@@ -18,29 +18,30 @@ class PlyrPlayer extends Component {
     })
     this.player.on('timeupdate', event => {
       if (event.detail.plyr.currentTime !== 0) {
-        this.props.video.time = event.detail.plyr.currentTime
+        this.props.item.progress = event.detail.plyr.currentTime
       }
     })
   }
 
   render() {
-    if (this.props.video.sources.length === 0) {
+    if (this.props.item.files.filter(file => file.type === 'source').length === 0) {
       return null
     }
+    console.log(this.props.item.files.filter(file => file.type === 'source')[0].url)
 
     return (
       <div className='PlyrPlayer'>
         <video
-          poster={this.props.video.poster}
-          src={this.props.video.sources[0].src}
+          poster={this.props.item.backdropUrl}
+          src={this.props.item.files.filter(file => file.type === 'source')[0].url}
           id='player' crossOrigin='true' playsInline controls>
-          {this.props.video.sources.map((source, index) => {
+          {this.props.item.files.filter(file => file.type === 'source').map((source, index) => {
             return (<PlyrSource source={source} key={index} />)
           })}
-          {this.props.video.captions.map((caption, index) => {
+          {this.props.item.files.filter(file => file.type === 'caption').map((caption, index) => {
             return (<PlyrCaption caption={caption} key={index} />)
           })}
-          <a href={this.props.video.sources[0].src} download>Download</a>
+          <a href={this.props.item.files.filter(file => file.type === 'source')[0].src} download>Download</a>
         </video>
         <PlyrContinue parent={this} />
       </div>

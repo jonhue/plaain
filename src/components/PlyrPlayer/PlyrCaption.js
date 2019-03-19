@@ -5,8 +5,8 @@ class PlyrCaption extends Component {
     return (
       <track
         kind='captions'
-        label={this.props.caption.label}
-        src={this.props.caption.src}
+        label={this.props.caption.information}
+        src={this.props.caption.url}
         srcLang={this.props.caption.srclang || 'en'}
         default={this.props.key === 0} />
     )

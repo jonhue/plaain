@@ -1,4 +1,4 @@
-import { ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { FILE_TYPES, ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import IndexFiles from './IndexFiles'
 
@@ -26,7 +26,7 @@ class IndexEpisodes {
     return {
       type: ITEM_TYPES.EPISODE,
       state: ITEM_STATES.INDEXED,
-      role: files.length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
+      role: files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
       episodeNumber: Number.parseInt(item.name),
       files: files

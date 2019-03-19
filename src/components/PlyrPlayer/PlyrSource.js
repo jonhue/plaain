@@ -4,9 +4,9 @@ class PlyrSource extends Component {
   render() {
     return (
       <source
-        src={this.props.source.src}
-        type={this.props.source.type}
-        size={this.props.source.size} />
+        src={this.props.source.url}
+        type={this.props.source.mimeType}
+        size={this.props.source.information} />
     )
   }
 }
