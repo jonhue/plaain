@@ -6,7 +6,7 @@ Stream your media from anywhere. No server. No fee.
 
 #### Stream anywhere
 
-Stream your media library from wherever you are, with whatever device. Plaain is a Progressive Web App that runs in your browser and feels like a native app.
+Stream your media library from wherever you are, with any device. Plaain is a Progressive Web App that runs in your browser and feels like a native app.
 
 #### No server
 
