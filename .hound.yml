@@ -1,3 +1,6 @@
 eslint:
   enabled: true
-  config_file: .eslintrc.js
+  config_file: .eslintrc
+stylelint:
+  enabled: true
+  config_file: .stylelintrc
