@@ -1,12 +1,12 @@
-import { REMOVE_MOVIE, UPDATE_MOVIE } from '../actions/movies'
+import { REMOVE_EPISODE, UPDATE_EPISODE } from '../actions/episodes'
 
 export default (state = {}, action) => {
   switch (action.type) {
-  case REMOVE_MOVIE: {
-    const { [action.payload]: movie, ...newState } = state
+  case REMOVE_EPISODE: {
+    const { [action.payload]: episode, ...newState } = state
     return newState
   }
-  case UPDATE_MOVIE:
+  case UPDATE_EPISODE:
     return {
       ...state,
       [action.payload.id]: {

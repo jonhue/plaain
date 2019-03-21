@@ -5,6 +5,8 @@ import auth from './auth'
 import indexing from './indexing'
 import movies from './movies'
 import shows from './shows'
+import seasons from './seasons'
+import episodes from './episodes'
 
 const rootReducer = combineReducers({
   auth: persistReducer({
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
   }, auth),
   indexing,
   movies,
-  shows
+  shows,
+  seasons,
+  episodes
 })
 
 export default persistReducer({

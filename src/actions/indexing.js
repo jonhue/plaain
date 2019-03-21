@@ -1,8 +1,13 @@
-import IndexItems from '../services/indexing/IndexItems'
+import IndexMovies from '../services/indexing/IndexMovies'
+import IndexShows from '../services/indexing/IndexShows'
+import IndexSeasons from '../services/indexing/IndexSeasons'
+import IndexEpisodes from '../services/indexing/IndexEpisodes'
 
 import { logIn } from './auth'
-import { addMovie, clearMovies, fetchMovie } from './movies'
-import { addShow, clearShows, fetchShow } from './shows'
+import { fetchMovie, removeMovie, updateMovie } from './movies'
+import { fetchShow, removeShow, updateShow } from './shows'
+import { fetchSeason, removeSeason, updateSeason } from './seasons'
+import { fetchEpisode, removeEpisode, updateEpisode } from './episodes'
 
 export const INDEX_BEGIN = 'INDEX_BEGIN'
 export const INDEX_SUCCESS = 'INDEX_SUCCESS'
@@ -12,35 +17,54 @@ export const index = () => {
   return (dispatch, getState) => {
     dispatch(indexBegin())
 
-    new IndexItems(getState().auth.token).perform().then(({ movies, shows }) => {
-      const movieProgress = {}
-      Object.values(getState().movies).forEach(movie => movieProgress[movie.id] = movie.progress)
-      dispatch(clearMovies())
-      movies.then(moviesArr => {
-        moviesArr.forEach(movie => {
-          movie.progress = movieProgress[movie.id]
-          dispatch(addMovie(movie))
-          dispatch(fetchMovie(movie.id))
-        })
+    new IndexMovies(getState().auth.token).perform().then(movies => {
+      movies.forEach(movie => {
+        dispatch(updateMovie(movie))
+        dispatch(fetchMovie(movie.id))
       })
-
-      const episodeProgress = {}
-      Object.values(getState().shows).forEach(show => {
-        show.seasons.forEach(season => {
-          season.episodes.forEach(episode => episodeProgress[episode.id] = episode.progress)
-        })
+      const ids = movies.map(movie => movie.id)
+      Object.keys(getState().movies).forEach(id => {
+        if (!ids.includes(id)) {
+          dispatch(removeMovie(id))
+        }
       })
-      dispatch(clearShows())
-      shows.then(showsArr => {
-        showsArr.forEach(show => {
-          show.seasons.forEach(season => {
-            season.episodes.forEach(episode => episode.progress = episodeProgress[episode.id])
-          })
-          dispatch(addShow(show))
-          dispatch(fetchShow(show.id))
-        })
+    }).then(() => {
+      const shows = await new IndexShows(getState().auth.token).perform()
+      shows.forEach(show => {
+        dispatch(updateShow(show))
+        dispatch(fetchShow(show.id))
       })
-
+      const ids = shows.map(show => show.id)
+      Object.keys(getState().shows).forEach(id => {
+        if (!ids.includes(id)) {
+          dispatch(removeShow(id))
+        }
+      })
+    }).then(() => {
+      const seasons = await new IndexSeasons(getState().auth.token, Object.keys(getState().shows)).perform()
+      seasons.forEach(season => {
+        dispatch(updateSeason(season))
+        dispatch(fetchSeason(season.id))
+      })
+      const ids = seasons.map(season => season.id)
+      Object.keys(getState().seasons).forEach(id => {
+        if (!ids.includes(id)) {
+          dispatch(removeSeason(id))
+        }
+      })
+    }).then(() => {
+      const episodes = await new IndexEpisodes(getState().auth.token, Object.keys(getState().seasons)).perform()
+      episodes.forEach(episode => {
+        dispatch(updateEpisode(episode))
+        dispatch(fetchEpisode(episode.id))
+      })
+      const ids = episodes.map(episode => episode.id)
+      Object.keys(getState().episodes).forEach(id => {
+        if (!ids.includes(id)) {
+          dispatch(removeEpisode(id))
+        }
+      })
+    }).then(() => {
       dispatch(indexSuccess())
     }).catch(error => {
       dispatch(indexFailure(error))

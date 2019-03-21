@@ -2,9 +2,9 @@ import { createSelector } from 'reselect'
 
 const moviesSelector = state => state.movies
 
-export const movieSelector = movieId => {
+export const movieSelector = id => {
   return createSelector(
     moviesSelector,
-    movies => movies[movieId]
+    movies => movies[id]
   )
 }
