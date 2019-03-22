@@ -10,14 +10,14 @@ class IndexEpisodes {
     this._seasonIds = seasonIds
   }
 
-  perform() {
-    return [].concat(...this.seasonIds.map(seasonId => this.performForSeason(seasonId)))
+  async perform() {
+    return [].concat(...await Promise.all(this.seasonIds.map(seasonId => this.performForSeason(seasonId)).filter(episode => episode != null)))
   }
 
   async performForSeason(seasonId) {
     return await Promise.all(await this.oneDrive.children(seasonId).then(response => {
       return response.value.map(item => this.index(item, seasonId))
-    })).then(episodes => episodes.filter(episode => episode != null))
+    }))
   }
 
   async index(item, seasonId) {

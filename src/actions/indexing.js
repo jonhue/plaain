@@ -20,7 +20,7 @@ export const index = () => {
     new IndexMovies(getState().auth.token).perform().then(movies => {
       movies.forEach(movie => {
         dispatch(updateMovie(movie))
-        dispatch(fetchMovie(movie.id))
+        // dispatch(fetchMovie(movie.id))
       })
       const ids = movies.map(movie => movie.id)
       Object.keys(getState().movies).forEach(id => {
@@ -33,7 +33,7 @@ export const index = () => {
     }).then(shows => {
       shows.forEach(show => {
         dispatch(updateShow(show))
-        dispatch(fetchShow(show.id))
+        // dispatch(fetchShow(show.id))
       })
       const ids = shows.map(show => show.id)
       Object.keys(getState().shows).forEach(id => {
@@ -46,7 +46,7 @@ export const index = () => {
     }).then(seasons => {
       seasons.forEach(season => {
         dispatch(updateSeason(season))
-        dispatch(fetchSeason(season.id))
+        // dispatch(fetchSeason(season.id))
       })
       const ids = seasons.map(season => season.id)
       Object.keys(getState().seasons).forEach(id => {
@@ -59,7 +59,7 @@ export const index = () => {
     }).then(episodes => {
       episodes.forEach(episode => {
         dispatch(updateEpisode(episode))
-        dispatch(fetchEpisode(episode.id))
+        // dispatch(fetchEpisode(episode.id))
       })
       const ids = episodes.map(episode => episode.id)
       Object.keys(getState().episodes).forEach(id => {
@@ -69,7 +69,6 @@ export const index = () => {
       })
     }).then(() => {
       dispatch(indexSuccess())
-      console.log('hurray')
     }).catch(error => {
       dispatch(indexFailure(error))
 
