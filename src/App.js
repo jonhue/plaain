@@ -16,8 +16,6 @@ import Find from './scenes/Find'
 import Welcome from './scenes/Welcome'
 import NotFound from './scenes/NotFound'
 
-import PlyrPlayer from './components/PlyrPlayer'
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -28,16 +26,9 @@ class App extends Component {
 
   render() {
     if (this.props.user) {
-      let player = null
-      if (Object.values(this.props.movies).filter(movie => movie.role === 'library').length > 0) {
-        player = <PlyrPlayer item={Object.values(this.props.movies).filter(movie => movie.role === 'library')[0]} />
-      }
-
       return (
         <div className='App'>
           <button onClick={this.props.index}>Index</button>
-
-          {player}
 
           <Router>
             <Switch>
@@ -69,8 +60,7 @@ class App extends Component {
 
 export default connect(
   state => ({
-    user: state.auth.user,
-    movies: state.movies
+    user: state.auth.user
   }),
   { logIn, index }
 )(App)
