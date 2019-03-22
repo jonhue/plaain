@@ -1,28 +1,27 @@
 import { ITEM_STATES } from '../../constants'
 
 import TMDb from '../databases/TMDb'
+import Parametrize from '../Parametrize'
 
 class FetchMovie {
-  constructor(movie) {
-    this._movie = { ...movie }
+  constructor(id, name) {
+    this._movie = { id, name }
     this._tmdb = new TMDb()
   }
 
   perform() {
-    return this.tmdb.findMovie(this.movie.name).then(tmdbId => {
-      this.movie.tmdbId = tmdbId
-
-      this.fetch()
-
-      return this.movie
-    })
+    return this.tmdb.findMovie(this.movie.name).then(tmdbId => this.fetch(tmdbId))
   }
 
-  async fetch() {
+  async fetch(tmdbId) {
+    this.movie.tmdbId = tmdbId
+
     await Promise.all([
       this.fetchDetails(),
       this.fetchCredits()
     ])
+
+    return this.movie
   }
 
   fetchDetails() {
@@ -35,8 +34,7 @@ class FetchMovie {
         this.movie.releaseDate = response.release_date
         this.movie.runtime = response.runtime
         this.movie.name = response.title
-        this.movie.affiliateLink = `https://www.amazon.com/s?k=${FetchMovie.parametrize(this.movie.name)}&i=movies-tv`
-        this.movie.trailerLink = `https://www.youtube.com/results?search_query=${FetchMovie.parametrize(this.movie.name)}+official+trailer`
+        this.movie.trailerLink = `https://www.youtube.com/results?search_query=${new Parametrize(this.movie.name).perform()}+official+trailer`
       })
   }
 
@@ -60,10 +58,6 @@ class FetchMovie {
 
   get tmdb() {
     return this._tmdb
-  }
-
-  static parametrize(string) {
-    return string.toLowerCase().replace(/\s/g, '+')
   }
 }
 

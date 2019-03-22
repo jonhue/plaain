@@ -8,7 +8,7 @@ export const UPDATE_MOVIE = 'UPDATE_MOVIE'
 export const fetchMovie = id => {
   return (dispatch, getState) => {
     const movie = movieSelector(id)(getState())
-    new FetchMovie(movie).perform().then(fetchedMovie => {
+    new FetchMovie(movie.id, movie.name).perform().then(fetchedMovie => {
       dispatch(updateMovie(fetchedMovie))
     }).catch(() => dispatch(fetchMovie(id)))
   }
