@@ -7,16 +7,15 @@ class IndexSeasons {
     this._oneDrive = new OneDrive(accessToken)
     this._showIds = showIds
   }
-  constructor(accessToken) {
-    this._oneDrive = new OneDrive(accessToken)
-  }
 
   perform() {
-    return [].concat(...this.showIds.map(showId => {
-      return await Promise.all(await this.oneDrive.children(showId).then(response => {
-        return response.value.map(item => this.index(item, showId))
-      })).then(seasons => seasons.filter(season => season != null))
-    }))
+    return [].concat(...this.showIds.map(showId => this.performForShow(showId)))
+  }
+
+  async performForShow(showId) {
+    return await Promise.all(await this.oneDrive.children(showId).then(response => {
+      return response.value.map(item => this.index(item, showId))
+    })).then(seasons => seasons.filter(season => season != null))
   }
 
   async index(item, showId) {

@@ -1,4 +1,4 @@
-import { FILE_TYPES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
@@ -11,11 +11,13 @@ class IndexEpisodes {
   }
 
   perform() {
-    return [].concat(...this.seasonIds.map(seasonId => {
-      return await Promise.all(await this.oneDrive.children(seasonId).then(response => {
-        return response.value.map(item => this.index(item, seasonId))
-      })).then(episodes => episodes.filter(episode => episode != null))
-    }))
+    return [].concat(...this.seasonIds.map(seasonId => this.performForSeason(seasonId)))
+  }
+
+  async performForSeason(seasonId) {
+    return await Promise.all(await this.oneDrive.children(seasonId).then(response => {
+      return response.value.map(item => this.index(item, seasonId))
+    })).then(episodes => episodes.filter(episode => episode != null))
   }
 
   async index(item, seasonId) {

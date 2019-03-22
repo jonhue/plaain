@@ -1,4 +1,4 @@
-import { FILE_TYPES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 

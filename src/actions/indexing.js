@@ -29,7 +29,8 @@ export const index = () => {
         }
       })
     }).then(() => {
-      const shows = await new IndexShows(getState().auth.token).perform()
+      return new IndexShows(getState().auth.token).perform()
+    }).then(shows => {
       shows.forEach(show => {
         dispatch(updateShow(show))
         dispatch(fetchShow(show.id))
@@ -41,7 +42,8 @@ export const index = () => {
         }
       })
     }).then(() => {
-      const seasons = await new IndexSeasons(getState().auth.token, Object.keys(getState().shows)).perform()
+      return new IndexSeasons(getState().auth.token, Object.keys(getState().shows)).perform()
+    }).then(seasons => {
       seasons.forEach(season => {
         dispatch(updateSeason(season))
         dispatch(fetchSeason(season.id))
@@ -53,7 +55,8 @@ export const index = () => {
         }
       })
     }).then(() => {
-      const episodes = await new IndexEpisodes(getState().auth.token, Object.keys(getState().seasons)).perform()
+      return new IndexEpisodes(getState().auth.token, Object.keys(getState().seasons)).perform()
+    }).then(episodes => {
       episodes.forEach(episode => {
         dispatch(updateEpisode(episode))
         dispatch(fetchEpisode(episode.id))

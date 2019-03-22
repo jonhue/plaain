@@ -2,14 +2,12 @@ import { ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
-import IndexSeasons from './IndexSeasons'
-
 class IndexShows {
   constructor(accessToken) {
     this._oneDrive = new OneDrive(accessToken)
   }
 
-  perform() {
+  async perform() {
     return await Promise.all(await this.oneDrive.shows().then(response => {
       return response.value.map(item => this.index(item))
     })).then(shows => shows.filter(show => show != null))
