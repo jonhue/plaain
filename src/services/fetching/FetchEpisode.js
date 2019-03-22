@@ -6,7 +6,7 @@ class FetchEpisode {
   constructor(show, season, episode) {
     this._show = show
     this._season = season
-    this._episode = episode
+    this._episode = { ...episode }
     this._tmdb = new TMDb()
   }
 

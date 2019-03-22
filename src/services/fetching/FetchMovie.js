@@ -4,7 +4,7 @@ import TMDb from '../databases/TMDb'
 
 class FetchMovie {
   constructor(movie) {
-    this._movie = {...movie}
+    this._movie = { ...movie }
     this._tmdb = new TMDb()
   }
 

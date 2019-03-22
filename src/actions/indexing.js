@@ -69,6 +69,7 @@ export const index = () => {
       })
     }).then(() => {
       dispatch(indexSuccess())
+      console.log('hurray')
     }).catch(error => {
       dispatch(indexFailure(error))
 

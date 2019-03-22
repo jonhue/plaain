@@ -6,7 +6,7 @@ import FetchSeason from './FetchSeason'
 
 class FetchShow {
   constructor(show) {
-    this._show = {...show}
+    this._show = { ...show }
     this._tmdb = new TMDb()
   }
 

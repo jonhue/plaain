@@ -7,7 +7,7 @@ import FetchEpisode from './FetchEpisode'
 class FetchSeason {
   constructor(show, season) {
     this._show = show
-    this._season = season
+    this._season = { ...season }
     this._tmdb = new TMDb()
   }
 
