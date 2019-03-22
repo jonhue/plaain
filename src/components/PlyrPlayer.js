@@ -18,7 +18,7 @@ class PlyrPlayer extends Component {
     })
     this.player.on('timeupdate', event => {
       if (event.detail.plyr.currentTime !== 0) {
-        this.props.item.progress = event.detail.plyr.currentTime
+        // this.props.item.progress = event.detail.plyr.currentTime
       }
     })
   }

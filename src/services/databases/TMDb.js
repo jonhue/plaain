@@ -42,10 +42,6 @@ class TMDb {
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/credits`})
   }
 
-  async movieVideos(id) {
-    return rp({...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}/videos`})
-  }
-
   async show(id) {
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${id}`})
   }
@@ -56,10 +52,6 @@ class TMDb {
 
   async seasonCredits(showId, seasonNumber) {
     return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/credits`})
-  }
-
-  async seasonVideos(showId, seasonNumber) {
-    return rp({...TMDb.config, uri: `${TMDb.base_uri}/tv/${showId}/season/${seasonNumber}/videos`})
   }
 
   async episode(showId, seasonNumber, episodeNumber) {
