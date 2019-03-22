@@ -866,6 +866,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@glidejs/glide@^3.2.7":
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/@glidejs/glide/-/glide-3.2.7.tgz#00511dacef58f371d4084d015dc8413bee352a7d"
+  integrity sha512-ufsSwK2gZUg+DePAe77RG9OYEW5scRHVNMimqahSxZu7SvMqAs1SFiB0+gln1BqEnaXXgjgoDhcjwA8eyleXDA==
+
 "@microsoft/microsoft-graph-client@^1.5.2":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-1.5.2.tgz#71856368d5ddb7ccd9d526d8d08ff940e95d4193"
@@ -9350,6 +9355,11 @@ rgba-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
   integrity sha1-QzdOLiyglosO8VI0YLfXMP8i7rM=
+
+rgbaster@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/rgbaster/-/rgbaster-2.1.1.tgz#d83c0801ffd8887c0a96b0d2b756fc7e1fd68614"
+  integrity sha512-vUQI+ldMMSGXEbWtqb/6aqLY1LHc33OtXg2Q9S0TCxzt2KxGncRJB6dk860KzhWTjms+Fz4wkxrJu8MlCrFpYg==
 
 rimraf@2, rimraf@2.6.3, rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@~2.6.2:
   version "2.6.3"

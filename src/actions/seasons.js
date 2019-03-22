@@ -10,6 +10,7 @@ export const fetchSeason = id => {
   return (dispatch, getState) => {
     const season = seasonSelector(id)(getState())
     const show = showSelector(season.showId)(getState())
+    console.log(show)
     new FetchSeason(show.tmdbId, show.name, season.id, season.seasonNumber).perform().then(fetchedSeason => {
       dispatch(updateSeason(fetchedSeason))
     }).catch(() => dispatch(fetchSeason(id)))

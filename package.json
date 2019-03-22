@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://plaain.com",
   "dependencies": {
+    "@glidejs/glide": "^3.2.7",
     "@microsoft/microsoft-graph-client": "^1.5.2",
     "gh-pages": "^2.0.1",
     "msal": "^0.2.4",
@@ -19,6 +20,7 @@
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.4",
     "reselect": "^4.0.0",
+    "rgbaster": "^2.1.1",
     "stylelint-scss": "^3.5.4"
   },
   "scripts": {
