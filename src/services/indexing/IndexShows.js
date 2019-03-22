@@ -1,16 +1,16 @@
-import { ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
 
-import IndexSeasons from './IndexSeasons'
+import OneDrive from '../drives/OneDrive'
 
 class IndexShows {
-  constructor(oneDrive) {
-    this._oneDrive = oneDrive
+  constructor(accessToken) {
+    this._oneDrive = new OneDrive(accessToken)
   }
 
-  perform() {
-    return this.oneDrive.shows().then(response => {
+  async perform() {
+    return await Promise.all(await this.oneDrive.shows().then(response => {
       return response.value.map(item => this.index(item))
-    })
+    })).then(shows => shows.filter(show => show != null))
   }
 
   async index(item) {
@@ -18,15 +18,11 @@ class IndexShows {
       return null
     }
 
-    const seasons = await new IndexSeasons(this.oneDrive, item.id).perform()
-
     return {
       type: ITEM_TYPES.SHOW,
       state: ITEM_STATES.INDEXED,
-      role: seasons.filter(season => season.role === ITEM_ROLES.LIBRARY).length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
-      name: item.name,
-      seasons: seasons
+      name: item.name
     }
   }
 

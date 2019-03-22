@@ -1,8 +1,3 @@
-export const ITEM_ROLES = {
-  LIBRARY: 'library',
-  RECOMMENDED: 'recommended'
-}
-
 export const ITEM_STATES = {
   INDEXED: 'indexed',
   FETCHED: 'fetched'

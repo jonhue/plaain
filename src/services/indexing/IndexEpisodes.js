@@ -1,22 +1,26 @@
-import { FILE_TYPES, ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+
+import OneDrive from '../drives/OneDrive'
 
 import IndexFiles from './IndexFiles'
 
 class IndexEpisodes {
-  constructor(oneDrive, folderId) {
-    this._oneDrive = oneDrive
-    this._folderId = folderId
+  constructor(accessToken, seasonIds) {
+    this._oneDrive = new OneDrive(accessToken)
+    this._seasonIds = seasonIds
   }
 
-  perform() {
-    return this.oneDrive.children(this.folderId).then(response => {
-      return response.value.map(item => this.index(item))
-    }).then(episodes => {
-      return Promise.all(episodes).then(episodes => episodes.filter(episode => episode != null))
-    })
+  async perform() {
+    return [].concat(...await Promise.all(this.seasonIds.map(seasonId => this.performForSeason(seasonId)).filter(episode => episode != null)))
   }
 
-  async index(item) {
+  async performForSeason(seasonId) {
+    return await Promise.all(await this.oneDrive.children(seasonId).then(response => {
+      return response.value.map(item => this.index(item, seasonId))
+    }))
+  }
+
+  async index(item, seasonId) {
     if (item.folder == null || Number.isNaN(item.name)) {
       return null
     }
@@ -26,10 +30,10 @@ class IndexEpisodes {
     return {
       type: ITEM_TYPES.EPISODE,
       state: ITEM_STATES.INDEXED,
-      role: files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
       episodeNumber: Number.parseInt(item.name),
-      files: files
+      files: files,
+      seasonId
     }
   }
 
@@ -37,8 +41,8 @@ class IndexEpisodes {
     return this._oneDrive
   }
 
-  get folderId() {
-    return this._folderId
+  get seasonIds() {
+    return this._seasonIds
   }
 }
 

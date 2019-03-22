@@ -1,16 +1,18 @@
-import { FILE_TYPES, ITEM_ROLES, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+
+import OneDrive from '../drives/OneDrive'
 
 import IndexFiles from './IndexFiles'
 
 class IndexMovies {
-  constructor(oneDrive) {
-    this._oneDrive = oneDrive
+  constructor(accessToken) {
+    this._oneDrive = new OneDrive(accessToken)
   }
 
-  perform() {
-    return this.oneDrive.movies().then(response => {
+  async perform() {
+    return await Promise.all(await this.oneDrive.movies().then(response => {
       return response.value.map(item => this.index(item))
-    })
+    })).then(movies => movies.filter(movie => movie != null))
   }
 
   async index(item) {
@@ -23,7 +25,6 @@ class IndexMovies {
     return {
       type: ITEM_TYPES.MOVIE,
       state: ITEM_STATES.INDEXED,
-      role: files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 ? ITEM_ROLES.LIBRARY : ITEM_ROLES.RECOMMENDED,
       id: item.id,
       name: item.name,
       files: files

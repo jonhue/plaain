@@ -1,12 +1,12 @@
-import { REMOVE_MOVIE, UPDATE_MOVIE } from '../actions/movies'
+import { REMOVE_SEASON, UPDATE_SEASON } from '../actions/seasons'
 
 export default (state = {}, action) => {
   switch (action.type) {
-  case REMOVE_MOVIE: {
-    const { [action.payload]: movie, ...newState } = state // eslint-disable-line no-unused-vars
+  case REMOVE_SEASON: {
+    const { [action.payload]: season, ...newState } = state // eslint-disable-line no-unused-vars
     return newState
   }
-  case UPDATE_MOVIE:
+  case UPDATE_SEASON:
     return {
       ...state,
       [action.payload.id]: {

@@ -2,9 +2,9 @@ import { createSelector } from 'reselect'
 
 const showsSelector = state => state.shows
 
-export const showSelector = showId => {
+export const showSelector = id => {
   return createSelector(
     showsSelector,
-    shows => shows[showId]
+    shows => shows[id]
   )
 }

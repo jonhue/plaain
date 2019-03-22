@@ -3,23 +3,28 @@ import { ITEM_STATES } from '../../constants'
 import TMDb from '../databases/TMDb'
 
 class FetchEpisode {
-  constructor(show, season, episode) {
-    this._show = show
-    this._season = season
-    this._episode = episode
+  constructor(showTmdbId, showName, seasonNumber, seasonName, id, episodeNumber) {
+    this._show = { tmdbId: showTmdbId, name: showName }
+    this._season = { seasonNumber, name: seasonName }
+    this._episode = { id, episodeNumber }
     this._tmdb = new TMDb()
   }
 
-  perform() {
+  async perform() {
+    await Promise.all([
+      this.fetchDetails()
+    ])
+
+    return this.episode
+  }
+
+  fetchDetails() {
     return this.tmdb.episode(this.show.tmdbId, this.season.seasonNumber, this.episode.episodeNumber)
       .then(response => {
         this.episode.state = ITEM_STATES.FETCHED
         this.episode.airDate = response.air_date
         this.episode.name = response.name
         this.episode.overview = response.overview
-        this.episode.affiliateLink = `https://www.amazon.com/s?k=${FetchEpisode.parametrize(this.show.name)}+${FetchEpisode.parametrize(this.season.name)}+episode+${this.episode.episodeNumber}&i=movies-tv`
-
-        return this.episode
       })
   }
 
@@ -37,10 +42,6 @@ class FetchEpisode {
 
   get tmdb() {
     return this._tmdb
-  }
-
-  static parametrize(string) {
-    return string.toLowerCase().replace(/\s/g, '+')
   }
 }
 

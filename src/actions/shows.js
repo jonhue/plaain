@@ -2,34 +2,24 @@ import FetchShow from '../services/fetching/FetchShow'
 
 import { showSelector } from '../selectors/shows'
 
-export const ADD_SHOW = 'ADD_SHOW'
-export const CLEAR_SHOWS = 'CLEAR_SHOWS'
+export const REMOVE_SHOW = 'REMOVE_SHOW'
+export const UPDATE_SHOW = 'UPDATE_SHOW'
 
-export const addShow = show => ({
-  type: ADD_SHOW,
-  payload: show
-})
-
-export const clearShows = () => ({
-  type: CLEAR_SHOWS
-})
-
-export const fetchShow = showId => {
+export const fetchShow = id => {
   return (dispatch, getState) => {
-    const show = showSelector(showId)(getState())
-    new FetchShow(show).perform().then(newShow => {
-      newShow.seasons.forEach(season => {
-        season.episodes.forEach(episode => {
-          const oldSeason = show.seasons.filter(oldSeason => oldSeason.id === season.id)
-          if (oldSeason != null) {
-            const oldEpisode = oldSeason.episodes.filter(oldEpisode => oldEpisode.id === episode.id)
-            if (oldEpisode != null) {
-              episode.progress = oldEpisode.progress
-            }
-          }
-        })
-      })
-      dispatch(addShow(newShow))
-    }).catch(() => dispatch(fetchShow(showId)))
+    const show = showSelector(id)(getState())
+    new FetchShow(show.id, show.name).perform().then(fetchedShow => {
+      dispatch(updateShow(fetchedShow))
+    }).catch(() => dispatch(fetchShow(id)))
   }
 }
+
+export const removeShow = id => ({
+  type: REMOVE_SHOW,
+  payload: id
+})
+
+export const updateShow = show => ({
+  type: UPDATE_SHOW,
+  payload: show
+})
