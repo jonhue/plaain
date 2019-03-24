@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://plaain.com",
   "dependencies": {
-    "@glidejs/glide": "^3.2.7",
     "@microsoft/microsoft-graph-client": "^1.5.2",
     "gh-pages": "^2.0.1",
     "msal": "^0.2.4",

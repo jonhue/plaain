@@ -8,19 +8,21 @@ import PlyrSource from './PlyrPlayer/PlyrSource'
 
 class PlyrPlayer extends Component {
   componentDidMount() {
-    this.player = new Plyr('#player', {
-      debug: process.env.NODE_ENV === 'development'
-    })
-    this.player.on('play', () => {
-      if (document.querySelector('button#continue')) {
-        document.querySelector('button#continue').style.display = 'none'
-      }
-    })
-    this.player.on('timeupdate', event => {
-      if (event.detail.plyr.currentTime !== 0) {
-        // this.props.item.progress = event.detail.plyr.currentTime
-      }
-    })
+    if (document.querySelector('#player')) {
+      this.player = new Plyr('#player', {
+        debug: process.env.NODE_ENV === 'development'
+      })
+      this.player.on('play', () => {
+        if (document.querySelector('button#continue')) {
+          document.querySelector('button#continue').style.display = 'none'
+        }
+      })
+      this.player.on('timeupdate', event => {
+        if (event.detail.plyr.currentTime !== 0) {
+          // this.props.item.progress = event.detail.plyr.currentTime
+        }
+      })
+    }
   }
 
   render() {

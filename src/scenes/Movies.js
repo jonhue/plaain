@@ -5,13 +5,13 @@ import { Route } from 'react-router-dom'
 import Movie from './Movies/Movie'
 
 class Movies extends Component {
-  render({ match }) {
+  render() {
     return (
       <div className='Movies'>
-        <Route path={`${match.path}/:id`} component={Movie}/>
+        <Route path={`${this.props.match.path}/:id`} component={Movie}/>
         <Route
           exact
-          path={match.path}
+          path={this.props.match.path}
           render={() => <h3>Please select a movie.</h3>} />
       </div>
     )

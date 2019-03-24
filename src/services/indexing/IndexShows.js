@@ -22,7 +22,8 @@ class IndexShows {
       type: ITEM_TYPES.SHOW,
       state: ITEM_STATES.INDEXED,
       id: item.id,
-      name: item.name
+      name: item.name,
+      path: `/shows/${item.id}`
     }
   }
 

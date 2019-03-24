@@ -25,15 +25,17 @@ class IndexEpisodes {
       return null
     }
 
+    const episodeNumber = Number.parseInt(item.name)
     const files = await new IndexFiles(this.oneDrive, item.id).perform()
 
     return {
       type: ITEM_TYPES.EPISODE,
       state: ITEM_STATES.INDEXED,
       id: item.id,
-      episodeNumber: Number.parseInt(item.name),
+      episodeNumber: episodeNumber,
       files: files,
-      seasonId
+      seasonId,
+      path: `/episodes/${episodeNumber}`
     }
   }
 

@@ -57,7 +57,6 @@ class FetchMovie {
 
   getPosterColor() {
     return analyze(this.movie.posterUrl, { scale: 0.1 }).then(result => {
-      console.log(result[0])
       this.movie.posterColor = result[0].color
     })
   }

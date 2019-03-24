@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 // import './Movie.scss'
 
 // import Caption from '../../models/Caption'
@@ -6,8 +7,10 @@ import React, { Component } from 'react'
 // import Source from '../../models/Source'
 // import Video from '../../models/Video'
 
+import PlyrPlayer from '../../components/PlyrPlayer'
+
 class Movie extends Component {
-  render({ match }) {
+  render() {
     // const video = new Video(
     //   'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg',
     //   [
@@ -23,13 +26,18 @@ class Movie extends Component {
     // // const movie = new MovieModel(299537, video).fetch()
     // const movie = new MovieModel(match.params.id, video).fetch()
     // console.log(movie)
-    console.log(match.params.id)
 
     return (
       <div className="Movie">
+        <PlyrPlayer item={this.props.movies[this.props.match.params.id]} />
+        <h1>{this.props.movies[this.props.match.params.id].name}</h1>
       </div>
     )
   }
 }
 
-export default Movie
+export default connect(
+  state => ({
+    movies: state.movies
+  })
+)(Movie)
