@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
 
+import { index } from '../actions/indexing'
+
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
-import PlyrContinue from './PlyrPlayer/PlyrContinue'
 import PlyrSource from './PlyrPlayer/PlyrSource'
 
 class PlyrPlayer extends Component {
   componentDidMount() {
     if (document.querySelector('#player')) {
-      this.player = new Plyr('#player', {
+      this.player = new Plyr(document.querySelector('#player'), {
         debug: process.env.NODE_ENV === 'development'
       })
       this.player.on('play', () => {
@@ -34,7 +36,6 @@ class PlyrPlayer extends Component {
     return (
       <div className='PlyrPlayer'>
         <video
-          poster={this.props.item.backdropUrl}
           src={this.props.item.files.filter(file => file.type === 'source')[0].url}
           id='player' crossOrigin='true' playsInline controls>
           {this.props.item.files.filter(file => file.type === 'source').map((source, index) => {
@@ -45,10 +46,12 @@ class PlyrPlayer extends Component {
           })}
           <a href={this.props.item.files.filter(file => file.type === 'source')[0].src} download>Download</a>
         </video>
-        <PlyrContinue parent={this} />
       </div>
     )
   }
 }
 
-export default PlyrPlayer
+export default connect(
+  state => ({}),
+  { index }
+)(PlyrPlayer)
