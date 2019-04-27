@@ -866,10 +866,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@microsoft/microsoft-graph-client@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-1.5.2.tgz#71856368d5ddb7ccd9d526d8d08ff940e95d4193"
-  integrity sha512-lUsFLQMmi94r5+Eabmi5FBvlmxsqHPzdqm4suegFmcmnOI5+4OCLADORkRFRJXcWzTKB2ypR9x/mGv7f3r9DzA==
+"@microsoft/microsoft-graph-client@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-1.6.0.tgz#a5678eabf1dd5c25a70b55da9d89f1478325f29d"
+  integrity sha512-jgOgWZOyrmFbeyiddCUOQ0Kd42JUz7x3F6de0iLlSxP2yT2xJlnhZGAtHPnJZgDS2KRBbPwuRd+dmiJdpOBMWQ==
   dependencies:
     es6-promise "^4.2.6"
     isomorphic-fetch "^2.2.1"
