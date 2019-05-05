@@ -40,7 +40,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react": "^7.13.0",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-order": "^2.2.1"
