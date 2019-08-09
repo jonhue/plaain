@@ -5,7 +5,7 @@
   "homepage": "https://plaain.com",
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^1.7.0",
-    "gh-pages": "^2.1.0",
+    "gh-pages": "^2.1.1",
     "msal": "^0.2.4",
     "node-sass": "^4.12.0",
     "plyr": "^3.5.6",
