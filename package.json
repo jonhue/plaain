@@ -19,7 +19,7 @@
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.4",
     "reselect": "^4.0.0",
-    "stylelint-scss": "^3.10.0"
+    "stylelint-scss": "^3.10.1"
   },
   "scripts": {
     "start": "react-scripts start",
