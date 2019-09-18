@@ -10415,10 +10415,10 @@ stylelint-order@^2.2.1:
     postcss "^7.0.2"
     postcss-sorting "^4.1.0"
 
-stylelint-scss@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.10.0.tgz#1af9ff00397094364847ed5e62e78e819dd37c28"
-  integrity sha512-cz0CiJ/CEOY9arl1OA7Epb68F+L5iXBVZSOzTdK5AymoTM5dpll4QGeggMIsKN5Put8ZtQ3OwzYXexkPKs15PQ==
+stylelint-scss@^3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.11.0.tgz#243ec06f06674e58d946c73d65a277c06077501d"
+  integrity sha512-2rA9hV8+ebvzGyRBQt/KCLDS1o11SEVRzOBlhAbqk4u1PVnWcjUhRhKIGGGWcyM4QE9t+YWivbnq6kjdeHg2Nw==
   dependencies:
     lodash "^4.17.15"
     postcss-media-query-parser "^0.2.3"
