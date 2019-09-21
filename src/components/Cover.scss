@@ -1,10 +1,9 @@
 @import "./../variables";
 
 .Cover {
-  // padding: 20px;
-
   &__image {
     --box-shadow-color: #{$background};
+
     border-radius: 5px;
     box-shadow: 0 3px 30px var(--box-shadow-color);
     width: 100%;
