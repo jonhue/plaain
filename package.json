@@ -4,23 +4,23 @@
   "private": true,
   "homepage": "https://plaain.com",
   "dependencies": {
-    "@microsoft/microsoft-graph-client": "^1.5.2",
-    "gh-pages": "^2.0.1",
+    "@microsoft/microsoft-graph-client": "^1.7.0",
+    "gh-pages": "^2.1.1",
     "msal": "^0.2.4",
-    "node-sass": "^4.11.0",
-    "plyr": "^3.5.2",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-redux": "^6.0.1",
-    "react-router-dom": "^5.0.0",
+    "node-sass": "^4.12.0",
+    "plyr": "^3.5.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
-    "redux": "^4.0.1",
+    "redux": "^4.0.4",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "request-promise": "^4.2.4",
     "reselect": "^4.0.0",
     "rgbaster": "^2.1.1",
-    "stylelint-scss": "^3.5.4"
+    "stylelint-scss": "^3.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,9 +41,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-plugin-react": "^7.12.4",
-    "stylelint": "^9.10.1",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-order": "^2.1.0"
+    "eslint-plugin-react": "^7.14.3",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^2.2.1"
   }
 }
