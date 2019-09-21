@@ -20,7 +20,6 @@ class FetchShow {
     await Promise.all([
       this.fetchDetails()
     ])
-    await this.getPosterColor()
 
     return this.show
   }
@@ -36,12 +35,6 @@ class FetchShow {
         this.show.overview = response.overview
         this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
       })
-  }
-
-  getPosterColor() {
-    return analyze(this.show.posterUrl, { scale: 0.1 }).then(result => {
-      this.show.posterColor = result[0].color
-    })
   }
 
   get show() {

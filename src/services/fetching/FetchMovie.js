@@ -22,7 +22,6 @@ class FetchMovie {
       this.fetchDetails(),
       this.fetchCredits()
     ])
-    await this.getPosterColor()
 
     return this.movie
   }
@@ -53,12 +52,6 @@ class FetchMovie {
           name: crew_member.name
         }))
       })
-  }
-
-  getPosterColor() {
-    return analyze(this.movie.posterUrl, { scale: 0.1 }).then(result => {
-      this.movie.posterColor = result[0].color
-    })
   }
 
   get movie() {

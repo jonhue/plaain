@@ -17,7 +17,6 @@ class FetchSeason {
       this.fetchDetails(),
       this.fetchCredits()
     ])
-    await this.getPosterColor()
 
     return this.season
   }
@@ -46,12 +45,6 @@ class FetchSeason {
           name: crew_member.name
         }))
       })
-  }
-
-  getPosterColor() {
-    return analyze(this.season.posterUrl, { scale: 0.1 }).then(result => {
-      this.season.posterColor = result[0].color
-    })
   }
 
   get show() {
