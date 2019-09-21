@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
-
-import { index } from '../actions/indexing'
 
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
@@ -51,7 +48,4 @@ class PlyrPlayer extends Component {
   }
 }
 
-export default connect(
-  state => ({}),
-  { index }
-)(PlyrPlayer)
+export default PlyrPlayer
