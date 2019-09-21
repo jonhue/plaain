@@ -1,5 +1,3 @@
-import analyze from 'rgbaster'
-
 import { ITEM_STATES } from '../../constants'
 
 import TMDb from '../databases/TMDb'
