@@ -23,12 +23,15 @@ class IndexSeasons {
       return null
     }
 
+    const seasonNumber = Number.parseInt(item.name)
+
     return {
       type: ITEM_TYPES.SEASON,
       state: ITEM_STATES.INDEXED,
       id: item.id,
-      seasonNumber: Number.parseInt(item.name),
-      showId
+      seasonNumber: seasonNumber,
+      showId,
+      path: `/seasons/${seasonNumber}`
     }
   }
 

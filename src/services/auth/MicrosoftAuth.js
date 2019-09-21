@@ -15,7 +15,7 @@ class MicrosoftAuth {
   }
 
   perform() {
-    return this.logIn().then(accessToken => {
+    return this.silentLogIn().then(accessToken => {
       return {
         token: accessToken,
         user: this.userAgentApplication.getUser()
@@ -23,7 +23,13 @@ class MicrosoftAuth {
     })
   }
 
-  logIn() {
+  silentLogIn() {
+    return this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
+      return accessToken
+    }).catch(() => this.popupLogIn())
+  }
+
+  popupLogIn() {
     return this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
       return this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
         return accessToken
