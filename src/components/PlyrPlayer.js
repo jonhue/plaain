@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
 
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
+
+import { updateMovie } from '../actions/movies'
 
 class PlyrPlayer extends Component {
   componentDidMount() {
@@ -11,14 +14,17 @@ class PlyrPlayer extends Component {
       this.player = new Plyr(document.querySelector('#player'), {
         debug: process.env.NODE_ENV === 'development'
       })
-      this.player.on('play', () => {
-        this.props.item.lastWatched = new Date().getTime()
-        if (document.querySelector('button#continue')) {
-          document.querySelector('button#continue').style.display = 'none'
-        }
+      this.player.on('playing', () => {
+        this.props.updateMovie({
+          ...this.props.item,
+          lastWatched: new Date().getTime()
+        })
       })
       this.player.on('timeupdate', event => {
-        this.props.item.progress = event.detail.plyr.currentTime
+        this.props.updateMovie({
+          ...this.props.item,
+          progress: event.detail.plyr.currentTime
+        })
       })
     }
   }
@@ -27,7 +33,6 @@ class PlyrPlayer extends Component {
     if (this.props.item.files.filter(file => file.type === 'source').length === 0) {
       return null
     }
-    console.log(this.props.item.files.filter(file => file.type === 'source')[0].url)
 
     return (
       <div className='PlyrPlayer'>
@@ -47,4 +52,7 @@ class PlyrPlayer extends Component {
   }
 }
 
-export default PlyrPlayer
+export default connect(
+  null,
+  { updateMovie }
+)(PlyrPlayer)
