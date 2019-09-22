@@ -1,3 +1,11 @@
 .ForYou {
   padding: 20px;
+
+  section:first-child h2 {
+    margin-top: 0.2em;
+  }
+
+  a.button:not(:first-child) {
+    margin-top: 15px;
+  }
 }

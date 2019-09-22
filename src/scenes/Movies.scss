@@ -1,0 +1,9 @@
+.Movies {
+  &__index {
+    padding: 20px;
+
+    h2:first-child {
+      margin-top: 0.2em;
+    }
+  }
+}
