@@ -18,7 +18,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.4",
-    "redux-persist": "^5.10.0",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "request": "^2.88",
     "request-promise": "^4.2.4",
