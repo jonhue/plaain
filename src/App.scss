@@ -15,7 +15,7 @@
 
   h1 {
     color: $white;
-    font-size: 48px;
+    font-size: 38px;
     font-weight: 900;
   }
 
@@ -42,6 +42,7 @@
     color: $light;
     font-size: 16px;
     font-weight: 600;
+    line-height: 1.75;
 
     &.small {
       color: $light;
@@ -50,7 +51,7 @@
     }
 
     a,
-    span {
+    span.link {
       color: $white;
       font-size: 16px;
       font-weight: 600;
@@ -70,13 +71,21 @@
     font-size: 18px;
     font-weight: 700;
     justify-content: center;
-    padding: 11px 25px;
     text-decoration: none;
 
     &.primary {
       background: $highlight;
       box-shadow: 0 3px 6px rgba($highlight, 0.16);
     }
+  }
+
+  a.button {
+    padding: 11px 25px;
+  }
+
+  button {
+    padding: 15px 25px;
+    width: 100%;
   }
 
   a,
