@@ -44,7 +44,7 @@ class Movie extends Component {
           </div>
           <div className="Movie__actions">
             {this.movie.progress !== 0 && <button className="primary" id="continue" onClick={this.continue.bind(this)}>Continue</button>}
-            <button className={this.movie.progress === 0 ? "primary" : ""} id="watch" onClick={this.watch.bind(this)}>Watch</button>
+            <button className={this.movie.progress === 0 ? 'primary' : ''} id="watch" onClick={this.watch.bind(this)}>Watch</button>
             <a className="button" id="trailer" href={this.movie.trailerLink} target="_blank" rel="noopener noreferrer">Play trailer</a>
           </div>
           <p className="Movie__overview">{this.movie.overview}</p>
