@@ -33,6 +33,8 @@ class FetchMovie {
         this.movie.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
         this.movie.releaseDate = response.release_date
         this.movie.runtime = response.runtime
+        this.movie.progress = 0
+        this.movie.lastWatched = 0
         this.movie.name = response.title
         this.movie.trailerLink = `https://www.youtube.com/results?search_query=${new Parametrize(this.movie.name).perform()}+official+trailer`
       })

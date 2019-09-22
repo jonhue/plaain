@@ -12,14 +12,13 @@ class PlyrPlayer extends Component {
         debug: process.env.NODE_ENV === 'development'
       })
       this.player.on('play', () => {
+        this.props.item.lastWatched = new Date().getTime()
         if (document.querySelector('button#continue')) {
           document.querySelector('button#continue').style.display = 'none'
         }
       })
       this.player.on('timeupdate', event => {
-        if (event.detail.plyr.currentTime !== 0) {
-          // this.props.item.progress = event.detail.plyr.currentTime
-        }
+        this.props.item.progress = event.detail.plyr.currentTime
       })
     }
   }
