@@ -42,14 +42,16 @@
     &__actions {
       margin: 25px 0;
 
-      a.button, button {
+      a.button,
+      button {
         &:not(:first-child) {
           margin-top: 10px;
         }
       }
     }
 
-    &__starring, &__crew {
+    &__starring,
+    &__crew {
       margin: 30px 0;
 
       p {
