@@ -18,11 +18,17 @@ class ItemList extends Component {
       <div className='ItemList' id={this.props.id}>
         <div className='swiper-container'>
           <div className='swiper-wrapper'>
-            {this.props.items.map(item => {
-              return <div className='swiper-slide' key={item.id}>
-                <Item item={item} />
+            {this.props.items.length ? (
+              this.props.items.map(item => {
+                return <div className='swiper-slide' key={item.id}>
+                  <Item item={item} />
+                </div>
+              })
+            ) : (
+              <div className='swiper-slide'>
+                <h3>Nothing found.</h3>
               </div>
-            })}
+            )}
           </div>
         </div>
       </div>
