@@ -7,37 +7,33 @@ class MicrosoftAuth {
   }
 
   constructor() {
-    this._userAgentApplication = new UserAgentApplication(
-      MicrosoftAuth.config.clientID,
-      'https://login.microsoftonline.com/common',
-      null
-    )
+    this._userAgentApplication = new UserAgentApplication({ auth: { clientId: MicrosoftAuth.config.clientID } })
   }
 
   perform() {
     return this.silentLogIn().then(accessToken => {
       return {
-        token: accessToken,
-        user: this.userAgentApplication.getUser()
+        token: accessToken
       }
     })
   }
 
   silentLogIn() {
-    return this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
-      return accessToken
-    }).catch(() => this.popupLogIn())
+    return this.userAgentApplication.acquireTokenSilent({ scopes: MicrosoftAuth.config.graphScopes }).then(response => {
+      return response.accessToken
+    }).catch(error => {
+      console.log(error)
+      this.popupLogIn()
+    })
   }
 
   popupLogIn() {
-    return this.userAgentApplication.loginPopup(MicrosoftAuth.config.graphScopes).then(() => {
-      return this.userAgentApplication.acquireTokenSilent(MicrosoftAuth.config.graphScopes).then(accessToken => {
-        return accessToken
-      }).catch(() => {
-        return this.userAgentApplication.acquireTokenPopup(MicrosoftAuth.config.graphScopes).then(accessToken => {
-          return accessToken
-        })
-      })
+    return this.userAgentApplication.loginPopup({ scopes: MicrosoftAuth.config.graphScopes, prompt: 'select_account' }).then(() => {
+      return this.userAgentApplication.acquireTokenSilent({ scopes: MicrosoftAuth.config.graphScopes })
+    }).then(response => {
+      return response.accessToken
+    }).catch(error => {
+      console.log(error)
     })
   }
 

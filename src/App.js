@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.loading) {
+    if (this.props.indexing || this.props.authenticating) {
       return <Loading />
     } else {
       if (this.props.user) {
@@ -66,7 +66,9 @@ class App extends Component {
 
 export default connect(
   state => ({
-    user: state.auth.user
+    user: state.auth.token,
+    indexing: state.indexing.loading,
+    authenticating: state.auth.loading
   }),
   { logIn }
 )(App)
