@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://plaain.com",
-  "engines" : {
-    "node" : "12.9.0"
+  "engines": {
+    "node": "12.9.0"
   },
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^1.7.0",
@@ -23,7 +23,7 @@
     "request": "^2.88",
     "request-promise": "^4.2.4",
     "reselect": "^4.0.0",
-    "stylelint-scss": "^3.11.0",
+    "stylelint-scss": "^3.11.1",
     "swiper": "^5.0.3"
   },
   "scripts": {
