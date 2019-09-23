@@ -14,7 +14,7 @@
 
       &.swiper-slide-next img,
       &.swiper-slide-prev img {
-        opacity: 0.75;
+        opacity: 0.9;
       }
 
       a {
@@ -22,7 +22,7 @@
       }
 
       img {
-        opacity: 0.5;
+        opacity: 0.8;
         transition: opacity 0.25s ease-out;
         width: 100%;
       }
