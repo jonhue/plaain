@@ -7,6 +7,7 @@ import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
 import ForYou from './scenes/ForYou'
 import Movies from './scenes/Movies'
+import Movie from './scenes/Movie'
 import Shows from './scenes/Shows'
 import Find from './scenes/Find'
 import NotFound from './scenes/NotFound'
@@ -35,6 +36,7 @@ class App extends Component {
           <Switch>
             <Route path={`${this.props.match.path}/`} exact component={ForYou} />
             <Route path={`${this.props.match.path}/movies`} component={Movies} />
+            <Route path={`${this.props.match.path}/movie/:id`} component={Movie} />
             <Route path={`${this.props.match.path}/shows`} component={Shows} />
             <Route path={`${this.props.match.path}/find`} exact component={Find} />
             <Route component={NotFound} />
