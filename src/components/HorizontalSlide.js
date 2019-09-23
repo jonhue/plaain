@@ -12,7 +12,8 @@ class HorizontalSlide extends Component {
       spaceBetween: 15,
       slidesPerView: 'auto',
       slidesOffsetBefore: 20,
-      slidesOffsetAfter: 20
+      slidesOffsetAfter: 20,
+      grabCursor: true
     })
   }
 

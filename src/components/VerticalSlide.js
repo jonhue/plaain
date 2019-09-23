@@ -21,7 +21,7 @@ class VerticalSlide extends Component {
         depth: 125,
         modifier: 1,
         slideShadows : false,
-      },
+      }
     })
   }
 
