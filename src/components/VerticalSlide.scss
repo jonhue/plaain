@@ -1,8 +1,10 @@
+@import "../variables";
+
 .VerticalSlide {
-  padding: 0 20px;
+  padding: 0 $padding;
 
   .swiper-container {
-    height: calc(100vh - 80px);
+    height: calc(100vh - #{$nav});
     width: 100%;
 
     .swiper-slide {

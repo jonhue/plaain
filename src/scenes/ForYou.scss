@@ -1,19 +1,21 @@
+@import "../variables";
+
 .ForYou {
   h2 {
-    margin: 0 20px;
+    margin: 0 $padding;
   }
 
   section:first-child {
     h2 {
-      margin-top: 20px;
+      margin-top: $padding;
     }
   }
 
   a.button {
-    margin: 20px 20px 0;
+    margin: $padding $padding 0;
 
     &:not(:first-child) {
-      margin-top: 10px;
+      margin-top: $spacing;
     }
   }
 }

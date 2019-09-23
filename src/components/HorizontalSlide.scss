@@ -1,9 +1,11 @@
+@import "../variables";
+
 .HorizontalSlide {
   align-items: center;
   display: flex;
 
   .swiper-container {
-    padding: 15px 0 20px;
+    padding: $spacing 0 $padding;
     width: 100%;
   }
 }
