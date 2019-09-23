@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Movie.scss'
 
+import Cover from '../../components/Cover'
 import PlyrPlayer from '../../components/PlyrPlayer'
 
 import { movieSelector } from '../../selectors/movies'
@@ -38,7 +39,7 @@ class Movie extends Component {
         <PlyrPlayer item={this.movie} />
         <img className='Movie__backdrop' src={this.movie.backdropUrl} alt='backdrop' />
         <div className='Movie__details'>
-          <img className='Movie__poster' src={this.movie.posterUrl} alt='poster' />
+          <Cover url={this.movie.posterUrl} alt='poster' width='50%' />
           <h1>{this.movie.name}</h1>
           <div className='Movie__information'>
             <p className='small'>{new Date(this.movie.releaseDate).getFullYear()}</p>

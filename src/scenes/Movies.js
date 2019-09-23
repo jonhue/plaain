@@ -5,7 +5,7 @@ import './Movies.scss'
 
 import Movie from './Movies/Movie'
 
-import ItemList from '../components/ItemList'
+import HorizontalSlide from '../components/HorizontalSlide'
 
 class Movies extends Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class Movies extends Component {
           render={() => (
             <div className='Movies__index'>
               <h2>Movies</h2>
-              <ItemList items={Object.values(this.props.movies)} id={'movies'} />
+              <HorizontalSlide items={Object.values(this.props.movies)} id='movies' width='200px' />
             </div>
           )} />
       </div>

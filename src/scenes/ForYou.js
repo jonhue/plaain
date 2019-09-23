@@ -5,7 +5,7 @@ import './ForYou.scss'
 
 import { logIn } from '../actions/auth'
 
-import ItemList from '../components/ItemList'
+import HorizontalSlide from '../components/HorizontalSlide'
 
 import { inProgressMoviesSelector, recentlyWatchedMoviesSelector } from '../selectors/movies'
 
@@ -30,12 +30,12 @@ class ForYou extends Component {
         <div className='ForYou'>
           {this.inProgress.length !== 0 && <section>
             <h2>Continue watching</h2>
-            <ItemList items={this.inProgress} id={'inProgress'} />
+            <HorizontalSlide items={this.inProgress} id='inProgress' width='200px' />
           </section>}
 
           {this.recentlyWatched.length !== 0 && <section>
             <h2>Recently watched</h2>
-            <ItemList items={this.recentlyWatched} id={'recentlyWatched'} />
+            <HorizontalSlide items={this.recentlyWatched} id='recentlyWatched' width='200px' />
           </section>}
 
           {this.inProgress.length === 0 && this.recentlyWatched.length === 0 && <section>
@@ -52,7 +52,7 @@ class ForYou extends Component {
     } else {
       return (
         <div className='ForYou'>
-          <button onClick={this.props.logIn}>Launch</button>
+          <button onClick={this.props.logIn}>Log in</button>
         </div>
       )
     }
