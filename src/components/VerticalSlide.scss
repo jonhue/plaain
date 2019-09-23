@@ -1,0 +1,29 @@
+.VerticalSlide {
+  padding: 0 20px;
+
+  .swiper-container {
+    width: 100%;
+    height: calc(100vh - 80px);
+
+    .swiper-slide {
+      &.swiper-slide-active img {
+        opacity: 1;
+      }
+
+      &.swiper-slide-next img,
+      &.swiper-slide-prev img {
+        opacity: 0.9;
+      }
+
+      a {
+        line-height: 0;
+      }
+
+      img {
+        opacity: 0.8;
+        transition: opacity 0.25s ease-out;
+        width: 100%;
+      }
+    }
+  }
+}
