@@ -6,8 +6,6 @@ import App from './App'
 import Welcome from './scenes/Welcome'
 import NotFound from './scenes/NotFound'
 
-import Loading from './components/Loading'
-
 class BaseWrapper extends Component {
   render() {
     return (
