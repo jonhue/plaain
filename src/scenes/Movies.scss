@@ -3,10 +3,9 @@
 .Movies {
   &__index {
     &__find {
-      // background: -webkit-radial-gradient(circle at 50% -50%, $background, rgba($background, 0));
       position: fixed;
-      top: 20px;
       right: 20px;
+      top: 20px;
       z-index: 2;
     }
 
