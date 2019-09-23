@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Movies.scss'
-
-import Movie from './Movies/Movie'
 
 import VerticalSlide from '../components/VerticalSlide'
 import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
@@ -20,20 +18,12 @@ class Movies extends Component {
   render() {
     return (
       <div className='Movies'>
-        <Route path={`${this.props.match.path}/:id`} component={Movie}/>
-        <Route
-          exact
-          path={this.props.match.path}
-          render={() => (
-            <div className='Movies__index'>
-              <div className='Movies__index__find'>
-                <Link to='/app/find'>
-                  <ZoomIcon width={24} height={24} />
-                </Link>
-              </div>
-              <VerticalSlide items={Object.values(this.props.movies)} id='movies' />
-            </div>
-          )} />
+        <div className='Movies__find'>
+          <Link to='/app/find'>
+            <ZoomIcon width={24} height={24} />
+          </Link>
+        </div>
+        <VerticalSlide items={Object.values(this.props.movies)} id='movies' path='movies' />
       </div>
     )
   }

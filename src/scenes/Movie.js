@@ -2,12 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Movie.scss'
 
-import Cover from '../../components/Cover'
-import PlyrPlayer from '../../components/PlyrPlayer'
+import Cover from '../components/Cover'
+import PlyrPlayer from '../components/PlyrPlayer'
 
-import { movieSelector } from '../../selectors/movies'
+import { movieSelector } from '../selectors/movies'
 
 class Movie extends Component {
+  componentDidMount() {
+    document.querySelector('.Nav a:nth-child(2)').classList.add('active')
+  }
+
+  componentWillUnmount() {
+    document.querySelector('.Nav a:nth-child(2)').classList.remove('active')
+  }
+
   continue() {
     let plyr = document.querySelector('.PlyrPlayer #player').plyr
     plyr.on('play', () => {
