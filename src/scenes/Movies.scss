@@ -3,5 +3,11 @@
     h2 {
       margin: 20px 20px 0;
     }
+
+    &__title {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
