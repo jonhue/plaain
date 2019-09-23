@@ -8,15 +8,17 @@ import { movieSelector } from '../../selectors/movies'
 
 class Movie extends Component {
   continue() {
-    let plyr = document.querySelector('#player').plyr
-    plyr.currentTime = this.movie.progress
+    let plyr = document.querySelector('.PlyrPlayer #player').plyr
+    plyr.on('play', () => {
+      plyr.currentTime = this.movie.progress
+    })
 
     this.watch()
   }
 
   watch() {
-    let player = document.querySelector('#player')
-    let plyr = player.plyr
+    let player = document.querySelector('.PlyrPlayer')
+    let plyr = player.querySelector('#player').plyr
 
     plyr.on('exitfullscreen', () => {
       plyr.stop()
