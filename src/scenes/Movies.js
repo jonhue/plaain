@@ -5,7 +5,7 @@ import './Movies.scss'
 
 import Movie from './Movies/Movie'
 
-import ItemList from '../components/ItemList'
+import HorizontalSlide from '../components/HorizontalSlide'
 import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
 
 class Movies extends Component {
@@ -32,7 +32,7 @@ class Movies extends Component {
                   <ZoomIcon width={24} height={24} />
                 </Link>
               </div>
-              <ItemList items={Object.values(this.props.movies)} id={'movies'} />
+              <HorizontalSlide items={Object.values(this.props.movies)} id='movies' width='200px' />
             </div>
           )} />
       </div>
