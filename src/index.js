@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import * as serviceWorker from './serviceWorker'
 
-import App from './App'
+import BaseWrapper from './BaseWrapper'
 import Loading from './components/Loading'
 
 import './index.scss'
@@ -17,7 +17,7 @@ import './index.scss'
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loading />} persistor={persistStore(store)}>
-      <App />
+      <BaseWrapper />
     </PersistGate>
   </Provider>,
   document.getElementById('root')

@@ -40,10 +40,10 @@ class ForYou extends Component {
 
           {this.inProgress.length === 0 && this.recentlyWatched.length === 0 && <section>
             <h2>Get started</h2>
-            <Link to='/movies' className='button'>
+            <Link to='/app/movies' className='button'>
               Discover your movies
             </Link>
-            <Link to='/shows' className='button'>
+            <Link to='/app/shows' className='button'>
               Discover your shows
             </Link>
           </section>}

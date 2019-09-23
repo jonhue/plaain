@@ -8,7 +8,7 @@ class Item extends Component {
   render() {
     return (
       <div className='Item'>
-        <Link to={this.props.item.path}>
+        <Link to={`/app${this.props.item.path}`}>
           <Cover url={this.props.item.posterUrl || '/cover.png'} alt={this.props.item.name} />
         </Link>
       </div>

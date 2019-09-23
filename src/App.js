@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.scss'
 
-// import MicrosoftAuth from './services/auth/MicrosoftAuth'
+import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
 import ForYou from './scenes/ForYou'
 import Movies from './scenes/Movies'
@@ -15,12 +15,12 @@ import Loading from './components/Loading'
 import Nav from './components/Nav'
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props)
-  //
-  //   // this required for the login popup to close (https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/174)
-  //   new MicrosoftAuth()
-  // }
+  constructor(props) {
+    super(props)
+
+    // this required for the login popup to close (https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/174)
+    new MicrosoftAuth()
+  }
 
   render() {
     if (this.props.indexing || this.props.authenticating) {
@@ -32,17 +32,15 @@ class App extends Component {
     } else {
       return (
         <div className='App'>
-          <Router>
-            <Switch>
-              <Route path='/' exact component={ForYou} />
-              <Route path='/movies' component={Movies} />
-              <Route path='/shows' component={Shows} />
-              <Route path='/find' exact component={Find} />
-              <Route component={NotFound} />
-            </Switch>
+          <Switch>
+            <Route path={`${this.props.match.path}/`} exact component={ForYou} />
+            <Route path={`${this.props.match.path}/movies`} component={Movies} />
+            <Route path={`${this.props.match.path}/shows`} component={Shows} />
+            <Route path={`${this.props.match.path}/find`} exact component={Find} />
+            <Route component={NotFound} />
+          </Switch>
 
-            <Nav />
-          </Router>
+          <Nav />
         </div>
       )
     }
