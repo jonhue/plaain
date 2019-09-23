@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import logo from './logo.svg'
 import './App.scss'
-
-import { logIn } from './actions/auth'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
@@ -12,7 +9,6 @@ import ForYou from './scenes/ForYou'
 import Movies from './scenes/Movies'
 import Shows from './scenes/Shows'
 import Find from './scenes/Find'
-import Welcome from './scenes/Welcome'
 import NotFound from './scenes/NotFound'
 
 import Loading from './components/Loading'
@@ -28,47 +24,32 @@ class App extends Component {
 
   render() {
     if (this.props.indexing || this.props.authenticating) {
-      return <Loading />
+      return (
+        <div className='App'>
+          <Loading />
+        </div>
+      )
     } else {
-      if (this.props.user) {
-        return (
-          <div className='App'>
-            <Router>
-              <Switch>
-                <Route path='/' exact component={ForYou} />
-                <Route path='/movies' component={Movies} />
-                <Route path='/shows' component={Shows} />
-                <Route path='/find' component={Find} />
-                <Route component={NotFound} />
-              </Switch>
+      return (
+        <div className='App'>
+          <Switch>
+            <Route path={`${this.props.match.path}/`} exact component={ForYou} />
+            <Route path={`${this.props.match.path}/movies`} component={Movies} />
+            <Route path={`${this.props.match.path}/shows`} component={Shows} />
+            <Route path={`${this.props.match.path}/find`} exact component={Find} />
+            <Route component={NotFound} />
+          </Switch>
 
-              <Nav />
-            </Router>
-          </div>
-        )
-      } else {
-        return (
-          <div className='App'>
-            <button onClick={this.props.logIn}>Launch</button>
-
-            <Router>
-              <Switch>
-                <Route path='/' exact component={Welcome} />
-                <Route component={NotFound} />
-              </Switch>
-            </Router>
-          </div>
-        )
-      }
+          <Nav />
+        </div>
+      )
     }
   }
 }
 
 export default connect(
   state => ({
-    user: state.auth.token,
     indexing: state.indexing.loading,
     authenticating: state.auth.loading
-  }),
-  { logIn }
+  })
 )(App)

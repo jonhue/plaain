@@ -15,16 +15,16 @@ class Nav extends Component {
   render() {
     return (
       <div className='Nav'>
-        <Link to='/'>
+        <Link to='/app/'>
           <PopcornIcon width={24} height={24} />
         </Link>
-        <Link to='/movies'>
+        <Link to='/app/movies'>
           <MovieIcon width={24} height={24} />
         </Link>
-        <Link to='/shows'>
+        <Link to='/app/shows'>
           <ShowIcon width={24} height={24} />
         </Link>
-        <Link to='/find'>
+        <Link to='/app/find'>
           <ZoomIcon width={24} height={24} />
         </Link>
         <button onClick={this.props.index}>
