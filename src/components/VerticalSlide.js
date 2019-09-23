@@ -17,8 +17,8 @@ class VerticalSlide extends Component {
       effect: 'coverflow',
       coverflowEffect: {
         rotate: 0,
-        stretch: 450,
-        depth: 125,
+        stretch: 250,
+        depth: 100,
         modifier: 1,
         slideShadows : false
       },
