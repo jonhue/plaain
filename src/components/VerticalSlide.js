@@ -12,13 +12,12 @@ class VerticalSlide extends Component {
       direction: 'vertical',
       grabCursor: true,
       slidesPerView: 'auto',
-      centeredSlides: true,
       autoHeight: true,
       effect: 'coverflow',
       coverflowEffect: {
         rotate: 0,
-        stretch: 250,
-        depth: 100,
+        stretch: 425,
+        depth: 150,
         modifier: 1,
         slideShadows : false
       },
