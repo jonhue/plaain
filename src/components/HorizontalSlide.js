@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Swiper from 'swiper'
-import './HorizontalSlide.scss'
 import 'swiper/swiper.scss'
+import './HorizontalSlide.scss'
 
 import Cover from './Cover'
 

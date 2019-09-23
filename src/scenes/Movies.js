@@ -5,7 +5,7 @@ import './Movies.scss'
 
 import Movie from './Movies/Movie'
 
-import HorizontalSlide from '../components/HorizontalSlide'
+import VerticalSlide from '../components/VerticalSlide'
 import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
 
 class Movies extends Component {
@@ -26,13 +26,12 @@ class Movies extends Component {
           path={this.props.match.path}
           render={() => (
             <div className='Movies__index'>
-              <div className='Movies__index__title'>
-                <h2>Movies</h2>
+              <div className='Movies__index__find'>
                 <Link to='/app/find'>
                   <ZoomIcon width={24} height={24} />
                 </Link>
               </div>
-              <HorizontalSlide items={Object.values(this.props.movies)} id='movies' width='200px' />
+              <VerticalSlide items={Object.values(this.props.movies)} id='movies' />
             </div>
           )} />
       </div>
