@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import './Movies.scss'
 
 import Movie from './Movies/Movie'
 
 import ItemList from '../components/ItemList'
+import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
 
 class Movies extends Component {
   componentDidMount() {
@@ -25,7 +26,12 @@ class Movies extends Component {
           path={this.props.match.path}
           render={() => (
             <div className='Movies__index'>
-              <h2>Movies</h2>
+              <div className='Movies__index__title'>
+                <h2>Movies</h2>
+                <Link to='/app/find'>
+                  <ZoomIcon width={24} height={24} />
+                </Link>
+              </div>
               <ItemList items={Object.values(this.props.movies)} id={'movies'} />
             </div>
           )} />

@@ -8,7 +8,6 @@ import { index } from '../actions/indexing'
 import PopcornIcon from './Nucleo/icons/popcorn.jsx'
 import MovieIcon from './Nucleo/icons/movie.jsx'
 import ShowIcon from './Nucleo/icons/show.jsx'
-import ZoomIcon from './Nucleo/icons/zoom.jsx'
 import ReloadIcon from './Nucleo/icons/reload.jsx'
 
 class Nav extends Component {
@@ -23,9 +22,6 @@ class Nav extends Component {
         </Link>
         <Link to='/app/shows'>
           <ShowIcon width={24} height={24} />
-        </Link>
-        <Link to='/app/find'>
-          <ZoomIcon width={24} height={24} />
         </Link>
         <button onClick={this.props.index}>
           <ReloadIcon width={24} height={24} />
