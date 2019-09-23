@@ -15,8 +15,11 @@ body {
 a {
   color: $white;
   text-decoration: none;
+  transition: color 0.1s ease-out;
 
-  &:active {
+  &:active,
+  &:focus,
+  &:hover {
     color: $highlight;
   }
 }
