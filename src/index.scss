@@ -12,24 +12,49 @@ body {
   padding: 0;
 }
 
+a {
+  color: $white;
+  text-decoration: none;
+
+  &:active {
+    color: $highlight;
+  }
+}
+
 a.button,
 button {
   align-items: center;
   background: $dark;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 3px 6px rgba($dark, 0.16);
+  box-shadow: 0 0 6px rgba($dark, 0.16);
   color: $white;
   cursor: pointer;
   display: flex;
   font-size: 18px;
   font-weight: 700;
   justify-content: center;
+  position: relative;
   text-decoration: none;
+  top: 0;
+  transition: all 0.1s ease-out;
+
+  &:active,
+  &:focus,
+  &:hover {
+    box-shadow: 0 4px 10px rgba($dark, 1);
+    top: -2px;
+  }
 
   &.primary {
     background: $highlight;
-    box-shadow: 0 3px 6px rgba($highlight, 0.16);
+    box-shadow: 0 0 6px rgba($highlight, 0.16);
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 10px rgba($highlight, 1);
+    }
   }
 }
 
@@ -91,10 +116,7 @@ p {
     font-weight: 600;
   }
 
-  a,
   span.link {
     color: $white;
-    font-size: 16px;
-    font-weight: 600;
   }
 }
