@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import './App.scss'
 
 import VERSION from './version'
-
+import { AUTOMATIC_INDEXING } from './reducers/settings'
 import { index } from './actions/indexing'
 
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
@@ -29,7 +29,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.checkVersion()
+    let updatedVersion = this.checkVersion()
+
+    if (!updatedVersion) {
+      this.automaticIndexing()
+    }
   }
 
   componentDidUpdate() {
@@ -39,6 +43,22 @@ class App extends Component {
   checkVersion() {
     if (this.props.version !== VERSION) {
       this.props.index('Updating app...')
+      return true
+    } else {
+      return false
+    }
+  }
+
+  automaticIndexing() {
+    if (
+      this.props.automaticIndexing === AUTOMATIC_INDEXING.ALWAYS ||
+      new Date().getFullYear() !==
+        new Date(this.props.lastIndexed).getFullYear() ||
+      new Date().getMonth() !== new Date(this.props.lastIndexed).getMonth() ||
+      (this.props.automaticIndexing !== AUTOMATIC_INDEXING.MONTHLY &&
+        new Date().getDate() !== new Date(this.props.lastIndexed).getDate())
+    ) {
+      this.props.index()
     }
   }
 
@@ -71,7 +91,9 @@ class App extends Component {
 export default connect(
   state => ({
     loading: state.loading,
-    version: state.version
+    version: state.version,
+    lastIndexed: state.indexing.lastIndexed,
+    automaticIndexing: state.settings.automaticIndexing
   }),
   { index }
 )(App)
