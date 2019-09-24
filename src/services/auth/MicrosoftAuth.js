@@ -3,11 +3,15 @@ import { UserAgentApplication } from 'msal'
 class MicrosoftAuth {
   static config = {
     clientID: process.env.REACT_APP_MICROSOFT_CLIENT_ID,
-    graphScopes: ['user.read', 'files.read.all']
+    scopes: ['user.read', 'files.read.all']
   }
 
   constructor() {
-    this._userAgentApplication = new UserAgentApplication({ auth: { clientId: MicrosoftAuth.config.clientID } })
+    this._userAgentApplication = new UserAgentApplication({
+      auth: {
+        clientId: MicrosoftAuth.config.clientID
+      }
+    })
   }
 
   perform() {
@@ -19,7 +23,9 @@ class MicrosoftAuth {
   }
 
   silentLogIn() {
-    return this.userAgentApplication.acquireTokenSilent({ scopes: MicrosoftAuth.config.graphScopes }).then(response => {
+    return this.userAgentApplication.acquireTokenSilent({
+      scopes: MicrosoftAuth.config.scopes
+    }).then(response => {
       return response.accessToken
     }).catch(error => {
       console.log(error)
@@ -28,8 +34,13 @@ class MicrosoftAuth {
   }
 
   popupLogIn() {
-    return this.userAgentApplication.loginPopup({ scopes: MicrosoftAuth.config.graphScopes, prompt: 'select_account' }).then(() => {
-      return this.userAgentApplication.acquireTokenSilent({ scopes: MicrosoftAuth.config.graphScopes })
+    return this.userAgentApplication.loginPopup({
+      scopes: MicrosoftAuth.config.scopes,
+      prompt: 'select_account'
+    }).then(() => {
+      return this.userAgentApplication.acquireTokenSilent({
+        scopes: MicrosoftAuth.config.scopes
+      })
     }).then(response => {
       return response.accessToken
     }).catch(error => {

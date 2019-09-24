@@ -26,12 +26,14 @@ class FetchShow {
     return this.tmdb.show(this.show.tmdbId)
       .then(response => {
         this.show.state = ITEM_STATES.FETCHED
-        this.show.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
+        this.show.backdropUrl =
+          `https://image.tmdb.org/t/p/original${response.backdrop_path}`
         this.show.firstAirDate = response.first_air_date
         this.show.lastAirDate = response.last_air_date
         this.show.name = response.name
         this.show.overview = response.overview
-        this.show.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
+        this.show.posterUrl =
+          `https://image.tmdb.org/t/p/original${response.poster_path}`
       })
   }
 

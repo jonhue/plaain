@@ -26,8 +26,13 @@ class FetchSeason {
         this.season.airDate = response.air_date
         this.season.name = response.name
         this.season.overview = response.overview
-        this.season.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
-        this.season.trailerLink = `https://www.youtube.com/results?search_query=${new Parametrize(this.show.name).perform()}+${new Parametrize(this.season.name).perform()}+official+trailer&i=movies-tv`
+        this.season.posterUrl =
+          `https://image.tmdb.org/t/p/original${response.poster_path}`
+        this.season.trailerLink =
+          'https://www.youtube.com/results?search_query=' +
+          `${new Parametrize(this.show.name).perform()}+` +
+          `${new Parametrize(this.season.name).perform()}+` +
+          'official+trailer&i=movies-tv'
       })
   }
 

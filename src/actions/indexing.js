@@ -3,6 +3,9 @@ import IndexShows from '../services/indexing/IndexShows'
 import IndexSeasons from '../services/indexing/IndexSeasons'
 import IndexEpisodes from '../services/indexing/IndexEpisodes'
 
+import VERSION from '../version'
+
+import { updateVersion } from './version'
 import { logIn } from './auth'
 import { loadingBegin, loadingStop } from './loading'
 import { fetchMovie, removeMovie, updateMovie } from './movies'
@@ -14,9 +17,9 @@ export const INDEX_BEGIN = 'INDEX_BEGIN'
 export const INDEX_SUCCESS = 'INDEX_SUCCESS'
 export const INDEX_FAILURE = 'INDEX_FAILURE'
 
-export const index = () => {
+export const index = (loadingCaption = 'Indexing...') => {
   return (dispatch, getState) => {
-    dispatch(loadingBegin('Indexing...'))
+    dispatch(loadingBegin(loadingCaption))
     dispatch(indexBegin())
 
     new IndexMovies(getState().auth.token).perform().then(movies => {
@@ -44,7 +47,9 @@ export const index = () => {
         }
       })
     }).then(() => {
-      return new IndexSeasons(getState().auth.token, Object.keys(getState().shows)).perform()
+      return new IndexSeasons(
+        getState().auth.token, Object.keys(getState().shows)
+      ).perform()
     }).then(seasons => {
       seasons.forEach(season => {
         dispatch(updateSeason(season))
@@ -57,7 +62,9 @@ export const index = () => {
         }
       })
     }).then(() => {
-      return new IndexEpisodes(getState().auth.token, Object.keys(getState().seasons)).perform()
+      return new IndexEpisodes(
+        getState().auth.token, Object.keys(getState().seasons)
+      ).perform()
     }).then(episodes => {
       episodes.forEach(episode => {
         dispatch(updateEpisode(episode))
@@ -70,6 +77,7 @@ export const index = () => {
         }
       })
     }).then(() => {
+      dispatch(updateVersion(VERSION))
       dispatch(indexSuccess())
       dispatch(loadingStop())
     }).catch(error => {

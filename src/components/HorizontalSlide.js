@@ -8,13 +8,17 @@ import Cover from './Cover'
 
 class HorizontalSlide extends Component {
   componentDidMount() {
-    new Swiper(document.querySelector(`.HorizontalSlide#${this.props.id} .swiper-container`), {
-      spaceBetween: 15,
-      slidesPerView: 'auto',
-      slidesOffsetBefore: 20,
-      slidesOffsetAfter: 20,
-      grabCursor: true
-    })
+    new Swiper(
+      document.querySelector(
+        `.HorizontalSlide#${this.props.id} .swiper-container`
+      ), {
+        spaceBetween: 15,
+        slidesPerView: 'auto',
+        slidesOffsetBefore: 20,
+        slidesOffsetAfter: 20,
+        grabCursor: true
+      }
+    )
   }
 
   render() {
@@ -26,7 +30,7 @@ class HorizontalSlide extends Component {
               this.props.items.map(item => {
                 return (
                   <div className='swiper-slide' key={item.id} style={{ width: this.props.width }}>
-                    <Link to={`/app${item.path}`}>
+                    <Link to={`/app/movie/${item.id}`}>
                       <Cover url={item.posterUrl || '/cover.png'} alt={item.name} width={this.props.width} />
                     </Link>
                   </div>

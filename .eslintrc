@@ -42,6 +42,13 @@
       "semi": [
         "error",
         "never"
+      ],
+      "max-len": [
+        "error",
+        {
+          "ignorePattern": "<.+>",
+          "ignoreUrls": true
+        }
       ]
     },
     "settings": {

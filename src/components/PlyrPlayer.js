@@ -38,21 +38,31 @@ class PlyrPlayer extends Component {
   }
 
   render() {
-    if (this.props.item.files.filter(file => file.type === 'source').length === 0) {
+    if (
+      this.props.item.files.filter(file => file.type === 'source').length === 0
+    ) {
       return null
     }
 
     return (
       <div className='PlyrPlayer'>
         <video
-          src={this.props.item.files.filter(file => file.type === 'source')[0].url}
+          src={this.props.item.files
+            .filter(file => file.type === 'source')[0].url}
           id='player' crossOrigin='true' playsInline controls>
-          {this.props.item.files.filter(file => file.type === 'source').map((source, index) => {
-            return (<PlyrSource source={source} key={index} />)
-          })}
-          {this.props.item.files.filter(file => file.type === 'caption').map((caption, index) => {
-            return (<PlyrCaption caption={caption} default={index === 0} key={index} />)
-          })}
+          {this.props.item.files.filter(file => file.type === 'source')
+            .map((source, index) => {
+              return <PlyrSource source={source} key={index} />
+            })}
+          {this.props.item.files.filter(file => file.type === 'caption')
+            .map((caption, index) => {
+              return (
+                <PlyrCaption
+                  caption={caption}
+                  default={index === 0}
+                  key={index} />
+              )
+            })}
           <a href={this.props.item.files.filter(file => file.type === 'source')[0].src} download>Download</a>
         </video>
       </div>
