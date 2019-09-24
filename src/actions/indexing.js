@@ -22,73 +22,74 @@ export const index = (loadingCaption = 'Indexing...') => {
     dispatch(loadingBegin(loadingCaption))
     dispatch(indexBegin())
 
-    new IndexMovies(getState().auth.token).perform().then(movies => {
-      movies.forEach(movie => {
-        dispatch(updateMovie(movie))
-        dispatch(fetchMovie(movie.id))
-      })
-      const ids = movies.map(movie => movie.id)
-      Object.keys(getState().movies).forEach(id => {
-        if (!ids.includes(id)) {
-          dispatch(removeMovie(id))
-        }
-      })
-    }).then(() => {
-      return new IndexShows(getState().auth.token).perform()
-    }).then(shows => {
-      shows.forEach(show => {
-        dispatch(updateShow(show))
-        dispatch(fetchShow(show.id))
-      })
-      const ids = shows.map(show => show.id)
-      Object.keys(getState().shows).forEach(id => {
-        if (!ids.includes(id)) {
-          dispatch(removeShow(id))
-        }
-      })
-    }).then(() => {
-      return new IndexSeasons(
-        getState().auth.token, Object.keys(getState().shows)
-      ).perform()
-    }).then(seasons => {
-      seasons.forEach(season => {
-        dispatch(updateSeason(season))
-        dispatch(fetchSeason(season.id))
-      })
-      const ids = seasons.map(season => season.id)
-      Object.keys(getState().seasons).forEach(id => {
-        if (!ids.includes(id)) {
-          dispatch(removeSeason(id))
-        }
-      })
-    }).then(() => {
-      return new IndexEpisodes(
-        getState().auth.token, Object.keys(getState().seasons)
-      ).perform()
-    }).then(episodes => {
-      episodes.forEach(episode => {
-        dispatch(updateEpisode(episode))
-        dispatch(fetchEpisode(episode.id))
-      })
-      const ids = episodes.map(episode => episode.id)
-      Object.keys(getState().episodes).forEach(id => {
-        if (!ids.includes(id)) {
-          dispatch(removeEpisode(id))
-        }
-      })
-    }).then(() => {
-      dispatch(updateVersion(VERSION))
-      dispatch(indexSuccess())
-      dispatch(loadingStop())
-    }).catch(error => {
-      dispatch(indexFailure(error))
-      dispatch(loadingStop())
+    new IndexMovies(getState().auth.token).perform()
+      .then(movies => {
+        return awaitFetching(dispatch, movies, updateMovie, fetchMovie)
+      }).then(movies => {
+        const ids = movies.map(movie => movie.id)
+        Object.keys(getState().movies).forEach(id => {
+          if (!ids.includes(id)) {
+            dispatch(removeMovie(id))
+          }
+        })
+      }).then(() => {
+        return new IndexShows(getState().auth.token).perform()
+      }).then(shows => {
+        return awaitFetching(dispatch, shows, updateShow, fetchShow)
+      }).then(shows => {
+        const ids = shows.map(show => show.id)
+        Object.keys(getState().shows).forEach(id => {
+          if (!ids.includes(id)) {
+            dispatch(removeShow(id))
+          }
+        })
+      }).then(() => {
+        return new IndexSeasons(
+          getState().auth.token, Object.keys(getState().shows)
+        ).perform()
+      }).then(seasons => {
+        return awaitFetching(dispatch, seasons, updateSeason, fetchSeason)
+      }).then(seasons => {
+        const ids = seasons.map(season => season.id)
+        Object.keys(getState().seasons).forEach(id => {
+          if (!ids.includes(id)) {
+            dispatch(removeSeason(id))
+          }
+        })
+      }).then(() => {
+        return new IndexEpisodes(
+          getState().auth.token, Object.keys(getState().seasons)
+        ).perform()
+      }).then(episodes => {
+        return awaitFetching(dispatch, episodes, updateEpisode, fetchEpisode)
+      }).then(episodes => {
+        const ids = episodes.map(episode => episode.id)
+        Object.keys(getState().episodes).forEach(id => {
+          if (!ids.includes(id)) {
+            dispatch(removeEpisode(id))
+          }
+        })
+      }).then(() => {
+        dispatch(updateVersion(VERSION))
+        dispatch(indexSuccess())
+        dispatch(loadingStop())
+      }).catch(error => {
+        dispatch(indexFailure(error))
+        dispatch(loadingStop())
 
-      if (error.statusCode === 401) {
-        dispatch(logIn())
-      }
-    })
+        if (error.statusCode === 401) {
+          dispatch(logIn())
+        }
+      })
   }
+}
+
+async function awaitFetching(dispatch, items, update, fetch) {
+  await Promise.all(items.map(item => {
+    dispatch(update(item))
+    return dispatch(fetch(item.id))
+  }))
+  return items
 }
 
 const indexBegin = () => ({
