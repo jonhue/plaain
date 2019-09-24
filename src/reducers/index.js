@@ -26,6 +26,15 @@ const rootReducer = combineReducers({
 export default persistReducer({
   key: 'root',
   storage: storage,
-  whitelist: ['version', 'auth', 'settings', 'indexing', 'movies', 'shows', 'seasons', 'episodes'],
+  whitelist: [
+    'version',
+    'auth',
+    'settings',
+    'indexing',
+    'movies',
+    'shows',
+    'seasons',
+    'episodes'
+  ],
   debug: process.env.NODE_ENV === 'development'
 }, rootReducer)
