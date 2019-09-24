@@ -23,7 +23,7 @@ class MicrosoftAuth {
       return response.accessToken
     }).catch(error => {
       console.log(error)
-      this.popupLogIn()
+      return this.popupLogIn()
     })
   }
 

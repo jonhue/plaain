@@ -10,13 +10,13 @@ import { PersistGate } from 'redux-persist/integration/react'
 import * as serviceWorker from './serviceWorker'
 
 import BaseWrapper from './BaseWrapper'
-import Loading from './components/Loading'
+import Loading from './scenes/Loading'
 
 import './index.scss'
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={<Loading />} persistor={persistStore(store)}>
+    <PersistGate loading={<Loading caption='Loading...' />} persistor={persistStore(store)}>
       <BaseWrapper />
     </PersistGate>
   </Provider>,
