@@ -12,7 +12,7 @@ export const fetchEpisode = id => {
     const episode = episodeSelector(id)(getState())
     const season = seasonSelector(episode.seasonId)(getState())
     const show = showSelector(season.showId)(getState())
-    new FetchEpisode(
+    return new FetchEpisode(
       show.tmdbId,
       show.name,
       season.seasonNumber,
