@@ -1,6 +1,7 @@
 import { INDEX_BEGIN, INDEX_SUCCESS, INDEX_FAILURE } from '../actions/indexing'
 
 const initialState = {
+  lastIndexed: 0,
   error: null
 }
 
@@ -13,7 +14,8 @@ export default (state = initialState, action) => {
     }
   case INDEX_SUCCESS:
     return {
-      ...state
+      ...state,
+      lastIndexed: new Date().getTime()
     }
   case INDEX_FAILURE:
     return {
