@@ -3,6 +3,10 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.scss'
 
+import VERSION from './version'
+
+import { index } from './actions/indexing'
+
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
 import ForYou from './scenes/ForYou'
@@ -19,8 +23,23 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    // this required for the login popup to close (https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/174)
+    // this is required for the login popup to close;
+    // see https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/174
     new MicrosoftAuth()
+  }
+
+  componentDidMount() {
+    this.checkVersion()
+  }
+
+  componentDidUpdate() {
+    this.checkVersion()
+  }
+
+  checkVersion() {
+    if (this.props.version !== VERSION) {
+      this.props.index('Updating app...')
+    }
   }
 
   render() {
@@ -51,6 +70,8 @@ class App extends Component {
 
 export default connect(
   state => ({
-    loading: state.loading
-  })
+    loading: state.loading,
+    version: state.version
+  }),
+  { index }
 )(App)

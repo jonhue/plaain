@@ -12,7 +12,14 @@ export const fetchEpisode = id => {
     const episode = episodeSelector(id)(getState())
     const season = seasonSelector(episode.seasonId)(getState())
     const show = showSelector(season.showId)(getState())
-    new FetchEpisode(show.tmdbId, show.name, season.seasonNumber, season.name, episode.id, episode.episodeNumber).perform().then(fetchedEpisode => {
+    new FetchEpisode(
+      show.tmdbId,
+      show.name,
+      season.seasonNumber,
+      season.name,
+      episode.id,
+      episode.episodeNumber
+    ).perform().then(fetchedEpisode => {
       dispatch(updateEpisode(fetchedEpisode))
     }).catch(() => dispatch(fetchEpisode(id)))
   }

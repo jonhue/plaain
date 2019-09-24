@@ -1,4 +1,8 @@
-import { FILE_TYPES, SOURCE_EXTENSIONS, CAPTION_EXTENSIONS } from '../../constants'
+import {
+  FILE_TYPES,
+  SOURCE_EXTENSIONS,
+  CAPTION_EXTENSIONS
+} from '../../constants'
 
 class IndexFiles {
   constructor(oneDrive, folderId) {
@@ -8,7 +12,8 @@ class IndexFiles {
 
   perform() {
     return this.oneDrive.children(this.folderId).then(response => {
-      return response.value.map(item => this.index(item)).filter(source => source != null)
+      return response.value.map(item => this.index(item))
+        .filter(source => source != null)
     })
   }
 
@@ -32,7 +37,9 @@ class IndexFiles {
   static fileType(fileName) {
     if (SOURCE_EXTENSIONS.includes(IndexFiles.fileExtension(fileName))) {
       return FILE_TYPES.SOURCE
-    } else if (CAPTION_EXTENSIONS.includes(IndexFiles.fileExtension(fileName))) {
+    } else if (
+      CAPTION_EXTENSIONS.includes(IndexFiles.fileExtension(fileName))
+    ) {
       return FILE_TYPES.CAPTION
     } else {
       return null

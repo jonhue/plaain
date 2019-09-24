@@ -11,13 +11,18 @@ class IndexEpisodes {
   }
 
   async perform() {
-    return [].concat(...await Promise.all(this.seasonIds.map(seasonId => this.performForSeason(seasonId)).filter(episode => episode != null)))
+    return [].concat(...await Promise.all(
+      this.seasonIds.map(seasonId => this.performForSeason(seasonId))
+        .filter(episode => episode != null)
+    ))
   }
 
   async performForSeason(seasonId) {
-    return await Promise.all(await this.oneDrive.children(seasonId).then(response => {
-      return response.value.map(item => this.index(item, seasonId))
-    }))
+    return await Promise.all(
+      await this.oneDrive.children(seasonId).then(response => {
+        return response.value.map(item => this.index(item, seasonId))
+      })
+    )
   }
 
   async index(item, seasonId) {
@@ -34,8 +39,7 @@ class IndexEpisodes {
       id: item.id,
       episodeNumber: episodeNumber,
       files: files,
-      seasonId,
-      path: `/episodes/${episodeNumber}`
+      seasonId
     }
   }
 

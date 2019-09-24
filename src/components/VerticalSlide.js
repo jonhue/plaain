@@ -8,24 +8,28 @@ import Cover from './Cover'
 
 class VerticalSlide extends Component {
   componentDidMount() {
-    new Swiper(document.querySelector(`.VerticalSlide#${this.props.id} .swiper-container`), {
-      direction: 'vertical',
-      grabCursor: true,
-      slidesPerView: 'auto',
-      autoHeight: true,
-      effect: 'coverflow',
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 425,
-        depth: 150,
-        modifier: 1,
-        slideShadows : false
-      },
-      history: {
-        replaceState: true,
-        key: this.props.path
+    new Swiper(
+      document.querySelector(
+        `.VerticalSlide#${this.props.id} .swiper-container`
+      ), {
+        direction: 'vertical',
+        grabCursor: true,
+        slidesPerView: 'auto',
+        autoHeight: true,
+        effect: 'coverflow',
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 425,
+          depth: 150,
+          modifier: 1,
+          slideShadows : false
+        },
+        history: {
+          replaceState: true,
+          key: this.props.path
+        }
       }
-    })
+    )
   }
 
   render() {

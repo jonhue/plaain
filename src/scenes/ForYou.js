@@ -7,7 +7,10 @@ import { logIn } from '../actions/auth'
 
 import HorizontalSlide from '../components/HorizontalSlide'
 
-import { inProgressMoviesSelector, recentlyWatchedMoviesSelector } from '../selectors/movies'
+import {
+  inProgressMoviesSelector,
+  recentlyWatchedMoviesSelector
+} from '../selectors/movies'
 
 class ForYou extends Component {
   componentDidMount() {
@@ -23,7 +26,8 @@ class ForYou extends Component {
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
 
     this.inProgress = inProgressMoviesSelector()(this.props)
-    this.recentlyWatched = recentlyWatchedMoviesSelector(oneMonthAgo)(this.props)
+    this.recentlyWatched =
+      recentlyWatchedMoviesSelector(oneMonthAgo)(this.props)
 
     if (this.props.user) {
       return (
