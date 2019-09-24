@@ -1,6 +1,7 @@
 import MicrosoftAuth from '../services/auth/MicrosoftAuth'
 
 import { index } from './indexing'
+import { loadingBegin, loadingStop } from './loading'
 
 export const LOG_IN_BEGIN = 'LOG_IN_BEGIN'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
@@ -8,12 +9,17 @@ export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
 
 export const logIn = () => {
   return dispatch => {
+    dispatch(loadingBegin('Authenticating...'))
     dispatch(logInBegin())
 
     new MicrosoftAuth().perform().then(auth => {
       dispatch(logInSuccess(auth))
+      dispatch(loadingStop())
       dispatch(index())
-    }).catch(error => dispatch(logInFailure(error)))
+    }).catch(error => {
+      dispatch(logInFailure(error))
+      dispatch(loadingStop())
+    })
   }
 }
 

@@ -4,6 +4,7 @@ import IndexSeasons from '../services/indexing/IndexSeasons'
 import IndexEpisodes from '../services/indexing/IndexEpisodes'
 
 import { logIn } from './auth'
+import { loadingBegin, loadingStop } from './loading'
 import { fetchMovie, removeMovie, updateMovie } from './movies'
 import { fetchShow, removeShow, updateShow } from './shows'
 import { fetchSeason, removeSeason, updateSeason } from './seasons'
@@ -15,6 +16,7 @@ export const INDEX_FAILURE = 'INDEX_FAILURE'
 
 export const index = () => {
   return (dispatch, getState) => {
+    dispatch(loadingBegin('Indexing...'))
     dispatch(indexBegin())
 
     new IndexMovies(getState().auth.token).perform().then(movies => {
@@ -69,8 +71,10 @@ export const index = () => {
       })
     }).then(() => {
       dispatch(indexSuccess())
+      dispatch(loadingStop())
     }).catch(error => {
       dispatch(indexFailure(error))
+      dispatch(loadingStop())
 
       if (error.statusCode === 401) {
         dispatch(logIn())

@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import auth from './auth'
 import indexing from './indexing'
+import loading from './loading'
 import movies from './movies'
 import shows from './shows'
 import seasons from './seasons'
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     debug: process.env.NODE_ENV === 'development'
   }, auth),
   indexing,
+  loading,
   movies,
   shows,
   seasons,

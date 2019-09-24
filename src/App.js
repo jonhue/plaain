@@ -10,9 +10,9 @@ import Movies from './scenes/Movies'
 import Movie from './scenes/Movie'
 import Shows from './scenes/Shows'
 import Find from './scenes/Find'
+import Loading from './scenes/Loading'
 import NotFound from './scenes/NotFound'
 
-import Loading from './components/Loading'
 import Nav from './components/Nav'
 
 class App extends Component {
@@ -24,10 +24,10 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.indexing || this.props.authenticating) {
+    if (this.props.loading) {
       return (
         <div className='App'>
-          <Loading />
+          <Loading caption={this.props.loading} />
         </div>
       )
     } else {
@@ -51,7 +51,6 @@ class App extends Component {
 
 export default connect(
   state => ({
-    indexing: state.indexing.loading,
-    authenticating: state.auth.loading
+    loading: state.loading
   })
 )(App)
