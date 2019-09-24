@@ -17,31 +17,15 @@ const rootReducer = combineReducers({
   settings,
   indexing,
   loading,
-  movies: persistReducer({
-    key: 'movies',
-    storage: storage,
-    debug: process.env.NODE_ENV === 'development'
-  }, movies),
-  shows: persistReducer({
-    key: 'shows',
-    storage: storage,
-    debug: process.env.NODE_ENV === 'development'
-  }, shows),
-  seasons: persistReducer({
-    key: 'seasons',
-    storage: storage,
-    debug: process.env.NODE_ENV === 'development'
-  }, seasons),
-  episodes: persistReducer({
-    key: 'episodes',
-    storage: storage,
-    debug: process.env.NODE_ENV === 'development'
-  }, episodes)
+  movies,
+  shows,
+  seasons,
+  episodes
 })
 
 export default persistReducer({
   key: 'root',
   storage: storage,
-  whitelist: ['version', 'auth', 'settings', 'indexing'],
+  whitelist: ['version', 'auth', 'settings', 'indexing', 'movies', 'shows', 'seasons', 'episodes'],
   debug: process.env.NODE_ENV === 'development'
 }, rootReducer)

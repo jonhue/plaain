@@ -13,7 +13,7 @@ export const fetchSeason = id => {
     new FetchSeason(show.tmdbId, show.name, season.id, season.seasonNumber)
       .perform().then(fetchedSeason => {
         dispatch(updateSeason(fetchedSeason))
-      }).catch(() => dispatch(fetchSeason(id)))
+      }).catch(error => console.log(error))
   }
 }
 

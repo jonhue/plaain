@@ -21,7 +21,7 @@ export const fetchEpisode = id => {
       episode.episodeNumber
     ).perform().then(fetchedEpisode => {
       dispatch(updateEpisode(fetchedEpisode))
-    }).catch(() => dispatch(fetchEpisode(id)))
+    }).catch(error => console.log(error))
   }
 }
 
