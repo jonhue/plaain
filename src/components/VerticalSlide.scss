@@ -8,6 +8,8 @@
     width: 100%;
 
     .swiper-slide {
+      height: auto;
+
       &.swiper-slide-active img {
         opacity: 1;
       }

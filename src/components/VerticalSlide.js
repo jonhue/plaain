@@ -13,9 +13,8 @@ class VerticalSlide extends Component {
         `.VerticalSlide#${this.props.id} .swiper-container`
       ), {
         direction: 'vertical',
-        grabCursor: true,
         slidesPerView: 'auto',
-        autoHeight: true,
+        grabCursor: true,
         effect: 'coverflow',
         coverflowEffect: {
           rotate: 0,
