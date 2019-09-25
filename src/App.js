@@ -33,7 +33,11 @@ class App extends Component {
 
   componentDidMount() {
     new IndexAfterUpdate(this.props.version, this.props.index).perform() ||
-      new AutomaticIndexing(this.props.automaticIndexing, this.props.lastIndexed, this.props.index).perform()
+      new AutomaticIndexing(
+        this.props.automaticIndexing,
+        this.props.lastIndexed,
+        this.props.index
+      ).perform()
   }
 
   componentDidUpdate() {

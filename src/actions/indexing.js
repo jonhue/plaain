@@ -33,7 +33,9 @@ export const index = (loadingCaption = 'Indexing...') => {
           }
         })
       }).then(() => {
-        return new IndexShows(getState().auth[PROVIDERS.MICROSOFT].token).perform()
+        return new IndexShows(
+          getState().auth[PROVIDERS.MICROSOFT].token
+        ).perform()
       }).then(shows => {
         return awaitFetching(dispatch, shows, updateShow, fetchShow)
       }).then(shows => {
@@ -45,7 +47,8 @@ export const index = (loadingCaption = 'Indexing...') => {
         })
       }).then(() => {
         return new IndexSeasons(
-          getState().auth[PROVIDERS.MICROSOFT].token, Object.keys(getState().shows)
+          getState().auth[PROVIDERS.MICROSOFT].token,
+          Object.keys(getState().shows)
         ).perform()
       }).then(seasons => {
         return awaitFetching(dispatch, seasons, updateSeason, fetchSeason)
@@ -58,7 +61,8 @@ export const index = (loadingCaption = 'Indexing...') => {
         })
       }).then(() => {
         return new IndexEpisodes(
-          getState().auth[PROVIDERS.MICROSOFT].token, Object.keys(getState().seasons)
+          getState().auth[PROVIDERS.MICROSOFT].token,
+          Object.keys(getState().seasons)
         ).perform()
       }).then(episodes => {
         return awaitFetching(dispatch, episodes, updateEpisode, fetchEpisode)

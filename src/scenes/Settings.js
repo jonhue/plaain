@@ -15,7 +15,11 @@ import MicrosoftIcon from '../components/Nucleo/icons/microsoft.jsx'
 
 import Banner from '../components/Banner'
 
-import { authTokenSelector, authError, authProviderError } from '../selectors/auth'
+import {
+  authTokenSelector,
+  authError,
+  authProviderError
+} from '../selectors/auth'
 
 class Settings extends Component {
   componentDidMount() {
