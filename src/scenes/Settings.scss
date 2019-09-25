@@ -26,7 +26,7 @@
         width: auto;
 
         &:not(:first-child) {
-          margin-left: $spacing
+          margin-left: $spacing;
         }
 
         &:disabled {
