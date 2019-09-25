@@ -16,6 +16,9 @@ class AutomaticIndexing {
         new Date().getDate() !== new Date(this.lastIndexed).getDate())
     ) {
       this.indexAction()
+      return true
+    } else {
+      return false
     }
   }
 

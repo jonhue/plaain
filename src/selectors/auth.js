@@ -9,6 +9,13 @@ export const authProviderSelector = provider => {
   )
 }
 
+export const authTokenSelector = provider => {
+  return createSelector(
+    authProviderSelector(provider),
+    authProvider => authProvider.token
+  )
+}
+
 export const authError = () => {
   return createSelector(
     authSelector,

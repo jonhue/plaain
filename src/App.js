@@ -3,11 +3,10 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.scss'
 
-import { VERSION } from './constants'
-
 import { index } from './actions/indexing'
 
 import AutomaticIndexing from './services/AutomaticIndexing'
+import IndexAfterUpdate from './services/IndexAfterUpdate'
 import MicrosoftAuth from './services/auth/MicrosoftAuth'
 
 import ForYou from './scenes/ForYou'
@@ -33,24 +32,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let updatedVersion = this.checkVersion()
-
-    if (!updatedVersion) {
+    new IndexAfterUpdate(this.props.version, this.props.index).perform() ||
       new AutomaticIndexing(this.props.automaticIndexing, this.props.lastIndexed, this.props.index).perform()
-    }
   }
 
   componentDidUpdate() {
-    this.checkVersion()
-  }
-
-  checkVersion() {
-    if (this.props.version !== VERSION) {
-      this.props.index('Updating app...')
-      return true
-    } else {
-      return false
-    }
+    new IndexAfterUpdate(this.props.version, this.props.index).perform()
   }
 
   render() {

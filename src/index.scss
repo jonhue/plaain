@@ -78,7 +78,8 @@ button {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   margin-bottom: 0.5em;
 }
 
@@ -108,6 +109,13 @@ h4 {
   text-transform: uppercase;
 }
 
+h5 {
+  color: $white;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 p {
   color: $light;
   font-size: 16px;
@@ -123,4 +131,16 @@ p {
   span.link {
     color: $white;
   }
+}
+
+select {
+  background: $dark;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba($dark, 0.16);
+  color: $white;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 15px 10px 15px 25px;
+  text-decoration: none;
 }

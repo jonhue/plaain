@@ -1,5 +1,75 @@
 @import "../variables";
 
 .Settings {
-  padding: $padding;
+  h2 {
+    margin: 0;
+  }
+
+  section {
+    padding: $padding;
+
+    p {
+      margin: 0.3em 0 1.3em;
+    }
+  }
+
+  &__auth {
+    &__wrapper {
+      display: flex;
+      overflow-x: auto;
+
+      a.button,
+      button {
+        border: 3px solid $dark;
+        border-radius: 50%;
+        padding: 25px;
+        width: auto;
+
+        &:not(:first-child) {
+          margin-left: $spacing
+        }
+
+        &:disabled {
+          border-style: dashed !important;
+          cursor: not-allowed;
+        }
+
+        &.primary {
+          border: 3px solid $highlight;
+        }
+
+        &.warn {
+          background: $warn;
+          border: 3px solid $warn;
+        }
+      }
+
+      a.button,
+      button:disabled {
+        background: $background;
+        border: 3px solid $dark;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__indexing {
+    button {
+      width: auto;
+    }
+
+    h5 {
+      margin-top: 2em;
+    }
+  }
+
+  &__version {
+    p {
+      margin-bottom: 1em !important;
+
+      &.small {
+        margin: 0 !important;
+      }
+    }
+  }
 }
