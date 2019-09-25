@@ -7,7 +7,7 @@ import 'plyr/src/sass/plyr.scss'
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
 
-import { logIn } from '../actions/auth'
+import { logInExpired } from '../actions/auth'
 import { updateMovie } from '../actions/movies'
 
 class PlyrPlayer extends Component {
@@ -18,7 +18,10 @@ class PlyrPlayer extends Component {
       })
       this.player.on('error', error => {
         console.log(error)
-        this.props.logIn()
+
+        if (error.statusCode === 401) {
+          this.props.logInExpired(this.props.item.provider)
+        }
       })
       this.player.on('playing', () => {
         this.props.updateMovie({
@@ -72,5 +75,5 @@ class PlyrPlayer extends Component {
 
 export default connect(
   null,
-  { logIn, updateMovie }
+  { logInExpired, updateMovie }
 )(PlyrPlayer)

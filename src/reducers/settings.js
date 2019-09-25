@@ -1,11 +1,6 @@
-import { SETTINGS_UPDATE } from '../actions/settings'
+import { AUTOMATIC_INDEXING } from '../constants'
 
-export const AUTOMATIC_INDEXING = {
-  NEVER: 'NEVER',
-  MONTHLY: 'MONTHLY',
-  DAILY: 'DAILY',
-  ALWAYS: 'ALWAYS'
-}
+import { SETTINGS_UPDATE } from '../actions/settings'
 
 const initialState = {
   automaticIndexing: AUTOMATIC_INDEXING.NEVER

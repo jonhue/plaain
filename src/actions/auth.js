@@ -1,3 +1,5 @@
+import { PROVIDERS } from '../constants'
+
 import MicrosoftAuth from '../services/auth/MicrosoftAuth'
 
 import { index } from './indexing'
@@ -7,32 +9,37 @@ export const LOG_IN_BEGIN = 'LOG_IN_BEGIN'
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
 export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
 
-export const logIn = () => {
+export const authenticateMicrosoft = () => {
   return dispatch => {
     dispatch(loadingBegin('Authenticating...'))
-    dispatch(logInBegin())
+    dispatch(logInBegin(PROVIDERS.MICROSOFT))
 
-    new MicrosoftAuth().perform().then(auth => {
-      dispatch(logInSuccess(auth))
+    new MicrosoftAuth().perform().then(token => {
+      dispatch(logInSuccess(PROVIDERS.MICROSOFT, token))
       dispatch(loadingStop())
       dispatch(index())
     }).catch(error => {
-      dispatch(logInFailure(error))
+      dispatch(logInFailure(PROVIDERS.MICROSOFT, error))
       dispatch(loadingStop())
     })
   }
 }
 
-const logInBegin = () => ({
-  type: LOG_IN_BEGIN
+export const logInExpired = provider => {
+  return dispatch => dispatch(logInFailure(provider, 'expired'))
+}
+
+const logInBegin = provider => ({
+  type: LOG_IN_BEGIN,
+  payload: provider
 })
 
-const logInSuccess = auth => ({
+const logInSuccess = (provider, token) => ({
   type: LOG_IN_SUCCESS,
-  payload: auth
+  payload: { provider, token }
 })
 
-const logInFailure = error => ({
+const logInFailure = (provider, error) => ({
   type: LOG_IN_FAILURE,
-  payload: error
+  payload: { provider, error }
 })

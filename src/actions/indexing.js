@@ -1,12 +1,12 @@
+import { VERSION, PROVIDERS } from '../constants'
+
 import IndexMovies from '../services/indexing/IndexMovies'
 import IndexShows from '../services/indexing/IndexShows'
 import IndexSeasons from '../services/indexing/IndexSeasons'
 import IndexEpisodes from '../services/indexing/IndexEpisodes'
 
-import VERSION from '../version'
-
 import { updateVersion } from './version'
-import { logIn } from './auth'
+import { logInExpired } from './auth'
 import { loadingBegin, loadingStop } from './loading'
 import { fetchMovie, removeMovie, updateMovie } from './movies'
 import { fetchShow, removeShow, updateShow } from './shows'
@@ -22,7 +22,7 @@ export const index = (loadingCaption = 'Indexing...') => {
     dispatch(loadingBegin(loadingCaption))
     dispatch(indexBegin())
 
-    new IndexMovies(getState().auth.token).perform()
+    new IndexMovies(getState().auth[PROVIDERS.MICROSOFT].token).perform()
       .then(movies => {
         return awaitFetching(dispatch, movies, updateMovie, fetchMovie)
       }).then(movies => {
@@ -33,7 +33,9 @@ export const index = (loadingCaption = 'Indexing...') => {
           }
         })
       }).then(() => {
-        return new IndexShows(getState().auth.token).perform()
+        return new IndexShows(
+          getState().auth[PROVIDERS.MICROSOFT].token
+        ).perform()
       }).then(shows => {
         return awaitFetching(dispatch, shows, updateShow, fetchShow)
       }).then(shows => {
@@ -45,7 +47,8 @@ export const index = (loadingCaption = 'Indexing...') => {
         })
       }).then(() => {
         return new IndexSeasons(
-          getState().auth.token, Object.keys(getState().shows)
+          getState().auth[PROVIDERS.MICROSOFT].token,
+          Object.keys(getState().shows)
         ).perform()
       }).then(seasons => {
         return awaitFetching(dispatch, seasons, updateSeason, fetchSeason)
@@ -58,7 +61,8 @@ export const index = (loadingCaption = 'Indexing...') => {
         })
       }).then(() => {
         return new IndexEpisodes(
-          getState().auth.token, Object.keys(getState().seasons)
+          getState().auth[PROVIDERS.MICROSOFT].token,
+          Object.keys(getState().seasons)
         ).perform()
       }).then(episodes => {
         return awaitFetching(dispatch, episodes, updateEpisode, fetchEpisode)
@@ -78,7 +82,7 @@ export const index = (loadingCaption = 'Indexing...') => {
         dispatch(loadingStop())
 
         if (error.statusCode === 401) {
-          dispatch(logIn())
+          dispatch(logInExpired(PROVIDERS.MICROSOFT))
         }
       })
   }

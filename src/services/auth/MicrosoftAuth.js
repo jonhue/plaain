@@ -15,11 +15,7 @@ class MicrosoftAuth {
   }
 
   perform() {
-    return this.silentLogIn().then(accessToken => {
-      return {
-        token: accessToken
-      }
-    })
+    return this.silentLogIn()
   }
 
   silentLogIn() {

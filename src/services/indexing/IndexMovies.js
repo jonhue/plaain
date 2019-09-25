@@ -1,4 +1,4 @@
-import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { PROVIDERS, ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
@@ -23,6 +23,7 @@ class IndexMovies {
     const files = await new IndexFiles(this.oneDrive, item.id).perform()
 
     return {
+      provider: PROVIDERS.MICROSOFT,
       type: ITEM_TYPES.MOVIE,
       state: ITEM_STATES.INDEXED,
       id: item.id,

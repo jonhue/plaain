@@ -1,0 +1,28 @@
+@import "../variables";
+
+.Banner {
+  background: $warn;
+  padding: $padding;
+
+  &:not(:first-of-type) {
+    border-top: 1px solid $background;
+  }
+
+  p {
+    margin-top: 0.3em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-weight: 700;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $white;
+    }
+  }
+}

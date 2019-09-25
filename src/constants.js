@@ -1,3 +1,16 @@
+export const VERSION = '0.0.1'
+
+export const AUTOMATIC_INDEXING = {
+  NEVER: 'never',
+  MONTHLY: 'monthly',
+  DAILY: 'daily',
+  ALWAYS: 'always'
+}
+
+export const PROVIDERS = {
+  MICROSOFT: 'microsoft'
+}
+
 export const ITEM_STATES = {
   INDEXED: 'indexed',
   FETCHED: 'fetched'

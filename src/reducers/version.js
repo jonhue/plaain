@@ -1,4 +1,4 @@
-import VERSION from '../version'
+import { VERSION } from '../constants'
 
 import { UPDATE_VERSION } from '../actions/version'
 
