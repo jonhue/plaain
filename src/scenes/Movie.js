@@ -40,7 +40,7 @@ class Movie extends Component {
   }
 
   render() {
-    this.movie = movieSelector(this.props.match.params.id)(this.props)
+    this.movie = movieSelector(this.props.match.params.id)({ movies: this.props.movies })
 
     return (
       <div className='Movie'>

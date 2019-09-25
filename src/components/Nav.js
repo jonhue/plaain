@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Nav.scss'
-
-import { index } from '../actions/indexing'
 
 import PopcornIcon from './Nucleo/icons/popcorn.jsx'
 import MovieIcon from './Nucleo/icons/movie.jsx'
 import ShowIcon from './Nucleo/icons/show.jsx'
-import ReloadIcon from './Nucleo/icons/reload.jsx'
+import GearIcon from './Nucleo/icons/gear.jsx'
 
 class Nav extends Component {
-  index() {
-    this.props.index()
-  }
-
   render() {
     return (
       <div className='Nav'>
@@ -27,15 +20,12 @@ class Nav extends Component {
         <Link to='/app/shows'>
           <ShowIcon width={24} height={24} />
         </Link>
-        <button onClick={this.index.bind(this)}>
-          <ReloadIcon width={24} height={24} />
-        </button>
+        <Link to='/app/settings'>
+          <GearIcon width={24} height={24} />
+        </Link>
       </div>
     )
   }
 }
 
-export default connect(
-  null,
-  { index }
-)(Nav)
+export default Nav

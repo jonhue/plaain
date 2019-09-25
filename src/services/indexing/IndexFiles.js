@@ -1,4 +1,5 @@
 import {
+  PROVIDERS,
   FILE_TYPES,
   SOURCE_EXTENSIONS,
   CAPTION_EXTENSIONS
@@ -24,6 +25,7 @@ class IndexFiles {
     }
 
     return {
+      provider: PROVIDERS.MICROSOFT,
       id: item.id,
       type: type,
       name: item.name,

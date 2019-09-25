@@ -1,4 +1,4 @@
-import { ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { PROVIDERS, ITEM_STATES, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
@@ -31,6 +31,7 @@ class IndexSeasons {
     const seasonNumber = Number.parseInt(item.name)
 
     return {
+      provider: PROVIDERS.MICROSOFT,
       type: ITEM_TYPES.SEASON,
       state: ITEM_STATES.INDEXED,
       id: item.id,
