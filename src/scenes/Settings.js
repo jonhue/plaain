@@ -30,6 +30,10 @@ class Settings extends Component {
     document.querySelector('.Nav a:last-child').classList.remove('active')
   }
 
+  index() {
+    this.props.index()
+  }
+
   handleAutomaticIndexingChange(event) {
     this.props.updateSettings({
       ...this.props.settings,
@@ -66,7 +70,7 @@ class Settings extends Component {
         <section className='Settings__indexing'>
           <h2>Indexing</h2>
           <p>Index to look for new media on your linked services and to fetch the latest metadata.</p>
-          <button onClick={this.props.index}>
+          <button onClick={this.index.bind(this)}>
             Index
           </button>
           <h5>Automatic indexing</h5>

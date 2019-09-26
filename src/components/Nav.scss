@@ -31,6 +31,8 @@
     }
 
     &:active,
+    &:focus,
+    &:hover,
     &.active {
       svg {
         polygon,
@@ -42,6 +44,12 @@
           stroke: $highlight !important;
         }
       }
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
 
