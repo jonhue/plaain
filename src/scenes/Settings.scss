@@ -5,18 +5,32 @@
     margin: 0;
   }
 
-  section {
+  section:not(.Settings__auth) {
     padding: $padding;
 
     p {
-      margin: 0.3em 0 1.3em;
+      margin: 0.3em 0 1em;
     }
   }
 
   &__auth {
+    padding-top: $padding;
+
+    h2,
+    p {
+      margin-left: $padding;
+      margin-right: $padding;
+    }
+
+    p {
+      margin-bottom: 0;
+      margin-top: 0.3em;
+    }
+
     &__wrapper {
       display: flex;
       overflow-x: auto;
+      padding: $padding;
 
       a.button,
       button {
