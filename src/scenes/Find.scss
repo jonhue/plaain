@@ -1,0 +1,40 @@
+@import "../variables";
+
+.Find {
+  h2 {
+    margin: $padding $padding 0;
+  }
+
+  form {
+    input {
+      background: $background;
+      border: none;
+      color: $white;
+      font-family: 'Muli', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      padding: $padding;
+      text-decoration: none;
+      transition: background 0.1s ease-out;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: $dark;
+      }
+
+      &::placeholder {
+        color: $light;
+      }
+    }
+  }
+
+  a.button {
+    margin: $padding $padding 0;
+
+    &:not(:first-child) {
+      margin-top: $spacing;
+    }
+  }
+}
