@@ -41,12 +41,12 @@ class ForYou extends Component {
 
         {this.inProgress.length === 0 && this.recentlyWatched.length === 0 && <section>
           <h2>Get started</h2>
-          <Link to='/app/movies' className='button'>
+          {Object.entries(this.props.movies).length > 0 && <Link to='/app/movies' className='button'>
             Discover your movies
-          </Link>
-          <Link to='/app/shows' className='button'>
+          </Link>}
+          {Object.entries(this.props.shows).length > 0 && <Link to='/app/shows' className='button'>
             Discover your shows
-          </Link>
+          </Link>}
         </section>}
       </div>
     )

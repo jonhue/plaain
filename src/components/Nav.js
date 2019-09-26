@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Nav.scss'
 
@@ -14,10 +15,10 @@ class Nav extends Component {
         <Link to='/app/'>
           <PopcornIcon width={24} height={24} />
         </Link>
-        <Link to='/app/movies'>
+        <Link disabled={Object.entries(this.props.movies).length === 0} to='/app/movies'>
           <MovieIcon width={24} height={24} />
         </Link>
-        <Link to='/app/shows'>
+        <Link disabled={Object.entries(this.props.shows).length === 0} to='/app/shows'>
           <ShowIcon width={24} height={24} />
         </Link>
         <Link to='/app/settings'>
@@ -28,4 +29,9 @@ class Nav extends Component {
   }
 }
 
-export default Nav
+export default connect(
+  state => ({
+    movies: state.movies,
+    shows: state.shows
+  })
+)(Nav)

@@ -18,12 +18,16 @@ class Movies extends Component {
   render() {
     return (
       <div className='Movies'>
-        <div className='Movies__find'>
-          <Link to='/app/find'>
-            <ZoomIcon width={24} height={24} />
-          </Link>
-        </div>
-        <VerticalSlide items={Object.values(this.props.movies)} id='movies' path='movies' />
+        {Object.entries(this.props.movies).length > 0 && (
+          <div className='Movies__wrapper'>
+            <div className='Movies__find'>
+              <Link to='/app/find'>
+                <ZoomIcon width={24} height={24} />
+              </Link>
+            </div>
+            <VerticalSlide items={Object.values(this.props.movies)} id='movies' path='movies' />
+          </div>
+        )}
       </div>
     )
   }

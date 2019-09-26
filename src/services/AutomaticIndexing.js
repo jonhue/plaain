@@ -8,6 +8,10 @@ class AutomaticIndexing {
   }
 
   perform() {
+    if (this.setting === AUTOMATIC_INDEXING.NEVER) {
+      return false
+    }
+
     if (
       this.setting === AUTOMATIC_INDEXING.ALWAYS ||
       new Date().getFullYear() !== new Date(this.lastIndexed).getFullYear() ||
