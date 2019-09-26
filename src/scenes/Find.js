@@ -10,9 +10,11 @@ class Find extends Component {
     super(props)
 
     this.moviesIndex = new FlexSearch()
-    Object.values(this.props.movies).map((movie) => this.moviesIndex.add(movie.id, movie.name))
+    Object.values(this.props.movies)
+      .map((movie) => this.moviesIndex.add(movie.id, movie.name))
     this.showsIndex = new FlexSearch()
-    Object.values(this.props.shows).map((show) => this.showsIndex.add(show.id, show.name))
+    Object.values(this.props.shows)
+      .map((show) => this.showsIndex.add(show.id, show.name))
 
     this.state = {
       query: this.props.match.params.query,
@@ -27,8 +29,10 @@ class Find extends Component {
 
   search(query) {
     this.setState({
-      movies: this.moviesIndex.search(query).map(result => this.props.movies[result]),
-      shows: this.showsIndex.search(query).map(result => this.props.shows[result])
+      movies: this.moviesIndex.search(query)
+        .map(result => this.props.movies[result]),
+      shows: this.showsIndex.search(query)
+        .map(result => this.props.shows[result])
     })
   }
 
