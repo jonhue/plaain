@@ -55,10 +55,11 @@ class App extends Component {
           <Switch>
             <Route path={`${this.props.match.path}/`} exact component={ForYou} />
             <Route path={`${this.props.match.path}/movies`} component={Movies} />
-            <Route path={`${this.props.match.path}/movie/:id`} component={Movie} />
+            <Route path={`${this.props.match.path}/movie/:id`} exact component={Movie} />
             <Route path={`${this.props.match.path}/shows`} component={Shows} />
             <Route path={`${this.props.match.path}/settings`} exact component={Settings} />
             <Route path={`${this.props.match.path}/find`} exact component={Find} />
+            <Route path={`${this.props.match.path}/find/:query`} exact component={Find} />
             <Route component={NotFound} />
           </Switch>
 

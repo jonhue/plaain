@@ -29,12 +29,12 @@ class ForYou extends Component {
 
     return (
       <div className='ForYou'>
-        {this.inProgress.length !== 0 && <section>
+        {this.inProgress.length > 0 && <section>
           <h2>Continue watching</h2>
           <HorizontalSlide items={this.inProgress} id='inProgress' width='200px' />
         </section>}
 
-        {this.recentlyWatched.length !== 0 && <section>
+        {this.recentlyWatched.length > 0 && <section>
           <h2>Recently watched</h2>
           <HorizontalSlide items={this.recentlyWatched} id='recentlyWatched' width='200px' />
         </section>}
