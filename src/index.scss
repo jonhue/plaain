@@ -12,6 +12,10 @@ body {
   padding: 0;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   color: $white;
   text-decoration: none;
@@ -68,11 +72,6 @@ a.button {
 button {
   padding: 15px 25px;
   width: 100%;
-}
-
-a,
-button {
-  -webkit-tap-highlight-color: transparent;
 }
 
 h1,
