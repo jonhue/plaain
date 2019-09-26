@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
-import 'plyr/src/sass/plyr.scss'
 
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
