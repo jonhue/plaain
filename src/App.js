@@ -46,11 +46,7 @@ class App extends Component {
 
   render() {
     if (this.props.loading) {
-      return (
-        <div className='App'>
-          <Loading caption={this.props.loading} />
-        </div>
-      )
+      return <Loading caption={this.props.loading} />
     } else {
       return (
         <div className='App'>
