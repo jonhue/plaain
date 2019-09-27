@@ -1,0 +1,24 @@
+@import "../variables";
+
+.PersonList {
+  & > span {
+    color: $light;
+    cursor: pointer;
+    display: block;
+    margin-top: 0.5em;
+  }
+
+  p {
+    margin: 0.2em 0;
+
+    span {
+      &:first-child {
+        margin-right: 0.35em;
+      }
+
+      &:last-child {
+        margin-left: 0.35em;
+      }
+    }
+  }
+}
