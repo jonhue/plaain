@@ -13,7 +13,8 @@ body {
 }
 
 * {
-  -webkit-tap-highlight-color: transparent !important;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
