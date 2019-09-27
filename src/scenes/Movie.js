@@ -61,8 +61,10 @@ class Movie extends Component {
             <a className='button' id='trailer' href={this.movie.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
           </div>
           <p className='Movie__overview'>{this.movie.overview}</p>
+          <div className='Movie__cast'>
             <h4>Starring</h4>
             <PersonList people={this.movie.cast} attribute='character' />
+          </div>
           <div className='Movie__crew'>
             <h4>Crew</h4>
             <PersonList people={this.movie.crew} attribute='job' />
