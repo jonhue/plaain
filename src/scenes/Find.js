@@ -17,27 +17,29 @@ class Find extends Component {
       .map((show) => this.showsIndex.add(show.id, show.name))
 
     this.state = {
-      query: this.props.match.params.query,
+      query: new URLSearchParams(this.props.location.search).get('q') || '',
       movies: [],
       shows: [],
     }
+    console.log(this.state.query)
   }
 
   componentDidMount() {
-    this.search(this.props.match.params.query)
+    this.search(new URLSearchParams(this.props.location.search).get('q'))
   }
 
   search(query) {
     this.setState({
-      movies: this.moviesIndex.search(query)
+      query: query || '',
+      movies: this.moviesIndex.search(query || '')
         .map(result => this.props.movies[result]),
-      shows: this.showsIndex.search(query)
+      shows: this.showsIndex.search(query || '')
         .map(result => this.props.shows[result])
     })
   }
 
   handleInputChange(event) {
-    this.props.history.push(`/app/find/${event.target.value}`)
+    this.props.history.replace(`/app/find?q=${event.target.value}`)
     this.search(event.target.value)
   }
 

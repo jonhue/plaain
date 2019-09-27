@@ -59,7 +59,6 @@ class App extends Component {
             <Route path={`${this.props.match.path}/shows`} component={Shows} />
             <Route path={`${this.props.match.path}/settings`} exact component={Settings} />
             <Route path={`${this.props.match.path}/find`} exact component={Find} />
-            <Route path={`${this.props.match.path}/find/:query`} exact component={Find} />
             <Route component={NotFound} />
           </Switch>
 
