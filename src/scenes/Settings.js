@@ -51,19 +51,21 @@ class Settings extends Component {
         <section className='Settings__auth'>
           <h2>Authentication</h2>
           <p>Sign into your cloud to add your movies and TV shows to your library.</p>
-          <div className='Settings__auth__wrapper'>
-            <button className={`microsoft ${authTokenSelector(PROVIDERS.MICROSOFT)({ auth: this.props.auth }) && 'primary'} ${authProviderError(PROVIDERS.MICROSOFT)({ auth: this.props.auth }) && 'warn'}`} onClick={this.props.authenticateMicrosoft}>
-              <MicrosoftIcon width={32} height={32} />
-            </button>
-            <button disabled className='dropbox'>
-              <DropboxIcon width={32} height={32} />
-            </button>
-            <button disabled className='google'>
-              <GoogleIcon width={32} height={32} />
-            </button>
-            <a className='button' href='https://github.com/jonhue/plaain' target='_blank' rel='noopener noreferrer'>
-              <AddIcon width={32} height={32} />
-            </a>
+          <div className='Settings__auth__scroll'>
+            <div className='Settings__auth__flex'>
+              <button className={`microsoft ${authTokenSelector(PROVIDERS.MICROSOFT)({ auth: this.props.auth }) && 'primary'} ${authProviderError(PROVIDERS.MICROSOFT)({ auth: this.props.auth }) && 'warn'}`} onClick={this.props.authenticateMicrosoft}>
+                <MicrosoftIcon width={32} height={32} />
+              </button>
+              <button disabled className='dropbox'>
+                <DropboxIcon width={32} height={32} />
+              </button>
+              <button disabled className='google'>
+                <GoogleIcon width={32} height={32} />
+              </button>
+              <a className='button' href='https://github.com/jonhue/plaain' target='_blank' rel='noopener noreferrer'>
+                <AddIcon width={32} height={32} />
+              </a>
+            </div>
           </div>
         </section>
 
