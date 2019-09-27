@@ -10,7 +10,7 @@ export const fetchShow = id => {
     const show = showSelector(id)(getState())
     return new FetchShow(show.id, show.name).perform().then(fetchedShow => {
       dispatch(updateShow(fetchedShow))
-    }).catch(error => console.log(error))
+    }).catch(() => dispatch(fetchShow(id)))
   }
 }
 
