@@ -10,7 +10,7 @@ export const fetchMovie = id => {
     const movie = movieSelector(id)(getState())
     return new FetchMovie(movie.id, movie.name).perform().then(fetchedMovie => {
       dispatch(updateMovie(fetchedMovie))
-    }).catch(error => console.log(error))
+    }).catch(() => dispatch(fetchMovie(id)))
   }
 }
 

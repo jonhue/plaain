@@ -17,7 +17,7 @@ export const fetchSeason = id => {
       season.seasonNumber
     ).perform().then(fetchedSeason => {
       dispatch(updateSeason(fetchedSeason))
-    }).catch(error => console.log(error))
+    }).catch(() => dispatch(fetchSeason(id)))
   }
 }
 
