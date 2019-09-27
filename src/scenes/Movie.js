@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import './Movie.scss'
 
 import Cover from '../components/Cover'
+import PersonList from '../components/PersonList'
 import PlyrPlayer from '../components/PlyrPlayer'
 
 import { movieSelector } from '../selectors/movies'
@@ -60,17 +61,13 @@ class Movie extends Component {
             <a className='button' id='trailer' href={this.movie.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
           </div>
           <p className='Movie__overview'>{this.movie.overview}</p>
-          <div className='Movie__starring'>
+          <div className='Movie__cast'>
             <h4>Starring</h4>
-            {this.movie.cast.slice(0, 10).map((castMember, index) => {
-              return <p key={index}><span className='link'>{castMember.name}</span> · <span>{castMember.character}</span></p>
-            })}
+            <PersonList people={this.movie.cast} attribute='character' />
           </div>
           <div className='Movie__crew'>
             <h4>Crew</h4>
-            {this.movie.crew.slice(0, 10).map((crewMember, index) => {
-              return <p key={index}><span className='link'>{crewMember.name}</span> · <span>{crewMember.job}</span></p>
-            })}
+            <PersonList people={this.movie.crew} attribute='job' />
           </div>
         </div>
       </div>

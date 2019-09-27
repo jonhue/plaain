@@ -43,22 +43,12 @@
     }
   }
 
-  &__starring,
-  &__crew {
+  &__crew,
+  &__cast {
     margin: 30px 0;
 
-    p {
-      margin: 0.2em 0;
-
-      span {
-        &:first-child {
-          margin-right: 0.5em;
-        }
-
-        &:last-child {
-          margin-left: 0.5em;
-        }
-      }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
