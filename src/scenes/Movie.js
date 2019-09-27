@@ -8,12 +8,33 @@ import PlyrPlayer from '../components/PlyrPlayer'
 import { movieSelector } from '../selectors/movies'
 
 class Movie extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      castWrapped: true,
+      crewWrapped: true
+    }
+  }
+
   componentDidMount() {
     document.querySelector('.Nav a:nth-child(2)').classList.add('active')
   }
 
   componentWillUnmount() {
     document.querySelector('.Nav a:nth-child(2)').classList.remove('active')
+  }
+
+  toggleCast() {
+    this.setState({
+      castWrapped: !this.state.castWrapped
+    })
+  }
+
+  toggleCrew() {
+    this.setState({
+      crewWrapped: !this.state.crewWrapped
+    })
   }
 
   continue() {
@@ -62,15 +83,17 @@ class Movie extends Component {
           <p className='Movie__overview'>{this.movie.overview}</p>
           <div className='Movie__starring'>
             <h4>Starring</h4>
-            {this.movie.cast.slice(0, 10).map((castMember, index) => {
+            {this.movie.cast.slice(0, this.state.castWrapped ? 10 : this.movie.cast.length).map((castMember, index) => {
               return <p key={index}><span className='link'>{castMember.name}</span> · <span>{castMember.character}</span></p>
             })}
+            <span onClick={this.toggleCast.bind(this)}>{this.state.castWrapped ? 'Show more' : 'Show less'}</span>
           </div>
           <div className='Movie__crew'>
             <h4>Crew</h4>
-            {this.movie.crew.slice(0, 10).map((crewMember, index) => {
+            {this.movie.crew.slice(0, this.state.crewWrapped ? 10 : this.movie.crew.length).map((crewMember, index) => {
               return <p key={index}><span className='link'>{crewMember.name}</span> · <span>{crewMember.job}</span></p>
             })}
+            <span onClick={this.toggleCrew.bind(this)}>{this.state.crewWrapped ? 'Show more' : 'Show less'}</span>
           </div>
         </div>
       </div>

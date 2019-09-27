@@ -47,16 +47,27 @@
   &__crew {
     margin: 30px 0;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > span {
+      color: $light;
+      cursor: pointer;
+      display: block;
+      margin-top: 0.5em;
+    }
+
     p {
       margin: 0.2em 0;
 
       span {
         &:first-child {
-          margin-right: 0.5em;
+          margin-right: 0.35em;
         }
 
         &:last-child {
-          margin-left: 0.5em;
+          margin-left: 0.35em;
         }
       }
     }
