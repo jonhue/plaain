@@ -27,9 +27,13 @@
       margin-top: 0.3em;
     }
 
-    &__wrapper {
-      display: flex;
+    &__scroll {
       overflow-x: auto;
+    }
+
+    &__flex {
+      display: flex;
+      float: left;
       padding: $padding;
 
       a.button,
