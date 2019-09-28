@@ -11,10 +11,10 @@ class Find extends Component {
 
     this.moviesIndex = new FlexSearch()
     Object.values(this.props.movies)
-      .map((movie) => this.moviesIndex.add(movie.id, movie.name))
+      .map((movie) => this.moviesIndex.add(movie.id, `${movie.name};${movie.overview}`))
     this.showsIndex = new FlexSearch()
     Object.values(this.props.shows)
-      .map((show) => this.showsIndex.add(show.id, show.name))
+      .map((show) => this.showsIndex.add(show.id, `${show.name};${show.overview}`))
 
     this.state = {
       query: new URLSearchParams(this.props.location.search).get('q') || '',
