@@ -25,7 +25,7 @@ class VerticalSlide extends Component {
         },
         history: {
           replaceState: true,
-          key: this.props.path
+          key: this.props.currentPath
         }
       }
     )
@@ -39,7 +39,7 @@ class VerticalSlide extends Component {
             {this.props.items.length ? this.props.items.map(item => {
               return (
                 <div className='swiper-slide' data-history={item.id} key={item.id}>
-                  <Link to={`/app/movie/${item.id}`}>
+                  <Link to={`/app/${this.props.path || 'movie'}/${item.id}`}>
                     <Cover url={item.posterUrl || '/cover.png'} alt={item.name} width='100%' />
                   </Link>
                 </div>

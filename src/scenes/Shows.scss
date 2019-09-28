@@ -1,0 +1,10 @@
+@import "../variables";
+
+.Shows {
+  &__find {
+    position: fixed;
+    right: $padding;
+    top: $padding;
+    z-index: 2;
+  }
+}

@@ -25,7 +25,7 @@ class Movies extends Component {
                 <ZoomIcon width={24} height={24} />
               </Link>
             </div>
-            <VerticalSlide items={Object.values(this.props.movies)} id='movies' path='movies' />
+            <VerticalSlide items={Object.values(this.props.movies)} id='movies' currentPath='movies' />
           </div>
         )}
       </div>
