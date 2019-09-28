@@ -16,7 +16,6 @@ export const authenticateMicrosoft = () => {
 
     new MicrosoftAuth().perform().then(token => {
       dispatch(logInSuccess(PROVIDERS.MICROSOFT, token))
-      dispatch(loadingStop())
       dispatch(index())
     }).catch(error => {
       dispatch(logInFailure(PROVIDERS.MICROSOFT, error))
