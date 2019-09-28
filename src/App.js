@@ -13,6 +13,7 @@ import ForYou from './scenes/ForYou'
 import Movies from './scenes/Movies'
 import Movie from './scenes/Movie'
 import Shows from './scenes/Shows'
+import Show from './scenes/Show'
 import Person from './scenes/Person'
 import Settings from './scenes/Settings'
 import Find from './scenes/Find'
@@ -54,6 +55,7 @@ class App extends Component {
             <Route path={`${this.props.match.path}/movies`} component={Movies} />
             <Route path={`${this.props.match.path}/movie/:id`} exact component={Movie} />
             <Route path={`${this.props.match.path}/shows`} component={Shows} />
+            <Route path={`${this.props.match.path}/show/:id`} exact component={Show} />
             <Route path={`${this.props.match.path}/person/:id`} exact component={Person} />
             <Route path={`${this.props.match.path}/settings`} exact component={Settings} />
             <Route path={`${this.props.match.path}/find`} exact component={Find} />

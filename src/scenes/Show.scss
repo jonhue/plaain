@@ -1,0 +1,36 @@
+@import "../variables";
+
+.Show {
+  &__backdrop {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__details {
+    padding: $padding;
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+  }
+
+  &__information {
+    display: flex;
+
+    p {
+      line-height: 1.58;
+      margin: 0;
+
+      &:not(:first-child) {
+        margin-left: $padding;
+      }
+    }
+  }
+
+  &__seasons {
+    h2 {
+      margin: 0 $padding;
+    }
+  }
+}
