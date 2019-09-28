@@ -8,3 +8,10 @@ export const episodeSelector = id => {
     episodes => episodes[id]
   )
 }
+
+export const episodesBySeasonSelector = seasonId => {
+  return createSelector(
+    episodesSelector,
+    episodes => Object.values(episodes).filter(episode => episode.seasonId === seasonId)
+  )
+}

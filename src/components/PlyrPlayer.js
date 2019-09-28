@@ -7,36 +7,41 @@ import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
 
 import { logInExpired } from '../actions/auth'
-import { updateMovie } from '../actions/movies'
 
 class PlyrPlayer extends Component {
   componentDidMount() {
-    if (document.querySelector('#player')) {
-      this.player = new Plyr(document.querySelector('#player'), {
-        debug: process.env.NODE_ENV === 'development'
-      })
-      this.player.on('error', error => {
-        console.log(error)
+    this.player = new Plyr(document.querySelector('#player'), {
+      debug: process.env.NODE_ENV === 'development'
+    })
 
-        if (error.statusCode === 401) {
-          this.props.logInExpired(this.props.item.provider)
-        }
+    this.player.on('error', error => {
+      console.log(error)
+
+      this.props.logInExpired(this.props.item.provider)
+    })
+
+    this.player.on('playing', () => {
+      this.props.updateItemAction({
+        ...this.props.item,
+        lastWatched: new Date().getTime()
       })
-      this.player.on('playing', () => {
-        this.props.updateMovie({
+    })
+
+    this.player.on('timeupdate', event => {
+      if (event.detail.plyr.currentTime !== 0 ) {
+        this.props.updateItemAction({
           ...this.props.item,
-          lastWatched: new Date().getTime()
+          progress: event.detail.plyr.currentTime
         })
-      })
-      this.player.on('timeupdate', event => {
-        if (event.detail.plyr.currentTime !== 0 ) {
-          this.props.updateMovie({
-            ...this.props.item,
-            progress: event.detail.plyr.currentTime
-          })
-        }
-      })
-    }
+      }
+    })
+
+    this.player.on('exitfullscreen', () => {
+      if (this.player.playing) {
+        this.player.stop()
+        document.querySelector('.PlyrPlayer').style.display = 'none'
+      }
+    })
   }
 
   render() {
@@ -74,5 +79,5 @@ class PlyrPlayer extends Component {
 
 export default connect(
   null,
-  { logInExpired, updateMovie }
+  { logInExpired }
 )(PlyrPlayer)

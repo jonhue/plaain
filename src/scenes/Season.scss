@@ -1,0 +1,95 @@
+@import "../variables";
+
+.Season {
+  .PlyrPlayer {
+    display: none;
+  }
+
+  &__details {
+    padding: $padding;
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+  }
+
+  &__information {
+    display: flex;
+
+    p {
+      line-height: 1.58;
+      margin: 0;
+
+      &:not(:first-child) {
+        margin-left: $padding;
+      }
+    }
+  }
+
+  &__actions {
+    margin: 25px 0 $spacing;
+
+    a.button,
+    button {
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__episodes {
+    margin-bottom: $padding;
+    text-align: center;
+
+    &__episode {
+      cursor: pointer;
+      display: flex;
+      margin-top: $spacing;
+      text-align: left;
+
+      &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      &:first-child {
+        margin-top: 30px;
+      }
+
+      &__number {
+        font-size: 20px;
+        font-weight: 900;
+        min-width: 24px;
+        text-align: right;
+      }
+
+      &__details {
+        margin-left: $spacing;
+
+        h2 {
+          margin: 0 0 0.1em;
+        }
+
+        p {
+          &.small {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    & > span {
+      color: $light;
+      cursor: pointer;
+    }
+  }
+
+  &__crew,
+  &__cast {
+    margin: 30px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
