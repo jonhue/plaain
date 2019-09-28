@@ -30,11 +30,11 @@ export const personRolesSelector = id => {
     (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
       return [
         ...new Set([
-          (moviesCast.length > 0 || seasonsCast.length > 0) && 'Acting',
+          (moviesCast.length > 0 || seasonsCast.length > 0) ? 'Acting' : null,
           ...moviesCrew.map(crewMember => crewMember.job),
           ...seasonsCrew.map(crewMember => crewMember.job)
         ])
-      ]
+      ].filter(role => role !== null)
     }
   )
 }
