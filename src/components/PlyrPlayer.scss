@@ -2,14 +2,14 @@
 
 .PlyrPlayer {
   button {
-    top: 0;
     box-shadow: none;
+    top: 0;
 
     &:active,
     &:focus,
     &:hover {
-      top: 0;
       box-shadow: none;
+      top: 0;
     }
 
     &.plyr__control {

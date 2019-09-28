@@ -31,7 +31,9 @@ class Season extends Component {
       }).filter(episode => episode.files.length !== 0),
       episodesWrapped: true
     }
-    this.state.currentEpisodeNumber = this.state.watchableEpisodes.length > 0 && this.state.watchableEpisodes[0].episodeNumber
+    this.state.currentEpisodeNumber =
+      this.state.watchableEpisodes.length > 0 &&
+      this.state.watchableEpisodes[0].episodeNumber
   }
 
   componentDidMount() {
@@ -51,7 +53,8 @@ class Season extends Component {
   continue() {
     let plyr = document.querySelector('.PlyrPlayer #player').plyr
     plyr.on('play', () => {
-      plyr.currentTime = this.state.episodes[this.state.season.progress - 1].progress
+      plyr.currentTime =
+        this.state.episodes[this.state.season.progress - 1].progress
     })
 
     this.watch(this.state.season.progress)
@@ -100,7 +103,10 @@ class Season extends Component {
             </div>
             <div className='Season__episodes'>
               {this.state.episodes
-                .slice(0, this.state.episodesWrapped ? 0 : this.state.episodes.length)
+                .slice(
+                  0,
+                  this.state.episodesWrapped ? 0 : this.state.episodes.length
+                )
                 .map((episode, index) => {
                   return (
                     <div disabled={this.state.episodes[episode.episodeNumber - 1].files.length === 0} className='Season__episodes__episode' onClick={() => this.watch(episode.episodeNumber)} key={index}>
