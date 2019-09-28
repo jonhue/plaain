@@ -8,6 +8,8 @@ import Cover from '../components/Cover'
 import PersonList from '../components/PersonList'
 import PlyrPlayer from '../components/PlyrPlayer'
 
+import { updateMovie } from '../actions/movies'
+
 import { movieSelector } from '../selectors/movies'
 
 class Movie extends Component {
@@ -39,13 +41,8 @@ class Movie extends Component {
   }
 
   watch() {
-    let player = document.querySelector('.PlyrPlayer')
-    let plyr = player.querySelector('#player').plyr
-
-    plyr.on('exitfullscreen', () => {
-      plyr.stop()
-      player.style.display = 'none'
-    })
+    const player = document.querySelector('.PlyrPlayer')
+    const plyr = player.querySelector('#player').plyr
 
     player.style.display = 'block'
     plyr.fullscreen.enter()
@@ -56,7 +53,7 @@ class Movie extends Component {
     if (this.state.movie) {
       return (
         <div className='Movie'>
-          <PlyrPlayer item={this.state.movie} />
+          <PlyrPlayer item={this.state.movie} updateItemAction={this.props.updateMovie} />
           <img className='Movie__backdrop' src={this.state.movie.backdropUrl} alt='backdrop' />
           <div className='Movie__details'>
             <Cover url={this.state.movie.posterUrl} alt='poster' width='50%' />
@@ -91,5 +88,6 @@ class Movie extends Component {
 export default connect(
   state => ({
     movies: state.movies
-  })
+  }),
+  { updateMovie }
 )(Movie)

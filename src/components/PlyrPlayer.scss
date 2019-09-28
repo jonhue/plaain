@@ -1,5 +1,23 @@
 @import "../variables";
 
+.PlyrPlayer {
+  button {
+    box-shadow: none;
+    top: 0;
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: none;
+      top: 0;
+    }
+
+    &.plyr__control {
+      top: 50%;
+    }
+  }
+}
+
 $plyr-color-main: $highlight;
 $plyr-color-gunmetal: $background;
 $plyr-color-fiord: $background;

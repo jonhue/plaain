@@ -47,7 +47,7 @@ class Show extends Component {
           </div>
           {this.state.seasons.length > 0 && <div className='Show__seasons'>
             <h2>Seasons</h2>
-            <HorizontalSlide items={this.state.seasons} id='seasons' width='200px' />
+            <HorizontalSlide items={this.state.seasons} path='season' id='seasons' width='200px' />
           </div>}
         </div>
       )
