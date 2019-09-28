@@ -1,0 +1,25 @@
+@import "../variables";
+
+.Person {
+  &__backdrop {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__details {
+    padding: $padding;
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+
+    p {
+      margin: 0.3em 0 0;
+    }
+  }
+
+  h2 {
+    margin: $padding $padding 0;
+  }
+}

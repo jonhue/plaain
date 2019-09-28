@@ -12,7 +12,7 @@ class Nav extends Component {
   render() {
     return (
       <div className='Nav'>
-        <Link to='/app/'>
+        <Link to='/app'>
           <PopcornIcon width={24} height={24} />
         </Link>
         <Link disabled={Object.entries(this.props.movies).length === 0} to='/app/movies'>

@@ -21,7 +21,6 @@ class Find extends Component {
       movies: [],
       shows: [],
     }
-    console.log(this.state.query)
   }
 
   componentDidMount() {
