@@ -41,10 +41,6 @@ class App extends Component {
       ).perform()
   }
 
-  componentDidUpdate() {
-    new IndexAfterUpdate(this.props.version, this.props.index).perform()
-  }
-
   render() {
     if (this.props.loading) {
       return <Loading caption={this.props.loading} />

@@ -21,7 +21,7 @@ export const seasonsByPersonSelector = id => {
   )
 }
 
-export const seasonsCastSelector = id => {
+export const seasonsCastMemberSelector = id => {
   return createSelector(
     seasonsSelector,
     seasons => {
@@ -31,7 +31,7 @@ export const seasonsCastSelector = id => {
   )
 }
 
-export const seasonsCrewSelector = id => {
+export const seasonsCrewMemberSelector = id => {
   return createSelector(
     seasonsSelector,
     seasons => {

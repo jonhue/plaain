@@ -38,14 +38,14 @@ export const moviesByPersonSelector = id => {
     moviesSelector,
     movies => {
       return Object.values(movies).filter(movie => {
-        return movie.cast.filter(castMember => castMember.id === id).length > 0
-          || movie.crew.filter(crewMember => crewMember.id === id).length > 0
+        return movie.cast.find(castMember => castMember.id === id) ||
+          movie.crew.find(crewMember => crewMember.id === id)
       })
     }
   )
 }
 
-export const moviesCastSelector = id => {
+export const moviesCastMemberSelector = id => {
   return createSelector(
     moviesSelector,
     movies => {
@@ -55,7 +55,7 @@ export const moviesCastSelector = id => {
   )
 }
 
-export const moviesCrewSelector = id => {
+export const moviesCrewMemberSelector = id => {
   return createSelector(
     moviesSelector,
     movies => {

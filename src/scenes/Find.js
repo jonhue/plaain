@@ -58,7 +58,7 @@ class Find extends Component {
 
         {this.state.shows.length > 0 && <section>
           <h2>TV shows</h2>
-          <HorizontalSlide items={this.state.shows} id='shows' width='200px' />
+          <HorizontalSlide items={this.state.shows} path='show' id='shows' width='200px' />
         </section>}
       </div>
     )
