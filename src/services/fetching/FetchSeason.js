@@ -39,13 +39,17 @@ class FetchSeason {
   fetchCredits() {
     return this.tmdb.seasonCredits(this.show.tmdbId, this.season.seasonNumber)
       .then(response => {
-        this.season.cast = response.cast.map(cast_member => ({
-          character: cast_member.character,
-          name: cast_member.name
+        this.season.cast = response.cast.map(castMember => ({
+          id: castMember.id,
+          character: castMember.character,
+          name: castMember.name,
+          profileUrl: `https://image.tmdb.org/t/p/original${castMember.profile_path}`
         }))
-        this.season.crew = response.crew.map(crew_member => ({
-          job: crew_member.job,
-          name: crew_member.name
+        this.season.crew = response.crew.map(crewMember => ({
+          id: crewMember.id,
+          job: crewMember.job,
+          name: crewMember.name,
+          profileUrl: `https://image.tmdb.org/t/p/original${crewMember.profile_path}`
         }))
       })
   }

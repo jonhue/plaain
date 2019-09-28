@@ -11,14 +11,12 @@
   p {
     margin: 0.2em 0;
 
-    span {
-      &:first-child {
-        margin-right: 0.35em;
-      }
+    & > a {
+      margin-right: 0.35em;
+    }
 
-      &:last-child {
-        margin-left: 0.35em;
-      }
+    & > span {
+      margin-left: 0.35em;
     }
   }
 }

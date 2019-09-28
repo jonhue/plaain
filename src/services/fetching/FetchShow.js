@@ -15,6 +15,10 @@ class FetchShow {
   async fetch(tmdbId) {
     this.show.tmdbId = tmdbId
 
+    if (this.show.tmdbId === null) {
+      return
+    }
+
     await Promise.all([
       this.fetchDetails()
     ])

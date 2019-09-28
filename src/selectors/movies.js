@@ -32,3 +32,35 @@ export const recentlyWatchedMoviesSelector = date => {
     }
   )
 }
+
+export const moviesByPersonSelector = id => {
+  return createSelector(
+    moviesSelector,
+    movies => {
+      return Object.values(movies).filter(movie => {
+        return movie.cast.filter(castMember => castMember.id === id).length > 0
+          || movie.crew.filter(crewMember => crewMember.id === id).length > 0
+      })
+    }
+  )
+}
+
+export const moviesCastSelector = id => {
+  return createSelector(
+    moviesSelector,
+    movies => {
+      return Object.values(movies).map(movie => movie.cast).flat()
+        .filter(castMember => castMember.id === id)
+    }
+  )
+}
+
+export const moviesCrewSelector = id => {
+  return createSelector(
+    moviesSelector,
+    movies => {
+      return Object.values(movies).map(movie => movie.crew).flat()
+        .filter(crewMember => crewMember.id === id)
+    }
+  )
+}

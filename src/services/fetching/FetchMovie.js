@@ -17,6 +17,10 @@ class FetchMovie {
   async fetch(tmdbId) {
     this.movie.tmdbId = tmdbId
 
+    if (this.movie.tmdbId === null) {
+      return
+    }
+
     this.setDefaults()
     await Promise.all([
       this.fetchDetails(),
@@ -56,13 +60,17 @@ class FetchMovie {
   fetchCredits() {
     return this.tmdb.movieCredits(this.movie.tmdbId)
       .then(response => {
-        this.movie.cast = response.cast.map(cast_member => ({
-          character: cast_member.character,
-          name: cast_member.name
+        this.movie.cast = response.cast.map(castMember => ({
+          id: castMember.id,
+          character: castMember.character,
+          name: castMember.name,
+          profileUrl: `https://image.tmdb.org/t/p/original${castMember.profile_path}`
         }))
-        this.movie.crew = response.crew.map(crew_member => ({
-          job: crew_member.job,
-          name: crew_member.name
+        this.movie.crew = response.crew.map(crewMember => ({
+          id: crewMember.id,
+          job: crewMember.job,
+          name: crewMember.name,
+          profileUrl: `https://image.tmdb.org/t/p/original${crewMember.profile_path}`
         }))
       })
   }
