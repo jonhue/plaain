@@ -17,9 +17,9 @@ export const INDEX_BEGIN = 'INDEX_BEGIN'
 export const INDEX_SUCCESS = 'INDEX_SUCCESS'
 export const INDEX_FAILURE = 'INDEX_FAILURE'
 
-export const index = (loadingCaption = 'Indexing...') => {
+export const index = () => {
   return (dispatch, getState) => {
-    dispatch(loadingBegin(loadingCaption))
+    dispatch(loadingBegin('Indexing...'))
     dispatch(indexBegin())
 
     new IndexMovies(getState().auth[PROVIDERS.MICROSOFT].token).perform()

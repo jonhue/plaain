@@ -8,7 +8,7 @@ class IndexAfterUpdate {
 
   perform() {
     if (this.versionUsedForLastIndex !== VERSION) {
-      this.indexAction('Updating app...')
+      this.indexAction()
       return true
     } else {
       return false
