@@ -5,6 +5,7 @@ import version from './version'
 import auth from './auth'
 import settings from './settings'
 import indexing from './indexing'
+import flexsearch from './flexsearch'
 import loading from './loading'
 import movies from './movies'
 import shows from './shows'
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   auth,
   settings,
   indexing,
+  flexsearch,
   loading,
   movies,
   shows,

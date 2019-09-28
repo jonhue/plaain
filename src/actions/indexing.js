@@ -7,6 +7,7 @@ import IndexEpisodes from '../services/indexing/IndexEpisodes'
 
 import { updateVersion } from './version'
 import { logInExpired } from './auth'
+import { flexsearchIndex } from './flexsearch'
 import { loadingBegin, loadingStop } from './loading'
 import { fetchMovie, removeMovie, updateMovie } from './movies'
 import { fetchShow, removeShow, updateShow } from './shows'
@@ -74,9 +75,11 @@ export const index = () => {
           }
         })
       }).then(() => {
+        dispatch(flexsearchIndex())
+      }).then(() => {
         dispatch(updateVersion(VERSION))
         dispatch(indexSuccess())
-        dispatch(loadingStop())
+        // dispatch(loadingStop())
       }).catch(error => {
         dispatch(indexFailure(error))
         dispatch(loadingStop())

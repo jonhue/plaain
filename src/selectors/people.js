@@ -1,14 +1,33 @@
 import { createSelector } from 'reselect'
 
-import { moviesCastSelector, moviesCrewSelector } from '../selectors/movies'
-import { seasonsCastSelector, seasonsCrewSelector } from '../selectors/seasons'
+import { moviesCastSelector, moviesCrewSelector, moviesCastPersonSelector, moviesCrewPersonSelector } from '../selectors/movies'
+import { seasonsCastSelector, seasonsCrewSelector, seasonsCastPersonSelector, seasonsCrewPersonSelector } from '../selectors/seasons'
+
+export const peopleSelector = () => {
+  return createSelector(
+    moviesCastSelector(),
+    moviesCrewSelector(),
+    seasonsCastSelector(),
+    seasonsCrewSelector(),
+    (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
+      return [
+        ...new Set([
+          ...moviesCast,
+          ...moviesCrew,
+          ...seasonsCast,
+          ...seasonsCrew
+        ])
+      ]
+    }
+  )
+}
 
 export const personSelector = id => {
   return createSelector(
-    moviesCastSelector(id),
-    moviesCrewSelector(id),
-    seasonsCastSelector(id),
-    seasonsCrewSelector(id),
+    moviesCastPersonSelector(id),
+    moviesCrewPersonSelector(id),
+    seasonsCastPersonSelector(id),
+    seasonsCrewPersonSelector(id),
     (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
       return [...moviesCast, ...moviesCrew, ...seasonsCast, ...seasonsCrew][0]
     }
@@ -17,10 +36,10 @@ export const personSelector = id => {
 
 export const personRolesSelector = id => {
   return createSelector(
-    moviesCastSelector(id),
-    moviesCrewSelector(id),
-    seasonsCastSelector(id),
-    seasonsCrewSelector(id),
+    moviesCastPersonSelector(id),
+    moviesCrewPersonSelector(id),
+    seasonsCastPersonSelector(id),
+    seasonsCrewPersonSelector(id),
     (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
       return [
         ...new Set([

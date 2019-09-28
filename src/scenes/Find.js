@@ -1,41 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import FlexSearch from 'flexsearch'
 import './Find.scss'
 
+import { flexsearchIndex } from '../actions/flexsearch'
+
 import HorizontalSlide from '../components/HorizontalSlide'
+
+import { personSelector } from '../selectors/people'
 
 class Find extends Component {
   constructor(props) {
     super(props)
 
-    this.moviesIndex = new FlexSearch()
-    Object.values(this.props.movies).forEach(movie => {
-      this.moviesIndex.add(movie.id, `${movie.name};${movie.overview}`)
-    })
-    this.showsIndex = new FlexSearch()
-    Object.values(this.props.shows).forEach(show => {
-      this.showsIndex.add(show.id, `${show.name};${show.overview}`)
-    })
-
     this.state = {
       query: new URLSearchParams(this.props.location.search).get('q') || '',
       movies: [],
       shows: [],
+      people: []
     }
   }
 
   componentDidMount() {
-    this.search(new URLSearchParams(this.props.location.search).get('q'))
+    if (!this.props.flexsearch.indexed) {
+      this.props.flexsearchIndex()
+    } else {
+      console.log(this.props.flexsearch.indexed)
+      this.search(new URLSearchParams(this.props.location.search).get('q'))
+    }
   }
 
   search(query) {
     this.setState({
       query: query || '',
-      movies: this.moviesIndex.search(query || '')
+      movies: this.props.flexsearch.movies.search(query || '')
         .map(result => this.props.movies[result]),
-      shows: this.showsIndex.search(query || '')
-        .map(result => this.props.shows[result])
+      shows: this.props.flexsearch.shows.search(query || '')
+        .map(result => this.props.shows[result]),
+      people: this.props.flexsearch.people.search(query || '')
+        .map(result => personSelector(result)({
+          movies: this.props.movies,
+          seasons: this.props.seasons
+        }))
     })
   }
 
@@ -58,7 +63,12 @@ class Find extends Component {
 
         {this.state.shows.length > 0 && <section>
           <h2>TV shows</h2>
-          <HorizontalSlide items={this.state.shows} id='shows' width='200px' />
+          <HorizontalSlide items={this.state.shows} path='show' id='shows' width='200px' />
+        </section>}
+
+        {this.state.people.length > 0 && <section>
+          <h2>People</h2>
+          <HorizontalSlide items={this.state.people.slice(0, 25)} path='person' coverAttribute='profileUrl' id='people' width='200px' />
         </section>}
       </div>
     )
@@ -68,6 +78,9 @@ class Find extends Component {
 export default connect(
   state => ({
     movies: state.movies,
-    shows: state.shows
-  })
+    shows: state.shows,
+    seasons: state.seasons,
+    flexsearch: state.flexsearch
+  }),
+  { flexsearchIndex }
 )(Find)

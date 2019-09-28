@@ -21,22 +21,50 @@ export const seasonsByPersonSelector = id => {
   )
 }
 
-export const seasonsCastSelector = id => {
+export const seasonsCastSelector = () => {
   return createSelector(
     seasonsSelector,
-    seasons => {
-      return Object.values(seasons).map(season => season.cast).flat()
-        .filter(castMember => castMember.id === id)
-    }
+    seasons => Object.values(seasons).map(season => season.cast).flat()
   )
 }
 
-export const seasonsCrewSelector = id => {
+export const seasonsCrewSelector = () => {
   return createSelector(
     seasonsSelector,
-    seasons => {
-      return Object.values(seasons).map(season => season.crew).flat()
-        .filter(crewMember => crewMember.id === id)
-    }
+    seasons => Object.values(seasons).map(season => season.crew).flat()
   )
 }
+
+export const seasonsCastPersonSelector = id => {
+  return createSelector(
+    seasonsCastSelector(),
+    cast => cast.filter(castMember => castMember.id === id)
+  )
+}
+
+export const seasonsCrewPersonSelector = id => {
+  return createSelector(
+    seasonsCrewSelector(),
+    crew => crew.filter(crewMember => crewMember.id === id)
+  )
+}
+
+// export const seasonsCastPersonSelector = id => {
+//   return createSelector(
+//     seasonsSelector,
+//     seasons => {
+//       return Object.values(seasons).map(season => season.cast).flat()
+//         .filter(castMember => castMember.id === id)
+//     }
+//   )
+// }
+//
+// export const seasonsCrewPersonSelector = id => {
+//   return createSelector(
+//     seasonsSelector,
+//     seasons => {
+//       return Object.values(seasons).map(season => season.crew).flat()
+//         .filter(crewMember => crewMember.id === id)
+//     }
+//   )
+// }
