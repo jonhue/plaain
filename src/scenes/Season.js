@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Season.scss'
 
+import { FILE_TYPES } from '../constants'
+
 import NotFound from './NotFound'
 
 import Cover from '../components/Cover'
@@ -28,7 +30,10 @@ class Season extends Component {
       }),
       watchableEpisodes: episodesBySeasonSelector(this.props.match.params.id)({
         episodes: this.props.episodes
-      }).filter(episode => episode.files.length !== 0),
+      }).filter(episode => {
+        return episode.files.filter(file => file.type === FILE_TYPES.SOURCE)
+          .length !== 0
+      }),
       episodesWrapped: true
     }
     this.state.currentEpisodeNumber =
@@ -51,27 +56,19 @@ class Season extends Component {
   }
 
   continue() {
-    let plyr = document.querySelector('.PlyrPlayer #player').plyr
-    plyr.on('play', () => {
-      plyr.currentTime =
-        this.state.episodes[this.state.season.progress - 1].progress
-    })
-
-    this.watch(this.state.season.progress)
+    this.watch(this.state.season.progress, this.state.episodes[this.state.season.progress - 1].progress)
   }
 
-  watch(episodeNumber) {
+  watch(episodeNumber, progress = 0) {
     this.setState({
       currentEpisodeNumber: episodeNumber
     })
 
     this.props.updateSeason({
-      ...this.state.season,
+      id: this.state.season.id,
       lastWatched: new Date().getTime(),
       progress: episodeNumber
     })
-
-    console.log('START')
 
     const player = document.querySelector('.PlyrPlayer')
     const plyr = player.querySelector('#player').plyr
@@ -80,14 +77,38 @@ class Season extends Component {
       player.style.display = 'block'
       plyr.fullscreen.enter()
       plyr.play()
+      plyr.currentTime = progress
     }, 100)
+  }
+
+  stoppedEpisode() {
+    // this.forceUpdate()
+  }
+
+  finishedEpisode() {
+    this.props.updateEpisode({
+      id: this.state.episodes[this.state.currentEpisodeNumber - 1].id,
+      progress: 0
+    })
+
+    let episodeNumber = 0
+    if (this.state.episodes[this.state.currentEpisodeNumber].files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0) {
+      episodeNumber = this.state.currentEpisodeNumber + 1
+    }
+
+    this.props.updateSeason({
+      id: this.state.season.id,
+      progress: episodeNumber
+    })
+
+    // this.forceUpdate()
   }
 
   render() {
     if (this.state.season) {
       return (
         <div className='Season'>
-          {this.state.watchableEpisodes.length > 0 && <PlyrPlayer item={this.state.episodes[this.state.currentEpisodeNumber - 1]} updateItemAction={this.props.updateEpisode} />}
+          {this.state.watchableEpisodes.length > 0 && <PlyrPlayer item={this.state.episodes[this.state.currentEpisodeNumber - 1]} updateItemAction={this.props.updateEpisode} exitedAction={this.stoppedEpisode.bind(this)} endedAction={this.finishedEpisode.bind(this)} />}
           <img className='Show__backdrop' src={showSelector(this.state.season.showId)({ shows: this.props.shows }).backdropUrl} alt='backdrop' />
           <div className='Season__details'>
             <Cover url={this.state.season.posterUrl} alt='poster' width='50%' />

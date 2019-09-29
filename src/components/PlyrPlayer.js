@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
 
+import { FILE_TYPES } from '../constants'
+
 import PlyrCaption from './PlyrPlayer/PlyrCaption'
 import PlyrSource from './PlyrPlayer/PlyrSource'
 
@@ -20,17 +22,11 @@ class PlyrPlayer extends Component {
       this.props.logInExpired(this.props.item.provider)
     })
 
-    this.player.on('playing', () => {
-      this.props.updateItemAction({
-        ...this.props.item,
-        lastWatched: new Date().getTime()
-      })
-    })
-
     this.player.on('timeupdate', event => {
       if (event.detail.plyr.currentTime !== 0 ) {
         this.props.updateItemAction({
-          ...this.props.item,
+          id: this.props.item.id,
+          lastWatched: new Date().getTime(),
           progress: event.detail.plyr.currentTime
         })
       }
@@ -40,13 +36,26 @@ class PlyrPlayer extends Component {
       if (this.player.playing) {
         this.player.stop()
         document.querySelector('.PlyrPlayer').style.display = 'none'
+
+        if (this.props.exitedAction) {
+          this.props.exitedAction()
+        }
+      }
+    })
+
+    this.player.on('ended', () => {
+      this.player.fullscreen.exit()
+      document.querySelector('.PlyrPlayer').style.display = 'none'
+
+      if (this.props.endedAction) {
+        this.props.endedAction()
       }
     })
   }
 
   render() {
     if (
-      this.props.item.files.filter(file => file.type === 'source').length === 0
+      this.props.item.files.filter(file => file.type === FILE_TYPES.SOURCE).length === 0
     ) {
       return null
     }
@@ -55,13 +64,13 @@ class PlyrPlayer extends Component {
       <div className='PlyrPlayer'>
         <video
           src={this.props.item.files
-            .filter(file => file.type === 'source')[0].url}
+            .filter(file => file.type === FILE_TYPES.SOURCE)[0].url}
           id='player' crossOrigin='true' playsInline controls>
-          {this.props.item.files.filter(file => file.type === 'source')
+          {this.props.item.files.filter(file => file.type === FILE_TYPES.SOURCE)
             .map((source, index) => {
               return <PlyrSource source={source} key={index} />
             })}
-          {this.props.item.files.filter(file => file.type === 'caption')
+          {this.props.item.files.filter(file => file.type === FILE_TYPES.CAPTION)
             .map((caption, index) => {
               return (
                 <PlyrCaption
@@ -70,7 +79,7 @@ class PlyrPlayer extends Component {
                   key={index} />
               )
             })}
-          <a href={this.props.item.files.filter(file => file.type === 'source')[0].src} download>Download</a>
+          <a href={this.props.item.files.filter(file => file.type === FILE_TYPES.SOURCE)[0].src} download>Download</a>
         </video>
       </div>
     )

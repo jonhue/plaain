@@ -28,7 +28,8 @@ class IndexMovies {
       state: ITEM_STATES.INDEXED,
       id: item.id,
       name: item.name,
-      files: files
+      files: files,
+      path: `/app/movie/${item.id}`
     }
   }
 

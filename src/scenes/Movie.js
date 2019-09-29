@@ -51,11 +51,18 @@ class Movie extends Component {
     plyr.play()
   }
 
+  finishedMovie() {
+    this.props.updateMovie({
+      id: this.state.movie.id,
+      progress: 0
+    })
+  }
+
   render() {
     if (this.state.movie) {
       return (
         <div className='Movie'>
-          {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <PlyrPlayer item={this.state.movie} updateItemAction={this.props.updateMovie} />}
+          {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <PlyrPlayer item={this.state.movie} updateItemAction={this.props.updateMovie} endedAction={this.finishedMovie.bind(this)} />}
           <img className='Movie__backdrop' src={this.state.movie.backdropUrl} alt='backdrop' />
           <div className='Movie__details'>
             <Cover url={this.state.movie.posterUrl} alt='poster' width='50%' />
@@ -65,8 +72,8 @@ class Movie extends Component {
               <p className='small'>{Math.floor(this.state.movie.runtime / 60) !== 0 && `${Math.floor(this.state.movie.runtime / 60)}h`} {this.state.movie.runtime % 60 !== 0 && `${this.state.movie.runtime % 60}m`}</p>
             </div>
             <div className='Movie__actions'>
-              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && this.state.movie.progress !== 0 && <button className='primary' id='continue' onClick={this.continue.bind(this)}>Continue</button>}
-              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <button className={this.state.movie.progress === 0 ? 'primary' : ''} id='watch' onClick={this.watch.bind(this)}>Watch</button>}
+              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && this.state.movie.progress !== 0 && this.state.movie.progress / 60 < this.state.movie.runtime && <button className='primary' id='continue' onClick={this.continue.bind(this)}>Continue</button>}
+              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <button className={this.state.movie.progress === 0 || this.state.movie.progress / 60 >= this.state.movie.runtime ? 'primary' : ''} id='watch' onClick={this.watch.bind(this)}>Watch</button>}
               <a className='button' id='trailer' href={this.state.movie.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
             </div>
             <p className='Movie__overview'>{this.state.movie.overview}</p>

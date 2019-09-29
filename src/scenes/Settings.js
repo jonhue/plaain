@@ -22,6 +22,17 @@ import {
 } from '../selectors/auth'
 
 class Settings extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      newVersionAvailable: window.newVersionAvailable,
+      notAuthenticated: Object.values(PROVIDERS).filter(provider => this.props.auth[provider].token !== null).length === 0,
+      authenticationExpired: authError()({ auth: this.props.auth }),
+      noMediaFound: Object.entries(this.props.movies).length === 0 && Object.entries(this.props.shows).length === 0
+    }
+  }
+
   componentDidMount() {
     document.querySelector('.Nav a:last-child').classList.add('active')
   }
@@ -44,9 +55,10 @@ class Settings extends Component {
   render() {
     return (
       <div className='Settings'>
-        {window.newVersionAvailable && <Banner title='Update available!' text='Restart the app to apply the changes.' />}
-        {authError()({ auth: this.props.auth }) && <Banner title='Authentication expired!' text='Reauthenticate with the failing service.' />}
-        {Object.entries(this.props.movies).length === 0 && Object.entries(this.props.shows).length === 0 && <Banner title='No media found!' text="We indexed all your authenticated services, but weren't able to find any source files." linkText='Getting started with Plaain' linkUrl='https://github.com/jonhue/plaain' />}
+        {this.state.newVersionAvailable && <Banner title='Update available!' text='Restart the app to apply the changes.' />}
+        {this.state.notAuthenticated && <Banner title='Authenticate with cloud service' text='To get started, authenticate with the cloud service that hosts your media.' />}
+        {this.state.noMediaFound && <Banner title='No media found!' text="We indexed all your authenticated services, but weren't able to find any source files." linkText='Getting started with Plaain' linkUrl='https://github.com/jonhue/plaain' />}
+        {this.state.authenticationExpired && <Banner title='Authentication expired!' text='Reauthenticate with the failing service.' />}
 
         <section className='Settings__auth'>
           <h2>Authentication</h2>
@@ -91,6 +103,7 @@ class Settings extends Component {
           <p className='small'>
             Plaain is <a href='https://github.com/jonhue/plaain' target='_blank' rel='noopener noreferrer'>open-source</a>. See the <a href='https://github.com/jonhue/plaain/releases' target='_blank' rel='noopener noreferrer'>changelog</a>.
           </p>
+          <p className='small'>Note that Plaain may <span className='bold'>not</span> be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.</p>
         </section>
       </div>
     )
