@@ -27,9 +27,12 @@ class Settings extends Component {
 
     this.state = {
       newVersionAvailable: window.newVersionAvailable,
-      notAuthenticated: Object.values(PROVIDERS).filter(provider => this.props.auth[provider].token !== null).length === 0,
+      notAuthenticated: Object.values(PROVIDERS).filter(provider => {
+        return this.props.auth[provider].token !== null
+      }).length === 0,
       authenticationExpired: authError()({ auth: this.props.auth }),
-      noMediaFound: Object.entries(this.props.movies).length === 0 && Object.entries(this.props.shows).length === 0
+      noMediaFound: Object.entries(this.props.movies).length === 0 &&
+        Object.entries(this.props.shows).length === 0
     }
   }
 

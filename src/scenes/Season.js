@@ -56,7 +56,10 @@ class Season extends Component {
   }
 
   continue() {
-    this.watch(this.state.season.progress, this.state.episodes[this.state.season.progress - 1].progress)
+    this.watch(
+      this.state.season.progress,
+      this.state.episodes[this.state.season.progress - 1].progress
+    )
   }
 
   watch(episodeNumber, progress = 0) {
@@ -92,7 +95,10 @@ class Season extends Component {
     })
 
     let episodeNumber = 0
-    if (this.state.episodes[this.state.currentEpisodeNumber].files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0) {
+    if (
+      this.state.episodes[this.state.currentEpisodeNumber].files
+        .filter(file => file.type === FILE_TYPES.SOURCE).length > 0
+    ) {
       episodeNumber = this.state.currentEpisodeNumber + 1
     }
 

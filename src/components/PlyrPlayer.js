@@ -55,7 +55,8 @@ class PlyrPlayer extends Component {
 
   render() {
     if (
-      this.props.item.files.filter(file => file.type === FILE_TYPES.SOURCE).length === 0
+      this.props.item.files
+        .filter(file => file.type === FILE_TYPES.SOURCE).length === 0
     ) {
       return null
     }
@@ -70,7 +71,8 @@ class PlyrPlayer extends Component {
             .map((source, index) => {
               return <PlyrSource source={source} key={index} />
             })}
-          {this.props.item.files.filter(file => file.type === FILE_TYPES.CAPTION)
+          {this.props.item.files
+            .filter(file => file.type === FILE_TYPES.CAPTION)
             .map((caption, index) => {
               return (
                 <PlyrCaption
