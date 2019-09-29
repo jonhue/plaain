@@ -119,7 +119,7 @@ class Season extends Component {
                     </div>
                   )
                 })}
-              <span onClick={this.toggleEpisodes.bind(this)}>{this.state.episodesWrapped ? 'Show all episodes' : 'Hide episodes'}</span>
+              {this.state.episodes.length > 0 && <span onClick={this.toggleEpisodes.bind(this)}>{this.state.episodesWrapped ? 'Show all episodes' : 'Hide episodes'}</span>}
             </div>
             <p className='Season__overview'>{this.state.season.overview}</p>
             <div className='Season__cast'>
