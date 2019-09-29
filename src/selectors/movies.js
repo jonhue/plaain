@@ -27,7 +27,7 @@ export const recentlyWatchedMoviesSelector = date => {
     movies => {
       return Object.values(movies).filter(movie => {
         return movie.lastWatched >= date.getTime() &&
-          movie.progress / 60 >= movie.runtime * 0.95
+          (movie.progress / 60 >= movie.runtime * 0.95 || movie.progress === 0)
       }).sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
     }
   )

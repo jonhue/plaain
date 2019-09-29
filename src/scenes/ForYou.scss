@@ -1,21 +1,42 @@
 @import "../variables";
 
 .ForYou {
-  h2 {
-    margin: 0 $padding;
-  }
+  h2,
+  p {
+    margin: 0 $padding 0.2em;
 
-  section:first-child {
-    h2 {
+    &:first-child {
       margin-top: $padding;
     }
   }
 
+  p.small {
+    margin-top: 10px;
+  }
+
+  section:not(:first-child) h2 {
+    margin-top: $spacing;
+  }
+
   a.button {
+    display: inline-block;
     margin: $padding $padding 0;
 
     &:not(:first-child) {
       margin-top: $spacing;
+    }
+  }
+
+  &__buttons {
+    a.button,
+    button {
+      display: inline-block;
+      margin: $padding 0 $padding $padding;
+      width: auto;
+
+      &:not(:first-child) {
+        margin-top: 0;
+      }
     }
   }
 }

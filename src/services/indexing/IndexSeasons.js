@@ -36,7 +36,8 @@ class IndexSeasons {
       state: ITEM_STATES.INDEXED,
       id: item.id,
       seasonNumber: seasonNumber,
-      showId
+      showId,
+      path: `/app/season/${item.id}`
     }
   }
 
