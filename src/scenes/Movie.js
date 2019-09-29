@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Movie.scss'
 
+import { FILE_TYPES, STORAGE_PROVIDERS } from '../constants'
+
 import NotFound from './NotFound'
 
 import Cover from '../components/Cover'
@@ -75,6 +77,32 @@ class Movie extends Component {
             <div className='Movie__crew'>
               <h4>Crew</h4>
               <PersonList people={this.state.movie.crew} attribute='job' />
+            </div>
+          </div>
+          <div className='Movie__sources'>
+            <h4>Sources</h4>
+            <p className='small'>Hosted on {STORAGE_PROVIDERS[this.state.movie.provider]}</p>
+            <div>
+              <div className='Movie__sources__versions'>
+                <h5>Versions</h5>
+                {this.state.movie.files
+                  .filter(file => file.type === FILE_TYPES.SOURCE).map(file => {
+                    return <p className='small'>{file.information}</p>
+                  })}
+                {this.state.movie.files
+                  .filter(file => file.type === FILE_TYPES.SOURCE)
+                  .length === 0 && <p className='small'>-</p>}
+              </div>
+              <div className='Movie__sources__captions'>
+                <h5>Subtitles</h5>
+                {this.state.movie.files
+                  .filter(file => file.type === FILE_TYPES.CAPTION).map(file => {
+                    return <p className='small'>{file.information}</p>
+                  })}
+                {this.state.movie.files
+                  .filter(file => file.type === FILE_TYPES.CAPTION)
+                  .length === 0 && <p className='small'>-</p>}
+              </div>
             </div>
           </div>
         </div>
