@@ -11,6 +11,10 @@ export const PROVIDERS = {
   MICROSOFT: 'microsoft'
 }
 
+export const STORAGE_PROVIDERS = {
+  [PROVIDERS.MICROSOFT]: 'OneDrive'
+}
+
 export const ITEM_STATES = {
   INDEXED: 'indexed',
   FETCHED: 'fetched'
