@@ -15,17 +15,21 @@ import Welcome from './scenes/Welcome'
 import NotFound from './scenes/NotFound'
 import Loading from './scenes/Loading'
 
+import ScrollToTop from './components/ScrollToTop'
+
 import './index.scss'
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loading caption='Loading...' />} persistor={persistStore(store)}>
       <Router>
-        <Switch>
-          <Route path='/' exact component={Welcome} />
-          <Route path='/app' component={App} />
-          <Route component={NotFound} />
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route path='/' exact component={Welcome} />
+            <Route path='/app' component={App} />
+            <Route component={NotFound} />
+          </Switch>
+        </ScrollToTop>
       </Router>
     </PersistGate>
   </Provider>,
