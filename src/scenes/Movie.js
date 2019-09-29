@@ -86,8 +86,9 @@ class Movie extends Component {
               <div className='Movie__sources__versions'>
                 <h5>Versions</h5>
                 {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.SOURCE).map(file => {
-                    return <p className='small'>{file.information}</p>
+                  .filter(file => file.type === FILE_TYPES.SOURCE)
+                  .map((file, index) => {
+                    return <p className='small' key={index}>{file.information}</p>
                   })}
                 {this.state.movie.files
                   .filter(file => file.type === FILE_TYPES.SOURCE)
@@ -96,8 +97,9 @@ class Movie extends Component {
               <div className='Movie__sources__captions'>
                 <h5>Subtitles</h5>
                 {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.CAPTION).map(file => {
-                    return <p className='small'>{file.information}</p>
+                  .filter(file => file.type === FILE_TYPES.CAPTION)
+                  .map((file, index) => {
+                    return <p className='small' key={index}>{file.information}</p>
                   })}
                 {this.state.movie.files
                   .filter(file => file.type === FILE_TYPES.CAPTION)
