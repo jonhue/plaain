@@ -22,13 +22,13 @@ class Person extends Component {
         movies: this.props.movies,
         seasons: this.props.seasons
       }),
-      roles: personRolesSelector(id)({
-        movies: this.props.movies,
-        seasons: this.props.seasons
-      }),
       movies: moviesByPersonSelector(id)({ movies: this.props.movies }),
       seasons: seasonsByPersonSelector(id)({ seasons: this.props.seasons })
     }
+    this.state.roles = personRolesSelector(id, this.state.person.gender)({
+      movies: this.props.movies,
+      seasons: this.props.seasons
+    })
   }
 
   render() {
