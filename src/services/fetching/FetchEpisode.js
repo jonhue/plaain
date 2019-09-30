@@ -15,7 +15,9 @@ class FetchEpisode {
   }
 
   async perform() {
-    this.episode.id = `${this.show.id}-${this.season.seasonNumber}-${this.episode.episodeNumber}`
+    this.episode.id =
+      `${this.show.id}-${this.season.seasonNumber}-` +
+      `${this.episode.episodeNumber}`
 
     await Promise.all([
       this.fetchDetails()

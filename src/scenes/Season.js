@@ -31,8 +31,9 @@ class Season extends Component {
       watchableEpisodes: episodesBySeasonSelector(this.props.match.params.id)({
         episodes: this.props.episodes
       }).filter(episode => {
-        return episode.provider !== undefined && episode.files.filter(file => file.type === FILE_TYPES.SOURCE)
-          .length !== 0
+        return episode.provider !== undefined &&
+          episode.files.filter(file => file.type === FILE_TYPES.SOURCE)
+            .length !== 0
       }),
       episodesWrapped: true
     }

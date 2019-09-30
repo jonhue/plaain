@@ -18,7 +18,9 @@ class IndexSeasons {
   async performForShow(show, seasons) {
     return await this.oneDrive.children(show.providerId).then(response => {
       return seasons.filter(season => season.showId === show.id).map(season => {
-        const item = response.value.find(item => season.id === `${show.id}-${Number.parseInt(item.name)}`)
+        const item = response.value.find(item => {
+          return season.id === `${show.id}-${Number.parseInt(item.name)}`
+        })
 
         if (item) {
           return {
