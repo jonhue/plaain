@@ -1,23 +1,20 @@
 import FetchSeason from '../services/fetching/FetchSeason'
 
-import { seasonSelector } from '../selectors/seasons'
 import { showSelector } from '../selectors/shows'
 
 export const REMOVE_SEASON = 'REMOVE_SEASON'
 export const UPDATE_SEASON = 'UPDATE_SEASON'
 
-export const fetchSeason = id => {
+export const fetchSeason = season => {
   return (dispatch, getState) => {
-    const season = seasonSelector(id)(getState())
     const show = showSelector(season.showId)(getState())
     return new FetchSeason(
-      show.tmdbId,
+      show.id,
       show.name,
-      season.id,
-      season.seasonNumber
+      season
     ).perform().then(fetchedSeason => {
       dispatch(updateSeason(fetchedSeason))
-    }).catch(() => dispatch(fetchSeason(id)))
+    }).catch(() => dispatch(fetchSeason(season)))
   }
 }
 

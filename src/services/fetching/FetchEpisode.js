@@ -1,23 +1,24 @@
-import { ITEM_STATES } from '../../constants'
-
 import TMDb from '../databases/TMDb'
 
 class FetchEpisode {
   constructor(
-    showTmdbId,
+    showId,
     showName,
     seasonNumber,
     seasonName,
-    id,
-    episodeNumber
+    episode
   ) {
-    this._show = { tmdbId: showTmdbId, name: showName }
+    this._show = { id: showId, name: showName }
     this._season = { seasonNumber, name: seasonName }
-    this._episode = { id, episodeNumber }
+    this._episode = episode
     this._tmdb = new TMDb()
   }
 
   async perform() {
+    this.episode.id =
+      `${this.show.id}-${this.season.seasonNumber}-` +
+      `${this.episode.episodeNumber}`
+
     await Promise.all([
       this.fetchDetails()
     ])
@@ -27,9 +28,8 @@ class FetchEpisode {
 
   fetchDetails() {
     return this.tmdb.episode(
-      this.show.tmdbId, this.season.seasonNumber, this.episode.episodeNumber
+      this.show.id, this.season.seasonNumber, this.episode.episodeNumber
     ).then(response => {
-      this.episode.state = ITEM_STATES.FETCHED
       this.episode.airDate = response.air_date
       this.episode.name = response.name
       this.episode.overview = response.overview

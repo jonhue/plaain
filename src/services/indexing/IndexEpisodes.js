@@ -1,46 +1,56 @@
-import { PROVIDERS, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { PROVIDERS } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
 import IndexFiles from './IndexFiles'
 
 class IndexEpisodes {
-  constructor(accessToken, seasonIds) {
+  constructor(accessToken, seasons, episodes) {
     this._oneDrive = new OneDrive(accessToken)
-    this._seasonIds = seasonIds
+    this._seasons = seasons
+    this._episodes = episodes
   }
 
   async perform() {
     return [].concat(...await Promise.all(
-      this.seasonIds.map(seasonId => this.performForSeason(seasonId))
-        .filter(episode => episode != null)
+      this.seasons.map(season => this.performForSeason(season, this.episodes))
     ))
   }
 
-  async performForSeason(seasonId) {
+  async performForSeason(season, episodes) {
+    if (season.providerId) {
+      return await this.oneDrive.children(season.providerId)
+        .then(response => this.handleResponse(response, season, episodes))
+    } else {
+      return episodes.filter(episode => episode.seasonId === season.id)
+    }
+  }
+
+  async handleResponse(response, season, episodes) {
     return await Promise.all(
-      await this.oneDrive.children(seasonId).then(response => {
-        return response.value.map(item => this.index(item, seasonId))
-      })
+      episodes.filter(episode => episode.seasonId === season.id)
+        .map(episode => {
+          return this.index(
+            episode,
+            response.value.find(item => {
+              return episode.id === `${season.id}-${Number.parseInt(item.name)}`
+            })
+          )
+        })
     )
   }
 
-  async index(item, seasonId) {
-    if (item.folder == null || Number.isNaN(item.name)) {
-      return null
-    }
-
-    const episodeNumber = Number.parseInt(item.name)
-    const files = await new IndexFiles(this.oneDrive, item.id).perform()
-
-    return {
-      provider: PROVIDERS.MICROSOFT,
-      type: ITEM_TYPES.EPISODE,
-      state: ITEM_STATES.INDEXED,
-      id: item.id,
-      episodeNumber: episodeNumber,
-      files: files,
-      seasonId
+  async index(episode, item) {
+    if (item) {
+      const files = await new IndexFiles(this.oneDrive, item.id).perform()
+      return {
+        ...episode,
+        provider: PROVIDERS.MICROSOFT,
+        providerId: item.id,
+        files: files
+      }
+    } else {
+      return episode
     }
   }
 
@@ -48,8 +58,12 @@ class IndexEpisodes {
     return this._oneDrive
   }
 
-  get seasonIds() {
-    return this._seasonIds
+  get seasons() {
+    return this._seasons
+  }
+
+  get episodes() {
+    return this._episodes
   }
 }
 

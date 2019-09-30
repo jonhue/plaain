@@ -15,11 +15,6 @@ export const STORAGE_PROVIDERS = {
   [PROVIDERS.MICROSOFT]: 'OneDrive'
 }
 
-export const ITEM_STATES = {
-  INDEXED: 'indexed',
-  FETCHED: 'fetched'
-}
-
 export const ITEM_TYPES = {
   MOVIE: 'movie',
   SHOW: 'show',

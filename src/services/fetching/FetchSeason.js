@@ -1,16 +1,17 @@
-import { ITEM_STATES } from '../../constants'
-
 import TMDb from '../databases/TMDb'
 import Parametrize from '../Parametrize'
 
 class FetchSeason {
-  constructor(showTmdbId, showName, id, seasonNumber) {
-    this._show = { tmdbId: showTmdbId, name: showName }
-    this._season = { id, seasonNumber }
+  constructor(showId, showName, season) {
+    this._show = { id: showId, name: showName }
+    this._season = season
     this._tmdb = new TMDb()
   }
 
   async perform() {
+    this.season.id = `${this.show.id}-${this.season.seasonNumber}`
+    this.season.path = `/app/season/${this.season.id}`
+
     await Promise.all([
       this.fetchDetails(),
       this.fetchCredits()
@@ -20,9 +21,8 @@ class FetchSeason {
   }
 
   fetchDetails() {
-    return this.tmdb.season(this.show.tmdbId, this.season.seasonNumber)
+    return this.tmdb.season(this.show.id, this.season.seasonNumber)
       .then(response => {
-        this.season.state = ITEM_STATES.FETCHED
         this.season.airDate = response.air_date
         this.season.name = response.name
         this.season.overview = response.overview
@@ -37,7 +37,7 @@ class FetchSeason {
   }
 
   fetchCredits() {
-    return this.tmdb.seasonCredits(this.show.tmdbId, this.season.seasonNumber)
+    return this.tmdb.seasonCredits(this.show.id, this.season.seasonNumber)
       .then(response => {
         this.season.cast = response.cast.map(castMember => ({
           id: castMember.id,

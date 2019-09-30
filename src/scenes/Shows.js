@@ -25,7 +25,7 @@ class Shows extends Component {
                 <ZoomIcon width={24} height={24} />
               </Link>
             </div>
-            <VerticalSlide items={Object.values(this.props.shows)} id='shows' path='shows' />
+            <VerticalSlide items={Object.values(this.props.shows).sort((a, b) => (a.name < b.name) ? -1 : 1)} id='shows' path='shows' />
           </div>
         )}
       </div>

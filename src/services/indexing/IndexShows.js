@@ -1,4 +1,4 @@
-import { PROVIDERS, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { PROVIDERS, ITEM_TYPES } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
@@ -10,7 +10,7 @@ class IndexShows {
   async perform() {
     return await Promise.all(await this.oneDrive.shows().then(response => {
       return response.value.map(item => this.index(item))
-    })).then(shows => shows.filter(show => show != null))
+    })).then(shows => shows.filter(show => show !== null))
   }
 
   async index(item) {
@@ -21,10 +21,8 @@ class IndexShows {
     return {
       provider: PROVIDERS.MICROSOFT,
       type: ITEM_TYPES.SHOW,
-      state: ITEM_STATES.INDEXED,
-      id: item.id,
-      name: item.name,
-      path: `/app/show/${item.id}`
+      providerId: item.id,
+      name: item.name
     }
   }
 
