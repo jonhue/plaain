@@ -13,8 +13,9 @@ export const inProgressSeasonsSelector = () => {
   return createSelector(
     seasonsSelector,
     seasons => {
-      return Object.values(seasons).filter(season => season.progress !== 0)
-        .sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
+      return Object.values(seasons).filter(season => {
+        return season.progress !== undefined && season.progress !== 0
+      }).sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
     }
   )
 }
@@ -24,7 +25,8 @@ export const recentlyWatchedSeasonsSelector = date => {
     seasonsSelector,
     seasons => {
       return Object.values(seasons).filter(season => {
-        return season.lastWatched >= date.getTime() && season.progress === 0
+        return season.lastWatched >= date.getTime() &&
+          (season.progress === undefined || season.progress === 0)
       }).sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
     }
   )
