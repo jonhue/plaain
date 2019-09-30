@@ -1,52 +1,48 @@
-import { PROVIDERS, ITEM_STATES, ITEM_TYPES } from '../../constants'
+import { PROVIDERS } from '../../constants'
 
 import OneDrive from '../drives/OneDrive'
 
 class IndexSeasons {
-  constructor(accessToken, showIds) {
+  constructor(accessToken, shows, seasons) {
     this._oneDrive = new OneDrive(accessToken)
-    this._showIds = showIds
+    this._shows = shows
+    this._seasons = seasons
   }
 
   async perform() {
     return [].concat(...await Promise.all(
-      this.showIds.map(showId => this.performForShow(showId))
-        .filter(season => season != null)
+      this.shows.map(show => this.performForShow(show, this.seasons))
     ))
   }
 
-  async performForShow(showId) {
-    return await Promise.all(
-      await this.oneDrive.children(showId).then(response => {
-        return response.value.map(item => this.index(item, showId))
+  async performForShow(show, seasons) {
+    return await this.oneDrive.children(show.providerId).then(response => {
+      return seasons.filter(season => season.showId === show.id).map(season => {
+        const item = response.value.find(item => season.id === `${show.id}-${Number.parseInt(item.name)}`)
+
+        if (item) {
+          return {
+            ...season,
+            provider: PROVIDERS.MICROSOFT,
+            providerId: item.id
+          }
+        } else {
+          return season
+        }
       })
-    )
-  }
-
-  async index(item, showId) {
-    if (item.folder == null || Number.isNaN(item.name)) {
-      return null
-    }
-
-    const seasonNumber = Number.parseInt(item.name)
-
-    return {
-      provider: PROVIDERS.MICROSOFT,
-      type: ITEM_TYPES.SEASON,
-      state: ITEM_STATES.INDEXED,
-      id: item.id,
-      seasonNumber: seasonNumber,
-      showId,
-      path: `/app/season/${item.id}`
-    }
+    })
   }
 
   get oneDrive() {
     return this._oneDrive
   }
 
-  get showIds() {
-    return this._showIds
+  get shows() {
+    return this._shows
+  }
+
+  get seasons() {
+    return this._seasons
   }
 }
 

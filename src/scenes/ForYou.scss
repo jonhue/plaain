@@ -27,12 +27,16 @@
     }
   }
 
+  a.button,
+  button {
+    width: auto;
+  }
+
   &__buttons {
     a.button,
     button {
       display: inline-block;
       margin: $padding 0 $padding $padding;
-      width: auto;
 
       &:not(:first-child) {
         margin-top: 0;

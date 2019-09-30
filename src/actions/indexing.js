@@ -4,14 +4,16 @@ import IndexMovies from '../services/indexing/IndexMovies'
 import IndexShows from '../services/indexing/IndexShows'
 import IndexSeasons from '../services/indexing/IndexSeasons'
 import IndexEpisodes from '../services/indexing/IndexEpisodes'
+import FetchAllSeasons from '../services/fetching/FetchAllSeasons'
+import FetchAllEpisodes from '../services/fetching/FetchAllEpisodes'
 
 import { updateVersion } from './version'
 import { logInExpired } from './auth'
 import { loadingBegin, loadingStop } from './loading'
-import { fetchMovie, removeMovie, updateMovie } from './movies'
-import { fetchShow, removeShow, updateShow } from './shows'
-import { fetchSeason, removeSeason, updateSeason } from './seasons'
-import { fetchEpisode, removeEpisode, updateEpisode } from './episodes'
+import { fetchMovie, removeMovie } from './movies'
+import { fetchShow, removeShow } from './shows'
+import { fetchSeason, removeSeason } from './seasons'
+import { fetchEpisode, removeEpisode } from './episodes'
 
 export const INDEX_BEGIN = 'INDEX_BEGIN'
 export const INDEX_SUCCESS = 'INDEX_SUCCESS'
@@ -24,60 +26,63 @@ export const index = () => {
 
     new IndexMovies(getState().auth[PROVIDERS.MICROSOFT].token).perform()
       .then(movies => {
-        return awaitFetching(dispatch, movies, updateMovie, fetchMovie)
-      }).then(movies => {
-        const ids = movies.map(movie => movie.id)
-        Object.keys(getState().movies).forEach(id => {
-          if (!ids.includes(id)) {
-            dispatch(removeMovie(id))
-          }
-        })
+        cleanupOldItems(
+          dispatch,
+          movies.map(movie => movie.id),
+          Object.keys(getState().movies),
+          removeMovie
+        )
+        return awaitFetching(dispatch, movies, fetchMovie)
       }).then(() => {
         return new IndexShows(
           getState().auth[PROVIDERS.MICROSOFT].token
         ).perform()
       }).then(shows => {
-        return awaitFetching(dispatch, shows, updateShow, fetchShow)
-      }).then(shows => {
-        const ids = shows.map(show => show.id)
-        Object.keys(getState().shows).forEach(id => {
-          if (!ids.includes(id)) {
-            dispatch(removeShow(id))
-          }
-        })
+        cleanupOldItems(
+          dispatch,
+          shows.map(show => show.id),
+          Object.keys(getState().shows),
+          removeShow
+        )
+        return awaitFetching(dispatch, shows, fetchShow)
       }).then(() => {
+        return new FetchAllSeasons(Object.values(getState().shows)).perform()
+      }).then(seasons => {
         return new IndexSeasons(
           getState().auth[PROVIDERS.MICROSOFT].token,
-          Object.keys(getState().shows)
+          Object.values(getState().shows),
+          seasons
         ).perform()
       }).then(seasons => {
-        return awaitFetching(dispatch, seasons, updateSeason, fetchSeason)
-      }).then(seasons => {
-        const ids = seasons.map(season => season.id)
-        Object.keys(getState().seasons).forEach(id => {
-          if (!ids.includes(id)) {
-            dispatch(removeSeason(id))
-          }
-        })
+        cleanupOldItems(
+          dispatch,
+          seasons.map(season => season.id),
+          Object.keys(getState().seasons),
+          removeSeason
+        )
+        return awaitFetching(dispatch, seasons, fetchSeason)
       }).then(() => {
+        return new FetchAllEpisodes(Object.values(getState().seasons)).perform()
+      }).then(episodes => {
         return new IndexEpisodes(
           getState().auth[PROVIDERS.MICROSOFT].token,
-          Object.keys(getState().seasons)
+          Object.values(getState().seasons),
+          episodes
         ).perform()
       }).then(episodes => {
-        return awaitFetching(dispatch, episodes, updateEpisode, fetchEpisode)
-      }).then(episodes => {
-        const ids = episodes.map(episode => episode.id)
-        Object.keys(getState().episodes).forEach(id => {
-          if (!ids.includes(id)) {
-            dispatch(removeEpisode(id))
-          }
-        })
+        cleanupOldItems(
+          dispatch,
+          episodes.map(episode => episode.id),
+          Object.keys(getState().episodes),
+          removeEpisode
+        )
+        return awaitFetching(dispatch, episodes, fetchEpisode)
       }).then(() => {
         dispatch(updateVersion(VERSION))
         dispatch(indexSuccess())
         dispatch(loadingStop())
       }).catch(error => {
+        console.log(error)
         dispatch(indexFailure(error))
         dispatch(loadingStop())
 
@@ -88,10 +93,17 @@ export const index = () => {
   }
 }
 
-async function awaitFetching(dispatch, items, update, fetch) {
+function cleanupOldItems(dispatch, newIds, oldIds, removeAction) {
+  oldIds.forEach(id => {
+    if (!newIds.includes(id)) {
+      dispatch(removeAction(id))
+    }
+  })
+}
+
+async function awaitFetching(dispatch, items, fetchAction) {
   await Promise.all(items.map(item => {
-    dispatch(update(item))
-    return dispatch(fetch(item.id))
+    return dispatch(fetchAction(item))
   }))
   return items
 }

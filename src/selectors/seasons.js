@@ -35,7 +35,7 @@ export const recentlyWatchedSeasonsSelector = date => {
 export const seasonsByShowSelector = showId => {
   return createSelector(
     seasonsSelector,
-    seasons => Object.values(seasons).filter(season => season.showId === showId)
+    seasons => Object.values(seasons).filter(season => season.showId.toString() === showId)
   )
 }
 

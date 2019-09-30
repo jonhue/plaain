@@ -1,27 +1,24 @@
 import FetchEpisode from '../services/fetching/FetchEpisode'
 
-import { episodeSelector } from '../selectors/episodes'
 import { seasonSelector } from '../selectors/seasons'
 import { showSelector } from '../selectors/shows'
 
 export const REMOVE_EPISODE = 'REMOVE_EPISODE'
 export const UPDATE_EPISODE = 'UPDATE_EPISODE'
 
-export const fetchEpisode = id => {
+export const fetchEpisode = episode => {
   return (dispatch, getState) => {
-    const episode = episodeSelector(id)(getState())
     const season = seasonSelector(episode.seasonId)(getState())
     const show = showSelector(season.showId)(getState())
     return new FetchEpisode(
-      show.tmdbId,
+      show.id,
       show.name,
       season.seasonNumber,
       season.name,
-      episode.id,
-      episode.episodeNumber
+      episode
     ).perform().then(fetchedEpisode => {
       dispatch(updateEpisode(fetchedEpisode))
-    }).catch(() => dispatch(fetchEpisode(id)))
+    }).catch(() => dispatch(fetchEpisode(episode)))
   }
 }
 

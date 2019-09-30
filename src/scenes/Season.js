@@ -31,7 +31,7 @@ class Season extends Component {
       watchableEpisodes: episodesBySeasonSelector(this.props.match.params.id)({
         episodes: this.props.episodes
       }).filter(episode => {
-        return episode.files.filter(file => file.type === FILE_TYPES.SOURCE)
+        return episode.provider !== undefined && episode.files.filter(file => file.type === FILE_TYPES.SOURCE)
           .length !== 0
       }),
       episodesWrapped: true
@@ -130,13 +130,14 @@ class Season extends Component {
             </div>
             <div className='Season__episodes'>
               {this.state.episodes
+                .sort((a, b) => (a.episodeNumber < b.episodeNumber) ? -1 : 1)
                 .slice(
                   0,
                   this.state.episodesWrapped ? 0 : this.state.episodes.length
                 )
                 .map((episode, index) => {
                   return (
-                    <div disabled={this.state.episodes[episode.episodeNumber - 1].files.length === 0} className='Season__episodes__episode' onClick={() => this.watch(episode.episodeNumber)} key={index}>
+                    <div disabled={this.state.episodes[episode.episodeNumber - 1].provider === undefined || this.state.episodes[episode.episodeNumber - 1].files.filter(file => file.type === FILE_TYPES.SOURCE).length === 0} className='Season__episodes__episode' onClick={() => this.watch(episode.episodeNumber)} key={index}>
                       <div className='Season__episodes__episode__number'>{episode.episodeNumber}</div>
                       <div className='Season__episodes__episode__details'>
                         <h2>{episode.name}</h2>

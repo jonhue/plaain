@@ -1,21 +1,20 @@
-import { ITEM_STATES } from '../../constants'
-
 import TMDb from '../databases/TMDb'
 
 class FetchShow {
-  constructor(id, name) {
-    this._show = { id, name }
+  constructor(show) {
+    this._show = show
     this._tmdb = new TMDb()
   }
 
   perform() {
-    return this.tmdb.findShow(this.show.name).then(tmdbId => this.fetch(tmdbId))
+    return this.tmdb.findShow(this.show.name).then(id => this.fetch(id))
   }
 
-  async fetch(tmdbId) {
-    this.show.tmdbId = tmdbId
+  async fetch(id) {
+    this.show.id = id
+    this.show.path = `/app/show/${this.show.id}`
 
-    if (this.show.tmdbId === null) {
+    if (this.show.id === null) {
       return
     }
 
@@ -27,9 +26,8 @@ class FetchShow {
   }
 
   fetchDetails() {
-    return this.tmdb.show(this.show.tmdbId)
+    return this.tmdb.show(this.show.id)
       .then(response => {
-        this.show.state = ITEM_STATES.FETCHED
         this.show.backdropUrl =
           `https://image.tmdb.org/t/p/original${response.backdrop_path}`
         this.show.firstAirDate = response.first_air_date

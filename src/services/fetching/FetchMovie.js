@@ -1,23 +1,22 @@
-import { ITEM_STATES } from '../../constants'
-
 import TMDb from '../databases/TMDb'
 import Parametrize from '../Parametrize'
 
 class FetchMovie {
-  constructor(id, name) {
-    this._movie = { id, name }
+  constructor(movie) {
+    this._movie = movie
     this._tmdb = new TMDb()
   }
 
   perform() {
     return this.tmdb.findMovie(this.movie.name)
-      .then(tmdbId => this.fetch(tmdbId))
+      .then(id => this.fetch(id))
   }
 
-  async fetch(tmdbId) {
-    this.movie.tmdbId = tmdbId
+  async fetch(id) {
+    this.movie.id = id
+    this.movie.path = `/app/movie/${this.movie.id}`
 
-    if (this.movie.tmdbId === null) {
+    if (this.movie.id === null) {
       return
     }
 
@@ -30,9 +29,8 @@ class FetchMovie {
   }
 
   fetchDetails() {
-    return this.tmdb.movie(this.movie.tmdbId)
+    return this.tmdb.movie(this.movie.id)
       .then(response => {
-        this.movie.state = ITEM_STATES.FETCHED
         this.movie.backdropUrl =
           `https://image.tmdb.org/t/p/original${response.backdrop_path}`
         this.movie.overview = response.overview
@@ -48,7 +46,7 @@ class FetchMovie {
   }
 
   fetchCredits() {
-    return this.tmdb.movieCredits(this.movie.tmdbId)
+    return this.tmdb.movieCredits(this.movie.id)
       .then(response => {
         this.movie.cast = response.cast.map(castMember => ({
           id: castMember.id,
