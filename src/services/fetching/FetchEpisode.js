@@ -18,21 +18,11 @@ class FetchEpisode {
   }
 
   async perform() {
-    this.setDefaults()
     await Promise.all([
       this.fetchDetails()
     ])
 
     return this.episode
-  }
-
-  setDefaults() {
-    if (this.episode.progress === undefined) {
-      this.episode.progress = 0
-    }
-    if (this.episode.lastWatched === undefined) {
-      this.episode.lastWatched = 0
-    }
   }
 
   fetchDetails() {

@@ -21,22 +21,12 @@ class FetchMovie {
       return
     }
 
-    this.setDefaults()
     await Promise.all([
       this.fetchDetails(),
       this.fetchCredits()
     ])
 
     return this.movie
-  }
-
-  setDefaults() {
-    if (this.movie.progress === undefined) {
-      this.movie.progress = 0
-    }
-    if (this.movie.lastWatched === undefined) {
-      this.movie.lastWatched = 0
-    }
   }
 
   fetchDetails() {

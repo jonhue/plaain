@@ -57,8 +57,8 @@ class Season extends Component {
 
   continue() {
     this.watch(
-      this.state.season.progress,
-      this.state.episodes[this.state.season.progress - 1].progress
+      this.state.season.progress || 0,
+      this.state.episodes[this.state.season.progress - 1].progress || 0
     )
   }
 
@@ -124,8 +124,8 @@ class Season extends Component {
               <p className='small'>{new Date(this.state.season.airDate).getFullYear()}</p>
             </div>
             <div className='Season__actions'>
-              {this.state.watchableEpisodes.length > 0 && this.state.season.progress !== 0 && <button className='primary' id='continue' onClick={this.continue.bind(this)}>Continue episode {this.state.season.progress}</button>}
-              {this.state.watchableEpisodes.length > 0 && this.state.season.progress !== 1 && <button className={this.state.season.progress === 0 ? 'primary' : ''} id='watch' onClick={() => this.watch(this.state.watchableEpisodes[0].episodeNumber)}>Watch episode {this.state.watchableEpisodes[0].episodeNumber}</button>}
+              {this.state.watchableEpisodes.length > 0 && this.state.movie.progress !== undefined && this.state.season.progress !== 0 && <button className='primary' id='continue' onClick={this.continue.bind(this)}>Continue episode {this.state.season.progress}</button>}
+              {this.state.watchableEpisodes.length > 0 && this.state.season.progress !== 1 && <button className={this.state.movie.progress === undefined || this.state.season.progress === 0 ? 'primary' : ''} id='watch' onClick={() => this.watch(this.state.watchableEpisodes[0].episodeNumber)}>Watch episode {this.state.watchableEpisodes[0].episodeNumber}</button>}
               <a className='button' id='trailer' href={this.state.season.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
             </div>
             <div className='Season__episodes'>

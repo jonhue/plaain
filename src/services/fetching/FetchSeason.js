@@ -11,22 +11,12 @@ class FetchSeason {
   }
 
   async perform() {
-    this.setDefaults()
     await Promise.all([
       this.fetchDetails(),
       this.fetchCredits()
     ])
 
     return this.season
-  }
-
-  setDefaults() {
-    if (this.season.progress === undefined) {
-      this.season.progress = 0
-    }
-    if (this.season.lastWatched === undefined) {
-      this.season.lastWatched = 0
-    }
   }
 
   fetchDetails() {
