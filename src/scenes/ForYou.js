@@ -102,7 +102,7 @@ class ForYou extends Component {
       return (
         <div className='ForYou'>
           <h2>Get started</h2>
-          <p>Here, you&apos;ll be able to find your recently watched movie or the show you didn&apos;t yet finish.</p>
+          <p>Here, you&apos;ll be able to find your recently watched movie or the show you didn&apos;t finish yet.</p>
           <div className='ForYou__buttons'>
             {Object.entries(this.props.movies).length > 0 && <Link to='/app/movies' className='button'>
               Discover your movies

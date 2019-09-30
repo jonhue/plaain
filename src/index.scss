@@ -40,13 +40,17 @@ button {
   color: $white;
   cursor: pointer;
   display: flex;
+  font-family: 'Muli', sans-serif;
   font-size: 18px;
   font-weight: 700;
   justify-content: center;
+  line-height: 1;
+  padding: 16px 25px;
   position: relative;
   text-decoration: none;
   top: 0;
   transition: box-shadow 0.1s ease-out, top 0.1s ease-out;
+  width: 100%;
 
   &:active,
   &:focus,
@@ -65,15 +69,6 @@ button {
       box-shadow: 0 0 10px rgba($highlight, 1);
     }
   }
-}
-
-a.button {
-  padding: 11px 25px;
-}
-
-button {
-  padding: 15px 25px;
-  width: 100%;
 }
 
 h1,
@@ -142,8 +137,10 @@ select {
   border-radius: 5px;
   box-shadow: 0 0 6px rgba($dark, 0.16);
   color: $white;
+  font-family: 'Muli', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  padding: 15px 10px 15px 25px;
+  line-height: 1;
+  padding: 13px 10px 13px 25px;
   text-decoration: none;
 }
