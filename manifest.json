@@ -1,13 +1,13 @@
 {
   "short_name": "Plaain",
   "name": "Plaain",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/app",
+  "scope": "/app",
   "display": "standalone",
   "orientation": "portrait",
   "dir": "rtl",
   "lang": "en-US",
-  "theme_color": "#ffffff",
+  "theme_color": "#283057",
   "background_color": "#283057",
   "icons": [
     {
