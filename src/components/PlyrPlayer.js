@@ -33,9 +33,11 @@ class PlyrPlayer extends Component {
     })
 
     this.player.on('exitfullscreen', () => {
-      if (this.player.playing) {
+      const component = document.querySelector('.PlyrPlayer')
+
+      if (component && !component.dataset.preventExit) {
         this.player.stop()
-        document.querySelector('.PlyrPlayer').style.display = 'none'
+        component.style.display = 'none'
 
         if (this.props.exitedAction) {
           this.props.exitedAction()
