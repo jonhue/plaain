@@ -22,7 +22,7 @@ import './index.scss'
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loading caption='Loading...' />} persistor={persistStore(store)}>
-      <Router>
+      <Router basename='/plaain'>
         <ScrollToTop>
           <Switch>
             <Route path='/' exact component={Welcome} />
