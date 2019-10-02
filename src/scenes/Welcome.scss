@@ -1,0 +1,24 @@
+@import "../variables";
+
+.Welcome {
+  h1 {
+    font-size: 36px;
+    margin: 35px $padding 0;
+  }
+
+  &__details {
+    bottom: 0;
+    padding: $padding;
+    position: absolute;
+
+    h3 {
+      margin-bottom: $padding;
+    }
+
+    a.button {
+      &:not(:first-of-type) {
+        margin-top: $spacing;
+      }
+    }
+  }
+}
