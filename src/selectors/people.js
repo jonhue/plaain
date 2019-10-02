@@ -21,7 +21,7 @@ export const personSelector = id => {
   )
 }
 
-export const personRolesSelector = id => {
+export const personRolesSelector = (id, gender) => {
   return createSelector(
     moviesCastMemberSelector(id),
     moviesCrewMemberSelector(id),
@@ -30,7 +30,8 @@ export const personRolesSelector = id => {
     (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
       return [
         ...new Set([
-          (moviesCast.length > 0 || seasonsCast.length > 0) ? (gender === 1 ? 'Actress' : 'Actor') : null,
+          ((moviesCast.length > 0 || seasonsCast.length > 0) ?
+            (gender === 1 ? 'Actress' : 'Actor') : null),
           ...moviesCrew.map(crewMember => crewMember.job),
           ...seasonsCrew.map(crewMember => crewMember.job)
         ])
