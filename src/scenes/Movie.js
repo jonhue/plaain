@@ -34,21 +34,19 @@ class Movie extends Component {
   }
 
   continue() {
-    let plyr = document.querySelector('.PlyrPlayer #player').plyr
-    plyr.on('play', () => {
-      plyr.currentTime = this.state.movie.progress || 0
-    })
-
-    this.watch()
+    this.watch(this.state.movie.progress)
   }
 
-  watch() {
+  watch(progress = 0) {
     const player = document.querySelector('.PlyrPlayer')
     const plyr = player.querySelector('#player').plyr
-
-    player.style.display = 'block'
-    plyr.fullscreen.enter()
-    plyr.play()
+    // Wait until Plyr is ready to start playing
+    setTimeout(() => {
+      player.style.display = 'block'
+      plyr.fullscreen.enter()
+      plyr.play()
+      plyr.currentTime = progress
+    }, 100)
   }
 
   finishedMovie() {
@@ -73,7 +71,7 @@ class Movie extends Component {
             </div>
             <div className='Movie__actions'>
               {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && this.state.movie.progress !== undefined && this.state.movie.progress !== 0 && this.state.movie.progress / 60 < this.state.movie.runtime && <button className='primary' id='continue' onClick={this.continue.bind(this)}>Continue</button>}
-              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <button className={this.state.movie.progress === undefined || this.state.movie.progress === 0 || this.state.movie.progress / 60 >= this.state.movie.runtime ? 'primary' : ''} id='watch' onClick={this.watch.bind(this)}>Watch</button>}
+              {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <button className={this.state.movie.progress === undefined || this.state.movie.progress === 0 || this.state.movie.progress / 60 >= this.state.movie.runtime ? 'primary' : ''} id='watch' onClick={() => this.watch()}>Watch</button>}
               <a className='button' id='trailer' href={this.state.movie.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
             </div>
             <p className='Movie__overview'>{this.state.movie.overview}</p>
