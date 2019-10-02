@@ -40,12 +40,14 @@ class Movie extends Component {
   watch(progress = 0) {
     const player = document.querySelector('.PlyrPlayer')
     const plyr = player.querySelector('#player').plyr
+    player.dataset.preventExit = true
     // Wait until Plyr is ready to start playing
     setTimeout(() => {
       player.style.display = 'block'
       plyr.fullscreen.enter()
       plyr.play()
       plyr.currentTime = progress
+      setTimeout(() => { delete player.dataset.preventExit}, 100) // Fixing #232
     }, 100)
   }
 

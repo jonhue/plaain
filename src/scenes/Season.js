@@ -76,12 +76,14 @@ class Season extends Component {
 
     const player = document.querySelector('.PlyrPlayer')
     const plyr = player.querySelector('#player').plyr
+    player.dataset.preventExit = true
     // Wait until Plyr is ready to start playing after the sources changed
     setTimeout(() => {
       player.style.display = 'block'
       plyr.fullscreen.enter()
       plyr.play()
       plyr.currentTime = progress
+      setTimeout(() => { delete player.dataset.preventExit}, 100) // Fixing #232
     }, 100)
   }
 
