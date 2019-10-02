@@ -43,12 +43,14 @@ class FetchSeason {
           id: castMember.id,
           character: castMember.character,
           name: castMember.name,
+          gender: castMember.gender,
           profileUrl: `https://image.tmdb.org/t/p/original${castMember.profile_path}`
         }))
         this.season.crew = response.crew.map(crewMember => ({
           id: crewMember.id,
           job: crewMember.job,
           name: crewMember.name,
+          gender: crewMember.gender,
           profileUrl: `https://image.tmdb.org/t/p/original${crewMember.profile_path}`
         }))
       })
