@@ -39,7 +39,7 @@ class Person extends Component {
           <div className='Person__details'>
             <Cover url={this.state.person.profileUrl} alt='profile' width='50%' />
             <h1>{this.state.person.name}</h1>
-            <h5>Known for</h5>
+            <h5>Known as</h5>
             <p>{this.state.roles.join(', ')}</p>
           </div>
 
