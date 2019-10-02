@@ -93,7 +93,7 @@ class ForYou extends Component {
           <p>It&apos;s likely that you just have to move some of your files around and create some folders to make it work.</p>
           <p>Reference the getting started guide to learn how to organize your files so that Plaain finds them. After you&apos;re done, just re-index.</p>
           <div className='ForYou__buttons'>
-            <a className='button primary' href='https://github.com/jonhue/plaain' target='_blank' rel='noopener noreferrer'>Getting started</a>
+            <a className='button primary' href='https://github.com/jonhue/plaain#getting-started' target='_blank' rel='noopener noreferrer'>Getting started</a>
             <button onClick={this.props.index}>Index</button>
           </div>
         </div>
