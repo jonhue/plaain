@@ -15,7 +15,7 @@ In your cloud you have to organize your files a certain way so that they are fou
 2. Create the subfolders `Movies` and `Shows`
 3. Within `Movies`, create a folder for every movie you want to add to Plaain with the movies title as its name.
 4. Within `Shows`, create a folder for each TV show you intend to add to Plaain with the shows title as its name. Then create a subfolder for each season (use the season number as name, e.g. `1`). Yet one level deeper, create a subfolder for each episode (use the episode number as name).
-5. Within every folder for a watchable item (movie/episode), add your source files. Allowed file types for videos are `mp4`, `m4v`, `kmv` and `webm`. The only allowed file type for subtitles is `vtt`. You can name your files however you like. You'll later be able to switch between the uploaded video sources and subtitles by filename.
+5. Within every folder for a watchable item (movie/episode), add your source files. Allowed file types for videos are `mp4`, `m4v`, `kmv` and `webm`. The only allowed file type for subtitles is `vtt`. You'll later be able to switch between the uploaded video sources and subtitles by filename.
 
 A file structure could look like this:
 
@@ -23,16 +23,16 @@ A file structure could look like this:
 Plaain
 |--Movies
 |--|--Argo
-|--|--|--1080p.mp4
-|--|--|--720p.mp4
+|--|--|--1080.mp4
+|--|--|--720.mp4
 |--|--|--English.vtt
 |--Shows
 |--|--Game of Thrones
 |--|--|--1
 |--|--|--|--1
-|--|--|--|--|--1080p.mp4
+|--|--|--|--|--1080.mp4
 |--|--|--|--2
-|--|--|--|--|--1080p.mp4
+|--|--|--|--|--1080.mp4
 ```
 
 To get started, launch [Plaain](https://jonhue.github.io/plaain) and authenticate with your cloud provider.
