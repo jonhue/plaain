@@ -47,7 +47,7 @@ class Show extends Component {
           </div>
           {this.state.seasons.length > 0 && <div className='Show__seasons'>
             <h2>Seasons</h2>
-            <HorizontalSlide items={this.state.seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' width='200px' />
+            <HorizontalSlide items={this.state.seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' />
           </div>}
         </div>
       )

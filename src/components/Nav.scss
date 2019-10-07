@@ -17,8 +17,20 @@
   a,
   button {
     line-height: 0;
+    text-align: center;
+
+    p {
+      color: $white;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: 0.5rem 0 0;
+    }
 
     svg {
+      height: 1.2rem;
+      width: 1.2rem;
+
       polygon,
       polyline,
       path,
@@ -33,6 +45,10 @@
     &:active,
     &:hover,
     &.active {
+      p {
+        color: $highlight !important;
+      }
+
       svg {
         polygon,
         polyline,

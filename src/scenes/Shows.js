@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Shows.scss'
 
+import ItemGrid from '../components/ItemGrid'
 import VerticalSlide from '../components/VerticalSlide'
 import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
 
@@ -25,7 +26,7 @@ class Shows extends Component {
                 <ZoomIcon width={24} height={24} />
               </Link>
             </div>
-            <VerticalSlide items={Object.values(this.props.shows).sort((a, b) => (a.name < b.name) ? -1 : 1)} id='shows' path='shows' />
+            {window.innerWidth < 600 ? <VerticalSlide items={Object.values(this.props.shows).sort((a, b) => (a.name < b.name) ? -1 : 1)} id='shows' path='shows' /> : <ItemGrid items={Object.values(this.props.shows).sort((a, b) => (a.name < b.name) ? -1 : 1)} id='shows' />}
           </div>
         )}
       </div>

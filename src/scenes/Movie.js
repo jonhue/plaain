@@ -63,7 +63,9 @@ class Movie extends Component {
       return (
         <div className='Movie'>
           {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <PlyrPlayer item={this.state.movie} updateItemAction={this.props.updateMovie} endedAction={this.finishedMovie.bind(this)} />}
-          <img className='Movie__backdrop' src={this.state.movie.backdropUrl} alt='backdrop' />
+          <picture className='Movie__backdrop'>
+            <img src={this.state.movie.backdropUrl} alt='backdrop' />
+          </picture>
           <div className='Movie__details'>
             <Cover url={this.state.movie.posterUrl} alt='poster' width='50%' />
             <h1>{this.state.movie.name}</h1>
@@ -77,13 +79,15 @@ class Movie extends Component {
               <a className='button' id='trailer' href={this.state.movie.trailerLink} target='_blank' rel='noopener noreferrer'>Play trailer</a>
             </div>
             <p className='Movie__overview'>{this.state.movie.overview}</p>
-            <div className='Movie__cast'>
-              <h4>Starring</h4>
-              <PersonList people={this.state.movie.cast} attribute='character' />
-            </div>
-            <div className='Movie__crew'>
-              <h4>Crew</h4>
-              <PersonList people={this.state.movie.crew} attribute='job' />
+            <div className='Movie__people'>
+              <div className='Movie__people__cast'>
+                <h4>Starring</h4>
+                <PersonList people={this.state.movie.cast} attribute='character' />
+              </div>
+              <div className='Movie__people__crew'>
+                <h4>Crew</h4>
+                <PersonList people={this.state.movie.crew} attribute='job' />
+              </div>
             </div>
           </div>
           <div className='Movie__sources'>

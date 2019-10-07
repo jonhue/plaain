@@ -29,9 +29,9 @@ class HorizontalSlide extends Component {
             {this.props.items.length ? (
               this.props.items.map(item => {
                 return (
-                  <div className='swiper-slide' key={item.id} style={{ width: this.props.width }}>
+                  <div className='swiper-slide' key={item.id}>
                     <Link to={item.path}>
-                      <Cover url={item.posterUrl || '/cover.png'} alt={item.name} width={this.props.width} />
+                      <Cover url={item.posterUrl || '/cover.png'} alt={item.name} width='100%' />
                     </Link>
                   </div>
                 )

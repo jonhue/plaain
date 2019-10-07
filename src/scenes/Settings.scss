@@ -38,9 +38,9 @@
 
       a.button,
       button {
-        border: 3px solid $dark;
+        border: 0.1875rem solid $dark;
         border-radius: 50%;
-        padding: 25px;
+        padding: 1.5625rem;
         width: auto;
 
         &:not(:first-child) {
@@ -53,19 +53,25 @@
         }
 
         &.primary {
-          border: 3px solid $highlight;
+          border: 0.1875rem solid $highlight;
         }
 
         &.warn {
           background: $warn;
-          border: 3px solid $warn;
+          border: 0.1875rem solid $warn;
+
+          &:active,
+          &:focus,
+          &:hover {
+            box-shadow: 0 0 10px rgba($warn, 1);
+          }
         }
       }
 
       a.button,
       button:disabled {
         background: $background;
-        border: 3px solid $dark;
+        border: 0.1875rem solid $dark;
         opacity: 0.5;
       }
     }

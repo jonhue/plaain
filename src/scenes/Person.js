@@ -45,12 +45,12 @@ class Person extends Component {
 
           {this.state.movies.length > 0 && <section>
             <h2>Movies</h2>
-            <HorizontalSlide items={this.state.movies} id='movies' width='200px' />
+            <HorizontalSlide items={this.state.movies} id='movies' />
           </section>}
 
           {this.state.seasons.length > 0 && <section>
             <h2>TV seasons</h2>
-            <HorizontalSlide items={this.state.seasons} id='seasons' width='200px' />
+            <HorizontalSlide items={this.state.seasons} id='seasons' />
           </section>}
         </div>
       )
