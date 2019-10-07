@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.9.0'
+    - name: Install dependencies
+      run: yarn install
+    - name: Run ESLint
+      run: yarn eslint
+    - name: Run stylelint
+      run: yarn stylelint
