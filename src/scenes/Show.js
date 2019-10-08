@@ -4,6 +4,7 @@ import './Show.scss'
 
 import NotFound from './NotFound'
 
+import Backdrop from '../components/Backdrop'
 import Cover from '../components/Cover'
 import HorizontalSlide from '../components/HorizontalSlide'
 
@@ -36,7 +37,7 @@ class Show extends Component {
     if (this.state.show) {
       return (
         <div className='Show'>
-          <img className='Show__backdrop' src={this.state.show.backdropUrl} alt='backdrop' />
+          <Backdrop url={this.state.show.backdropUrl} />
           <div className='Show__details'>
             <Cover url={this.state.show.posterUrl} alt='poster' width='50%' />
             <h1>{this.state.show.name}</h1>
@@ -47,7 +48,7 @@ class Show extends Component {
           </div>
           {this.state.seasons.length > 0 && <div className='Show__seasons'>
             <h2>Seasons</h2>
-            <HorizontalSlide items={this.state.seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' width='200px' />
+            <HorizontalSlide items={this.state.seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' />
           </div>}
         </div>
       )

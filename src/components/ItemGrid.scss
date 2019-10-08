@@ -1,0 +1,49 @@
+@import "../variables";
+
+.ItemGrid {
+  display: grid;
+  grid-gap: $spacing;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: $padding;
+
+  @media only screen and (min-width: 800px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  @media only screen and (min-width: 1600px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  @media only screen and (min-width: 2000px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  &__item {
+    margin-bottom: -7px;
+
+    a {
+      position: relative;
+      top: 0;
+      transition: top 0.1s ease-out;
+
+      &:active,
+      &:focus,
+      &:hover {
+        top: -0.125rem;
+
+        img {
+          box-shadow: 0 4px 10px rgba($dark, 1);
+        }
+      }
+
+      img {
+        box-shadow: 0 0 6px rgba($dark, 0.16);
+        transition: box-shadow 0.1s ease-out;
+      }
+    }
+  }
+}

@@ -1,15 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:600,700,900&display=swap');
 @import "./variables";
 
+html,
 body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
   background: $background;
   color: $white;
   font-family: 'Muli', sans-serif;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.58;
-  margin: 0;
-  padding: 0;
+
+  @media only screen and (min-width: 600px) {
+    font-size: 18px;
+  }
+
+  @media only screen and (min-width: 2000px) {
+    font-size: 20px;
+  }
 }
 
 * {
@@ -35,17 +48,17 @@ button {
   align-items: center;
   background: $dark;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   box-shadow: 0 0 6px rgba($dark, 0.16);
   color: $white;
   cursor: pointer;
   display: flex;
   font-family: 'Muli', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   justify-content: center;
   line-height: 1;
-  padding: 16px 25px;
+  padding: 1rem 1.5625rem;
   position: relative;
   text-decoration: none;
   top: 0;
@@ -56,7 +69,7 @@ button {
   &:focus,
   &:hover {
     box-shadow: 0 4px 10px rgba($dark, 1);
-    top: -2px;
+    top: -0.125rem;
   }
 
   &.primary {
@@ -81,46 +94,50 @@ h5 {
 
 h1 {
   color: $white;
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 900;
   line-height: 1.4;
+
+  @media only screen and (min-width: 1200px) {
+    font-size: 2.5rem;
+  }
 }
 
 h2 {
   color: $white;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
 h3 {
   color: $white;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
 h4 {
   color: $white;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 h5 {
   color: $white;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 p {
   color: $light;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.75;
 
   &.small {
     color: $light;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
   }
 
@@ -134,13 +151,13 @@ p {
 select {
   background: $dark;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   box-shadow: 0 0 6px rgba($dark, 0.16);
   color: $white;
   font-family: 'Muli', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1;
-  padding: 13px 10px 13px 25px;
+  padding: 0.8125rem 0.625rem 0.8125rem 1.5625rem;
   text-decoration: none;
 }

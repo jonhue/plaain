@@ -58,12 +58,12 @@ class ForYou extends Component {
         <div className='ForYou'>
           {this.state.inProgress.length > 0 && <section>
             <h2>Continue watching</h2>
-            <HorizontalSlide items={this.state.inProgress} id='inProgress' width='200px' />
+            <HorizontalSlide items={this.state.inProgress} id='inProgress' />
           </section>}
 
           {this.state.recentlyWatched.length > 0 && <section>
             <h2>Recently watched</h2>
-            <HorizontalSlide items={this.state.recentlyWatched} id='recentlyWatched' width='200px' />
+            <HorizontalSlide items={this.state.recentlyWatched} id='recentlyWatched' />
           </section>}
         </div>
       )

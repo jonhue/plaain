@@ -7,5 +7,40 @@
   .swiper-container {
     padding: $spacing 0 $padding;
     width: 100%;
+
+    .swiper-slide {
+      top: 0;
+      transition: top 0.1s ease-out;
+      width: 200px;
+
+      @media only screen and (min-width: 600px) {
+        width: 30%;
+      }
+
+      @media only screen and (min-width: 1200px) {
+        width: 25%;
+      }
+
+      @media only screen and (min-width: 1200px) {
+        width: 20%;
+      }
+
+      @media only screen and (min-width: 1600px) {
+        width: 10%;
+      }
+
+      &:hover {
+        top: -0.125rem;
+
+        img {
+          box-shadow: 0 4px 10px rgba($dark, 1);
+        }
+      }
+
+      img {
+        box-shadow: 0 0 6px rgba($dark, 0.16);
+        transition: box-shadow 0.1s ease-out;
+      }
+    }
   }
 }

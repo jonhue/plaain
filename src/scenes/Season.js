@@ -6,6 +6,7 @@ import { FILE_TYPES } from '../constants'
 
 import NotFound from './NotFound'
 
+import Backdrop from '../components/Backdrop'
 import Cover from '../components/Cover'
 import PersonList from '../components/PersonList'
 import PlyrPlayer from '../components/PlyrPlayer'
@@ -118,7 +119,7 @@ class Season extends Component {
       return (
         <div className='Season'>
           {this.state.watchableEpisodes.length > 0 && <PlyrPlayer item={this.state.episodes[this.state.currentEpisodeNumber - 1]} updateItemAction={this.props.updateEpisode} exitedAction={this.stoppedEpisode.bind(this)} endedAction={this.finishedEpisode.bind(this)} />}
-          <img className='Show__backdrop' src={showSelector(this.state.season.showId)({ shows: this.props.shows }).backdropUrl} alt='backdrop' />
+          <Backdrop url={showSelector(this.state.season.showId)({ shows: this.props.shows }).backdropUrl} />
           <div className='Season__details'>
             <Cover url={this.state.season.posterUrl} alt='poster' width='50%' />
             <h1>Season {this.state.season.seasonNumber}</h1>
@@ -153,13 +154,15 @@ class Season extends Component {
               {this.state.episodes.length > 0 && <span onClick={this.toggleEpisodes.bind(this)}>{this.state.episodesWrapped ? 'Show all episodes' : 'Hide episodes'}</span>}
             </div>
             <p className='Season__overview'>{this.state.season.overview}</p>
-            <div className='Season__cast'>
-              <h4>Starring</h4>
-              <PersonList people={this.state.season.cast} attribute='character' />
-            </div>
-            <div className='Season__crew'>
-              <h4>Crew</h4>
-              <PersonList people={this.state.season.crew} attribute='job' />
+            <div className='Season__people'>
+              <div className='Season__people__cast'>
+                <h4>Starring</h4>
+                <PersonList people={this.state.season.cast} attribute='character' />
+              </div>
+              <div className='Season__people__crew'>
+                <h4>Crew</h4>
+                <PersonList people={this.state.season.crew} attribute='job' />
+              </div>
             </div>
           </div>
         </div>
