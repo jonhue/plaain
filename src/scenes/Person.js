@@ -4,6 +4,7 @@ import './Person.scss'
 
 import NotFound from './NotFound'
 
+import Backdrop from '../components/Backdrop'
 import Cover from '../components/Cover'
 import HorizontalSlide from '../components/HorizontalSlide'
 
@@ -35,7 +36,7 @@ class Person extends Component {
     if (this.state.person) {
       return (
         <div className='Person'>
-          <img className='Person__backdrop' src={(this.state.movies[0] || this.props.shows[this.state.seasons[0].showId]).backdropUrl} alt='backdrop' />
+          <Backdrop url={(this.state.movies[0] || this.props.shows[this.state.seasons[0].showId]).backdropUrl} />
           <div className='Person__details'>
             <Cover url={this.state.person.profileUrl} alt='profile' width='50%' />
             <h1>{this.state.person.name}</h1>

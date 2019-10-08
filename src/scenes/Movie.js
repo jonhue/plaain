@@ -6,6 +6,7 @@ import { FILE_TYPES, STORAGE_PROVIDERS } from '../constants'
 
 import NotFound from './NotFound'
 
+import Backdrop from '../components/Backdrop'
 import Cover from '../components/Cover'
 import PersonList from '../components/PersonList'
 import PlyrPlayer from '../components/PlyrPlayer'
@@ -63,9 +64,7 @@ class Movie extends Component {
       return (
         <div className='Movie'>
           {this.state.movie.files.filter(file => file.type === FILE_TYPES.SOURCE).length > 0 && <PlyrPlayer item={this.state.movie} updateItemAction={this.props.updateMovie} endedAction={this.finishedMovie.bind(this)} />}
-          <picture className='Movie__backdrop'>
-            <img src={this.state.movie.backdropUrl} alt='backdrop' />
-          </picture>
+          <Backdrop url={this.state.movie.backdropUrl} />
           <div className='Movie__details'>
             <Cover url={this.state.movie.posterUrl} alt='poster' width='50%' />
             <h1>{this.state.movie.name}</h1>

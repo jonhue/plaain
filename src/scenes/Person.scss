@@ -1,17 +1,16 @@
 @import "../variables";
 
 .Person {
-  &__backdrop {
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-  }
-
   &__details {
     padding: $padding $padding $spacing;
 
     .Cover {
-      min-height: 250px;
+      max-width: 300px;
+      min-height: 300px;
+
+      @media only screen and (min-width: 1200px) {
+        max-width: 300px;
+      }
     }
 
     h1 {
