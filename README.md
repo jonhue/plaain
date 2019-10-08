@@ -75,11 +75,7 @@ Dependencies are listed in the [.tool-versions](.tool-versions) file.
     $ yarn install
     ```
 
-3. Credentials setup
-
-    Copy [.env.sample](.env.sample) to `.env` and customize
-
-4. Start the development server
+3. Start the development server
 
     `$ yarn start`
 
