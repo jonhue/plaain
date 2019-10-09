@@ -39,8 +39,6 @@ class MicrosoftAuth {
       })
     }).then(response => {
       return response.accessToken
-    }).catch(error => {
-      console.log(error)
     })
   }
 

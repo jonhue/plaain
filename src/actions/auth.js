@@ -2,7 +2,6 @@ import { PROVIDERS } from '../constants'
 
 import MicrosoftAuth from '../services/auth/MicrosoftAuth'
 
-import { index } from './indexing'
 import { loadingBegin, loadingStop } from './loading'
 
 export const LOG_IN_BEGIN = 'LOG_IN_BEGIN'
@@ -16,8 +15,9 @@ export const authenticateMicrosoft = () => {
 
     new MicrosoftAuth().perform().then(token => {
       dispatch(logInSuccess(PROVIDERS.MICROSOFT, token))
-      dispatch(index())
+      dispatch(loadingStop())
     }).catch(error => {
+      console.log(error)
       dispatch(logInFailure(PROVIDERS.MICROSOFT, error))
       dispatch(loadingStop())
     })
