@@ -36,7 +36,7 @@
   }
 
   &__actions {
-    margin: 1.5625rem 0;
+    margin: 1.5625rem 0 $spacing;
 
     a.button,
     button {
@@ -62,8 +62,6 @@
   }
 
   &__episodes {
-    display: grid;
-    grid-gap: $spacing;
     margin-bottom: $padding;
     text-align: center;
 
@@ -71,44 +69,45 @@
       text-align: left;
     }
 
-    @media only screen and (min-width: 800px) {
-      grid-template-columns: 1fr 1fr;
-    }
+    & > div {
+      display: grid;
+      grid-gap: $spacing;
 
-    &__episode {
-      cursor: pointer;
-      display: flex;
-      margin-top: $spacing;
-      text-align: left;
-
-      &[disabled] {
-        cursor: not-allowed;
-        opacity: 0.5;
+      @media only screen and (min-width: 800px) {
+        grid-template-columns: 1fr 1fr;
       }
 
-      &:first-child {
-        margin-top: 1.875rem;
-      }
+      .Season__episode {
+        cursor: pointer;
+        display: flex;
+        margin-top: $spacing;
+        text-align: left;
 
-      &__number {
-        font-size: 1.25rem;
-        font-weight: 900;
-        min-width: 1.5rem;
-        text-align: right;
-      }
-
-      &__details {
-        margin-left: $spacing;
-
-        h2 {
-          margin: 0 0 0.1em;
+        &[disabled] {
+          cursor: not-allowed;
+          opacity: 0.5;
         }
 
-        p {
-          max-width: 500px;
+        &__number {
+          font-size: 1.25rem;
+          font-weight: 900;
+          min-width: 1.5rem;
+          text-align: right;
+        }
 
-          &.small {
-            margin: 0;
+        &__details {
+          margin-left: $spacing;
+
+          h2 {
+            margin: 0 0 0.1em;
+          }
+
+          p {
+            max-width: 500px;
+
+            &.small {
+              margin: 0;
+            }
           }
         }
       }
