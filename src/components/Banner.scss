@@ -9,7 +9,9 @@
   }
 
   p {
+    color: $white;
     margin-top: 0.3em;
+    opacity: 0.8;
 
     &:last-child {
       margin-bottom: 0;
