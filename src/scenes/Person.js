@@ -44,15 +44,15 @@ class Person extends Component {
             <p>{this.state.roles.join(', ')}</p>
           </div>
 
-          {this.state.movies.length > 0 && <section>
+          {this.state.movies.length > 0 && <div className='Person__movies'>
             <h2>Movies</h2>
             <HorizontalSlide items={this.state.movies} id='movies' />
-          </section>}
+          </div>}
 
-          {this.state.seasons.length > 0 && <section>
+          {this.state.seasons.length > 0 && <div className='Person__seasons'>
             <h2>TV seasons</h2>
             <HorizontalSlide items={this.state.seasons} id='seasons' />
-          </section>}
+          </div>}
         </div>
       )
     } else {

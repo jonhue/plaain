@@ -4,6 +4,10 @@
   &__details {
     padding: $padding $padding $spacing;
 
+    @media only screen and (min-width: 1600px) {
+      padding-top: 5rem;
+    }
+
     .Cover {
       max-width: 300px;
       min-height: 300px;
@@ -24,5 +28,12 @@
 
   h2 {
     margin: $padding $padding 0;
+  }
+
+  &__details, &__movies, &__seasons {
+    @media only screen and (min-width: 1600px) {
+      margin: 0 auto;
+      max-width: 1600px;
+    }
   }
 }
