@@ -8,6 +8,10 @@
   &__details {
     padding: $padding;
 
+    @media only screen and (min-width: 1600px) {
+      padding: 5rem $padding;
+    }
+
     .Cover {
       max-width: 300px;
       min-height: 300px;
@@ -77,12 +81,15 @@
   &__sources {
     background: $dark;
     margin-top: $spacing;
-    padding: 1.5625rem $padding;
 
     & > div {
-      display: grid;
-      grid-gap: $spacing;
-      grid-template-columns: 1fr 1fr;
+      padding: 1.5625rem $padding;
+
+      & > div {
+        display: grid;
+        grid-gap: $spacing;
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     h4 {
@@ -95,6 +102,14 @@
 
     p {
       margin: 0.2em 0;
+    }
+  }
+
+  &__details,
+  &__sources > div {
+    @media only screen and (min-width: 1600px) {
+      margin: 0 auto;
+      max-width: 1600px;
     }
   }
 }

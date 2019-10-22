@@ -90,30 +90,32 @@ class Movie extends Component {
             </div>
           </div>
           <div className='Movie__sources'>
-            <h4>Sources</h4>
-            <p className='small'>Hosted on {STORAGE_PROVIDERS[this.state.movie.provider]}</p>
             <div>
-              <div className='Movie__sources__versions'>
-                <h5>Versions</h5>
-                {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.SOURCE)
-                  .map((file, index) => {
-                    return <p className='small' key={index}>{file.information}</p>
-                  })}
-                {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.SOURCE)
-                  .length === 0 && <p className='small'>-</p>}
-              </div>
-              <div className='Movie__sources__captions'>
-                <h5>Subtitles</h5>
-                {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.CAPTION)
-                  .map((file, index) => {
-                    return <p className='small' key={index}>{file.information}</p>
-                  })}
-                {this.state.movie.files
-                  .filter(file => file.type === FILE_TYPES.CAPTION)
-                  .length === 0 && <p className='small'>-</p>}
+              <h4>Sources</h4>
+              <p className='small'>Hosted on {STORAGE_PROVIDERS[this.state.movie.provider]}</p>
+              <div>
+                <div className='Movie__sources__versions'>
+                  <h5>Versions</h5>
+                  {this.state.movie.files
+                    .filter(file => file.type === FILE_TYPES.SOURCE)
+                    .map((file, index) => {
+                      return <p className='small' key={index}>{file.information}</p>
+                    })}
+                  {this.state.movie.files
+                    .filter(file => file.type === FILE_TYPES.SOURCE)
+                    .length === 0 && <p className='small'>-</p>}
+                </div>
+                <div className='Movie__sources__captions'>
+                  <h5>Subtitles</h5>
+                  {this.state.movie.files
+                    .filter(file => file.type === FILE_TYPES.CAPTION)
+                    .map((file, index) => {
+                      return <p className='small' key={index}>{file.information}</p>
+                    })}
+                  {this.state.movie.files
+                    .filter(file => file.type === FILE_TYPES.CAPTION)
+                    .length === 0 && <p className='small'>-</p>}
+                </div>
               </div>
             </div>
           </div>
