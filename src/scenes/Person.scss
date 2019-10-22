@@ -30,7 +30,9 @@
     margin: $padding $padding 0;
   }
 
-  &__details, &__movies, &__seasons {
+  &__details,
+  &__movies,
+  &__seasons {
     @media only screen and (min-width: 1600px) {
       margin: 0 auto;
       max-width: 1600px;
