@@ -22,7 +22,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "request": "^2.88",
-    "request-promise": "^4.2.4",
+    "request-promise": "^4.2.5",
     "reselect": "^4.0.0",
     "stylelint-scss": "^3.12.1",
     "swiper": "^5.2.0"
