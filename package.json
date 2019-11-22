@@ -25,7 +25,7 @@
     "request-promise": "^4.2.5",
     "reselect": "^4.0.0",
     "stylelint-scss": "^3.12.1",
-    "swiper": "^5.2.0"
+    "swiper": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
