@@ -12,19 +12,6 @@ import { showSelector } from '../selectors/shows'
 import { seasonsByShowSelector } from '../selectors/seasons'
 
 class Show extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      show: showSelector(this.props.match.params.id)({
-        shows: this.props.shows
-      }),
-      seasons: seasonsByShowSelector(this.props.match.params.id)({
-        seasons: this.props.seasons
-      })
-    }
-  }
-
   componentDidMount() {
     document.querySelector('.Nav a:nth-child(3)').classList.add('active')
   }
@@ -34,21 +21,28 @@ class Show extends Component {
   }
 
   render() {
-    if (this.state.show) {
+    const show = showSelector(this.props.match.params.id)({
+      shows: this.props.shows
+    })
+    const seasons = seasonsByShowSelector(this.props.match.params.id)({
+      seasons: this.props.seasons
+    })
+
+    if (show) {
       return (
         <div className='Show'>
-          <Backdrop url={this.state.show.backdropUrl} />
+          <Backdrop url={show.backdropUrl} />
           <div className='Show__details'>
-            <Cover url={this.state.show.posterUrl} alt='poster' width='50%' />
-            <h1>{this.state.show.name}</h1>
+            <Cover url={show.posterUrl} alt='poster' width='50%' />
+            <h1>{show.name}</h1>
             <div className='Show__information'>
-              <p className='small'>{new Date(this.state.show.firstAirDate).getFullYear()} - {new Date(this.state.show.lastAirDate).getFullYear()}</p>
+              <p className='small'>{new Date(show.firstAirDate).getFullYear()} - {new Date(show.lastAirDate).getFullYear()}</p>
             </div>
-            <p className='Show__overview'>{this.state.show.overview}</p>
+            <p className='Show__overview'>{show.overview}</p>
           </div>
-          {this.state.seasons.length > 0 && <div className='Show__seasons'>
+          {seasons.length > 0 && <div className='Show__seasons'>
             <h2>Seasons</h2>
-            <HorizontalSlide items={this.state.seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' />
+            <HorizontalSlide items={seasons.sort((a, b) => (a.seasonNumber < b.seasonNumber) ? -1 : 1)} id='seasons' />
           </div>}
         </div>
       )
