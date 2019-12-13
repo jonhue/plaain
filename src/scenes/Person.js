@@ -13,45 +13,39 @@ import { seasonsByPersonSelector } from '../selectors/seasons'
 import { personSelector, personRolesSelector } from '../selectors/people'
 
 class Person extends Component {
-  constructor(props) {
-    super(props)
-
+  render() {
     const id = Number.parseInt(this.props.match.params.id)
 
-    this.state = {
-      person: personSelector(id)({
-        movies: this.props.movies,
-        seasons: this.props.seasons
-      }),
-      movies: moviesByPersonSelector(id)({ movies: this.props.movies }),
-      seasons: seasonsByPersonSelector(id)({ seasons: this.props.seasons })
-    }
-    this.state.roles = personRolesSelector(id, this.state.person.gender)({
+    const person = personSelector(id)({
       movies: this.props.movies,
       seasons: this.props.seasons
     })
-  }
+    const movies = moviesByPersonSelector(id)({ movies: this.props.movies })
+    const seasons = seasonsByPersonSelector(id)({ seasons: this.props.seasons })
+    const roles = personRolesSelector(id, person.gender)({
+      movies: this.props.movies,
+      seasons: this.props.seasons
+    })
 
-  render() {
-    if (this.state.person) {
+    if (person) {
       return (
         <div className='Person'>
-          <Backdrop url={(this.state.movies[0] || this.props.shows[this.state.seasons[0].showId]).backdropUrl} />
+          <Backdrop url={(movies[0] || this.props.shows[seasons[0].showId]).backdropUrl} />
           <div className='Person__details'>
-            <Cover url={this.state.person.profileUrl} alt='profile' width='50%' />
-            <h1>{this.state.person.name}</h1>
+            <Cover url={person.profileUrl} alt='profile' width='50%' />
+            <h1>{person.name}</h1>
             <h5>Known as</h5>
-            <p>{this.state.roles.join(', ')}</p>
+            <p>{roles.join(', ')}</p>
           </div>
 
-          {this.state.movies.length > 0 && <div className='Person__movies'>
+          {movies.length > 0 && <div className='Person__movies'>
             <h2>Movies</h2>
-            <HorizontalSlide items={this.state.movies} id='movies' />
+            <HorizontalSlide items={movies} id='movies' />
           </div>}
 
-          {this.state.seasons.length > 0 && <div className='Person__seasons'>
+          {seasons.length > 0 && <div className='Person__seasons'>
             <h2>TV seasons</h2>
-            <HorizontalSlide items={this.state.seasons} id='seasons' />
+            <HorizontalSlide items={seasons} id='seasons' />
           </div>}
         </div>
       )

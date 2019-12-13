@@ -22,20 +22,6 @@ import {
 } from '../selectors/auth'
 
 class Settings extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      newVersionAvailable: window.newVersionAvailable,
-      notAuthenticated: Object.values(PROVIDERS).filter(provider => {
-        return this.props.auth[provider].token !== null
-      }).length === 0,
-      authenticationExpired: authError()({ auth: this.props.auth }),
-      noMediaFound: Object.entries(this.props.movies).length === 0 &&
-        Object.entries(this.props.shows).length === 0
-    }
-  }
-
   componentDidMount() {
     document.querySelector('.Nav a:last-child').classList.add('active')
   }
@@ -56,12 +42,20 @@ class Settings extends Component {
   }
 
   render() {
+    const newVersionAvailable = window.newVersionAvailable
+    const notAuthenticated = Object.values(PROVIDERS).filter(provider => {
+      return this.props.auth[provider].token !== null
+    }).length === 0
+    const authenticationExpired = authError()({ auth: this.props.auth })
+    const noMediaFound = Object.entries(this.props.movies).length === 0 &&
+      Object.entries(this.props.shows).length === 0
+
     return (
       <div className='Settings'>
-        {this.state.newVersionAvailable && <Banner title='Update available!' text='Restart the app to apply the changes.' />}
-        {this.state.notAuthenticated && <Banner title='Authenticate with cloud service' text='To get started, authenticate with the cloud service that hosts your media.' />}
-        {this.state.noMediaFound && <Banner title='No media found!' text="We indexed all your authenticated services, but weren't able to find any source files." linkText='Getting started with Plaain' linkUrl='https://github.com/jonhue/plaain#getting-started' />}
-        {this.state.authenticationExpired && <Banner title='Authentication expired!' text='Reauthenticate with the failing service.' />}
+        {newVersionAvailable && <Banner title='Update available!' text='Restart the app to apply the changes.' />}
+        {notAuthenticated && <Banner title='Authenticate with cloud service' text='To get started, authenticate with the cloud service that hosts your media.' />}
+        {noMediaFound && <Banner title='No media found!' text="We indexed all your authenticated services, but weren't able to find any source files." linkText='Getting started with Plaain' linkUrl='https://github.com/jonhue/plaain#getting-started' />}
+        {authenticationExpired && <Banner title='Authentication expired!' text='Reauthenticate with the failing service.' />}
 
         <section className='Settings__auth'>
           <h2>Authentication</h2>

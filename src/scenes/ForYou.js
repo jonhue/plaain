@@ -19,28 +19,6 @@ import {
 } from '../selectors/seasons'
 
 class ForYou extends Component {
-  constructor(props) {
-    super(props)
-
-    const oneMonthAgo = new Date()
-    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
-
-    this.state = {
-      inProgress: [
-        ...inProgressMoviesSelector()({ movies: this.props.movies }),
-        ...inProgressSeasonsSelector()({ seasons: this.props.seasons })
-      ].sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1),
-      recentlyWatched: [
-        ...recentlyWatchedMoviesSelector(oneMonthAgo)({
-          movies: this.props.movies
-        }),
-        ...recentlyWatchedSeasonsSelector(oneMonthAgo)({
-          seasons: this.props.seasons
-        })
-      ].sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
-    }
-  }
-
   componentDidMount() {
     document.querySelector('.Nav a:first-child').classList.add('active')
   }
@@ -50,20 +28,35 @@ class ForYou extends Component {
   }
 
   render() {
+    const oneMonthAgo = new Date()
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
+    const inProgress = [
+      ...inProgressMoviesSelector()({ movies: this.props.movies }),
+      ...inProgressSeasonsSelector()({ seasons: this.props.seasons })
+    ].sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
+    const recentlyWatched = [
+      ...recentlyWatchedMoviesSelector(oneMonthAgo)({
+        movies: this.props.movies
+      }),
+      ...recentlyWatchedSeasonsSelector(oneMonthAgo)({
+        seasons: this.props.seasons
+      })
+    ].sort((a, b) => (a.lastWatched > b.lastWatched) ? -1 : 1)
+
     if (
-      this.state.inProgress.length > 0 ||
-        this.state.recentlyWatched.length > 0
+      inProgress.length > 0 ||
+        recentlyWatched.length > 0
     ) {
       return (
         <div className='ForYou'>
-          {this.state.inProgress.length > 0 && <section>
+          {inProgress.length > 0 && <section>
             <h2>Continue watching</h2>
-            <HorizontalSlide items={this.state.inProgress} id='inProgress' />
+            <HorizontalSlide items={inProgress} id='inProgress' />
           </section>}
 
-          {this.state.recentlyWatched.length > 0 && <section>
+          {recentlyWatched.length > 0 && <section>
             <h2>Recently watched</h2>
-            <HorizontalSlide items={this.state.recentlyWatched} id='recentlyWatched' />
+            <HorizontalSlide items={recentlyWatched} id='recentlyWatched' />
           </section>}
         </div>
       )
