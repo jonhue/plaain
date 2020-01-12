@@ -5,20 +5,20 @@
     "main.js.map": "/plaain/static/js/main.92a8900f.chunk.js.map",
     "runtime-main.js": "/plaain/static/js/runtime-main.71d5f820.js",
     "runtime-main.js.map": "/plaain/static/js/runtime-main.71d5f820.js.map",
-    "static/css/2.f5ca38fe.chunk.css": "/plaain/static/css/2.f5ca38fe.chunk.css",
-    "static/js/2.82fb469c.chunk.js": "/plaain/static/js/2.82fb469c.chunk.js",
-    "static/js/2.82fb469c.chunk.js.map": "/plaain/static/js/2.82fb469c.chunk.js.map",
+    "static/css/2.4c269a7c.chunk.css": "/plaain/static/css/2.4c269a7c.chunk.css",
+    "static/js/2.077474fc.chunk.js": "/plaain/static/js/2.077474fc.chunk.js",
+    "static/js/2.077474fc.chunk.js.map": "/plaain/static/js/2.077474fc.chunk.js.map",
     "index.html": "/plaain/index.html",
-    "precache-manifest.3976f25bce249e4bd7450a646434ee95.js": "/plaain/precache-manifest.3976f25bce249e4bd7450a646434ee95.js",
+    "precache-manifest.0fb06899a65509a14ff247f60dba3c64.js": "/plaain/precache-manifest.0fb06899a65509a14ff247f60dba3c64.js",
     "service-worker.js": "/plaain/service-worker.js",
-    "static/css/2.f5ca38fe.chunk.css.map": "/plaain/static/css/2.f5ca38fe.chunk.css.map",
+    "static/css/2.4c269a7c.chunk.css.map": "/plaain/static/css/2.4c269a7c.chunk.css.map",
     "static/css/main.772b2061.chunk.css.map": "/plaain/static/css/main.772b2061.chunk.css.map",
-    "static/js/2.82fb469c.chunk.js.LICENSE": "/plaain/static/js/2.82fb469c.chunk.js.LICENSE"
+    "static/js/2.077474fc.chunk.js.LICENSE": "/plaain/static/js/2.077474fc.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.71d5f820.js",
-    "static/css/2.f5ca38fe.chunk.css",
-    "static/js/2.82fb469c.chunk.js",
+    "static/css/2.4c269a7c.chunk.css",
+    "static/js/2.077474fc.chunk.js",
     "static/css/main.772b2061.chunk.css",
     "static/js/main.92a8900f.chunk.js"
   ]
