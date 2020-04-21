@@ -24,7 +24,7 @@
     "request": "^2.88",
     "request-promise": "^4.2.5",
     "reselect": "^4.0.0",
-    "stylelint-scss": "^3.17.0",
+    "stylelint-scss": "^3.17.1",
     "swiper": "^5.3.7"
   },
   "scripts": {
