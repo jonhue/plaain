@@ -12,9 +12,11 @@ class IndexEpisodes {
   }
 
   async perform() {
-    return [].concat(...await Promise.all(
+    const episodes = await Promise.all(
       this.seasons.map(season => this.performForSeason(season, this.episodes))
-    ))
+    )
+
+    return episodes.reduce((episodes, arr) => episodes.concat(arr), [])
   }
 
   async performForSeason(season, episodes) {
