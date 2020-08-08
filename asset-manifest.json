@@ -6,19 +6,19 @@
     "runtime-main.js": "/plaain/static/js/runtime-main.c5c8064e.js",
     "runtime-main.js.map": "/plaain/static/js/runtime-main.c5c8064e.js.map",
     "static/css/2.80fb0fca.chunk.css": "/plaain/static/css/2.80fb0fca.chunk.css",
-    "static/js/2.ca091fb6.chunk.js": "/plaain/static/js/2.ca091fb6.chunk.js",
-    "static/js/2.ca091fb6.chunk.js.map": "/plaain/static/js/2.ca091fb6.chunk.js.map",
+    "static/js/2.0ecc8ffe.chunk.js": "/plaain/static/js/2.0ecc8ffe.chunk.js",
+    "static/js/2.0ecc8ffe.chunk.js.map": "/plaain/static/js/2.0ecc8ffe.chunk.js.map",
     "index.html": "/plaain/index.html",
-    "precache-manifest.810c73b5d839731474ca60948ae1a5b4.js": "/plaain/precache-manifest.810c73b5d839731474ca60948ae1a5b4.js",
+    "precache-manifest.f3663e80bc11ff0b84995b85ebd37ef5.js": "/plaain/precache-manifest.f3663e80bc11ff0b84995b85ebd37ef5.js",
     "service-worker.js": "/plaain/service-worker.js",
     "static/css/2.80fb0fca.chunk.css.map": "/plaain/static/css/2.80fb0fca.chunk.css.map",
     "static/css/main.2636f3d9.chunk.css.map": "/plaain/static/css/main.2636f3d9.chunk.css.map",
-    "static/js/2.ca091fb6.chunk.js.LICENSE.txt": "/plaain/static/js/2.ca091fb6.chunk.js.LICENSE.txt"
+    "static/js/2.0ecc8ffe.chunk.js.LICENSE.txt": "/plaain/static/js/2.0ecc8ffe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c5c8064e.js",
     "static/css/2.80fb0fca.chunk.css",
-    "static/js/2.ca091fb6.chunk.js",
+    "static/js/2.0ecc8ffe.chunk.js",
     "static/css/main.2636f3d9.chunk.css",
     "static/js/main.3386d957.chunk.js"
   ]
