@@ -1,9 +1,9 @@
 import {
   AuthActionTypes,
   AuthState,
+  REMOVE_PROVIDER,
   UPDATE_PROVIDER,
   UPDATE_VERSION,
-  REMOVE_PROVIDER,
 } from './types'
 import { VERSION } from '../../version'
 

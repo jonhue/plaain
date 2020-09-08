@@ -47,7 +47,7 @@
     "prettierlint": "prettier --check .",
     "eslint": "eslint src --ext .ts,.tsx",
     "stylelint": "stylelint 'src/**/*.scss'",
-    "lint": "yarn prettier && yarn prettierlint && yarn eslint && yarn stylelint --fix"
+    "lint": "yarn prettier && yarn prettierlint && yarn eslint --fix && yarn stylelint --fix"
   },
   "browserslist": {
     "production": [

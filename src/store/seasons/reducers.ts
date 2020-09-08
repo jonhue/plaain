@@ -1,8 +1,8 @@
 import {
+  REMOVE_SEASON,
   SeasonsActionTypes,
   SeasonsState,
   UPDATE_SEASON,
-  REMOVE_SEASON,
 } from './types'
 
 const initialState: SeasonsState = {}

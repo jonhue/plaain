@@ -1,8 +1,8 @@
 import {
   MoviesActionTypes,
   MoviesState,
-  UPDATE_MOVIE,
   REMOVE_MOVIE,
+  UPDATE_MOVIE,
 } from './types'
 
 const initialState: MoviesState = {}

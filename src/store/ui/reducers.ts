@@ -1,9 +1,9 @@
 import {
   ASYNC_BEGIN,
   ASYNC_END,
-  UPDATE_ERROR,
   UIActionTypes,
   UIState,
+  UPDATE_ERROR,
 } from './types'
 
 const initialState: UIState = {

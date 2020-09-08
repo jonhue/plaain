@@ -1,5 +1,5 @@
 import { Episode } from '../../types/media_items/Episode'
-import { EpisodesActionTypes, UPDATE_EPISODE, REMOVE_EPISODE } from './types'
+import { EpisodesActionTypes, REMOVE_EPISODE, UPDATE_EPISODE } from './types'
 
 export const updateEpisode = (episode: Episode): EpisodesActionTypes => ({
   type: UPDATE_EPISODE,

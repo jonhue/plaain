@@ -1,8 +1,8 @@
 import { Provider } from '../../types/providers/Provider'
 import {
   AuthActionTypes,
-  UPDATE_PROVIDER,
   REMOVE_PROVIDER,
+  UPDATE_PROVIDER,
   UPDATE_VERSION,
 } from './types'
 

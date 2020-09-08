@@ -1,4 +1,4 @@
-import { ASYNC_BEGIN, ASYNC_END, UPDATE_ERROR, UIActionTypes } from './types'
+import { ASYNC_BEGIN, ASYNC_END, UIActionTypes, UPDATE_ERROR } from './types'
 
 export const asyncBegin = (): UIActionTypes => ({
   type: ASYNC_BEGIN,

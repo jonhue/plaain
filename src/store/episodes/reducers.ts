@@ -1,8 +1,8 @@
 import {
   EpisodesActionTypes,
   EpisodesState,
-  UPDATE_EPISODE,
   REMOVE_EPISODE,
+  UPDATE_EPISODE,
 } from './types'
 
 const initialState: EpisodesState = {}

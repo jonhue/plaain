@@ -1,4 +1,4 @@
-import { ShowsActionTypes, ShowsState, UPDATE_SHOW, REMOVE_SHOW } from './types'
+import { REMOVE_SHOW, ShowsActionTypes, ShowsState, UPDATE_SHOW } from './types'
 
 const initialState: ShowsState = {}
 

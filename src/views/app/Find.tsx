@@ -1,13 +1,13 @@
 import './Find.scss'
-import React, { useEffect, useState } from 'react'
+import { ConnectedProps, connect } from 'react-redux'
 import FlexSearch, { Index } from 'flexsearch'
+import React, { useEffect, useState } from 'react'
 import HorizontalSlide from '../../components/HorizontalSlide'
-import { connect, ConnectedProps } from 'react-redux'
-import { RouteComponentProps } from 'react-router-dom'
-import { RootState } from '../../store'
 import { MediaItem } from '../../types/media_items/MediaItem'
-import { Show } from '../../types/media_items/Show'
 import { Movie } from '../../types/media_items/Movie'
+import { RootState } from '../../store'
+import { RouteComponentProps } from 'react-router-dom'
+import { Show } from '../../types/media_items/Show'
 
 const QUERY_PARAMETER = 'q'
 
@@ -37,7 +37,7 @@ const connector = connect(mapState)
 
 type FindProps = ConnectedProps<typeof connector> & RouteComponentProps
 
-const Find = ({ movies, shows, history, location }: FindProps) => {
+const Find = ({ history, location, movies, shows }: FindProps) => {
   const moviesIndex = buildIndex(
     Object.values(movies),
     (movie: Movie) => `${movie.title};${movie.summary}`,
