@@ -5,8 +5,6 @@ Stream your media from anywhere. No server. No fee. Plaain works by connecting y
 #### Supported cloud providers
 
 * OneDrive
-* Dropbox (on the roadmap)
-* Google Drive (on the roadmap)
 
 ### Getting started
 
