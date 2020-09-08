@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Swiper from 'swiper'
-import 'swiper/swiper.scss'
+import 'swiper/swiper-bundle.scss'
 import './HorizontalSlide.scss'
 
 import Cover from './Cover'
