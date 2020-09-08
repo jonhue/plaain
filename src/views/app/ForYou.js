@@ -1,39 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import "./ForYou.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import './ForYou.scss'
 
-import { PROVIDERS } from "../constants";
+import { PROVIDERS } from '../constants'
 
-import { index } from "../actions/indexing";
+import { index } from '../actions/indexing'
 
-import HorizontalSlide from "../components/HorizontalSlide";
+import HorizontalSlide from '../components/HorizontalSlide'
 
 import {
   inProgressMoviesSelector,
   recentlyWatchedMoviesSelector,
-} from "../selectors/movies";
+} from '../selectors/movies'
 import {
   inProgressSeasonsSelector,
   recentlyWatchedSeasonsSelector,
-} from "../selectors/seasons";
+} from '../selectors/seasons'
 
 class ForYou extends Component {
   componentDidMount() {
-    document.querySelector(".Nav a:first-child").classList.add("active");
+    document.querySelector('.Nav a:first-child').classList.add('active')
   }
 
   componentWillUnmount() {
-    document.querySelector(".Nav a:first-child").classList.remove("active");
+    document.querySelector('.Nav a:first-child').classList.remove('active')
   }
 
   render() {
-    const oneMonthAgo = new Date();
-    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+    const oneMonthAgo = new Date()
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1)
     const inProgress = [
       ...inProgressMoviesSelector()({ movies: this.props.movies }),
       ...inProgressSeasonsSelector()({ seasons: this.props.seasons }),
-    ].sort((a, b) => (a.lastWatched > b.lastWatched ? -1 : 1));
+    ].sort((a, b) => (a.lastWatched > b.lastWatched ? -1 : 1))
     const recentlyWatched = [
       ...recentlyWatchedMoviesSelector(oneMonthAgo)({
         movies: this.props.movies,
@@ -41,7 +41,7 @@ class ForYou extends Component {
       ...recentlyWatchedSeasonsSelector(oneMonthAgo)({
         seasons: this.props.seasons,
       }),
-    ].sort((a, b) => (a.lastWatched > b.lastWatched ? -1 : 1));
+    ].sort((a, b) => (a.lastWatched > b.lastWatched ? -1 : 1))
 
     if (inProgress.length > 0 || recentlyWatched.length > 0) {
       return (
@@ -60,10 +60,10 @@ class ForYou extends Component {
             </section>
           )}
         </div>
-      );
+      )
     } else if (
       Object.values(PROVIDERS).filter((provider) => {
-        return this.props.auth[provider].token !== null;
+        return this.props.auth[provider].token !== null
       }).length === 0
     ) {
       return (
@@ -82,7 +82,7 @@ class ForYou extends Component {
             You may only connect to your private cloud storage.
           </p>
         </div>
-      );
+      )
     } else if (
       Object.entries(this.props.movies).length === 0 &&
       Object.entries(this.props.shows).length === 0
@@ -115,7 +115,7 @@ class ForYou extends Component {
             <button onClick={this.props.index}>Index</button>
           </div>
         </div>
-      );
+      )
     } else {
       return (
         <div className="ForYou">
@@ -137,7 +137,7 @@ class ForYou extends Component {
             )}
           </div>
         </div>
-      );
+      )
     }
   }
 }
@@ -149,5 +149,5 @@ export default connect(
     seasons: state.seasons,
     auth: state.auth,
   }),
-  { index }
-)(ForYou);
+  { index },
+)(ForYou)

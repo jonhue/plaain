@@ -1,56 +1,56 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./Settings.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import './Settings.scss'
 
-import { VERSION, PROVIDERS, AUTOMATIC_INDEXING } from "../constants";
+import { VERSION, PROVIDERS, AUTOMATIC_INDEXING } from '../constants'
 
-import { authenticateMicrosoft } from "../actions/auth";
-import { index } from "../actions/indexing";
-import { updateSettings } from "../actions/settings";
+import { authenticateMicrosoft } from '../actions/auth'
+import { index } from '../actions/indexing'
+import { updateSettings } from '../actions/settings'
 
-import AddIcon from "../components/Nucleo/icons/add.jsx";
-import DropboxIcon from "../components/Nucleo/icons/dropbox.jsx";
-import GoogleIcon from "../components/Nucleo/icons/google.jsx";
-import MicrosoftIcon from "../components/Nucleo/icons/microsoft.jsx";
+import AddIcon from '../components/Nucleo/icons/add.jsx'
+import DropboxIcon from '../components/Nucleo/icons/dropbox.jsx'
+import GoogleIcon from '../components/Nucleo/icons/google.jsx'
+import MicrosoftIcon from '../components/Nucleo/icons/microsoft.jsx'
 
-import Banner from "../components/Banner";
+import Banner from '../components/Banner'
 
 import {
   authTokenSelector,
   authError,
   authProviderError,
-} from "../selectors/auth";
+} from '../selectors/auth'
 
 class Settings extends Component {
   componentDidMount() {
-    document.querySelector(".Nav a:last-child").classList.add("active");
+    document.querySelector('.Nav a:last-child').classList.add('active')
   }
 
   componentWillUnmount() {
-    document.querySelector(".Nav a:last-child").classList.remove("active");
+    document.querySelector('.Nav a:last-child').classList.remove('active')
   }
 
   index() {
-    this.props.index();
+    this.props.index()
   }
 
   handleAutomaticIndexingChange(event) {
     this.props.updateSettings({
       ...this.props.settings,
       automaticIndexing: event.target.value,
-    });
+    })
   }
 
   render() {
-    const newVersionAvailable = window.newVersionAvailable;
+    const newVersionAvailable = window.newVersionAvailable
     const notAuthenticated =
       Object.values(PROVIDERS).filter((provider) => {
-        return this.props.auth[provider].token !== null;
-      }).length === 0;
-    const authenticationExpired = authError()({ auth: this.props.auth });
+        return this.props.auth[provider].token !== null
+      }).length === 0
+    const authenticationExpired = authError()({ auth: this.props.auth })
     const noMediaFound =
       Object.entries(this.props.movies).length === 0 &&
-      Object.entries(this.props.shows).length === 0;
+      Object.entries(this.props.shows).length === 0
 
     return (
       <div className="Settings">
@@ -93,11 +93,11 @@ class Settings extends Component {
                 className={`microsoft ${
                   authTokenSelector(PROVIDERS.MICROSOFT)({
                     auth: this.props.auth,
-                  }) && "primary"
+                  }) && 'primary'
                 } ${
                   authProviderError(PROVIDERS.MICROSOFT)({
                     auth: this.props.auth,
-                  }) && "warn"
+                  }) && 'warn'
                 }`}
                 onClick={this.props.authenticateMicrosoft}
               >
@@ -148,10 +148,10 @@ class Settings extends Component {
           <h2>Version</h2>
           <p>
             Plaain {VERSION}
-            {!window.newVersionAvailable && " (latest)"}.
+            {!window.newVersionAvailable && ' (latest)'}.
           </p>
           <p className="small">
-            Plaain is{" "}
+            Plaain is{' '}
             <a
               href="https://github.com/jonhue/plaain"
               target="_blank"
@@ -159,7 +159,7 @@ class Settings extends Component {
             >
               open-source
             </a>
-            . See the{" "}
+            . See the{' '}
             <a
               href="https://github.com/jonhue/plaain/releases"
               target="_blank"
@@ -176,7 +176,7 @@ class Settings extends Component {
           </p>
         </section>
       </div>
-    );
+    )
   }
 }
 
@@ -187,5 +187,5 @@ export default connect(
     movies: state.movies,
     shows: state.shows,
   }),
-  { authenticateMicrosoft, index, updateSettings }
-)(Settings);
+  { authenticateMicrosoft, index, updateSettings },
+)(Settings)

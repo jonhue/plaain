@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default (props) => (
   <svg
@@ -17,4 +17,4 @@ export default (props) => (
       />
     </g>
   </svg>
-);
+)

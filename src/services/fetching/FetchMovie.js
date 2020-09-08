@@ -1,41 +1,41 @@
-import TMDb from "../databases/TMDb";
-import Parametrize from "../Parametrize";
+import TMDb from '../databases/TMDb'
+import Parametrize from '../Parametrize'
 
 class FetchMovie {
   constructor(movie) {
-    this._movie = movie;
-    this._tmdb = new TMDb();
+    this._movie = movie
+    this._tmdb = new TMDb()
   }
 
   perform() {
-    return this.tmdb.findMovie(this.movie.name).then((id) => this.fetch(id));
+    return this.tmdb.findMovie(this.movie.name).then((id) => this.fetch(id))
   }
 
   async fetch(id) {
-    this.movie.id = id;
-    this.movie.path = `/app/movie/${this.movie.id}`;
+    this.movie.id = id
+    this.movie.path = `/app/movie/${this.movie.id}`
 
     if (this.movie.id === null) {
-      return;
+      return
     }
 
-    await Promise.all([this.fetchDetails(), this.fetchCredits()]);
+    await Promise.all([this.fetchDetails(), this.fetchCredits()])
 
-    return this.movie;
+    return this.movie
   }
 
   fetchDetails() {
     return this.tmdb.movie(this.movie.id).then((response) => {
-      this.movie.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`;
-      this.movie.overview = response.overview;
-      this.movie.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`;
-      this.movie.releaseDate = response.release_date;
-      this.movie.runtime = response.runtime;
-      this.movie.name = response.title;
+      this.movie.backdropUrl = `https://image.tmdb.org/t/p/original${response.backdrop_path}`
+      this.movie.overview = response.overview
+      this.movie.posterUrl = `https://image.tmdb.org/t/p/original${response.poster_path}`
+      this.movie.releaseDate = response.release_date
+      this.movie.runtime = response.runtime
+      this.movie.name = response.title
       this.movie.trailerLink =
-        "https://www.youtube.com/results?search_query=" +
-        `${new Parametrize(this.movie.name).perform()}+official+trailer`;
-    });
+        'https://www.youtube.com/results?search_query=' +
+        `${new Parametrize(this.movie.name).perform()}+official+trailer`
+    })
   }
 
   fetchCredits() {
@@ -46,24 +46,24 @@ class FetchMovie {
         name: castMember.name,
         gender: castMember.gender,
         profileUrl: `https://image.tmdb.org/t/p/original${castMember.profile_path}`,
-      }));
+      }))
       this.movie.crew = response.crew.map((crewMember) => ({
         id: crewMember.id,
         job: crewMember.job,
         name: crewMember.name,
         gender: crewMember.gender,
         profileUrl: `https://image.tmdb.org/t/p/original${crewMember.profile_path}`,
-      }));
-    });
+      }))
+    })
   }
 
   get movie() {
-    return this._movie;
+    return this._movie
   }
 
   get tmdb() {
-    return this._tmdb;
+    return this._tmdb
   }
 }
 
-export default FetchMovie;
+export default FetchMovie

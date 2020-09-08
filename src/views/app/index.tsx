@@ -1,19 +1,19 @@
-import "./index.scss";
-import { Route, RouteComponentProps, Switch } from "react-router-dom";
-import NotFound from "../NotFound";
-import React from "react";
-import ForYou from "./ForYou";
-import Movies from "./Movies";
-import Movie from "./Movie";
-import Shows from "./Shows";
-import Show from "./Show";
-import Season from "./Season";
-import Person from "./Person";
-import Settings from "./Settings";
-import Find from "./Find";
-import Nav from "../../components/Nav";
+import './index.scss'
+import { Route, RouteComponentProps, Switch } from 'react-router-dom'
+import NotFound from '../NotFound'
+import React from 'react'
+import ForYou from './ForYou'
+import Movies from './Movies'
+import Movie from './Movie'
+import Shows from './Shows'
+import Show from './Show'
+import Season from './Season'
+import Person from './Person'
+import Settings from './Settings'
+import Find from './Find'
+import Nav from '../../components/Nav'
 
-type AppProps = RouteComponentProps;
+type AppProps = RouteComponentProps
 
 export const App = ({ match }: AppProps) => (
   <div className="App">
@@ -32,6 +32,6 @@ export const App = ({ match }: AppProps) => (
 
     <Nav />
   </div>
-);
+)
 
-export default App;
+export default App

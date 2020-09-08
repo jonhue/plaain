@@ -1,64 +1,64 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./Movie.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import './Movie.scss'
 
-import { FILE_TYPES, STORAGE_PROVIDERS } from "../constants";
+import { FILE_TYPES, STORAGE_PROVIDERS } from '../constants'
 
-import NotFound from "./NotFound";
+import NotFound from './NotFound'
 
-import Backdrop from "../components/Backdrop";
-import Cover from "../components/Cover";
-import PersonList from "../components/PersonList";
-import PlyrPlayer from "../components/PlyrPlayer";
+import Backdrop from '../components/Backdrop'
+import Cover from '../components/Cover'
+import PersonList from '../components/PersonList'
+import PlyrPlayer from '../components/PlyrPlayer'
 
-import { updateMovie } from "../actions/movies";
+import { updateMovie } from '../actions/movies'
 
-import { movieSelector } from "../selectors/movies";
+import { movieSelector } from '../selectors/movies'
 
 class Movie extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       movie: movieSelector(this.props.match.params.id)({
         movies: this.props.movies,
       }),
-    };
+    }
   }
 
   componentDidMount() {
-    document.querySelector(".Nav a:nth-child(2)").classList.add("active");
+    document.querySelector('.Nav a:nth-child(2)').classList.add('active')
   }
 
   componentWillUnmount() {
-    document.querySelector(".Nav a:nth-child(2)").classList.remove("active");
+    document.querySelector('.Nav a:nth-child(2)').classList.remove('active')
   }
 
   continue() {
-    this.watch(this.state.movie.progress);
+    this.watch(this.state.movie.progress)
   }
 
   watch(progress = 0) {
-    const player = document.querySelector(".PlyrPlayer");
-    const plyr = player.querySelector("#player").plyr;
-    player.dataset.preventExit = true;
+    const player = document.querySelector('.PlyrPlayer')
+    const plyr = player.querySelector('#player').plyr
+    player.dataset.preventExit = true
     // Wait until Plyr is ready to start playing
     setTimeout(() => {
-      player.style.display = "block";
-      plyr.fullscreen.enter();
-      plyr.play();
-      plyr.currentTime = progress;
+      player.style.display = 'block'
+      plyr.fullscreen.enter()
+      plyr.play()
+      plyr.currentTime = progress
       setTimeout(() => {
-        delete player.dataset.preventExit;
-      }, 100); // Fixing #232
-    }, 100);
+        delete player.dataset.preventExit
+      }, 100) // Fixing #232
+    }, 100)
   }
 
   finishedMovie() {
     this.props.updateMovie({
       id: this.state.movie.id,
       progress: 0,
-    });
+    })
   }
 
   render() {
@@ -66,7 +66,7 @@ class Movie extends Component {
       return (
         <div className="Movie">
           {this.state.movie.files.filter(
-            (file) => file.type === FILE_TYPES.SOURCE
+            (file) => file.type === FILE_TYPES.SOURCE,
           ).length > 0 && (
             <PlyrPlayer
               item={this.state.movie}
@@ -84,14 +84,14 @@ class Movie extends Component {
               </p>
               <p className="small">
                 {Math.floor(this.state.movie.runtime / 60) !== 0 &&
-                  `${Math.floor(this.state.movie.runtime / 60)}h`}{" "}
+                  `${Math.floor(this.state.movie.runtime / 60)}h`}{' '}
                 {this.state.movie.runtime % 60 !== 0 &&
                   `${this.state.movie.runtime % 60}m`}
               </p>
             </div>
             <div className="Movie__actions">
               {this.state.movie.files.filter(
-                (file) => file.type === FILE_TYPES.SOURCE
+                (file) => file.type === FILE_TYPES.SOURCE,
               ).length > 0 &&
                 this.state.movie.progress !== undefined &&
                 this.state.movie.progress !== 0 &&
@@ -105,15 +105,15 @@ class Movie extends Component {
                   </button>
                 )}
               {this.state.movie.files.filter(
-                (file) => file.type === FILE_TYPES.SOURCE
+                (file) => file.type === FILE_TYPES.SOURCE,
               ).length > 0 && (
                 <button
                   className={
                     this.state.movie.progress === undefined ||
                     this.state.movie.progress === 0 ||
                     this.state.movie.progress / 60 >= this.state.movie.runtime
-                      ? "primary"
-                      : ""
+                      ? 'primary'
+                      : ''
                   }
                   id="watch"
                   onClick={() => this.watch()}
@@ -162,10 +162,10 @@ class Movie extends Component {
                         <p className="small" key={index}>
                           {file.information}
                         </p>
-                      );
+                      )
                     })}
                   {this.state.movie.files.filter(
-                    (file) => file.type === FILE_TYPES.SOURCE
+                    (file) => file.type === FILE_TYPES.SOURCE,
                   ).length === 0 && <p className="small">-</p>}
                 </div>
                 <div className="Movie__sources__captions">
@@ -177,19 +177,19 @@ class Movie extends Component {
                         <p className="small" key={index}>
                           {file.information}
                         </p>
-                      );
+                      )
                     })}
                   {this.state.movie.files.filter(
-                    (file) => file.type === FILE_TYPES.CAPTION
+                    (file) => file.type === FILE_TYPES.CAPTION,
                   ).length === 0 && <p className="small">-</p>}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      );
+      )
     } else {
-      return <NotFound />;
+      return <NotFound />
     }
   }
 }
@@ -198,5 +198,5 @@ export default connect(
   (state) => ({
     movies: state.movies,
   }),
-  { updateMovie }
-)(Movie);
+  { updateMovie },
+)(Movie)

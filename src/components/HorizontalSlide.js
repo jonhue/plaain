@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Swiper from "swiper";
-import "swiper/swiper-bundle.css";
-import "./HorizontalSlide.scss";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Swiper from 'swiper'
+import 'swiper/swiper-bundle.css'
+import './HorizontalSlide.scss'
 
-import Cover from "./Cover";
+import Cover from './Cover'
 
 class HorizontalSlide extends Component {
   componentDidMount() {
     new Swiper(
       document.querySelector(
-        `.HorizontalSlide#${this.props.id} .swiper-container`
+        `.HorizontalSlide#${this.props.id} .swiper-container`,
       ),
       {
         spaceBetween: 15,
-        slidesPerView: "auto",
+        slidesPerView: 'auto',
         slidesOffsetBefore: 20,
         slidesOffsetAfter: 20,
         grabCursor: true,
-      }
-    );
+      },
+    )
   }
 
   render() {
@@ -33,13 +33,13 @@ class HorizontalSlide extends Component {
                   <div className="swiper-slide" key={item.id}>
                     <Link to={item.path}>
                       <Cover
-                        url={item.posterUrl || "/cover.png"}
+                        url={item.posterUrl || '/cover.png'}
                         alt={item.name}
                         width="100%"
                       />
                     </Link>
                   </div>
-                );
+                )
               })
             ) : (
               <div className="swiper-slide">
@@ -49,8 +49,8 @@ class HorizontalSlide extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default HorizontalSlide;
+export default HorizontalSlide

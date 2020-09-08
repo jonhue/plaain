@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Swiper from "swiper";
-import "swiper/swiper-bundle.css";
-import "./VerticalSlide.scss";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Swiper from 'swiper'
+import 'swiper/swiper-bundle.css'
+import './VerticalSlide.scss'
 
-import Cover from "./Cover";
+import Cover from './Cover'
 
 class VerticalSlide extends Component {
   componentDidMount() {
     new Swiper(
       document.querySelector(
-        `.VerticalSlide#${this.props.id} .swiper-container`
+        `.VerticalSlide#${this.props.id} .swiper-container`,
       ),
       {
-        direction: "vertical",
-        slidesPerView: "auto",
+        direction: 'vertical',
+        slidesPerView: 'auto',
         grabCursor: true,
-        effect: "coverflow",
+        effect: 'coverflow',
         coverflowEffect: {
           rotate: 0,
           stretch: 425,
@@ -28,8 +28,8 @@ class VerticalSlide extends Component {
           replaceState: true,
           key: this.props.path,
         },
-      }
-    );
+      },
+    )
   }
 
   render() {
@@ -47,13 +47,13 @@ class VerticalSlide extends Component {
                   >
                     <Link to={item.path}>
                       <Cover
-                        url={item.posterUrl || "/cover.png"}
+                        url={item.posterUrl || '/cover.png'}
                         alt={item.name}
                         width="100%"
                       />
                     </Link>
                   </div>
-                );
+                )
               })
             ) : (
               <div className="swiper-slide">
@@ -63,8 +63,8 @@ class VerticalSlide extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default VerticalSlide;
+export default VerticalSlide

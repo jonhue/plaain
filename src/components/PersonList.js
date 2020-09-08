@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./PersonList.scss";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './PersonList.scss'
 
 class PersonList extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       wrapped: true,
-    };
+    }
   }
 
   toggle() {
     this.setState({
       wrapped: !this.state.wrapped,
-    });
+    })
   }
 
   render() {
@@ -25,17 +25,17 @@ class PersonList extends Component {
           .map((person, index) => {
             return (
               <p key={index}>
-                <Link to={`/app/person/${person.id}`}>{person.name}</Link> ·{" "}
+                <Link to={`/app/person/${person.id}`}>{person.name}</Link> ·{' '}
                 <span>{person[this.props.attribute]}</span>
               </p>
-            );
+            )
           })}
         <span onClick={this.toggle.bind(this)}>
-          {this.state.wrapped ? "Show more" : "Show less"}
+          {this.state.wrapped ? 'Show more' : 'Show less'}
         </span>
       </div>
-    );
+    )
   }
 }
 
-export default PersonList;
+export default PersonList

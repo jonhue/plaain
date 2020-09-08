@@ -1,24 +1,24 @@
-import { Episode } from "../../types/media_items/Episode";
+import { Episode } from '../../types/media_items/Episode'
 
-export const UPDATE_EPISODE = "UPDATE_EPISODE";
-export const REMOVE_EPISODE = "REMOVE_EPISODE";
+export const UPDATE_EPISODE = 'UPDATE_EPISODE'
+export const REMOVE_EPISODE = 'REMOVE_EPISODE'
 
 export interface EpisodesState {
-  [id: number]: Episode | undefined;
+  [id: number]: Episode | undefined
 }
 
 interface UpdateEpisodeAction {
-  type: typeof UPDATE_EPISODE;
+  type: typeof UPDATE_EPISODE
   payload: {
-    episode: Episode;
-  };
+    episode: Episode
+  }
 }
 
 interface RemoveEpisodeAction {
-  type: typeof REMOVE_EPISODE;
+  type: typeof REMOVE_EPISODE
   payload: {
-    id: number;
-  };
+    id: number
+  }
 }
 
-export type EpisodesActionTypes = UpdateEpisodeAction | RemoveEpisodeAction;
+export type EpisodesActionTypes = UpdateEpisodeAction | RemoveEpisodeAction

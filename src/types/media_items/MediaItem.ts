@@ -6,7 +6,7 @@ export enum MediaItemType {
 }
 
 export interface MediaItem {
-  type: MediaItemType;
-  id: number;
-  providerId: number;
+  type: MediaItemType
+  id: number
+  providerId: number
 }

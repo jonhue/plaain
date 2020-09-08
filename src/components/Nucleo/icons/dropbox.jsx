@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default (props) => (
   <svg
@@ -28,4 +28,4 @@ export default (props) => (
       <polygon points="16.01932,19.51992 9.41319,25.00165 6.58635,23.15606 6.58635,25.22512 16.01932,30.88176 25.45226,25.22512 25.45226,23.15606 22.62543,25.00165 " />
     </g>
   </svg>
-);
+)

@@ -1,6 +1,6 @@
-import "./Welcome.scss";
-import { Link } from "react-router-dom";
-import React from "react";
+import './Welcome.scss'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 export const Welcome = () => (
   <div className="Welcome">
@@ -23,6 +23,6 @@ export const Welcome = () => (
       </a>
     </div>
   </div>
-);
+)
 
-export default Welcome;
+export default Welcome

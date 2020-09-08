@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 class PlyrSource extends Component {
   render() {
@@ -8,8 +8,8 @@ class PlyrSource extends Component {
         type={this.props.source.mimeType}
         size={this.props.source.information}
       />
-    );
+    )
   }
 }
 
-export default PlyrSource;
+export default PlyrSource

@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./Season.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import './Season.scss'
 
-import { FILE_TYPES } from "../constants";
+import { FILE_TYPES } from '../constants'
 
-import NotFound from "./NotFound";
+import NotFound from './NotFound'
 
-import Backdrop from "../components/Backdrop";
-import Cover from "../components/Cover";
-import PersonList from "../components/PersonList";
-import PlyrPlayer from "../components/PlyrPlayer";
+import Backdrop from '../components/Backdrop'
+import Cover from '../components/Cover'
+import PersonList from '../components/PersonList'
+import PlyrPlayer from '../components/PlyrPlayer'
 
-import { updateSeason } from "../actions/seasons";
-import { updateEpisode } from "../actions/episodes";
+import { updateSeason } from '../actions/seasons'
+import { updateEpisode } from '../actions/episodes'
 
-import { showSelector } from "../selectors/shows";
-import { seasonSelector } from "../selectors/seasons";
-import { episodesBySeasonSelector } from "../selectors/episodes";
+import { showSelector } from '../selectors/shows'
+import { seasonSelector } from '../selectors/seasons'
+import { episodesBySeasonSelector } from '../selectors/episodes'
 
 class Season extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       season: seasonSelector(this.props.match.params.id)({
@@ -36,60 +36,60 @@ class Season extends Component {
           episode.provider !== undefined &&
           episode.files.filter((file) => file.type === FILE_TYPES.SOURCE)
             .length !== 0
-        );
+        )
       }),
       episodesWrapped: true,
-    };
+    }
     this.state.currentEpisodeNumber =
       this.state.watchableEpisodes.length > 0 &&
-      this.state.watchableEpisodes[0].episodeNumber;
+      this.state.watchableEpisodes[0].episodeNumber
   }
 
   componentDidMount() {
-    document.querySelector(".Nav a:nth-child(3)").classList.add("active");
+    document.querySelector('.Nav a:nth-child(3)').classList.add('active')
   }
 
   componentWillUnmount() {
-    document.querySelector(".Nav a:nth-child(3)").classList.remove("active");
+    document.querySelector('.Nav a:nth-child(3)').classList.remove('active')
   }
 
   toggleEpisodes() {
     this.setState({
       episodesWrapped: !this.state.episodesWrapped,
-    });
+    })
   }
 
   continue() {
     this.watch(
       this.state.season.progress || 0,
-      this.state.episodes[this.state.season.progress - 1].progress || 0
-    );
+      this.state.episodes[this.state.season.progress - 1].progress || 0,
+    )
   }
 
   watch(episodeNumber, progress = 0) {
     this.setState({
       currentEpisodeNumber: episodeNumber,
-    });
+    })
 
     this.props.updateSeason({
       id: this.state.season.id,
       lastWatched: new Date().getTime(),
       progress: episodeNumber,
-    });
+    })
 
-    const player = document.querySelector(".PlyrPlayer");
-    const plyr = player.querySelector("#player").plyr;
-    player.dataset.preventExit = true;
+    const player = document.querySelector('.PlyrPlayer')
+    const plyr = player.querySelector('#player').plyr
+    player.dataset.preventExit = true
     // Wait until Plyr is ready to start playing after the sources changed
     setTimeout(() => {
-      player.style.display = "block";
-      plyr.fullscreen.enter();
-      plyr.play();
-      plyr.currentTime = progress;
+      player.style.display = 'block'
+      plyr.fullscreen.enter()
+      plyr.play()
+      plyr.currentTime = progress
       setTimeout(() => {
-        delete player.dataset.preventExit;
-      }, 100); // Fixing #232
-    }, 100);
+        delete player.dataset.preventExit
+      }, 100) // Fixing #232
+    }, 100)
   }
 
   stoppedEpisode() {
@@ -100,21 +100,21 @@ class Season extends Component {
     this.props.updateEpisode({
       id: this.state.episodes[this.state.currentEpisodeNumber - 1].id,
       progress: 0,
-    });
+    })
 
-    let episodeNumber = 0;
+    let episodeNumber = 0
     if (
       this.state.episodes[this.state.currentEpisodeNumber].files.filter(
-        (file) => file.type === FILE_TYPES.SOURCE
+        (file) => file.type === FILE_TYPES.SOURCE,
       ).length > 0
     ) {
-      episodeNumber = this.state.currentEpisodeNumber + 1;
+      episodeNumber = this.state.currentEpisodeNumber + 1
     }
 
     this.props.updateSeason({
       id: this.state.season.id,
       progress: episodeNumber,
-    });
+    })
 
     // this.forceUpdate()
   }
@@ -171,15 +171,15 @@ class Season extends Component {
                     className={
                       this.state.movie.progress === undefined ||
                       this.state.season.progress === 0
-                        ? "primary"
-                        : ""
+                        ? 'primary'
+                        : ''
                     }
                     id="watch"
                     onClick={() =>
                       this.watch(this.state.watchableEpisodes[0].episodeNumber)
                     }
                   >
-                    Watch episode{" "}
+                    Watch episode{' '}
                     {this.state.watchableEpisodes[0].episodeNumber}
                   </button>
                 )}
@@ -199,7 +199,7 @@ class Season extends Component {
                   .sort((a, b) => (a.episodeNumber < b.episodeNumber ? -1 : 1))
                   .slice(
                     0,
-                    this.state.episodesWrapped ? 0 : this.state.episodes.length
+                    this.state.episodesWrapped ? 0 : this.state.episodes.length,
                   )
                   .map((episode, index) => {
                     return (
@@ -210,7 +210,7 @@ class Season extends Component {
                           this.state.episodes[
                             episode.episodeNumber - 1
                           ].files.filter(
-                            (file) => file.type === FILE_TYPES.SOURCE
+                            (file) => file.type === FILE_TYPES.SOURCE,
                           ).length === 0
                         }
                         className="Season__episode"
@@ -228,14 +228,14 @@ class Season extends Component {
                           <p>{episode.overview}</p>
                         </div>
                       </div>
-                    );
+                    )
                   })}
               </div>
               {this.state.episodes.length > 0 && (
                 <span onClick={this.toggleEpisodes.bind(this)}>
                   {this.state.episodesWrapped
-                    ? "Show all episodes"
-                    : "Hide episodes"}
+                    ? 'Show all episodes'
+                    : 'Hide episodes'}
                 </span>
               )}
             </div>
@@ -255,9 +255,9 @@ class Season extends Component {
             </div>
           </div>
         </div>
-      );
+      )
     } else {
-      return <NotFound />;
+      return <NotFound />
     }
   }
 }
@@ -268,5 +268,5 @@ export default connect(
     seasons: state.seasons,
     episodes: state.episodes,
   }),
-  { updateSeason, updateEpisode }
-)(Season);
+  { updateSeason, updateEpisode },
+)(Season)

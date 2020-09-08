@@ -4,13 +4,13 @@ import {
   UPDATE_PROVIDER,
   UPDATE_VERSION,
   REMOVE_PROVIDER,
-} from "./types";
-import { VERSION } from "../../constants";
+} from './types'
+import { VERSION } from '../../version'
 
 const initialState: AuthState = {
   providers: {},
   version: VERSION,
-};
+}
 
 export default (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {
@@ -21,20 +21,20 @@ export default (state = initialState, action: AuthActionTypes): AuthState => {
           ...state.providers,
           [action.payload.provider.id]: action.payload.provider,
         },
-      };
+      }
     case UPDATE_VERSION:
       return {
         ...state,
         version: action.payload.version,
-      };
+      }
     case REMOVE_PROVIDER:
-      const { [action.payload.id]: provider, ...providers } = state.providers;
+      const { [action.payload.id]: provider, ...providers } = state.providers
 
       return {
         ...state,
         providers,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}

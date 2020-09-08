@@ -4,42 +4,42 @@ module.exports = {
     es2020: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 11,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react", "react-hooks", "@typescript-eslint"],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
-    "sort-imports": "error",
-    "react/prop-types": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/member-delimiter-style": [
-      "error",
+    'sort-imports': 'error',
+    'react/prop-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
       {
         multiline: {
-          delimiter: "none",
+          delimiter: 'none',
         },
         singleline: {
-          delimiter: "semi",
+          delimiter: 'semi',
         },
       },
     ],
   },
   settings: {
     react: {
-      version: "detect",
+      version: 'detect',
     },
   },
-};
+}

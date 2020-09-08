@@ -3,22 +3,22 @@ import {
   MoviesState,
   UPDATE_MOVIE,
   REMOVE_MOVIE,
-} from "./types";
+} from './types'
 
-const initialState: MoviesState = {};
+const initialState: MoviesState = {}
 
 export default (
   state = initialState,
-  action: MoviesActionTypes
+  action: MoviesActionTypes,
 ): MoviesState => {
   switch (action.type) {
     case UPDATE_MOVIE:
-      return { ...state, [action.payload.movie.id]: action.payload.movie };
+      return { ...state, [action.payload.movie.id]: action.payload.movie }
     case REMOVE_MOVIE:
-      const { [action.payload.id]: movie, ...movies } = state;
+      const { [action.payload.id]: movie, ...movies } = state
 
-      return movies;
+      return movies
     default:
-      return state;
+      return state
   }
-};
+}

@@ -1,20 +1,20 @@
-import { PROVIDERS } from "../../constants";
+import { PROVIDERS } from '../../constants'
 
-import OneDrive from "../drives/OneDrive";
+import OneDrive from '../drives/OneDrive'
 
 class IndexSeasons {
   constructor(accessToken, shows, seasons) {
-    this._oneDrive = new OneDrive(accessToken);
-    this._shows = shows;
-    this._seasons = seasons;
+    this._oneDrive = new OneDrive(accessToken)
+    this._shows = shows
+    this._seasons = seasons
   }
 
   async perform() {
     const seasons = await Promise.all(
-      this.shows.map((show) => this.performForShow(show, this.seasons))
-    );
+      this.shows.map((show) => this.performForShow(show, this.seasons)),
+    )
 
-    return seasons.reduce((seasons, arr) => seasons.concat(arr), []);
+    return seasons.reduce((seasons, arr) => seasons.concat(arr), [])
   }
 
   async performForShow(show, seasons) {
@@ -23,33 +23,33 @@ class IndexSeasons {
         .filter((season) => season.showId === show.id)
         .map((season) => {
           const item = response.value.find((item) => {
-            return season.id === `${show.id}-${Number.parseInt(item.name)}`;
-          });
+            return season.id === `${show.id}-${Number.parseInt(item.name)}`
+          })
 
           if (item) {
             return {
               ...season,
               provider: PROVIDERS.MICROSOFT,
               providerId: item.id,
-            };
+            }
           } else {
-            return season;
+            return season
           }
-        });
-    });
+        })
+    })
   }
 
   get oneDrive() {
-    return this._oneDrive;
+    return this._oneDrive
   }
 
   get shows() {
-    return this._shows;
+    return this._shows
   }
 
   get seasons() {
-    return this._seasons;
+    return this._seasons
   }
 }
 
-export default IndexSeasons;
+export default IndexSeasons

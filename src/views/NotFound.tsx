@@ -1,12 +1,12 @@
-import "./NotFound.scss";
-import { Link } from "react-router-dom";
-import React from "react";
+import './NotFound.scss'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 export const NotFound = () => (
   <div className="NotFound">
     <h2>You want to get lost?</h2>
     <p>
-      This path went astray... If you do want to get lost, we recommend{" "}
+      This path went astray... If you do want to get lost, we recommend{' '}
       <a
         href="https://www.imdb.com/title/tt6969502/"
         target="_blank"
@@ -17,10 +17,10 @@ export const NotFound = () => (
       .
     </p>
     <p>
-      If all you&apos;re looking for is to get back on track: you can{" "}
+      If all you&apos;re looking for is to get back on track: you can{' '}
       <Link to="/app">find home this way</Link>.
     </p>
   </div>
-);
+)
 
-export default NotFound;
+export default NotFound

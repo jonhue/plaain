@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import "./Nav.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import './Nav.scss'
 
-import PopcornIcon from "./Nucleo/icons/popcorn.jsx";
-import MovieIcon from "./Nucleo/icons/movie.jsx";
-import ShowIcon from "./Nucleo/icons/show.jsx";
-import GearIcon from "./Nucleo/icons/gear.jsx";
+import PopcornIcon from './Nucleo/icons/popcorn.jsx'
+import MovieIcon from './Nucleo/icons/movie.jsx'
+import ShowIcon from './Nucleo/icons/show.jsx'
+import GearIcon from './Nucleo/icons/gear.jsx'
 
 class Nav extends Component {
   render() {
@@ -35,11 +35,11 @@ class Nav extends Component {
           <p>Settings</p>
         </Link>
       </div>
-    );
+    )
   }
 }
 
 export default connect((state) => ({
   movies: state.movies,
   shows: state.shows,
-}))(Nav);
+}))(Nav)

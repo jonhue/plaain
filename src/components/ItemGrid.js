@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./ItemGrid.scss";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import './ItemGrid.scss'
 
-import Cover from "./Cover";
+import Cover from './Cover'
 
 class ItemGrid extends Component {
   render() {
@@ -14,13 +14,13 @@ class ItemGrid extends Component {
               <div className="ItemGrid__item" key={item.id}>
                 <Link to={item.path}>
                   <Cover
-                    url={item.posterUrl || "/cover.png"}
+                    url={item.posterUrl || '/cover.png'}
                     alt={item.name}
                     width="100%"
                   />
                 </Link>
               </div>
-            );
+            )
           })
         ) : (
           <div className="ItemGrid__item">
@@ -28,8 +28,8 @@ class ItemGrid extends Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default ItemGrid;
+export default ItemGrid

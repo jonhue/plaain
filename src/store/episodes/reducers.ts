@@ -3,22 +3,22 @@ import {
   EpisodesState,
   UPDATE_EPISODE,
   REMOVE_EPISODE,
-} from "./types";
+} from './types'
 
-const initialState: EpisodesState = {};
+const initialState: EpisodesState = {}
 
 export default (
   state = initialState,
-  action: EpisodesActionTypes
+  action: EpisodesActionTypes,
 ): EpisodesState => {
   switch (action.type) {
     case UPDATE_EPISODE:
-      return { ...state, [action.payload.episode.id]: action.payload.episode };
+      return { ...state, [action.payload.episode.id]: action.payload.episode }
     case REMOVE_EPISODE:
-      const { [action.payload.id]: episode, ...episodes } = state;
+      const { [action.payload.id]: episode, ...episodes } = state
 
-      return episodes;
+      return episodes
     default:
-      return state;
+      return state
   }
-};
+}

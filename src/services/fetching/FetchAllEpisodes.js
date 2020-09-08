@@ -1,11 +1,11 @@
-import { ITEM_TYPES } from "../../constants";
+import { ITEM_TYPES } from '../../constants'
 
-import TMDb from "../databases/TMDb";
+import TMDb from '../databases/TMDb'
 
 class FetchAllEpisodes {
   constructor(seasons) {
-    this._seasons = seasons;
-    this._tmdb = new TMDb();
+    this._seasons = seasons
+    this._tmdb = new TMDb()
   }
 
   async perform() {
@@ -13,8 +13,8 @@ class FetchAllEpisodes {
       this.seasons.map(async (season) => {
         const response = await this.tmdb.season(
           season.showId,
-          season.seasonNumber
-        );
+          season.seasonNumber,
+        )
 
         return response.episodes.map((episode) => ({
           id: `${season.id}-${episode.episode_number}`,
@@ -22,20 +22,20 @@ class FetchAllEpisodes {
           episodeNumber: episode.episode_number,
           seasonId: season.id,
           providerId: null,
-        }));
-      })
-    );
+        }))
+      }),
+    )
 
-    return episodes.reduce((episodes, arr) => episodes.concat(arr), []);
+    return episodes.reduce((episodes, arr) => episodes.concat(arr), [])
   }
 
   get seasons() {
-    return this._seasons;
+    return this._seasons
   }
 
   get tmdb() {
-    return this._tmdb;
+    return this._tmdb
   }
 }
 
-export default FetchAllEpisodes;
+export default FetchAllEpisodes

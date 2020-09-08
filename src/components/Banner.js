@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./Banner.scss";
+import React, { Component } from 'react'
+import './Banner.scss'
 
 class Banner extends Component {
   render() {
@@ -13,12 +13,12 @@ class Banner extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {this.props.linkText || "Help"}
+            {this.props.linkText || 'Help'}
           </a>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default Banner;
+export default Banner

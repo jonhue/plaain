@@ -3,22 +3,22 @@ import {
   SeasonsState,
   UPDATE_SEASON,
   REMOVE_SEASON,
-} from "./types";
+} from './types'
 
-const initialState: SeasonsState = {};
+const initialState: SeasonsState = {}
 
 export default (
   state = initialState,
-  action: SeasonsActionTypes
+  action: SeasonsActionTypes,
 ): SeasonsState => {
   switch (action.type) {
     case UPDATE_SEASON:
-      return { ...state, [action.payload.season.id]: action.payload.season };
+      return { ...state, [action.payload.season.id]: action.payload.season }
     case REMOVE_SEASON:
-      const { [action.payload.id]: season, ...seasons } = state;
+      const { [action.payload.id]: season, ...seasons } = state
 
-      return seasons;
+      return seasons
     default:
-      return state;
+      return state
   }
-};
+}

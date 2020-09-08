@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import "./Movies.scss";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import './Movies.scss'
 
-import ItemGrid from "../components/ItemGrid";
-import VerticalSlide from "../components/VerticalSlide";
-import ZoomIcon from "../components/Nucleo/icons/zoom.jsx";
+import ItemGrid from '../components/ItemGrid'
+import VerticalSlide from '../components/VerticalSlide'
+import ZoomIcon from '../components/Nucleo/icons/zoom.jsx'
 
 class Movies extends Component {
   componentDidMount() {
-    document.querySelector(".Nav a:nth-child(2)").classList.add("active");
+    document.querySelector('.Nav a:nth-child(2)').classList.add('active')
   }
 
   componentWillUnmount() {
-    document.querySelector(".Nav a:nth-child(2)").classList.remove("active");
+    document.querySelector('.Nav a:nth-child(2)').classList.remove('active')
   }
 
   render() {
@@ -29,7 +29,7 @@ class Movies extends Component {
             {window.innerWidth < 600 ? (
               <VerticalSlide
                 items={Object.values(this.props.movies).sort((a, b) =>
-                  a.name < b.name ? -1 : 1
+                  a.name < b.name ? -1 : 1,
                 )}
                 id="movies"
                 path="movies"
@@ -37,7 +37,7 @@ class Movies extends Component {
             ) : (
               <ItemGrid
                 items={Object.values(this.props.movies).sort((a, b) =>
-                  a.name < b.name ? -1 : 1
+                  a.name < b.name ? -1 : 1,
                 )}
                 id="movies"
               />
@@ -45,10 +45,10 @@ class Movies extends Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
 export default connect((state) => ({
   movies: state.movies,
-}))(Movies);
+}))(Movies)

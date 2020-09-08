@@ -1,4 +1,4 @@
 export interface AccessToken {
-  token: string;
-  validUntil: Date;
+  token: string
+  validUntil: Date
 }
