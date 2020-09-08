@@ -1,27 +1,27 @@
-import { VERSION } from '../constants'
+import { VERSION } from "../constants";
 
 class IndexAfterUpdate {
   constructor(versionUsedForLastIndex, indexAction) {
-    this._versionUsedForLastIndex = versionUsedForLastIndex
-    this._indexAction = indexAction
+    this._versionUsedForLastIndex = versionUsedForLastIndex;
+    this._indexAction = indexAction;
   }
 
   perform() {
     if (this.versionUsedForLastIndex !== VERSION) {
-      this.indexAction()
-      return true
+      this.indexAction();
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
   get versionUsedForLastIndex() {
-    return this._versionUsedForLastIndex
+    return this._versionUsedForLastIndex;
   }
 
   get indexAction() {
-    return this._indexAction
+    return this._indexAction;
   }
 }
 
-export default IndexAfterUpdate
+export default IndexAfterUpdate;
