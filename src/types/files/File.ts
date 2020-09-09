@@ -1,9 +1,10 @@
-export enum FileType {
+export enum FileKind {
   Source,
   Caption,
 }
 
 export interface File {
-  type: FileType
-  id: number
+  kind: FileKind
+  id: string
+  name: string
 }

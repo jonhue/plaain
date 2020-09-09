@@ -1,10 +1,13 @@
+import { Notification } from '../../types/Notification'
+
 export const ASYNC_BEGIN = 'ASYNC_BEGIN'
 export const ASYNC_END = 'ASYNC_END'
-export const UPDATE_ERROR = 'UPDATE_ERROR'
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
+export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS'
 
 export interface UIState {
-  error?: Error
   isLoading: boolean
+  notifications: Notification[]
 }
 
 interface AsyncBeginAction {
@@ -15,14 +18,19 @@ interface AsyncEndAction {
   type: typeof ASYNC_END
 }
 
-interface UpdateErrorAction {
-  type: typeof UPDATE_ERROR
+interface AddNotificationAction {
+  type: typeof ADD_NOTIFICATION
   payload: {
-    error: Error | undefined
+    notification: Notification
   }
+}
+
+interface ClearNotificationsAction {
+  type: typeof CLEAR_NOTIFICATIONS
 }
 
 export type UIActionTypes =
   | AsyncBeginAction
   | AsyncEndAction
-  | UpdateErrorAction
+  | AddNotificationAction
+  | ClearNotificationsAction

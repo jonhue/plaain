@@ -1,7 +1,7 @@
 import { AccessToken } from '../AccessToken'
-import { Provider, ProviderType } from './Provider'
+import { Provider, ProviderKind } from './Provider'
 
 export interface OneDrive extends Provider {
-  type: typeof ProviderType.OneDrive
+  kind: typeof ProviderKind.OneDrive
   accessToken: AccessToken
 }

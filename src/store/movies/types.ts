@@ -1,10 +1,10 @@
-import { Movie } from '../../types/media_items/Movie'
+import { Movie } from '../../types/items/Movie'
 
 export const UPDATE_MOVIE = 'UPDATE_MOVIE'
 export const REMOVE_MOVIE = 'REMOVE_MOVIE'
 
 export interface MoviesState {
-  [id: number]: Movie | undefined
+  [id: string]: Movie | undefined
 }
 
 interface UpdateMovieAction {
@@ -17,7 +17,7 @@ interface UpdateMovieAction {
 interface RemoveMovieAction {
   type: typeof REMOVE_MOVIE
   payload: {
-    id: number
+    id: string
   }
 }
 

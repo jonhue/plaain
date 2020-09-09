@@ -3,12 +3,13 @@ import {
   ASYNC_END,
   UIActionTypes,
   UIState,
-  UPDATE_ERROR,
+  ADD_NOTIFICATION,
+  CLEAR_NOTIFICATIONS,
 } from './types'
 
 const initialState: UIState = {
-  error: undefined,
   isLoading: false,
+  notifications: [],
 }
 
 export default (state = initialState, action: UIActionTypes): UIState => {
@@ -23,10 +24,15 @@ export default (state = initialState, action: UIActionTypes): UIState => {
         ...state,
         isLoading: false,
       }
-    case UPDATE_ERROR:
+    case ADD_NOTIFICATION:
       return {
         ...state,
-        error: action.payload.error,
+        notifications: [...state.notifications, action.payload.notification],
+      }
+    case CLEAR_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: [],
       }
     default:
       return state

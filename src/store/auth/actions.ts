@@ -18,7 +18,7 @@ export const updateVersion = (version: string): AuthActionTypes => ({
   payload: { version },
 })
 
-export const removeProvider = (id: number): AuthActionTypes => ({
+export const removeProvider = (id: string): AuthActionTypes => ({
   type: REMOVE_PROVIDER,
   payload: { id },
 })

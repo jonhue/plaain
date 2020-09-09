@@ -1,10 +1,10 @@
-import { Season } from '../../types/media_items/Season'
+import { Season } from '../../types/items/Season'
 
 export const UPDATE_SEASON = 'UPDATE_SEASON'
 export const REMOVE_SEASON = 'REMOVE_SEASON'
 
 export interface SeasonsState {
-  [id: number]: Season | undefined
+  [id: string]: Season | undefined
 }
 
 interface UpdateSeasonAction {
@@ -17,7 +17,7 @@ interface UpdateSeasonAction {
 interface RemoveSeasonAction {
   type: typeof REMOVE_SEASON
   payload: {
-    id: number
+    id: string
   }
 }
 

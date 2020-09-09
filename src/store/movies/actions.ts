@@ -1,4 +1,4 @@
-import { Movie } from '../../types/media_items/Movie'
+import { Movie } from '../../types/items/Movie'
 import { MoviesActionTypes, REMOVE_MOVIE, UPDATE_MOVIE } from './types'
 
 export const updateMovie = (movie: Movie): MoviesActionTypes => ({
@@ -6,7 +6,7 @@ export const updateMovie = (movie: Movie): MoviesActionTypes => ({
   payload: { movie },
 })
 
-export const removeMovie = (id: number): MoviesActionTypes => ({
+export const removeMovie = (id: string): MoviesActionTypes => ({
   type: REMOVE_MOVIE,
   payload: { id },
 })

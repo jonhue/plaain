@@ -1,4 +1,4 @@
-import { Season } from '../../types/media_items/Season'
+import { Season } from '../../types/items/Season'
 import { REMOVE_SEASON, SeasonsActionTypes, UPDATE_SEASON } from './types'
 
 export const updateSeason = (season: Season): SeasonsActionTypes => ({
@@ -6,7 +6,7 @@ export const updateSeason = (season: Season): SeasonsActionTypes => ({
   payload: { season },
 })
 
-export const removeSeason = (id: number): SeasonsActionTypes => ({
+export const removeSeason = (id: string): SeasonsActionTypes => ({
   type: REMOVE_SEASON,
   payload: { id },
 })

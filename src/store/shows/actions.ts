@@ -1,4 +1,4 @@
-import { Show } from '../../types/media_items/Show'
+import { Show } from '../../types/items/Show'
 import { REMOVE_SHOW, ShowsActionTypes, UPDATE_SHOW } from './types'
 
 export const updateShow = (show: Show): ShowsActionTypes => ({
@@ -6,7 +6,7 @@ export const updateShow = (show: Show): ShowsActionTypes => ({
   payload: { show },
 })
 
-export const removeShow = (id: number): ShowsActionTypes => ({
+export const removeShow = (id: string): ShowsActionTypes => ({
   type: REMOVE_SHOW,
   payload: { id },
 })

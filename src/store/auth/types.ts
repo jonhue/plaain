@@ -6,7 +6,7 @@ export const REMOVE_PROVIDER = 'REMOVE_PROVIDER'
 
 export interface AuthState {
   providers: {
-    [id: number]: Provider | undefined
+    [id: string]: Provider | undefined
   }
   version: string
 }
@@ -28,7 +28,7 @@ interface UpdateVersionAction {
 interface RemoveProviderAction {
   type: typeof REMOVE_PROVIDER
   payload: {
-    id: number
+    id: string
   }
 }
 

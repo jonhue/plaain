@@ -1,4 +1,4 @@
-import { File, FileType } from './File'
+import { File, FileKind } from './File'
 
 const MP4_EXTENSION = 'mp4'
 const M4V_EXTENSION = 'm4v'
@@ -12,6 +12,6 @@ type FILE_EXTENSION =
   | typeof WEBM_EXTENSION
 
 export interface Source extends File {
-  type: typeof FileType.Source
+  kind: typeof FileKind.Source
   fileExtension: FILE_EXTENSION
 }

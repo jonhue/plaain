@@ -1,10 +1,10 @@
-import { Episode } from '../../types/media_items/Episode'
+import { Episode } from '../../types/items/Episode'
 
 export const UPDATE_EPISODE = 'UPDATE_EPISODE'
 export const REMOVE_EPISODE = 'REMOVE_EPISODE'
 
 export interface EpisodesState {
-  [id: number]: Episode | undefined
+  [id: string]: Episode | undefined
 }
 
 interface UpdateEpisodeAction {
@@ -17,7 +17,7 @@ interface UpdateEpisodeAction {
 interface RemoveEpisodeAction {
   type: typeof REMOVE_EPISODE
   payload: {
-    id: number
+    id: string
   }
 }
 

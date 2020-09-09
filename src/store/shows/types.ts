@@ -1,10 +1,10 @@
-import { Show } from '../../types/media_items/Show'
+import { Show } from '../../types/items/Show'
 
 export const UPDATE_SHOW = 'UPDATE_SHOW'
 export const REMOVE_SHOW = 'REMOVE_SHOW'
 
 export interface ShowsState {
-  [id: number]: Show | undefined
+  [id: string]: Show | undefined
 }
 
 interface UpdateShowAction {
@@ -17,7 +17,7 @@ interface UpdateShowAction {
 interface RemoveShowAction {
   type: typeof REMOVE_SHOW
   payload: {
-    id: number
+    id: string
   }
 }
 

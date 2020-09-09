@@ -5,7 +5,7 @@ import {
   UPDATE_PROVIDER,
   UPDATE_VERSION,
 } from './types'
-import { VERSION } from '../../version'
+import { VERSION } from '../../constants'
 
 const initialState: AuthState = {
   providers: {},

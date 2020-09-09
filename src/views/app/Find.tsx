@@ -3,11 +3,13 @@ import { ConnectedProps, connect } from 'react-redux'
 import FlexSearch, { Index } from 'flexsearch'
 import React, { useEffect, useState } from 'react'
 import HorizontalSlide from '../../components/HorizontalSlide'
-import { MediaItem } from '../../types/media_items/MediaItem'
-import { Movie } from '../../types/media_items/Movie'
+import { MediaItem } from '../../types/items/MediaItem'
+import { Movie } from '../../types/items/Movie'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
-import { Show } from '../../types/media_items/Show'
+import { Show } from '../../types/items/Show'
+import { moviesSelector } from '../../store/movies/selectors'
+import { showsSelector } from '../../store/shows/selectors'
 
 const QUERY_PARAMETER = 'q'
 
@@ -17,20 +19,25 @@ const buildIndex = <T extends MediaItem>(
 ) => {
   const index: Index<number> = FlexSearch.create()
   items.forEach((item) => {
-    index.add(item.id, text(item))
+    index.add(Number.parseInt(item.id), text(item))
   })
   return index
 }
 
 const find = <T extends MediaItem>(
   index: Index<number>,
-  items: { [id: number]: T | undefined },
+  items: T[],
   query: string | null,
-) => index.search(query || '').then((results) => results.map((id) => items[id]))
+) =>
+  index
+    .search(query || '')
+    .then((results) =>
+      results.map((id) => items.find((item) => item.id === id.toString())),
+    )
 
 const mapState = (state: RootState) => ({
-  movies: state.movies,
-  shows: state.shows,
+  movies: moviesSelector(state.movies),
+  shows: showsSelector(state.shows),
 })
 
 const connector = connect(mapState)
@@ -39,11 +46,11 @@ type FindProps = ConnectedProps<typeof connector> & RouteComponentProps
 
 const Find = ({ history, location, movies, shows }: FindProps) => {
   const moviesIndex = buildIndex(
-    Object.values(movies),
+    movies,
     (movie: Movie) => `${movie.title};${movie.summary}`,
   )
   const showsIndex = buildIndex(
-    Object.values(shows),
+    shows,
     (show: Show) => `${show.title};${show.summary}`,
   )
 

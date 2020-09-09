@@ -1,8 +1,9 @@
-export enum ProviderType {
+export enum ProviderKind {
   OneDrive,
 }
 
 export interface Provider {
-  type: ProviderType
-  id: number
+  kind: ProviderKind
+  id: string
+  name: string
 }

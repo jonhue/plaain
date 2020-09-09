@@ -15,7 +15,7 @@ import Nav from '../../components/Nav'
 
 type AppProps = RouteComponentProps
 
-export const App = ({ match }: AppProps) => (
+const App = ({ match }: AppProps) => (
   <div className="App">
     <Switch>
       <Route path={`${match.path}/`} exact component={ForYou} />

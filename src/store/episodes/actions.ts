@@ -1,4 +1,4 @@
-import { Episode } from '../../types/media_items/Episode'
+import { Episode } from '../../types/items/Episode'
 import { EpisodesActionTypes, REMOVE_EPISODE, UPDATE_EPISODE } from './types'
 
 export const updateEpisode = (episode: Episode): EpisodesActionTypes => ({
@@ -6,7 +6,7 @@ export const updateEpisode = (episode: Episode): EpisodesActionTypes => ({
   payload: { episode },
 })
 
-export const removeEpisode = (id: number): EpisodesActionTypes => ({
+export const removeEpisode = (id: string): EpisodesActionTypes => ({
   type: REMOVE_EPISODE,
   payload: { id },
 })
