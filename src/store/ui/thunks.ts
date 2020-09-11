@@ -1,5 +1,6 @@
-import { asyncBegin, asyncEnd, updateError } from './actions'
+import { asyncBegin, asyncEnd, addNotification } from './actions'
 import { AppThunk } from '../index'
+import { NotificationKind } from '../../types/Notification'
 
 export const load = (
   f: AppThunk<Promise<void>>,
@@ -12,7 +13,7 @@ export const load = (
     console.log('error', error)
 
     if (error instanceof Error) {
-      dispatch(updateError(error))
+      dispatch(addNotification({ kind: NotificationKind.GenericError, error }))
     }
   }
 

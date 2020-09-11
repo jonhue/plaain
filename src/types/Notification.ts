@@ -1,7 +1,8 @@
 import { Provider } from './providers/Provider'
 
-enum NotificationKind {
+export enum NotificationKind {
   AuthenticationFailure,
+  GenericError,
 }
 
 interface AuthenticationFailure {
@@ -10,4 +11,9 @@ interface AuthenticationFailure {
   message: string
 }
 
-export type Notification = AuthenticationFailure
+interface GenericError {
+  kind: NotificationKind.GenericError
+  error: Error
+}
+
+export type Notification = AuthenticationFailure | GenericError

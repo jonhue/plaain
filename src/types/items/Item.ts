@@ -1,9 +1,9 @@
 export enum ItemKind {
   Episode,
   Movie,
+  Person,
   Season,
   Show,
-  Person,
 }
 
 export interface Item {
