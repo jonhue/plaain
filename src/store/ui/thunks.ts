@@ -3,12 +3,12 @@ import { AppThunk } from '../index'
 import { NotificationKind } from '../../types/Notification'
 
 export const load = (
-  f: AppThunk<Promise<void>>,
+  fn: AppThunk<Promise<void>>,
 ): AppThunk<Promise<void>> => async (dispatch) => {
   dispatch(asyncBegin())
 
   try {
-    await dispatch(f)
+    await dispatch(fn)
   } catch (error: unknown) {
     console.log('error', error)
 

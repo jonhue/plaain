@@ -8,7 +8,10 @@ type NotificationsViewerProps = {
   onClose: () => void
 }
 
-export const NotificationsViewer = ({ notifications, onClose }: NotificationsViewerProps) => {
+export const NotificationsViewer = ({
+  notifications,
+  onClose,
+}: NotificationsViewerProps) => {
   // const [show, setShow] = useState(false)
 
   // const hide = () => {

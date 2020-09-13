@@ -14,36 +14,6 @@ class TMDb {
 
   static base_uri = 'https://api.themoviedb.org/3'
 
-  async findMovie(query) {
-    await TMDb.rateLimiting()
-    return rp({
-      ...TMDb.config,
-      uri: `${TMDb.base_uri}/search/movie`,
-      qs: { ...TMDb.config.qs, query },
-    }).then((response) => {
-      if (response.results.length < 1) {
-        return null
-      }
-
-      return response.results[0].id
-    })
-  }
-
-  async findShow(query) {
-    await TMDb.rateLimiting()
-    return rp({
-      ...TMDb.config,
-      uri: `${TMDb.base_uri}/search/tv`,
-      qs: { ...TMDb.config.qs, query },
-    }).then((response) => {
-      if (response.results.length < 1) {
-        return null
-      }
-
-      return response.results[0].id
-    })
-  }
-
   async movie(id) {
     await TMDb.rateLimiting()
     return rp({ ...TMDb.config, uri: `${TMDb.base_uri}/movie/${id}` })
