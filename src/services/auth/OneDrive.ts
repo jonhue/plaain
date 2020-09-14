@@ -1,4 +1,3 @@
-import { OneDrive } from '../../types/providers/OneDrive'
 import { ProviderKind } from '../../types/providers/Provider'
 import { UserAgentApplication } from 'msal'
 import { buildAuthId } from './util'
@@ -44,7 +43,7 @@ const popupLogIn = async (userAgentApplication: UserAgentApplication) => {
   }
 }
 
-export const auth = async (provider: OneDrive | undefined) => {
+export const auth = async () => {
   const userAgentApplication = new UserAgentApplication({
     auth: {
       clientId: CLIENT_ID,
@@ -57,7 +56,7 @@ export const auth = async (provider: OneDrive | undefined) => {
 
   return {
     kind: ProviderKind.OneDrive,
-    id: provider?.id || buildAuthId(ProviderKind.OneDrive, id),
+    id: buildAuthId(ProviderKind.OneDrive, id),
     name,
     accessToken,
   }

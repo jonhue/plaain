@@ -2,13 +2,14 @@ import { asyncBegin, asyncEnd, addNotification } from './actions'
 import { AppThunk } from '../index'
 import { NotificationKind } from '../../types/Notification'
 
-export const load = (
-  fn: AppThunk<Promise<void>>,
-): AppThunk<Promise<void>> => async (dispatch) => {
+export const load = <ReturnType>(
+  fn: AppThunk<Promise<ReturnType>>,
+) => (): AppThunk<Promise<ReturnType | undefined>> => async (dispatch) => {
   dispatch(asyncBegin())
 
+  let result
   try {
-    await dispatch(fn)
+    result = await dispatch(fn)
   } catch (error: unknown) {
     console.log('error', error)
 
@@ -18,4 +19,6 @@ export const load = (
   }
 
   dispatch(asyncEnd())
+
+  return result
 }
