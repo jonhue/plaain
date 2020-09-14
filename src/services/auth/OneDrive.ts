@@ -44,9 +44,7 @@ const popupLogIn = async (userAgentApplication: UserAgentApplication) => {
   }
 }
 
-export const auth = async (
-  provider: OneDrive | undefined,
-): Promise<OneDrive> => {
+export const auth = async (provider: OneDrive | undefined) => {
   const userAgentApplication = new UserAgentApplication({
     auth: {
       clientId: CLIENT_ID,
