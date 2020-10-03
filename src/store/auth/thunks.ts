@@ -12,8 +12,8 @@ export const auth = (provider: Provider): AppThunk<Promise<void>> => async (
   dispatch,
 ) => {
   const newProvider = {
-    ...provider,
     ...(await authService[provider.kind]()),
+    path: provider.path,
   }
   dispatch(updateProvider(newProvider))
 }

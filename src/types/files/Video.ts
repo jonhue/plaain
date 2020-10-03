@@ -5,13 +5,13 @@ const M4V_EXTENSION = 'm4v'
 const MKV_EXTENSION = 'mkv'
 const WEBM_EXTENSION = 'webm'
 
-type FileExtension =
+type VideoType =
   | typeof MP4_EXTENSION
   | typeof M4V_EXTENSION
   | typeof MKV_EXTENSION
   | typeof WEBM_EXTENSION
 
-export interface Source extends File {
-  kind: typeof FileKind.Source
-  fileExtension: FileExtension
+export interface Video extends File {
+  kind: typeof FileKind.Video
+  type: VideoType
 }

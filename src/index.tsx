@@ -14,10 +14,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate
-        loading={<Loading caption="Loading..." />}
+        loading={<Loading />}
         persistor={persistStore(store)}
       >
-        <Suspense fallback={<Loading caption="Loading..." />}>
+        <Suspense fallback={<Loading />}>
           <Base />
         </Suspense>
       </PersistGate>

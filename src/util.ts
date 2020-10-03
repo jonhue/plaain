@@ -1,5 +1,7 @@
 import { MediaItem } from './types/items/MediaItem'
 
+export const notUndefined = <T>(x: T | undefined): x is T => x !== undefined
+
 export const isInProgress = (item: MediaItem) => item.progress !== undefined
 
 export const wasRecentlyWatched = (item: MediaItem, thresh: Date) =>

@@ -1,14 +1,20 @@
-import { Provider } from './providers/Provider'
+import { FileProvider } from './files/providers/FileProvider'
+import { ProviderKind } from './providers/Provider'
 
 export enum NotificationKind {
   AuthenticationFailure,
+  CannotFindFile,
   GenericError,
 }
 
 interface AuthenticationFailure {
   kind: NotificationKind.AuthenticationFailure
-  provider: Provider
-  message: string
+  provider: ProviderKind
+}
+
+interface CannotFindFile {
+  kind: NotificationKind.CannotFindFile
+  file: FileProvider
 }
 
 interface GenericError {
@@ -16,4 +22,4 @@ interface GenericError {
   error: Error
 }
 
-export type Notification = AuthenticationFailure | GenericError
+export type Notification = AuthenticationFailure | CannotFindFile | GenericError

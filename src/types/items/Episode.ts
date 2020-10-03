@@ -1,6 +1,6 @@
 import { MediaItem } from './MediaItem'
 import { ItemKind } from './Item'
-import { Source } from '../files/Source'
+import { Video } from '../files/Video'
 import { Caption } from '../files/Caption'
 
 export interface Episode extends MediaItem {
@@ -10,6 +10,6 @@ export interface Episode extends MediaItem {
   seasonId: string
   summary: string
   airDate: Date
-  sources: Source[]
+  sources: Video[]
   captions: Caption[]
 }

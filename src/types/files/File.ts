@@ -1,7 +1,7 @@
 import { FileProvider } from './providers/FileProvider'
 
 export enum FileKind {
-  Source,
+  Video,
   Caption,
 }
 

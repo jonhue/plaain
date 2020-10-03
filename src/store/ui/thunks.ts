@@ -1,6 +1,7 @@
 import { asyncBegin, asyncEnd, addNotification } from './actions'
 import { AppThunk } from '../index'
 import { NotificationKind } from '../../types/Notification'
+import { handleError } from '../../errors'
 
 export const load = <ReturnType>(
   fn: AppThunk<Promise<ReturnType>>,
@@ -11,10 +12,10 @@ export const load = <ReturnType>(
   try {
     result = await dispatch(fn)
   } catch (error: unknown) {
-    console.log('error', error)
-
     if (error instanceof Error) {
-      dispatch(addNotification({ kind: NotificationKind.GenericError, error }))
+      dispatch(addNotification(handleError(error)))
+    } else {
+      console.log(error)
     }
   }
 

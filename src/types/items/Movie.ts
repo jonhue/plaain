@@ -1,6 +1,6 @@
 import { MediaItem } from './MediaItem'
 import { ItemKind } from './Item'
-import { Source } from '../files/Source'
+import { Video } from '../files/Video'
 import { Caption } from '../files/Caption'
 import { Person } from './Person'
 
@@ -15,6 +15,6 @@ export interface Movie extends MediaItem {
   trailerUrl: string
   cast: Person[]
   crew: Person[]
-  sources: Source[]
+  sources: Video[]
   captions: Caption[]
 }
