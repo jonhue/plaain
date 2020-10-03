@@ -1,9 +1,9 @@
 import {
+  ADD_NOTIFICATION,
   ASYNC_BEGIN,
   ASYNC_END,
-  UIActionTypes,
-  ADD_NOTIFICATION,
   CLEAR_NOTIFICATIONS,
+  UIActionTypes,
 } from './types'
 import { Notification } from '../../types/Notification'
 

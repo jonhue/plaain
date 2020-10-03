@@ -1,10 +1,15 @@
+import { OneDrive } from './OneDrive'
+
 export enum ProviderKind {
   OneDrive,
 }
 
-export interface Provider {
+export interface IProvider {
   kind: ProviderKind
   id: string
   name: string
-  path: string
+  moviesPath: string | undefined
+  showsPath: string | undefined
 }
+
+export type Provider = OneDrive

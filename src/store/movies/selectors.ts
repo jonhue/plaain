@@ -1,9 +1,9 @@
-import { MoviesState } from './types'
 import { isInProgress, wasRecentlyWatched } from '../../util'
+import { Movie } from '../../types/items/Movie'
+import { MoviesState } from './types'
+import { Person } from '../../types/items/Person'
 import { RECENTLY_WATCHED_THRESHOLD } from '../../constants'
 import { createSelector } from 'reselect'
-import { Movie } from '../../types/items/Movie'
-import { Person } from '../../types/items/Person'
 
 export const movieSelector = (id: string) => (state: MoviesState) => state[id]
 

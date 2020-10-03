@@ -1,9 +1,9 @@
-import { SeasonsState } from './types'
 import { isInProgress, wasRecentlyWatched } from '../../util'
-import { RECENTLY_WATCHED_THRESHOLD } from '../../constants'
-import { createSelector } from 'reselect'
-import { Season } from '../../types/items/Season'
 import { Person } from '../../types/items/Person'
+import { RECENTLY_WATCHED_THRESHOLD } from '../../constants'
+import { Season } from '../../types/items/Season'
+import { SeasonsState } from './types'
+import { createSelector } from 'reselect'
 
 export const seasonSelector = (id: string) => (state: SeasonsState) => state[id]
 

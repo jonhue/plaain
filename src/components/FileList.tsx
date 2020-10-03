@@ -1,5 +1,5 @@
-import React from 'react'
 import { File } from '../types/files/File'
+import React from 'react'
 
 type FileListProps = {
   files: File[]

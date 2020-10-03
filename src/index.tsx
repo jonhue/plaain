@@ -13,10 +13,7 @@ import store from './store'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate
-        loading={<Loading />}
-        persistor={persistStore(store)}
-      >
+      <PersistGate loading={<Loading />} persistor={persistStore(store)}>
         <Suspense fallback={<Loading />}>
           <Base />
         </Suspense>

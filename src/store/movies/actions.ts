@@ -1,5 +1,5 @@
-import { Movie } from '../../types/items/Movie'
 import { MoviesActionTypes, REMOVE_MOVIE, UPDATE_MOVIE } from './types'
+import { Movie } from '../../types/items/Movie'
 
 export const updateMovie = (movie: Movie): MoviesActionTypes => ({
   type: UPDATE_MOVIE,

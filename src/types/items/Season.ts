@@ -1,8 +1,7 @@
-import { MediaItem } from './MediaItem'
-import { ItemKind } from './Item'
+import { IMediaItem, ItemKind } from './Item'
 import { Person } from './Person'
 
-export interface Season extends MediaItem {
+export interface Season extends IMediaItem {
   kind: typeof ItemKind.Season
   number: number
   showId: string

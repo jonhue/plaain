@@ -3,7 +3,7 @@ import { ConnectedProps, connect } from 'react-redux'
 import FlexSearch, { Index } from 'flexsearch'
 import React, { useEffect, useState } from 'react'
 import HorizontalSlide from '../../components/HorizontalSlide'
-import { MediaItem } from '../../types/items/MediaItem'
+import { IMediaItem } from '../../types/items/Item'
 import { Movie } from '../../types/items/Movie'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
@@ -13,7 +13,7 @@ import { showsSelector } from '../../store/shows/selectors'
 
 const QUERY_PARAMETER = 'q'
 
-const buildIndex = <T extends MediaItem>(
+const buildIndex = <T extends IMediaItem>(
   items: T[],
   text: (item: T) => string,
 ) => {
@@ -24,7 +24,7 @@ const buildIndex = <T extends MediaItem>(
   return index
 }
 
-const find = <T extends MediaItem>(
+const find = <T extends IMediaItem>(
   index: Index<number>,
   items: T[],
   query: string | null,

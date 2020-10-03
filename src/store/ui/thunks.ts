@@ -1,6 +1,5 @@
-import { asyncBegin, asyncEnd, addNotification } from './actions'
+import { addNotification, asyncBegin, asyncEnd } from './actions'
 import { AppThunk } from '../index'
-import { NotificationKind } from '../../types/Notification'
 import { handleError } from '../../errors'
 
 export const load = <ReturnType>(

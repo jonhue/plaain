@@ -1,7 +1,6 @@
-import { MediaItem } from './MediaItem'
-import { ItemKind } from './Item'
+import { IMediaItem, ItemKind } from './Item'
 
-export interface Show extends MediaItem {
+export interface Show extends IMediaItem {
   kind: typeof ItemKind.Show
   title: string
   summary: string

@@ -1,13 +1,17 @@
-import { FileProvider } from './providers/FileProvider'
+import { Caption } from './captions/Caption'
+import { FileProvider } from './FileProvider'
+import { Video } from './videos/Video'
 
 export enum FileKind {
   Video,
   Caption,
 }
 
-export interface File {
+export interface IFile<T extends FileProvider> {
   kind: FileKind
   id: string
   name: string
-  provider: FileProvider
+  provider: T
 }
+
+export type File = Caption | Video

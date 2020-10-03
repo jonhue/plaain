@@ -1,4 +1,4 @@
-import { FileProvider } from './files/providers/FileProvider'
+import { File } from './files/File'
 import { ProviderKind } from './providers/Provider'
 
 export enum NotificationKind {
@@ -14,7 +14,7 @@ interface AuthenticationFailure {
 
 interface CannotFindFile {
   kind: NotificationKind.CannotFindFile
-  file: FileProvider
+  file: File
 }
 
 interface GenericError {

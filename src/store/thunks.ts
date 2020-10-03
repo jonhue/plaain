@@ -1,21 +1,36 @@
+import { Provider, ProviderKind } from '../types/providers/Provider'
 import { AppThunk } from '.'
+import { FileProvider } from '../types/files/FileProvider'
+import { IndexResponse } from '../services/drives/types'
 import { Item } from '../types/items/Item'
-import { Provider } from '../types/providers/Provider'
+import { index as oneDriveIndexCall } from '../services/drives/OneDrive'
 
-export const indexAll = (): AppThunk<Promise<void>> => async (
-  dispatch,
-  getState,
-) => {
-  console.log(dispatch, getState())
-  // index all providers
+const indexHandleProvider = (provider: Provider): Promise<IndexResponse> => {
+  switch (provider.kind) {
+    case ProviderKind.OneDrive:
+      return oneDriveIndexCall(
+        provider.accessToken.token,
+        provider.moviesPath,
+        provider.showsPath,
+      )
+  }
 }
 
-export const index = (provider: Provider): AppThunk<Promise<void>> => async (
+export const index = (providers: Provider[]): AppThunk<Promise<void>> => async (
   dispatch,
-  getState,
 ) => {
-  console.log(dispatch, getState())
-  // index single provider
+  console.log(dispatch)
+  providers.forEach(async (provider) => {
+    const response = await indexHandleProvider(provider)
+    console.log(response)
+  })
+}
+
+export const updateFile = (
+  file: FileProvider,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+  console.log(file, dispatch, getState())
+  // update single file
 }
 
 export const fetchMetadataAll = (): AppThunk<Promise<void>> => async (
@@ -30,6 +45,6 @@ export const fetchMetadata = (item: Item): AppThunk<Promise<void>> => async (
   dispatch,
   getState,
 ) => {
-  console.log(dispatch, getState())
+  console.log(item, dispatch, getState())
   // fetch metadata for single item
 }

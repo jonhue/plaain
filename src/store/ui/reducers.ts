@@ -1,10 +1,10 @@
 import {
+  ADD_NOTIFICATION,
   ASYNC_BEGIN,
   ASYNC_END,
+  CLEAR_NOTIFICATIONS,
   UIActionTypes,
   UIState,
-  ADD_NOTIFICATION,
-  CLEAR_NOTIFICATIONS,
 } from './types'
 
 const initialState: UIState = {

@@ -1,13 +1,13 @@
-import { FileProvider } from '../../types/files/providers/FileProvider'
+import { File } from '../../types/files/File'
 
 export interface MovieIndexResponse {
   name: string
-  files: FileProvider[]
+  files: File[]
 }
 
 export interface EpisodeIndexResponse {
   name: string
-  files: FileProvider[]
+  files: File[]
 }
 
 export interface SeasonIndexResponse {

@@ -1,14 +1,14 @@
 import './Show.scss'
-import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import NotFound from '../NotFound'
+import { ConnectedProps, connect } from 'react-redux'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import HorizontalSlide from '../../components/HorizontalSlide'
+import NotFound from '../NotFound'
+import React from 'react'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
-import { showSelector } from '../../store/shows/selectors'
 import { seasonsByShowSelector } from '../../store/seasons/selectors'
+import { showSelector } from '../../store/shows/selectors'
 import { sortByNumber } from '../../util'
 
 const mapState = (state: RootState) => ({

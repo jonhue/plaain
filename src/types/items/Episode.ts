@@ -1,9 +1,8 @@
-import { MediaItem } from './MediaItem'
-import { ItemKind } from './Item'
-import { Video } from '../files/Video'
-import { Caption } from '../files/Caption'
+import { IMediaItem, ItemKind } from './Item'
+import { Caption } from '../files/captions/Caption'
+import { Video } from '../files/videos/Video'
 
-export interface Episode extends MediaItem {
+export interface Episode extends IMediaItem {
   kind: typeof ItemKind.Episode
   number: number
   title: string

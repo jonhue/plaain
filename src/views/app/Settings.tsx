@@ -1,13 +1,13 @@
 import './Settings.scss'
-import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { VERSION } from '../../constants'
+import { ConnectedProps, connect } from 'react-redux'
+import React, { useCallback } from 'react'
+import { fetchMetadataAll, index } from '../../store/thunks'
 import AddIcon from '../../components/Nucleo/icons/add.jsx'
 import MicrosoftIcon from '../../components/Nucleo/icons/microsoft.jsx'
-import { RootState } from '../../store'
-import { indexAll, fetchMetadataAll } from '../../store/thunks'
-import { providersSelector } from '../../store/auth/selectors'
 import { ProviderKind } from '../../types/providers/Provider'
+import { RootState } from '../../store'
+import { VERSION } from '../../constants'
+import { providersSelector } from '../../store/auth/selectors'
 
 const providerIcon = {
   [ProviderKind.OneDrive]: <MicrosoftIcon width={32} height={32} />,
@@ -16,13 +16,17 @@ const providerIcon = {
 const mapState = (state: RootState) => ({
   providers: providersSelector(state.auth),
 })
-const mapDispatch = { indexAll, fetchMetadataAll }
+const mapDispatch = { index, fetchMetadataAll }
 
 const connector = connect(mapState, mapDispatch)
 
 type SettingsProps = ConnectedProps<typeof connector>
 
-const Settings = ({ indexAll, fetchMetadataAll, providers }: SettingsProps) => {
+const Settings = ({ index, fetchMetadataAll, providers }: SettingsProps) => {
+  const handleIndex = useCallback(() => {
+    index(providers)
+  }, [index, providers])
+
   return (
     <div className="Settings">
       <section className="Settings__auth">
@@ -56,7 +60,7 @@ const Settings = ({ indexAll, fetchMetadataAll, providers }: SettingsProps) => {
           latest metadata.
         </p>
         <div className="Settings__indexing__actions">
-          <button onClick={indexAll}>Index</button>
+          <button onClick={handleIndex}>Index</button>
           <button onClick={fetchMetadataAll}>Update metadata</button>
         </div>
       </section>

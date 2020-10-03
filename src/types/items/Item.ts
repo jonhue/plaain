@@ -1,3 +1,9 @@
+import { Episode } from './Episode'
+import { Movie } from './Movie'
+import { Person } from './Person'
+import { Season } from './Season'
+import { Show } from './Show'
+
 export enum ItemKind {
   Episode,
   Movie,
@@ -6,7 +12,14 @@ export enum ItemKind {
   Show,
 }
 
-export interface Item {
+export interface IItem {
   kind: ItemKind
   id: string
 }
+
+export interface IMediaItem extends IItem {
+  lastWatched: Date | undefined
+  progress: number | undefined
+}
+
+export type Item = Episode | Movie | Person | Season | Show

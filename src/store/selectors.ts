@@ -1,18 +1,18 @@
-import { createSelector } from 'reselect'
 import {
   inProgressSelector as inProgressMoviesSelector,
-  recentlyWatchedSelector as recentlyWatchedMoviesSelector,
   moviesPersonSelector,
+  recentlyWatchedSelector as recentlyWatchedMoviesSelector,
 } from './movies/selectors'
 import {
   inProgressSelector as inProgressSeasonsSelector,
   recentlyWatchedSelector as recentlyWatchedSeasonsSelector,
   seasonsPersonSelector,
 } from './seasons/selectors'
-import { RootState } from '.'
-import { Person } from '../types/items/Person'
 import { MoviesState } from './movies/types'
+import { Person } from '../types/items/Person'
+import { RootState } from '.'
 import { SeasonsState } from './seasons/types'
+import { createSelector } from 'reselect'
 
 export const inProgressSelector = createSelector(
   [

@@ -1,10 +1,9 @@
-import { MediaItem } from './MediaItem'
-import { ItemKind } from './Item'
-import { Video } from '../files/Video'
-import { Caption } from '../files/Caption'
+import { IMediaItem, ItemKind } from './Item'
+import { Caption } from '../files/captions/Caption'
 import { Person } from './Person'
+import { Video } from '../files/videos/Video'
 
-export interface Movie extends MediaItem {
+export interface Movie extends IMediaItem {
   kind: typeof ItemKind.Movie
   title: string
   summary: string

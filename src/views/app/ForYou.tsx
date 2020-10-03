@@ -1,18 +1,18 @@
-import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { Link, RouteComponentProps } from 'react-router-dom'
 import './ForYou.scss'
-import { indexAll } from '../../store/thunks'
-import HorizontalSlide from '../../components/HorizontalSlide'
-import { RootState } from '../../store'
+import { ConnectedProps, connect } from 'react-redux'
+import { Link, RouteComponentProps } from 'react-router-dom'
+import React, { useCallback } from 'react'
 import {
   inProgressSelector,
   recentlyWatchedSelector,
 } from '../../store/selectors'
-import { sortByLastWatched } from '../../util'
+import HorizontalSlide from '../../components/HorizontalSlide'
+import { RootState } from '../../store'
+import { index } from '../../store/thunks'
 import { moviesSelector } from '../../store/movies/selectors'
-import { showsSelector } from '../../store/shows/selectors'
 import { providersSelector } from '../../store/auth/selectors'
+import { showsSelector } from '../../store/shows/selectors'
+import { sortByLastWatched } from '../../util'
 
 const mapState = (state: RootState) => ({
   inProgress: sortByLastWatched(inProgressSelector(state)),
@@ -21,20 +21,24 @@ const mapState = (state: RootState) => ({
   recentlyWatched: sortByLastWatched(recentlyWatchedSelector(state)),
   shows: showsSelector(state.shows),
 })
-const mapDispatch = { indexAll }
+const mapDispatch = { index }
 
 const connector = connect(mapState, mapDispatch)
 
 type ForYouProps = ConnectedProps<typeof connector> & RouteComponentProps
 
 const ForYou = ({
-  indexAll,
+  index,
   inProgress,
   movies,
   providers,
   recentlyWatched,
   shows,
 }: ForYouProps) => {
+  const handleIndex = useCallback(() => {
+    index(providers)
+  }, [index, providers])
+
   if (inProgress.length > 0 || recentlyWatched.length > 0) {
     return (
       <div className="ForYou">
@@ -97,7 +101,7 @@ const ForYou = ({
           >
             Getting started
           </a>
-          <button onClick={indexAll}>Index</button>
+          <button onClick={handleIndex}>Index</button>
         </div>
       </div>
     )

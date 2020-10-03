@@ -1,10 +1,10 @@
-import { Provider } from '../../types/providers/Provider'
 import {
   AuthActionTypes,
   REMOVE_PROVIDER,
   UPDATE_PROVIDER,
   UPDATE_VERSION,
 } from './types'
+import { Provider } from '../../types/providers/Provider'
 
 export const updateProvider = (provider: Provider): AuthActionTypes => ({
   type: UPDATE_PROVIDER,

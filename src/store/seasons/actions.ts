@@ -1,5 +1,5 @@
-import { Season } from '../../types/items/Season'
 import { REMOVE_SEASON, SeasonsActionTypes, UPDATE_SEASON } from './types'
+import { Season } from '../../types/items/Season'
 
 export const updateSeason = (season: Season): SeasonsActionTypes => ({
   type: UPDATE_SEASON,

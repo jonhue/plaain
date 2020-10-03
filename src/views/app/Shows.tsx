@@ -1,13 +1,13 @@
 import './Shows.scss'
-import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import { ConnectedProps, connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import ItemGrid from '../../components/ItemGrid'
+import React from 'react'
+import { RootState } from '../../store'
 import VerticalSlide from '../../components/VerticalSlide'
 import ZoomIcon from '../../components/Nucleo/icons/zoom.jsx'
-import { sortAlphabetically } from '../../util'
 import { showsSelector } from '../../store/shows/selectors'
-import { RootState } from '../../store'
+import { sortAlphabetically } from '../../util'
 
 const mapState = (state: RootState) => ({
   shows: sortAlphabetically(showsSelector(state.shows), (show) => show.title),

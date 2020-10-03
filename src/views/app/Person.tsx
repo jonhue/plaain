@@ -1,17 +1,15 @@
 import './Person.scss'
-import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import NotFound from '../NotFound'
+import { ConnectedProps, connect } from 'react-redux'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import HorizontalSlide from '../../components/HorizontalSlide'
-import { RouteComponentProps } from 'react-router-dom'
+import NotFound from '../NotFound'
+import React from 'react'
 import { RootState } from '../../store'
-import { personSelector } from '../../store/selectors'
+import { RouteComponentProps } from 'react-router-dom'
 import { moviesByPersonSelector } from '../../store/movies/selectors'
+import { personSelector } from '../../store/selectors'
 import { seasonsByPersonSelector } from '../../store/seasons/selectors'
-import { Movie } from '../../types/items/Movie'
-import { Season } from '../../types/items/Season'
 
 const mapState = (state: RootState) => ({
   movies: state.movies,

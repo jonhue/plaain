@@ -1,4 +1,4 @@
-import { Item, ItemKind } from './Item'
+import { IItem, ItemKind } from './Item'
 
 enum Gender {
   Female,
@@ -7,7 +7,7 @@ enum Gender {
 
 type Job = 'Actress' | 'Actor'
 
-export interface Person extends Item {
+export interface Person extends IItem {
   kind: typeof ItemKind.Person
   name: string
   gender: Gender

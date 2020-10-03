@@ -1,8 +1,4 @@
-import { MOVIES_PATH, SHOWS_PATH } from '../../constants'
-import { Client } from '@microsoft/microsoft-graph-client'
-import { OneDriveFile } from '../../types/files/providers/OneDriveFile'
-import { ProviderKind } from '../../types/providers/Provider'
-import { parseFileName } from './util'
+import { Caption, CaptionType } from '../../types/files/captions/Caption'
 import {
   EpisodeIndexResponse,
   IndexResponse,
@@ -10,8 +6,18 @@ import {
   SeasonIndexResponse,
   ShowIndexResponse,
 } from './types'
-import {notUndefined} from '../../util'
+import { File, FileKind } from '../../types/files/File'
+import { Video, VideoType } from '../../types/files/videos/Video'
+import {
+  buildFileId,
+  parseCaptionType,
+  parseFileName,
+  parseVideoType,
+} from './util'
 import { CannotFindFileError } from '../../errors/CannotFindFileError'
+import { Client } from '@microsoft/microsoft-graph-client'
+import { ProviderKind } from '../../types/providers/Provider'
+import { notUndefined } from '../../util'
 
 interface DriveItemChildrenResponse {
   value: DriveItemResponse[]
@@ -71,51 +77,103 @@ const fetchItemChildren = (
 ): Promise<DriveItemChildrenResponse> =>
   client.api(`/me/drive/items/${itemId}/children`).get()
 
-const fetchMovies = (client: Client, path: string) =>
-  fetchPathChildren(client, `${path}${MOVIES_PATH}`)
-
-const fetchShows = (client: Client, path: string) =>
-  fetchPathChildren(client, `${path}${SHOWS_PATH}`)
-
-const buildFile = ({
-  id,
-  name: fileName,
-  size,
-  webUrl,
-  file,
-  video,
-  ['@microsoft.graph.downloadUrl']: downloadUrl,
-}: DriveItemResponse): OneDriveFile | undefined => {
-  if (file === undefined) return
-
-  const { name, extension } = parseFileName(fileName)
-
-  return {
-    kind: ProviderKind.OneDrive,
+const buildCaption = (
+  type: CaptionType,
+  name: string,
+  {
     id,
-    name,
-    extension,
+    name: fileName,
     size,
-    downloadUrl,
     webUrl,
-    mimeType: file.mimeType,
-    bitrate: video?.bitrate,
-    duration: video?.duration,
-    height: video?.height,
-    width: video?.width,
-    audioChannels: video?.audioChannels,
-    audioFormat: video?.audioFormat,
-    fourCC: video?.fourCC,
-    frameRate: video?.frameRate,
+    ['@microsoft.graph.downloadUrl']: downloadUrl,
+  }: DriveItemResponse,
+  { mimeType }: FileResponse,
+): Caption => {
+  return {
+    kind: FileKind.Caption,
+    type,
+    id: buildFileId(ProviderKind.OneDrive, id),
+    name,
+    provider: {
+      kind: ProviderKind.OneDrive,
+      id,
+      fileName,
+      size,
+      downloadUrl,
+      webUrl,
+      mimeType,
+    },
   }
+}
+
+const buildVideo = (
+  type: VideoType,
+  name: string,
+  {
+    id,
+    name: fileName,
+    size,
+    webUrl,
+    ['@microsoft.graph.downloadUrl']: downloadUrl,
+  }: DriveItemResponse,
+  { mimeType }: FileResponse,
+  {
+    bitrate,
+    duration,
+    height,
+    width,
+    audioChannels,
+    audioFormat,
+    fourCC,
+    frameRate,
+  }: VideoResponse,
+): Video => {
+  return {
+    kind: FileKind.Video,
+    type,
+    id: buildFileId(ProviderKind.OneDrive, id),
+    name,
+    provider: {
+      kind: ProviderKind.OneDrive,
+      id,
+      fileName,
+      size,
+      downloadUrl,
+      webUrl,
+      mimeType,
+      bitrate,
+      duration,
+      height,
+      width,
+      audioChannels,
+      audioFormat,
+      fourCC,
+      frameRate,
+    },
+  }
+}
+
+const buildFile = (response: DriveItemResponse): File | undefined => {
+  if (response.file === undefined) return
+
+  const { name, extension } = parseFileName(response.name)
+  if (extension === undefined) return
+
+  const captionType = parseCaptionType(extension)
+  const videoType = parseVideoType(extension)
+
+  if (captionType !== undefined)
+    return buildCaption(captionType, name, response, response.file)
+  else if (videoType !== undefined && response.video !== undefined)
+    return buildVideo(videoType, name, response, response.file, response.video)
 }
 
 export const updateFile = async (
   accessToken: string,
-  file: OneDriveFile,
-): Promise<OneDriveFile> => {
+  file: File,
+): Promise<File> => {
   const client = getClient(accessToken)
-  const response = await fetchItem(client, file.id)
+  const response = await fetchItem(client, file.provider.id)
   const newFile = buildFile(response)
 
   if (newFile !== undefined) return newFile
@@ -124,9 +182,8 @@ export const updateFile = async (
 
 const indexFiles = async (
   client: Client,
-  path: string,
   folderId: string,
-): Promise<OneDriveFile[]> => {
+): Promise<File[]> => {
   const { value: filesResponse } = await fetchItemChildren(client, folderId)
 
   return filesResponse.map(buildFile).filter(notUndefined)
@@ -134,21 +191,22 @@ const indexFiles = async (
 
 const indexMovies = async (
   client: Client,
-  path: string,
+  path: string | undefined,
 ): Promise<MovieIndexResponse[]> => {
-  const { value: moviesResponse } = await fetchMovies(client, path)
+  if (path === undefined) return []
+
+  const { value: moviesResponse } = await fetchPathChildren(client, path)
 
   return Promise.all(
     moviesResponse.map(async (movieResponse) => ({
       name: movieResponse.name,
-      files: await indexFiles(client, path, movieResponse.id),
+      files: await indexFiles(client, movieResponse.id),
     })),
   )
 }
 
 const indexEpisodes = async (
   client: Client,
-  path: string,
   seasonFolderId: string,
 ): Promise<EpisodeIndexResponse[]> => {
   const { value: episodesResponse } = await fetchItemChildren(
@@ -159,14 +217,13 @@ const indexEpisodes = async (
   return Promise.all(
     episodesResponse.map(async (episodeResponse) => ({
       name: episodeResponse.name,
-      files: await indexFiles(client, path, episodeResponse.id),
+      files: await indexFiles(client, episodeResponse.id),
     })),
   )
 }
 
 const indexSeasons = async (
   client: Client,
-  path: string,
   showFolderId: string,
 ): Promise<SeasonIndexResponse[]> => {
   const { value: seasonsResponse } = await fetchItemChildren(
@@ -177,33 +234,36 @@ const indexSeasons = async (
   return Promise.all(
     seasonsResponse.map(async (seasonResponse) => ({
       name: seasonResponse.name,
-      episodes: await indexEpisodes(client, path, seasonResponse.id),
+      episodes: await indexEpisodes(client, seasonResponse.id),
     })),
   )
 }
 
 const indexShows = async (
   client: Client,
-  path: string,
+  path: string | undefined,
 ): Promise<ShowIndexResponse[]> => {
-  const { value: showsResponse } = await fetchShows(client, path)
+  if (path === undefined) return []
+
+  const { value: showsResponse } = await fetchPathChildren(client, path)
 
   return Promise.all(
     showsResponse.map(async (showResponse) => ({
       name: showResponse.name,
-      seasons: await indexSeasons(client, path, showResponse.id),
+      seasons: await indexSeasons(client, showResponse.id),
     })),
   )
 }
 
 export const index = async (
   accessToken: string,
-  path: string,
+  moviesPath: string | undefined,
+  showsPath: string | undefined,
 ): Promise<IndexResponse> => {
   const client = getClient(accessToken)
 
   return {
-    movies: await indexMovies(client, path),
-    shows: await indexShows(client, path),
+    movies: await indexMovies(client, moviesPath),
+    shows: await indexShows(client, showsPath),
   }
 }

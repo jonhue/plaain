@@ -1,10 +1,10 @@
-import { FileProvider } from "../types/files/providers/FileProvider"
+import { File } from '../types/files/File'
 
 export class CannotFindFileError extends Error {
-  file: FileProvider
+  file: File
 
-  constructor(file: FileProvider, ...args: any[]) {
-    super(...args)
+  constructor(file: File) {
+    super()
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, CannotFindFileError)
