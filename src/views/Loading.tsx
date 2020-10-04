@@ -1,11 +1,12 @@
 import './Loading.scss'
 import React from 'react'
-import SoundWaveIcon from '../components/Nucleo/icons/soundWave.jsx'
+import SoundWaveIcon from '../components/icons/soundWave'
+import styles from '../_variables.scss'
 
 export const Loading = () => (
   <div className="Loading">
     <div className="Loading__wrapper">
-      <SoundWaveIcon width={48} height={48} />
+      <SoundWaveIcon color={styles.highlight} />
     </div>
   </div>
 )

@@ -11,3 +11,31 @@ $warn: #fe8a27;
 $padding: 1.25rem;
 $spacing: 0.9375rem;
 $nav: 4.375rem;
+
+/* Icons */
+$icon-size: 2rem;
+$icon-stroke-linecap: round;
+$icon-stroke-width: 0.1875rem;
+
+/* Breakpoints */
+$br-phone: 600px;
+$br-phablet: 800px;
+$br-tablet: 1200px;
+$br-laptop: 1600px;
+$br-desktop: 2000px;
+
+:export {
+  white: $white;
+  light: $light;
+  background: $background;
+  dark: $dark;
+  black: $black;
+  highlight: $highlight;
+  warn: $warn;
+
+  brPhone: $br-phone;
+  brPhablet: $br-phablet;
+  brTablet: $br-tablet;
+  brLaptop: $br-laptop;
+  brDesktop: $br-desktop;
+}

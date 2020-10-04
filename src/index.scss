@@ -16,11 +16,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.58;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: $br-phone) {
     font-size: 18px;
   }
 
-  @media only screen and (min-width: 2000px) {
+  @media only screen and (min-width: $br-desktop) {
     font-size: 20px;
   }
 }
@@ -98,7 +98,7 @@ h1 {
   font-weight: 900;
   line-height: 1.4;
 
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: $br-tablet) {
     font-size: 2.5rem;
   }
 }

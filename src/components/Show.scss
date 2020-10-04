@@ -1,0 +1,54 @@
+@import "../variables";
+
+.Show {
+  &__details {
+    padding: $padding;
+
+    @media only screen and (min-width: $br-laptop) {
+      padding-top: 5rem;
+    }
+
+    .Cover {
+      max-width: 300px;
+
+      @media only screen and (min-width: $br-tablet) {
+        max-width: 300px;
+      }
+    }
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+  }
+
+  &__information {
+    display: flex;
+
+    p {
+      line-height: 1.58;
+      margin: 0;
+
+      &:not(:first-child) {
+        margin-left: $padding;
+      }
+    }
+  }
+
+  &__overview {
+    max-width: 800px;
+  }
+
+  &__seasons {
+    h2 {
+      margin: 0 $padding;
+    }
+  }
+
+  &__details,
+  &__seasons {
+    @media only screen and (min-width: $br-laptop) {
+      margin: 0 auto;
+      max-width: 1600px;
+    }
+  }
+}

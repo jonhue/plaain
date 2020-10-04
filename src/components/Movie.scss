@@ -1,0 +1,114 @@
+@import "../variables";
+
+.Movie {
+  .PlyrPlayer {
+    display: none;
+  }
+
+  &__details {
+    padding: $padding;
+
+    @media only screen and (min-width: $br-laptop) {
+      padding: 5rem $padding;
+    }
+
+    .Cover {
+      max-width: 300px;
+
+      @media only screen and (min-width: $br-tablet) {
+        max-width: 300px;
+      }
+    }
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+  }
+
+  &__information {
+    display: flex;
+
+    p {
+      line-height: 1.58;
+      margin: 0;
+
+      &:not(:first-child) {
+        margin-left: $padding;
+      }
+    }
+  }
+
+  &__actions {
+    margin: 1.5625rem 0;
+
+    a.button,
+    button {
+      &:not(:first-child) {
+        margin-top: $spacing;
+      }
+    }
+
+    @media only screen and (min-width: $br-phone) {
+      align-items: center;
+      display: flex;
+
+      a.button,
+      button {
+        width: auto;
+
+        &:not(:first-child) {
+          margin-left: $spacing;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &__overview {
+    max-width: 800px;
+  }
+
+  &__people {
+    display: grid;
+    grid-gap: $spacing;
+
+    @media only screen and (min-width: $br-phablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__sources {
+    background: $dark;
+    margin-top: $spacing;
+
+    & > div {
+      padding: 1.5625rem $padding;
+
+      & > div {
+        display: grid;
+        grid-gap: $spacing;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    h4 {
+      margin: 0 0 0.1em;
+    }
+
+    h5 {
+      margin: 1em 0 0.1em;
+    }
+
+    p {
+      margin: 0.2em 0;
+    }
+  }
+
+  &__details,
+  &__sources > div {
+    @media only screen and (min-width: $br-laptop) {
+      margin: 0 auto;
+      max-width: 1600px;
+    }
+  }
+}

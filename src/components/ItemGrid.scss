@@ -6,19 +6,19 @@
   grid-template-columns: 1fr 1fr 1fr;
   padding: $padding;
 
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: $br-phablet) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: $br-tablet) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 1600px) {
+  @media only screen and (min-width: $br-laptop) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 2000px) {
+  @media only screen and (min-width: $br-desktop) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 

@@ -1,11 +1,8 @@
-import './Shows.scss'
 import { ConnectedProps, connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
-import ItemGrid from '../../components/ItemGrid'
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { RootState } from '../../store'
-import VerticalSlide from '../../components/VerticalSlide'
-import ZoomIcon from '../../components/Nucleo/icons/zoom.jsx'
+import Shows from '../../components/Shows'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortAlphabetically } from '../../util'
 
@@ -15,25 +12,9 @@ const mapState = (state: RootState) => ({
 
 const connector = connect(mapState)
 
-type ShowsProps = ConnectedProps<typeof connector>
+type ShowsViewProps = ConnectedProps<typeof connector>
 
-const Shows = ({ shows }: ShowsProps) => {
-  if (shows.length === 0) return <Redirect to="/app" />
+const ShowsView = ({ shows }: ShowsViewProps) =>
+  shows.length > 0 ? <Shows shows={shows} /> : <Redirect to="/app" />
 
-  return (
-    <div className="Shows">
-      <div className="Shows__find">
-        <Link to="/app/find">
-          <ZoomIcon width={24} height={24} />
-        </Link>
-      </div>
-      {window.innerWidth < 600 ? (
-        <VerticalSlide items={shows} path="shows" />
-      ) : (
-        <ItemGrid items={shows} />
-      )}
-    </div>
-  )
-}
-
-export default connector(Shows)
+export default connector(ShowsView)

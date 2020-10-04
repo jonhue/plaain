@@ -1,0 +1,42 @@
+@import "../variables";
+
+.Setup {
+  h2,
+  p {
+    margin: 0 $padding 0.2em;
+
+    &:first-child {
+      margin-top: $padding;
+    }
+  }
+
+  p.small {
+    margin-top: 0.625rem;
+  }
+
+  a.button {
+    display: inline-block;
+    margin: $padding $padding 0;
+
+    &:not(:first-child) {
+      margin-top: $spacing;
+    }
+  }
+
+  a.button,
+  button {
+    width: auto;
+  }
+
+  &__buttons {
+    a.button,
+    button {
+      display: inline-block;
+      margin: $padding 0 $padding $padding;
+
+      &:not(:first-child) {
+        margin-top: 0;
+      }
+    }
+  }
+}

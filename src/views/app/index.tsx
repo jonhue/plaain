@@ -1,7 +1,7 @@
 import './index.scss'
 import { Route, RouteComponentProps, Switch } from 'react-router-dom'
 import Find from './Find'
-import ForYou from './ForYou'
+import Home from './Home'
 import Movie from './Movie'
 import Movies from './Movies'
 import Nav from '../../components/Nav'
@@ -18,7 +18,7 @@ type AppProps = RouteComponentProps
 const App = ({ match }: AppProps) => (
   <div className="App">
     <Switch>
-      <Route path={`${match.path}/`} exact component={ForYou} />
+      <Route path={`${match.path}/`} exact component={Home} />
       <Route path={`${match.path}/movies`} component={Movies} />
       <Route path={`${match.path}/movie/:id`} exact component={Movie} />
       <Route path={`${match.path}/shows`} component={Shows} />

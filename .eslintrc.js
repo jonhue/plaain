@@ -43,6 +43,14 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['src/components/icons/Nucleo/*.tsx'],
+      rules: {
+        'react/display-name': 'off',
+      },
+    },
+  ],
   settings: {
     react: {
       version: 'detect',

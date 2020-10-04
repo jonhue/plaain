@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Nav.scss'
 
-import PopcornIcon from './Nucleo/icons/popcorn.jsx'
-import MovieIcon from './Nucleo/icons/movie.jsx'
-import ShowIcon from './Nucleo/icons/show.jsx'
-import GearIcon from './Nucleo/icons/gear.jsx'
+import PopcornIcon from './icons/Nucleo/popcorn.js'
+import MovieIcon from './icons/Nucleo/movie-61.js'
+import ShowIcon from './icons/Nucleo/desktop-screen.js'
+import GearIcon from './icons/Nucleo/settings-gear.js'
 
 class Nav extends Component {
   render() {

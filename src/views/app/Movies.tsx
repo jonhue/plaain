@@ -1,11 +1,8 @@
-import './Movies.scss'
 import { ConnectedProps, connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
-import ItemGrid from '../../components/ItemGrid'
+import Movies from '../../components/Movies'
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { RootState } from '../../store'
-import VerticalSlide from '../../components/VerticalSlide'
-import ZoomIcon from '../../components/Nucleo/icons/zoom.jsx'
 import { moviesSelector } from '../../store/movies/selectors'
 import { sortAlphabetically } from '../../util'
 
@@ -18,25 +15,9 @@ const mapState = (state: RootState) => ({
 
 const connector = connect(mapState)
 
-type MoviesProps = ConnectedProps<typeof connector>
+type MoviesViewProps = ConnectedProps<typeof connector>
 
-const Movies = ({ movies }: MoviesProps) => {
-  if (movies.length === 0) return <Redirect to="/app" />
+const MoviesView = ({ movies }: MoviesViewProps) =>
+  movies.length > 0 ? <Movies movies={movies} /> : <Redirect to="/app" />
 
-  return (
-    <div className="Movies">
-      <div className="Movies__find">
-        <Link to="/app/find">
-          <ZoomIcon width={24} height={24} />
-        </Link>
-      </div>
-      {window.innerWidth < 600 ? (
-        <VerticalSlide items={movies} path="movies" />
-      ) : (
-        <ItemGrid items={movies} />
-      )}
-    </div>
-  )
-}
-
-export default connector(Movies)
+export default connector(MoviesView)
