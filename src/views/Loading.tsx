@@ -1,6 +1,6 @@
 import './Loading.scss'
 import React from 'react'
-import SoundWaveIcon from '../components/icons/soundWave'
+import SoundWaveIcon from '../components/icons/SoundWave'
 import styles from '../_variables.scss'
 
 export const Loading = () => (

@@ -1,4 +1,3 @@
-import './Settings.scss'
 import { ConnectedProps, connect } from 'react-redux'
 import { fetchMetadataAll, index } from '../../store/thunks'
 import React from 'react'

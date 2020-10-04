@@ -5,12 +5,12 @@ import React from 'react'
 import { Show } from '../../types/items/Show'
 import { useTranslation } from 'react-i18next'
 
-type SetupProps = {
+type SetupViewProps = {
   movies: Movie[]
   shows: Show[]
 }
 
-const Setup = ({ movies, shows }: SetupProps) => {
+const SetupView = ({ movies, shows }: SetupViewProps) => {
   const { t } = useTranslation()
 
   return (
@@ -37,4 +37,4 @@ const Setup = ({ movies, shows }: SetupProps) => {
   )
 }
 
-export default Setup
+export default SetupView

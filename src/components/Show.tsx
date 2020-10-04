@@ -8,12 +8,12 @@ import { Season } from '../types/items/Season'
 import { Show } from '../types/items/Show'
 import { useTranslation } from 'react-i18next'
 
-type ShowProps = {
+type ShowViewProps = {
   show: Show
   seasons: Season[]
 }
 
-const Show = ({ show, seasons }: ShowProps) => {
+const ShowView = ({ show, seasons }: ShowViewProps) => {
   const { t } = useTranslation()
 
   return (
@@ -39,4 +39,4 @@ const Show = ({ show, seasons }: ShowProps) => {
   )
 }
 
-export default Show
+export default ShowView

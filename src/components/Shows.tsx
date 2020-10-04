@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import { Show } from '../types/items/Show'
 import VerticalSlide from './VerticalSlide'
-import ZoomIcon from './icons/Nucleo/zoom.js'
+import ZoomIcon from './icons/Nucleo/zoom'
 import styles from '../_variables.scss'
 
-type ShowsProps = {
+type ShowsViewProps = {
   shows: Show[]
 }
 
-const Shows = ({ shows }: ShowsProps) => (
+const ShowsView = ({ shows }: ShowsViewProps) => (
   <div className="Shows">
     <div className="Shows__find">
       <Link to="/app/find">
@@ -26,4 +26,4 @@ const Shows = ({ shows }: ShowsProps) => (
   </div>
 )
 
-export default Shows
+export default ShowsView

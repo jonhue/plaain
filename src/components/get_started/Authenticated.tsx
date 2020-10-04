@@ -3,12 +3,12 @@ import React, { useCallback } from 'react'
 import { Provider } from '../../types/providers/Provider'
 import { useTranslation } from 'react-i18next'
 
-type AuthenticatedProps = {
+type AuthenticatedViewProps = {
   providers: Provider[]
   index: (providers: Provider[]) => Promise<void>
 }
 
-const Authenticated = ({ providers, index }: AuthenticatedProps) => {
+const AuthenticatedView = ({ providers, index }: AuthenticatedViewProps) => {
   const { t } = useTranslation()
 
   const handleIndex = useCallback(() => {
@@ -48,4 +48,4 @@ const Authenticated = ({ providers, index }: AuthenticatedProps) => {
   )
 }
 
-export default Authenticated
+export default AuthenticatedView

@@ -5,12 +5,12 @@ import React from 'react'
 import { Season } from '../types/items/Season'
 import { useTranslation } from 'react-i18next'
 
-type ForYouProps = {
+type ForYouViewProps = {
   inProgress: (Movie | Season)[]
   recentlyWatched: (Movie | Season)[]
 }
 
-const ForYou = ({ inProgress, recentlyWatched }: ForYouProps) => {
+const ForYouView = ({ inProgress, recentlyWatched }: ForYouViewProps) => {
   const { t } = useTranslation()
 
   return (
@@ -32,4 +32,4 @@ const ForYou = ({ inProgress, recentlyWatched }: ForYouProps) => {
   )
 }
 
-export default ForYou
+export default ForYouView

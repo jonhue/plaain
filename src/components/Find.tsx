@@ -32,12 +32,12 @@ const find = <T extends IMediaItem>(
       results.map((id) => items.find((item) => item.id === id.toString())),
     )
 
-type FindProps = {
+type FindViewProps = {
   movies: Movie[]
   shows: Show[]
 }
 
-const Find = ({ movies, shows }: FindProps) => {
+const FindView = ({ movies, shows }: FindViewProps) => {
   const { t } = useTranslation()
   const history = useHistory()
   const location = useLocation()
@@ -103,4 +103,4 @@ const Find = ({ movies, shows }: FindProps) => {
   )
 }
 
-export default Find
+export default FindView

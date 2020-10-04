@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
 import VerticalSlide from './VerticalSlide'
-import ZoomIcon from './icons/Nucleo/zoom.js'
+import ZoomIcon from './icons/Nucleo/zoom'
 import styles from '../_variables.scss'
 
-type MoviesProps = {
+type MoviesViewProps = {
   movies: Movie[]
 }
 
-const Movies = ({ movies }: MoviesProps) => (
+const MoviesView = ({ movies }: MoviesViewProps) => (
   <div className="Movies">
     <div className="Movies__find">
       <Link to="/app/find">
@@ -26,4 +26,4 @@ const Movies = ({ movies }: MoviesProps) => (
   </div>
 )
 
-export default Movies
+export default MoviesView

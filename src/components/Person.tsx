@@ -9,13 +9,13 @@ import { Movie } from '../types/items/Movie'
 import { Season } from '../types/items/Season'
 import { useTranslation } from 'react-i18next'
 
-type PersonProps = {
+type PersonViewProps = {
   person: AccPerson
   movies: Movie[]
   seasons: Season[]
 }
 
-const Person = ({ person, movies, seasons }: PersonProps) => {
+const PersonView = ({ person, movies, seasons }: PersonViewProps) => {
   const { t } = useTranslation()
 
   const backdropPath = useMemo(() => {
@@ -54,4 +54,4 @@ const Person = ({ person, movies, seasons }: PersonProps) => {
   )
 }
 
-export default Person
+export default PersonView

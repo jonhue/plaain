@@ -11,14 +11,19 @@ import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-type SeasonProps = {
+type SeasonViewProps = {
   show: Show
   season: Season
   episodes: Episode[]
   currentEpisode: Episode | undefined
 }
 
-const Season = ({ show, season, episodes, currentEpisode }: SeasonProps) => {
+const SeasonView = ({
+  show,
+  season,
+  episodes,
+  currentEpisode,
+}: SeasonViewProps) => {
   const { t } = useTranslation()
   const history = useHistory()
 
@@ -138,4 +143,4 @@ const Season = ({ show, season, episodes, currentEpisode }: SeasonProps) => {
   )
 }
 
-export default Season
+export default SeasonView

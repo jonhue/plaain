@@ -1,8 +1,8 @@
 import './Settings.scss'
 import { Provider, ProviderKind } from '../types/providers/Provider'
 import React, { useCallback } from 'react'
-import AddIcon from './icons/Nucleo/e-add.js'
-import MicrosoftIcon from './icons/Nucleo/microsoft.js'
+import AddIcon from './icons/Nucleo/e-add'
+import MicrosoftIcon from './icons/Nucleo/microsoft'
 import { VERSION } from '../constants'
 import styles from '../_variables.scss'
 import { useTranslation } from 'react-i18next'
@@ -11,18 +11,28 @@ const providerIcon = {
   [ProviderKind.OneDrive]: <MicrosoftIcon color={styles.white} />,
 }
 
-type SettingsProps = {
+type SettingsViewProps = {
   providers: Provider[]
   fetchMetadataAll: () => Promise<void>
   index: (providers: Provider[]) => Promise<void>
 }
 
-const Settings = ({ providers, fetchMetadataAll, index }: SettingsProps) => {
+const SettingsView = ({
+  providers,
+  fetchMetadataAll,
+  index,
+}: SettingsViewProps) => {
   const { t } = useTranslation()
 
   const handleIndex = useCallback(() => {
     index(providers)
   }, [index, providers])
+
+  const handleUpdateProvider = useCallback(
+    () => console.log('update provider'),
+    [],
+  )
+  const handleAddProvider = useCallback(() => console.log('add provider'), [])
 
   return (
     <div className="Settings">
@@ -101,4 +111,4 @@ const Settings = ({ providers, fetchMetadataAll, index }: SettingsProps) => {
   )
 }
 
-export default Settings
+export default SettingsView

@@ -15,11 +15,11 @@ import classNames from 'classnames'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-type MovieProps = {
+type MovieViewProps = {
   movie: Movie
 }
 
-const Movie = ({ movie }: MovieProps) => {
+const MovieView = ({ movie }: MovieViewProps) => {
   const { t } = useTranslation()
   const history = useHistory()
 
@@ -102,4 +102,4 @@ const Movie = ({ movie }: MovieProps) => {
   )
 }
 
-export default Movie
+export default MovieView
