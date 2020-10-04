@@ -27,11 +27,11 @@ const MovieView = ({ movie }: MovieViewProps) => {
     history.push(
       `/player?id=${movie.id}&type=${movie.kind}&s=${movie.usage.progress}`,
     )
-  }, [movie])
+  }, [history, movie])
 
   const handleWatch = useCallback(() => {
     history.push(`/player?id=${movie.id}&type=${movie.kind}`)
-  }, [movie])
+  }, [history, movie])
 
   return (
     <div className="Movie">

@@ -27,7 +27,7 @@
       margin: 0.5rem 0 0;
     }
 
-    svg {
+    .Icon {
       height: 1.2rem;
       width: 1.2rem;
 
@@ -61,7 +61,7 @@
       }
     }
 
-    &[disabled] {
+    &.disabled {
       cursor: not-allowed;
       opacity: 0.5;
       pointer-events: none;

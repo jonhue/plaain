@@ -27,7 +27,7 @@ export interface DriveItemResponse {
   folder: FolderResponse | undefined
   file: FileResponse | undefined
   video: VideoResponse | undefined
-  ['@microsoft.graph.downloadUrl']: string
+  '@microsoft.graph.downloadUrl': string
 }
 
 export interface DriveItemChildrenResponse {

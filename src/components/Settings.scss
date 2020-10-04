@@ -36,7 +36,6 @@
       float: left;
       padding: $padding;
 
-      a.button,
       button {
         border: 0.1875rem solid $dark;
         border-radius: 50%;
@@ -72,7 +71,6 @@
         }
       }
 
-      a.button,
       button:disabled {
         background: $background;
         border: 0.1875rem solid $dark;
@@ -82,12 +80,28 @@
   }
 
   &__indexing {
-    button {
-      width: auto;
-    }
+    &__actions {
+      button {
+        width: auto;
 
-    h5 {
-      margin-top: 2em;
+        &:not(:first-child) {
+          margin-top: $padding;
+        }
+      }
+
+      @media only screen and (min-width: $br-phone) {
+        align-items: center;
+        display: flex;
+
+        button {
+          width: auto;
+
+          &:not(:first-child) {
+            margin-left: $spacing;
+            margin-top: 0;
+          }
+        }
+      }
     }
   }
 

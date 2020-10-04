@@ -18,7 +18,7 @@ const buildCaption = (
     name: fileName,
     size,
     webUrl,
-    ['@microsoft.graph.downloadUrl']: downloadUrl,
+    '@microsoft.graph.downloadUrl': downloadUrl,
   }: DriveItemResponse,
   { mimeType }: FileResponse,
 ): Caption => ({
@@ -45,7 +45,7 @@ const buildVideo = (
     name: fileName,
     size,
     webUrl,
-    ['@microsoft.graph.downloadUrl']: downloadUrl,
+    '@microsoft.graph.downloadUrl': downloadUrl,
   }: DriveItemResponse,
   { mimeType }: FileResponse,
   {

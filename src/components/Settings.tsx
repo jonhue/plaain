@@ -55,9 +55,9 @@ const SettingsView = ({
                 {provider.name}
               </button>
             ))}
-            <a className="button" onClick={handleAddProvider}>
+            <button onClick={handleAddProvider}>
               <AddIcon color={styles.white} />
-            </a>
+            </button>
           </div>
         </div>
       </section>
