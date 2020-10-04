@@ -9,7 +9,7 @@ import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
 import { seasonsByShowSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
-import { sortByNumber } from '../../util'
+import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
 
 const mapState = (state: RootState) => ({
   seasons: state.seasons,
@@ -38,9 +38,9 @@ const Show = ({ match, seasons, shows }: ShowProps) => {
 
   return (
     <div className="Show">
-      <Backdrop url={show.backdropUrl} />
+      <Backdrop url={buildBackdropUrl(show.backdropPath)} />
       <div className="Show__details">
-        <Cover url={show.posterUrl} alt="poster" width="50%" />
+        <Cover url={buildCoverUrl(show.posterPath)} alt="poster" width="50%" />
         <h1>{show.title}</h1>
         <div className="Show__information">
           <p className="small">

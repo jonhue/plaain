@@ -1,7 +1,7 @@
 import './Movie.scss'
 import { ConnectedProps, connect } from 'react-redux'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import { isInProgress, splitHoursAndMinutes } from '../../util'
+import { buildBackdropUrl, buildCoverUrl, isInProgress, splitHoursAndMinutes } from '../../util'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import FileList from '../../components/FileList'
@@ -33,7 +33,7 @@ const Movie = ({ match, movies }: MovieProps) => {
 
   const handleContinue = () => {
     history.push(
-      `/player?id=${movie.id}&type=${movie.kind}&s=${movie.progress}`,
+      `/player?id=${movie.id}&type=${movie.kind}&s=${movie.usage.progress}`,
     )
   }
 
@@ -43,13 +43,13 @@ const Movie = ({ match, movies }: MovieProps) => {
 
   return (
     <div className="Movie">
-      <Backdrop url={movie.backdropUrl} />
+      <Backdrop url={buildBackdropUrl(movie.backdropPath)} />
       <div className="Movie__details">
-        <Cover url={movie.posterUrl} alt="poster" width="50%" />
+        <Cover url={buildCoverUrl(movie.posterPath)} alt="poster" width="50%" />
         <h1>{movie.title}</h1>
         <div className="Movie__information">
           <p className="small">{movie.releaseDate.getFullYear()}</p>
-          <p className="small">{splitHoursAndMinutes(movie.duration)}</p>
+          {movie.duration && <p className="small">{splitHoursAndMinutes(movie.duration)}</p>}
         </div>
         <div className="Movie__actions">
           {isInProgress(movie) && (

@@ -1,8 +1,8 @@
-import { Episode } from './Episode'
-import { Movie } from './Movie'
+import { Episode, EpisodeLike } from './Episode'
+import { Movie, MovieLike } from './Movie'
 import { Person } from './Person'
-import { Season } from './Season'
-import { Show } from './Show'
+import { Season, SeasonLike } from './Season'
+import { Show, ShowLike } from './Show'
 
 export enum ItemKind {
   Episode,
@@ -12,14 +12,21 @@ export enum ItemKind {
   Show,
 }
 
-export interface IItem {
-  kind: ItemKind
-  id: string
-}
-
-export interface IMediaItem extends IItem {
+export interface Usage {
   lastWatched: Date | undefined
   progress: number | undefined
 }
 
+export interface IItem {
+  kind: ItemKind
+  id: string
+  tmdbId: number
+}
+
+export interface IMediaItem extends IItem {
+  usage: Usage
+}
+
 export type Item = Episode | Movie | Person | Season | Show
+
+export type ItemLike = Item | EpisodeLike | MovieLike | SeasonLike | ShowLike

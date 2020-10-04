@@ -21,23 +21,21 @@ const buildCaption = (
     ['@microsoft.graph.downloadUrl']: downloadUrl,
   }: DriveItemResponse,
   { mimeType }: FileResponse,
-): Caption => {
-  return {
-    kind: FileKind.Caption,
-    type,
-    id: buildFileId(ProviderKind.OneDrive, id),
-    name,
-    provider: {
-      kind: ProviderKind.OneDrive,
-      id,
-      fileName,
-      size,
-      downloadUrl,
-      webUrl,
-      mimeType,
-    },
-  }
-}
+): Caption => ({
+  kind: FileKind.Caption,
+  type,
+  id: buildFileId(ProviderKind.OneDrive, id),
+  name,
+  provider: {
+    kind: ProviderKind.OneDrive,
+    id,
+    fileName,
+    size,
+    downloadUrl,
+    webUrl,
+    mimeType,
+  },
+})
 
 const buildVideo = (
   type: VideoType,
@@ -60,31 +58,29 @@ const buildVideo = (
     fourCC,
     frameRate,
   }: VideoResponse,
-): Video => {
-  return {
-    kind: FileKind.Video,
-    type,
-    id: buildFileId(ProviderKind.OneDrive, id),
-    name,
-    provider: {
-      kind: ProviderKind.OneDrive,
-      id,
-      fileName,
-      size,
-      downloadUrl,
-      webUrl,
-      mimeType,
-      bitrate,
-      duration,
-      height,
-      width,
-      audioChannels,
-      audioFormat,
-      fourCC,
-      frameRate,
-    },
-  }
-}
+): Video => ({
+  kind: FileKind.Video,
+  type,
+  id: buildFileId(ProviderKind.OneDrive, id),
+  name,
+  provider: {
+    kind: ProviderKind.OneDrive,
+    id,
+    fileName,
+    size,
+    downloadUrl,
+    webUrl,
+    mimeType,
+    bitrate,
+    duration,
+    height,
+    width,
+    audioChannels,
+    audioFormat,
+    fourCC,
+    frameRate,
+  },
+})
 
 export const buildFile = (response: DriveItemResponse): File | undefined => {
   if (response.file === undefined) return

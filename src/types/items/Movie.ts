@@ -1,19 +1,31 @@
-import { IMediaItem, ItemKind } from './Item'
+import { IMediaItem, ItemKind, Usage } from './Item'
 import { Caption } from '../files/captions/Caption'
-import { Person } from './Person'
+import { CastMember, CrewMember } from './Person'
 import { Video } from '../files/videos/Video'
 
 export interface Movie extends IMediaItem {
   kind: typeof ItemKind.Movie
   title: string
-  summary: string
-  duration: number
+  summary: string | undefined
+  duration: number | undefined
   releaseDate: Date
-  posterUrl: string
-  backdropUrl: string
+  isAdult: boolean
+  budget: number
+  revenue: number
+  homepage: string | undefined
+  posterPath: string | undefined
+  backdropPath: string | undefined
   trailerUrl: string
-  cast: Person[]
-  crew: Person[]
+  cast: CastMember[]
+  crew: CrewMember[]
   sources: Video[]
   captions: Caption[]
+}
+
+export interface MovieLike {
+  kind: typeof ItemKind.Movie
+  tmdbId: number
+  sources: Video[]
+  captions: Caption[]
+  usage: Usage
 }

@@ -1,3 +1,4 @@
+import { AccPerson, Person } from '../types/items/Person'
 import {
   inProgressSelector as inProgressMoviesSelector,
   moviesPersonSelector,
@@ -8,8 +9,8 @@ import {
   recentlyWatchedSelector as recentlyWatchedSeasonsSelector,
   seasonsPersonSelector,
 } from './seasons/selectors'
+import { ItemKind } from '../types/items/Item'
 import { MoviesState } from './movies/types'
-import { Person } from '../types/items/Person'
 import { RootState } from '.'
 import { SeasonsState } from './seasons/types'
 import { createSelector } from 'reselect'
@@ -34,7 +35,7 @@ export const personSelector = (id: string) =>
   createSelector<
     { movies: MoviesState; seasons: SeasonsState },
     Person[],
-    Person | undefined
+    AccPerson | undefined
   >(
     [
       ({ movies }) => moviesPersonSelector(id, (movie) => movie.cast)(movies),
@@ -44,11 +45,25 @@ export const personSelector = (id: string) =>
       ({ seasons }) =>
         seasonsPersonSelector(id, (season) => season.crew)(seasons),
     ],
-    (moviesCast, moviesCrew, seasonsCast, seasonsCrew) =>
-      [...moviesCast, ...moviesCrew, ...seasonsCast, ...seasonsCrew].reduce(
+    (moviesCast, moviesCrew, seasonsCast, seasonsCrew) => {
+      const roles = [
+        ...moviesCast,
+        ...moviesCrew,
+        ...seasonsCast,
+        ...seasonsCrew,
+      ]
+
+      return roles.reduce<AccPerson | undefined>(
         (acc, person) => ({
-          ...acc,
-          jobs: [...new Set([...acc.jobs, ...person.jobs])],
+          kind: ItemKind.Person,
+          id,
+          tmdbId: person.tmdbId,
+          name: person.name,
+          gender: person.gender,
+          profilePath: person.profilePath,
+          jobs: [...new Set([...acc?.jobs, person.job])],
         }),
-      ),
+        undefined,
+      )
+    },
   )

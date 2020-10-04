@@ -11,7 +11,7 @@ import classNames from 'classnames'
 import { episodesBySeasonSelector } from '../../store/episodes/selectors'
 import { seasonSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
-import { sortByNumber } from '../../util'
+import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
 
 const mapState = (state: RootState) => ({
   episodes: state.episodes,
@@ -40,7 +40,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
     (episode) => episode.number,
   )
   const currentEpisode = seasonEpisodes.find(
-    (episode) => episode.number === season.progress,
+    (episode) => episode.number === season.usage.progress,
   )
 
   const history = useHistory()
@@ -49,7 +49,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
     const episode = currentEpisode!
 
     history.push(
-      `/player?id=${episode.id}&type=${episode.kind}&s=${episode.progress}`,
+      `/player?id=${episode.id}&type=${episode.kind}&s=${episode.usage.progress}`,
     )
   }
 
@@ -66,9 +66,9 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
 
   return (
     <div className="Season">
-      <Backdrop url={season.backdropUrl} />
+      <Backdrop url={buildBackdropUrl(season.showBackdropPath)} />
       <div className="Season__details">
-        <Cover url={season.posterUrl} alt="poster" width="50%" />
+        <Cover url={buildCoverUrl(season.posterPath)} alt="poster" width="50%" />
         <h1>Season {season.number}</h1>
         <div className="Season__information">
           <p className="small">{show.title}</p>
