@@ -1,5 +1,6 @@
 import './Show.scss'
 import { ConnectedProps, connect } from 'react-redux'
+import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import HorizontalSlide from '../../components/HorizontalSlide'
@@ -9,7 +10,7 @@ import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
 import { seasonsByShowSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
-import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
+import { useTranslation } from 'react-i18next'
 
 const mapState = (state: RootState) => ({
   seasons: state.seasons,
@@ -26,6 +27,8 @@ type ShowProps = ConnectedProps<typeof connector> &
   RouteComponentProps<ShowParams>
 
 const Show = ({ match, seasons, shows }: ShowProps) => {
+  const { t } = useTranslation()
+
   const show = showSelector(match.params.id)(shows)
   if (show === undefined) return <NotFound />
 
@@ -51,7 +54,7 @@ const Show = ({ match, seasons, shows }: ShowProps) => {
       </div>
       {showSeasons.length > 0 && (
         <div className="Show__seasons">
-          <h2>Seasons</h2>
+          <h2>{t('Seasons')}</h2>
           <HorizontalSlide items={showSeasons} />
         </div>
       )}

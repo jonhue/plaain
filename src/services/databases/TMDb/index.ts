@@ -1,4 +1,8 @@
+import { Episode, EpisodeLike } from '../../../types/items/Episode'
 import { Item, ItemKind, ItemLike } from '../../../types/items/Item'
+import { Movie, MovieLike } from '../../../types/items/Movie'
+import { Season, SeasonLike } from '../../../types/items/Season'
+import { Show, ShowLike } from '../../../types/items/Show'
 import { buildEpisode, buildMovie, buildSeason, buildShow } from './util'
 import {
   fetchEpisode,
@@ -8,10 +12,6 @@ import {
   fetchSeasonCredits,
   fetchShow,
 } from './api'
-import { Episode, EpisodeLike } from '../../../types/items/Episode'
-import { Movie, MovieLike } from '../../../types/items/Movie'
-import { Season, SeasonLike } from '../../../types/items/Season'
-import { Show, ShowLike } from '../../../types/items/Show'
 
 const fetchEpisodeMetadata = async (episode: EpisodeLike): Promise<Episode> => {
   const response = await fetchEpisode(

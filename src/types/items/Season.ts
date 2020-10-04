@@ -1,5 +1,5 @@
-import { IMediaItem, ItemKind, Usage } from './Item'
 import { CastMember, CrewMember } from './Person'
+import { IMediaItem, ItemKind, Usage } from './Item'
 
 export interface Season extends IMediaItem {
   kind: typeof ItemKind.Season

@@ -1,3 +1,4 @@
+import './i18n.ts'
 import './index.scss'
 import 'whatwg-fetch'
 import * as serviceWorker from './serviceWorker'

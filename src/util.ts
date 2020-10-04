@@ -1,10 +1,12 @@
 import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
-import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 import { IMediaItem } from './types/items/Item'
+import { UseTranslationResponse } from 'react-i18next'
+import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
 export const notUndefined = <T>(x: T | undefined): x is T => x !== undefined
 
-export const isInProgress = (item: IMediaItem) => item.usage.progress !== undefined
+export const isInProgress = (item: IMediaItem) =>
+  item.usage.progress !== undefined
 
 export const wasRecentlyWatched = (item: IMediaItem, thresh: Date) =>
   !isInProgress(item) &&
@@ -26,15 +28,20 @@ export const sortAlphabetically = <T extends unknown>(
   getAttr: (item: T) => string,
 ) => items.sort((a, b) => (getAttr(a) < getAttr(b) ? -1 : 1))
 
-export const splitHoursAndMinutes = (duration: number) => {
+export const splitHoursAndMinutes = (
+  t: UseTranslationResponse[0],
+  duration: number,
+) => {
   const hours = Math.floor(duration / 60)
   const minutes = duration % 60
 
-  return `${hours === 0 ? '' : hours + 'h'}${
+  return `${hours > 0 && hours + t('h')}${
     hours !== 0 && minutes !== 0 ? ' ' : ''
-  }${minutes === 0 ? '' : minutes + 'm'}`
+  }${minutes > 0 && minutes + t('m')}`
 }
 
-export const buildBackdropUrl = (backdropPath: string | undefined) => backdropPath ? buildTMDbImageUrl(backdropPath) : FALLBACK_BACKDROP_URL
+export const buildBackdropUrl = (backdropPath: string | undefined) =>
+  backdropPath ? buildTMDbImageUrl(backdropPath) : FALLBACK_BACKDROP_URL
 
-export const buildCoverUrl = (posterPath: string | undefined) => posterPath ? buildTMDbImageUrl(posterPath) : FALLBACK_COVER_URL
+export const buildCoverUrl = (posterPath: string | undefined) =>
+  posterPath ? buildTMDbImageUrl(posterPath) : FALLBACK_COVER_URL

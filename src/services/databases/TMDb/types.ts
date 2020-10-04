@@ -1,7 +1,3 @@
-import { Caption } from '../../../types/files/captions/Caption'
-import { Video } from '../../../types/files/videos/Video'
-import { Item, ItemKind, Usage } from '../../../types/items/Item'
-
 interface PersonResponse {
   gender: number | undefined
   id: number

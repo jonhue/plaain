@@ -10,6 +10,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { Show } from '../../types/items/Show'
 import { moviesSelector } from '../../store/movies/selectors'
 import { showsSelector } from '../../store/shows/selectors'
+import { useTranslation } from 'react-i18next'
 
 const QUERY_PARAMETER = 'q'
 
@@ -45,6 +46,8 @@ const connector = connect(mapState)
 type FindProps = ConnectedProps<typeof connector> & RouteComponentProps
 
 const Find = ({ history, location, movies, shows }: FindProps) => {
+  const { t } = useTranslation()
+
   const moviesIndex = buildIndex(
     movies,
     (movie: Movie) => `${movie.title};${movie.summary}`,
@@ -78,21 +81,21 @@ const Find = ({ history, location, movies, shows }: FindProps) => {
         <input
           autoFocus
           value={query || ''}
-          placeholder="Search your library"
+          placeholder={t('Search your library')}
           onChange={handleInputChange}
         />
       </form>
 
       {Object.keys(foundMovies).length > 0 && (
         <section>
-          <h2>Movies</h2>
+          <h2>{t('Movies')}</h2>
           <HorizontalSlide items={foundMovies} id="movies" />
         </section>
       )}
 
       {Object.keys(foundShows).length > 0 && (
         <section>
-          <h2>TV shows</h2>
+          <h2>{t('TV shows')}</h2>
           <HorizontalSlide items={foundShows} id="shows" />
         </section>
       )}

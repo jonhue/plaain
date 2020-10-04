@@ -13,6 +13,7 @@ import { moviesSelector } from '../../store/movies/selectors'
 import { providersSelector } from '../../store/auth/selectors'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
+import { useTranslation } from 'react-i18next'
 
 const mapState = (state: RootState) => ({
   inProgress: sortByLastWatched(inProgressSelector(state)),
@@ -35,6 +36,8 @@ const ForYou = ({
   recentlyWatched,
   shows,
 }: ForYouProps) => {
+  const { t } = useTranslation()
+
   const handleIndex = useCallback(() => {
     index(providers)
   }, [index, providers])
@@ -44,14 +47,14 @@ const ForYou = ({
       <div className="ForYou">
         {inProgress.length > 0 && (
           <section>
-            <h2>Continue watching</h2>
+            <h2>{t('Continue watching')}</h2>
             <HorizontalSlide items={inProgress} id="inProgress" />
           </section>
         )}
 
         {recentlyWatched.length > 0 && (
           <section>
-            <h2>Recently watched</h2>
+            <h2>{t('Recently watched')}</h2>
             <HorizontalSlide items={recentlyWatched} id="recentlyWatched" />
           </section>
         )}
@@ -60,37 +63,41 @@ const ForYou = ({
   } else if (providers.length === 0) {
     return (
       <div className="ForYou">
-        <h2>Get started</h2>
+        <h2>{t('Get started')}</h2>
         <p>
-          To watch your movies and TV shows, you first have to sign in with the
-          cloud service that hosts your media.
+          {t(
+            'To watch your movies and TV shows, you first have to sign in with the cloud service that hosts your media.',
+          )}
         </p>
         <Link to="/app/settings" className="button">
-          Authenticate
+          {t('Authenticate')}
         </Link>
         <p className="small">
-          Note that Plaain may <span className="bold">not</span> be used to
-          stream pirated content or publicly share your private media library.
-          You may only connect to your private cloud storage.
+          {t(
+            'Note that Plaain may {{not}} be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.',
+            { not: <span className="bold">{t('not')}</span> },
+          )}
         </p>
       </div>
     )
   } else if (movies.length === 0 && shows.length === 0) {
     return (
       <div className="ForYou">
-        <h2>Get started</h2>
+        <h2>{t('Get started')}</h2>
         <p>
-          You signed into a cloud service, but we didn&apos;t find any movies or
-          TV shows.
+          {t(
+            "You signed into a cloud service, but we didn't find any movies or TV shows.",
+          )}
         </p>
         <p>
-          It&apos;s likely that you just have to move some of your files around
-          and create some folders to make it work.
+          {t(
+            "It's likely that you just have to move some of your files around and create some folders to make it work.",
+          )}
         </p>
         <p>
-          Reference the getting started guide to learn how to organize your
-          files so that Plaain finds them. After you&apos;re done, just
-          re-index.
+          {t(
+            "Reference the getting started guide to learn how to organize your files so that Plaain finds them. After you're done, just re-index.",
+          )}
         </p>
         <div className="ForYou__buttons">
           <a
@@ -99,29 +106,30 @@ const ForYou = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Getting started
+            {t('Getting started')}
           </a>
-          <button onClick={handleIndex}>Index</button>
+          <button onClick={handleIndex}>{t('Index')}</button>
         </div>
       </div>
     )
   } else {
     return (
       <div className="ForYou">
-        <h2>Get started</h2>
+        <h2>{t('Get started')}</h2>
         <p>
-          Here, you&apos;ll be able to find your recently watched movie or the
-          show you didn&apos;t finish yet.
+          {t(
+            "Here, you'll be able to find your recently watched movie or the show you didn't finish yet.",
+          )}
         </p>
         <div className="ForYou__buttons">
           {movies.length > 0 && (
             <Link to="/app/movies" className="button">
-              Discover your movies
+              {t('Discover your movies')}
             </Link>
           )}
           {shows.length > 0 && (
             <Link to="/app/shows" className="button">
-              Discover your shows
+              {t('Discover your shows')}
             </Link>
           )}
         </div>

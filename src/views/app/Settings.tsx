@@ -8,6 +8,7 @@ import { ProviderKind } from '../../types/providers/Provider'
 import { RootState } from '../../store'
 import { VERSION } from '../../constants'
 import { providersSelector } from '../../store/auth/selectors'
+import { useTranslation } from 'react-i18next'
 
 const providerIcon = {
   [ProviderKind.OneDrive]: <MicrosoftIcon width={32} height={32} />,
@@ -23,6 +24,8 @@ const connector = connect(mapState, mapDispatch)
 type SettingsProps = ConnectedProps<typeof connector>
 
 const Settings = ({ index, fetchMetadataAll, providers }: SettingsProps) => {
+  const { t } = useTranslation()
+
   const handleIndex = useCallback(() => {
     index(providers)
   }, [index, providers])
@@ -30,9 +33,11 @@ const Settings = ({ index, fetchMetadataAll, providers }: SettingsProps) => {
   return (
     <div className="Settings">
       <section className="Settings__auth">
-        <h2>Authentication</h2>
+        <h2>{t('Authentication')}</h2>
         <p>
-          Sign into your cloud to add your movies and TV shows to your library.
+          {t(
+            'Sign into your cloud to add your movies and TV shows to your library.',
+          )}
         </p>
         <div className="Settings__auth__scroll">
           <div className="Settings__auth__flex">
@@ -54,43 +59,48 @@ const Settings = ({ index, fetchMetadataAll, providers }: SettingsProps) => {
       </section>
 
       <section className="Settings__indexing">
-        <h2>Indexing</h2>
+        <h2>{t('Indexing')}</h2>
         <p>
-          Index to look for new media on your linked services or fetch the
-          latest metadata.
+          {t(
+            'Index to look for new media on your linked services or fetch the latest metadata.',
+          )}
         </p>
         <div className="Settings__indexing__actions">
-          <button onClick={handleIndex}>Index</button>
-          <button onClick={fetchMetadataAll}>Update metadata</button>
+          <button onClick={handleIndex}>{t('Index')}</button>
+          <button onClick={fetchMetadataAll}>{t('Update metadata')}</button>
         </div>
       </section>
 
       <section className="Settings__version">
-        <h2>Version</h2>
-        <p>Plaain {VERSION}.</p>
+        <h2>{t('Version')}</h2>
+        <p>{t('Plaain {{version}}.', { version: VERSION })}</p>
         <p className="small">
-          Plaain is{' '}
-          <a
-            href="https://github.com/jonhue/plaain"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            open-source
-          </a>
-          . See the{' '}
-          <a
-            href="https://github.com/jonhue/plaain/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            changelog
-          </a>
-          .
+          {t('Plaain is {{openSource}}. See the {{changelog}}.', {
+            openSource: (
+              <a
+                href="https://github.com/jonhue/plaain"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('open-source')}
+              </a>
+            ),
+            changelog: (
+              <a
+                href="https://github.com/jonhue/plaain/releases"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('changelog')}
+              </a>
+            ),
+          })}
         </p>
         <p className="small">
-          Note that Plaain may <span className="bold">not</span> be used to
-          stream pirated content or publicly share your private media library.
-          You may only connect to your private cloud storage.
+          {t(
+            'Note that Plaain may {{not}} be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.',
+            { not: <span className="bold">{t('not')}</span> },
+          )}
         </p>
       </section>
     </div>

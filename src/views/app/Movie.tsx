@@ -1,7 +1,12 @@
 import './Movie.scss'
 import { ConnectedProps, connect } from 'react-redux'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import { buildBackdropUrl, buildCoverUrl, isInProgress, splitHoursAndMinutes } from '../../util'
+import {
+  buildBackdropUrl,
+  buildCoverUrl,
+  isInProgress,
+  splitHoursAndMinutes,
+} from '../../util'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import FileList from '../../components/FileList'
@@ -11,6 +16,7 @@ import React from 'react'
 import { RootState } from '../../store'
 import classNames from 'classnames'
 import { movieSelector } from '../../store/movies/selectors'
+import { useTranslation } from 'react-i18next'
 
 const mapState = (state: RootState) => ({
   movies: state.movies,
@@ -26,6 +32,8 @@ type MovieProps = ConnectedProps<typeof connector> &
   RouteComponentProps<MovieParams>
 
 const Movie = ({ match, movies }: MovieProps) => {
+  const { t } = useTranslation()
+
   const movie = movieSelector(match.params.id)(movies)
   if (movie === undefined) return <NotFound />
 
@@ -49,7 +57,9 @@ const Movie = ({ match, movies }: MovieProps) => {
         <h1>{movie.title}</h1>
         <div className="Movie__information">
           <p className="small">{movie.releaseDate.getFullYear()}</p>
-          {movie.duration && <p className="small">{splitHoursAndMinutes(movie.duration)}</p>}
+          {movie.duration && (
+            <p className="small">{splitHoursAndMinutes(t, movie.duration)}</p>
+          )}
         </div>
         <div className="Movie__actions">
           {isInProgress(movie) && (
@@ -58,7 +68,7 @@ const Movie = ({ match, movies }: MovieProps) => {
               onClick={handleContinue}
               disabled={movie.sources.length === 0}
             >
-              Continue
+              {t('Continue')}
             </button>
           )}
           <button
@@ -66,7 +76,7 @@ const Movie = ({ match, movies }: MovieProps) => {
             onClick={handleWatch}
             disabled={movie.sources.length === 0}
           >
-            Watch
+            {t('Watch')}
           </button>
           <a
             className="button"
@@ -74,31 +84,31 @@ const Movie = ({ match, movies }: MovieProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Play trailer
+            {t('Play trailer')}
           </a>
         </div>
         <p className="Movie__overview">{movie.summary}</p>
         <div className="Movie__people">
           <div className="Movie__people__cast">
-            <h4>Starring</h4>
+            <h4>{t('Starring')}</h4>
             <PersonList people={movie.cast} attribute="character" />
           </div>
           <div className="Movie__people__crew">
-            <h4>Crew</h4>
+            <h4>{t('Crew')}</h4>
             <PersonList people={movie.crew} attribute="job" />
           </div>
         </div>
       </div>
       <div className="Movie__sources">
         <div>
-          <h4>Sources</h4>
+          <h4>{t('Sources')}</h4>
           <div>
             <div className="Movie__sources__versions">
-              <h5>Versions</h5>
+              <h5>{t('Versions')}</h5>
               <FileList files={movie.sources} />
             </div>
             <div className="Movie__sources__captions">
-              <h5>Subtitles</h5>
+              <h5>{t('Subtitles')}</h5>
               <FileList files={movie.captions} />
             </div>
           </div>

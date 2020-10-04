@@ -2,6 +2,7 @@ import './Season.scss'
 import { ConnectedProps, connect } from 'react-redux'
 import React, { useState } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
+import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
 import Backdrop from '../../components/Backdrop'
 import Cover from '../../components/Cover'
 import NotFound from '../NotFound'
@@ -11,7 +12,7 @@ import classNames from 'classnames'
 import { episodesBySeasonSelector } from '../../store/episodes/selectors'
 import { seasonSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
-import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
+import { useTranslation } from 'react-i18next'
 
 const mapState = (state: RootState) => ({
   episodes: state.episodes,
@@ -29,6 +30,8 @@ type SeasonProps = ConnectedProps<typeof connector> &
   RouteComponentProps<SeasonParams>
 
 const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
+  const { t } = useTranslation()
+
   const season = seasonSelector(match.params.id)(seasons)
   if (season === undefined) return <NotFound />
 
@@ -68,8 +71,14 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
     <div className="Season">
       <Backdrop url={buildBackdropUrl(season.showBackdropPath)} />
       <div className="Season__details">
-        <Cover url={buildCoverUrl(season.posterPath)} alt="poster" width="50%" />
-        <h1>Season {season.number}</h1>
+        <Cover
+          url={buildCoverUrl(season.posterPath)}
+          alt="poster"
+          width="50%"
+        />
+        <h1>
+          {t('Season')} {season.number}
+        </h1>
         <div className="Season__information">
           <p className="small">{show.title}</p>
           <p className="small">{season.airDate.getFullYear()}</p>
@@ -81,7 +90,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
               onClick={handleContinue}
               disabled={currentEpisode.sources.length === 0}
             >
-              Continue episode {currentEpisode.number}
+              {t('Continue episode')} {currentEpisode.number}
             </button>
           )}
           {seasonEpisodes.length > 0 && (
@@ -90,7 +99,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
               onClick={handleWatch(0)}
               disabled={seasonEpisodes[0].sources.length === 0}
             >
-              Watch
+              {t('Watch')}
             </button>
           )}
           <a
@@ -100,7 +109,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Play trailer
+            {t('Play trailer')}
           </a>
         </div>
         <div className="Season__episodes">
@@ -120,7 +129,7 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
                   <div className="Season__episode__details">
                     <h2>{episode.title}</h2>
                     <p className="small">
-                      Aired {episode.airDate.toDateString()}
+                      {t('Aired')} {episode.airDate.toDateString()}
                     </p>
                     <p>{episode.summary}</p>
                   </div>
@@ -129,18 +138,18 @@ const Season = ({ episodes, match, seasons, shows }: SeasonProps) => {
           </div>
           {seasonEpisodes.length > 0 && (
             <span onClick={toggleEpisodes}>
-              {showEpisodes ? 'Show all episodes' : 'Hide episodes'}
+              {showEpisodes ? t('Show all episodes') : t('Hide episodes')}
             </span>
           )}
         </div>
         <p className="Season__overview">{season.summary}</p>
         <div className="Season__people">
           <div className="Season__people__cast">
-            <h4>Starring</h4>
+            <h4>{t('Starring')}</h4>
             <PersonList people={season.cast} attribute="character" />
           </div>
           <div className="Season__people__crew">
-            <h4>Crew</h4>
+            <h4>{t('Crew')}</h4>
             <PersonList people={season.crew} attribute="job" />
           </div>
         </div>

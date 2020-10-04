@@ -1,6 +1,6 @@
+import { CastMember, CrewMember } from './Person'
 import { IMediaItem, ItemKind, Usage } from './Item'
 import { Caption } from '../files/captions/Caption'
-import { CastMember, CrewMember } from './Person'
 import { Video } from '../files/videos/Video'
 
 export interface Movie extends IMediaItem {

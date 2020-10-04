@@ -14,12 +14,12 @@ import {
   TVSeasonDetailsResponse,
   TVShowDetailsResponse,
 } from './types'
-import { buildItemId, buildTrailerUrl } from '../util'
 import { Episode, EpisodeLike } from '../../../types/items/Episode'
-import { ItemKind } from '../../../types/items/Item'
 import { Movie, MovieLike } from '../../../types/items/Movie'
 import { Season, SeasonLike } from '../../../types/items/Season'
 import { Show, ShowLike } from '../../../types/items/Show'
+import { buildItemId, buildTrailerUrl } from '../util'
+import { ItemKind } from '../../../types/items/Item'
 import { notUndefined } from '../../../util'
 
 // https://developers.themoviedb.org/3/getting-started/images

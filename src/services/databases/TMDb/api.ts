@@ -9,11 +9,12 @@ import {
   TVShowDetailsResponse,
 } from './types'
 import { get } from '../../http'
+import i18next from 'i18next'
 
 const BASE_URL = 'https://api.themoviedb.org/3'
 const ACCESS_TOKEN = process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN!
 const PARAMS = {
-  language: 'en-US',
+  language: i18next.languages[0],
 }
 
 export const findMovie = async (query: string) => {

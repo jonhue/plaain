@@ -1,8 +1,8 @@
 import { Episode, EpisodeLike } from './Episode'
 import { Movie, MovieLike } from './Movie'
-import { Person } from './Person'
 import { Season, SeasonLike } from './Season'
 import { Show, ShowLike } from './Show'
+import { Person } from './Person'
 
 export enum ItemKind {
   Episode,
