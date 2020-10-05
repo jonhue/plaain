@@ -32,7 +32,7 @@ const PlayerView = ({
   updateEpisodeProgress,
   updateMovieProgress,
 }: PlayerViewProps) => {
-  const kind = useMemo(() => {
+  const kind: ItemKind | undefined = useMemo(() => {
     const kind = Number.parseInt(match.params.type)
 
     if (kind in ItemKind) return kind
@@ -45,7 +45,7 @@ const PlayerView = ({
       case ItemKind.Movie:
         return movieSelector(match.params.id)(movies)
     }
-  }, [kind, match, movies])
+  }, [episodes, kind, match, movies])
 
   const handleProgress = useCallback(
     (progress: number) => {

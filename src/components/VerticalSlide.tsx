@@ -37,7 +37,7 @@ const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
         key: path,
       },
     })
-  }, [id])
+  }, [id, path])
 
   return (
     <div className="VerticalSlide" id={id}>
