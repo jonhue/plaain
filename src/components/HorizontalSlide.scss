@@ -37,9 +37,10 @@
         }
       }
 
-      img {
+      .Cover {
         box-shadow: 0 0 6px rgba($dark, 0.16);
         transition: box-shadow 0.1s ease-out;
+        width: 100%;
       }
     }
   }

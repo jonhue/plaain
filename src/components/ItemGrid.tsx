@@ -4,11 +4,12 @@ import Cover from './Cover'
 import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
+import { Season } from '../types/items/Season'
 import { Show } from '../types/items/Show'
 import { useTranslation } from 'react-i18next'
 
 type ItemGridProps = {
-  items: (Movie | Show)[]
+  items: (Movie | Season | Show)[]
 }
 
 const ItemGrid = ({ items }: ItemGridProps) => {

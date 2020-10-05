@@ -19,7 +19,7 @@ const MoviesView = ({ movies }: MoviesViewProps) => (
       </Link>
     </div>
     {window.innerWidth < styles.brPhone ? (
-      <VerticalSlide items={movies} path="movies" />
+      <VerticalSlide items={movies} path="movies" id="movies" />
     ) : (
       <ItemGrid items={movies} />
     )}

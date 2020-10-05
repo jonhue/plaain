@@ -1,6 +1,9 @@
 import { EpisodesState } from './types'
 import { createSelector } from 'reselect'
 
+export const episodeSelector = (id: string) => (state: EpisodesState) =>
+  state[id]
+
 const episodesSelector = (state: EpisodesState) =>
   Object.keys(state).map((id) => state[id]!)
 

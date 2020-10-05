@@ -36,14 +36,14 @@ const PersonView = ({ person, movies, seasons }: PersonViewProps) => {
       {movies.length > 0 && (
         <div className="Person__movies">
           <h2>{t('Movies')}</h2>
-          <HorizontalSlide items={movies} />
+          <HorizontalSlide items={movies} id="movies" />
         </div>
       )}
 
       {seasons.length > 0 && (
         <div className="Person__seasons">
           <h2>{t('TV seasons')}</h2>
-          <HorizontalSlide items={seasons} />
+          <HorizontalSlide items={seasons} id="seasons" />
         </div>
       )}
     </div>

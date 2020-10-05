@@ -1,5 +1,9 @@
 import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
+import { FileProvider, VideoProvider } from './types/files/FileProvider'
 import { IMediaItem, Item, ItemKind } from './types/items/Item'
+import { Caption } from './types/files/captions/Caption'
+import ISO6391 from 'iso-639-1'
+import { ProviderKind } from './types/providers/Provider'
 import { UseTranslationResponse } from 'react-i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
@@ -60,3 +64,20 @@ export const buildItemUrl = (item: Item): string => {
       return `/app/shows/${item.id}`
   }
 }
+
+export const buildFileDownloadUrl = (file: FileProvider): string => {
+  switch (file.kind) {
+    case ProviderKind.OneDrive:
+      return file.downloadUrl
+  }
+}
+
+export const buildVideoSize = (file: VideoProvider): number => {
+  switch (file.kind) {
+    case ProviderKind.OneDrive:
+      return file.height
+  }
+}
+
+export const buildCaptionSrcLang = (caption: Caption): string =>
+  ISO6391.getCode(caption.name)

@@ -19,7 +19,7 @@ const ShowsView = ({ shows }: ShowsViewProps) => (
       </Link>
     </div>
     {window.innerWidth < styles.brPhone ? (
-      <VerticalSlide items={shows} path="shows" />
+      <VerticalSlide items={shows} path="shows" id="shows" />
     ) : (
       <ItemGrid items={shows} />
     )}

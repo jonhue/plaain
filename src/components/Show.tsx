@@ -32,7 +32,7 @@ const ShowView = ({ show, seasons }: ShowViewProps) => {
       {seasons.length > 0 && (
         <div className="Show__seasons">
           <h2>{t('Seasons')}</h2>
-          <HorizontalSlide items={seasons} />
+          <HorizontalSlide items={seasons} id="seasons" />
         </div>
       )}
     </div>

@@ -6,31 +6,21 @@ import HorizontalSlide from '../components/HorizontalSlide'
 import { IMediaItem } from '../types/items/Item'
 import { Movie } from '../types/items/Movie'
 import { Show } from '../types/items/Show'
+import { useAsyncMemo } from 'use-async-memo'
 import { useTranslation } from 'react-i18next'
 
 const QUERY_PARAMETER = 'q'
 
-const buildIndex = <T extends IMediaItem>(
-  items: T[],
-  text: (item: T) => string,
-) => {
-  const index: Index<number> = FlexSearch.create()
-  items.forEach((item) => {
-    index.add(Number.parseInt(item.id), text(item))
-  })
+const buildIndex = <T extends IMediaItem>(items: T[]) => {
+  const index: Index<T> = FlexSearch.create()
+  items.forEach((item) => index.add(item))
   return index
 }
 
-const find = <T extends IMediaItem>(
-  index: Index<number>,
-  items: T[],
-  query: string | null,
-) =>
-  index
-    .search(query || '')
-    .then((results) =>
-      results.map((id) => items.find((item) => item.id === id.toString())),
-    )
+const find = async <T extends IMediaItem>(
+  index: Index<T>,
+  query: string,
+): Promise<T[]> => index.search(query)
 
 type FindViewProps = {
   movies: Movie[]
@@ -43,26 +33,17 @@ const FindView = ({ movies, shows }: FindViewProps) => {
   const location = useLocation()
 
   const [query, setQuery] = useState(
-    new URLSearchParams(location.search).get(QUERY_PARAMETER),
+    new URLSearchParams(location.search).get(QUERY_PARAMETER) || '',
   )
 
-  const moviesIndex = useMemo(
-    () =>
-      buildIndex(movies, (movie: Movie) => `${movie.title};${movie.summary}`),
-    [movies],
-  )
-  const showsIndex = useMemo(
-    () => buildIndex(shows, (show: Show) => `${show.title};${show.summary}`),
-    [shows],
-  )
+  const moviesIndex = useMemo(() => buildIndex(movies), [movies])
+  const showsIndex = useMemo(() => buildIndex(shows), [shows])
 
-  const foundMovies = useMemo(() => find(moviesIndex, movies, query), [
-    movies,
+  const foundMovies = useAsyncMemo(() => find(moviesIndex, query), [
     moviesIndex,
     query,
   ])
-  const foundShows = useMemo(() => find(showsIndex, shows, query), [
-    shows,
+  const foundShows = useAsyncMemo(() => find(showsIndex, query), [
     showsIndex,
     query,
   ])
@@ -80,7 +61,7 @@ const FindView = ({ movies, shows }: FindViewProps) => {
       <form>
         <input
           autoFocus
-          value={query || ''}
+          value={query}
           placeholder={t('Search your library')}
           onChange={handleInputChange}
         />
