@@ -1,5 +1,5 @@
 import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
-import { IMediaItem } from './types/items/Item'
+import { IMediaItem, Item, ItemKind } from './types/items/Item'
 import { UseTranslationResponse } from 'react-i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
@@ -45,3 +45,18 @@ export const buildBackdropUrl = (backdropPath: string | undefined) =>
 
 export const buildCoverUrl = (posterPath: string | undefined) =>
   posterPath ? buildTMDbImageUrl(posterPath) : FALLBACK_COVER_URL
+
+export const buildItemUrl = (item: Item): string => {
+  switch (item.kind) {
+    case ItemKind.Episode:
+      return `/app/seasons/${item.seasonId}`
+    case ItemKind.Movie:
+      return `/app/movies/${item.id}`
+    case ItemKind.Person:
+      return `/app/people/${item.id}`
+    case ItemKind.Season:
+      return `/app/seasons/${item.id}`
+    case ItemKind.Show:
+      return `/app/shows/${item.id}`
+  }
+}

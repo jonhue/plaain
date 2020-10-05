@@ -37,7 +37,7 @@ const MovieView = ({ movie }: MovieViewProps) => {
     <div className="Movie">
       <Backdrop url={buildBackdropUrl(movie.backdropPath)} />
       <div className="Movie__details">
-        <Cover url={buildCoverUrl(movie.posterPath)} alt="poster" width="50%" />
+        <Cover url={buildCoverUrl(movie.posterPath)} alt="poster" />
         <h1>{movie.title}</h1>
         <div className="Movie__information">
           <p className="small">{movie.releaseDate.getFullYear()}</p>
@@ -75,11 +75,14 @@ const MovieView = ({ movie }: MovieViewProps) => {
         <div className="Movie__people">
           <div className="Movie__people__cast">
             <h4>{t('Starring')}</h4>
-            <PersonList people={movie.cast} attribute="character" />
+            <PersonList
+              people={movie.cast}
+              details={(person) => person.character}
+            />
           </div>
           <div className="Movie__people__crew">
             <h4>{t('Crew')}</h4>
-            <PersonList people={movie.crew} attribute="job" />
+            <PersonList people={movie.crew} details={(person) => person.job} />
           </div>
         </div>
       </div>

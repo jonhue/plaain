@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import Plyr from 'plyr'
 import './PlyrPlayer.scss'
 
-import { FILE_TYPES } from '../constants'
+import { FILE_TYPES } from '../../constants'
 
-import PlyrCaption from './PlyrPlayer/PlyrCaption'
-import PlyrSource from './PlyrPlayer/PlyrSource'
+import PlyrCaption from './PlyrCaption'
+import PlyrSource from './PlyrSource'
 
 import { logInExpired } from '../actions/auth'
 

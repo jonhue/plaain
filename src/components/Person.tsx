@@ -27,11 +27,7 @@ const PersonView = ({ person, movies, seasons }: PersonViewProps) => {
     <div className="Person">
       <Backdrop url={buildBackdropUrl(backdropPath)} />
       <div className="Person__details">
-        <Cover
-          url={buildCoverUrl(person.profilePath)}
-          alt="profile"
-          width="50%"
-        />
+        <Cover url={buildCoverUrl(person.profilePath)} alt="profile" />
         <h1>{person.name}</h1>
         <h5>{t('Known as')}</h5>
         <p>{person.jobs.join(', ')}</p>

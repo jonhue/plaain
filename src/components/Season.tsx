@@ -56,11 +56,7 @@ const SeasonView = ({
     <div className="Season">
       <Backdrop url={buildBackdropUrl(season.showBackdropPath)} />
       <div className="Season__details">
-        <Cover
-          url={buildCoverUrl(season.posterPath)}
-          alt="poster"
-          width="50%"
-        />
+        <Cover url={buildCoverUrl(season.posterPath)} alt="poster" />
         <h1>
           {t('Season')} {season.number}
         </h1>
@@ -131,11 +127,14 @@ const SeasonView = ({
         <div className="Season__people">
           <div className="Season__people__cast">
             <h4>{t('Starring')}</h4>
-            <PersonList people={season.cast} attribute="character" />
+            <PersonList
+              people={season.cast}
+              details={(person) => person.character}
+            />
           </div>
           <div className="Season__people__crew">
             <h4>{t('Crew')}</h4>
-            <PersonList people={season.crew} attribute="job" />
+            <PersonList people={season.crew} details={(person) => person.job} />
           </div>
         </div>
       </div>

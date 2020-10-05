@@ -33,7 +33,7 @@ const App = ({ match, moviesCount, showsCount }: AppProps) => (
       <Route path={`${match.path}/shows`} component={Shows} />
       <Route path={`${match.path}/shows/:id`} exact component={Show} />
       <Route path={`${match.path}/seasons/:id`} exact component={Season} />
-      <Route path={`${match.path}/persons/:id`} exact component={Person} />
+      <Route path={`${match.path}/people/:id`} exact component={Person} />
       <Route path={`${match.path}/settings`} exact component={Settings} />
       <Route path={`${match.path}/find`} exact component={Find} />
       <Route component={NotFound} />

@@ -1,3 +1,4 @@
+import './Tab.scss'
 import React, { FunctionComponent } from 'react'
 import { matchPath, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'

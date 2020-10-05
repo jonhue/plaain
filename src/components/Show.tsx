@@ -20,7 +20,7 @@ const ShowView = ({ show, seasons }: ShowViewProps) => {
     <div className="Show">
       <Backdrop url={buildBackdropUrl(show.backdropPath)} />
       <div className="Show__details">
-        <Cover url={buildCoverUrl(show.posterPath)} alt="poster" width="50%" />
+        <Cover url={buildCoverUrl(show.posterPath)} alt="poster" />
         <h1>{show.title}</h1>
         <div className="Show__information">
           <p className="small">

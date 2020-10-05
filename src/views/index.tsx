@@ -5,7 +5,6 @@ import Loading from './Loading'
 import NotFound from './NotFound'
 import NotificationsViewer from '../components/NotificationsViewer'
 import { RootState } from '../store'
-import ScrollToTop from '../components/ScrollToTop'
 import Welcome from './Welcome'
 import { clearNotifications } from '../store/ui/actions'
 
@@ -28,14 +27,12 @@ const Base = ({ notifications, isLoading, clearNotifications }: BaseProps) => {
     <div className="Base">
       {isLoading && <Loading />}
       <Router basename="/plaain">
-        <ScrollToTop>
-          <Switch>
-            <Route path="/" exact component={Welcome} />
-            <Route path="/app" component={App} />
-            <Route path="/player" exact component={Player} />
-            <Route component={NotFound} />
-          </Switch>
-        </ScrollToTop>
+        <Switch>
+          <Route path="/" exact component={Welcome} />
+          <Route path="/app" component={App} />
+          <Route path="/player" exact component={Player} />
+          <Route component={NotFound} />
+        </Switch>
       </Router>
 
       <NotificationsViewer
