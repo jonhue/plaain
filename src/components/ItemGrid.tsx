@@ -5,19 +5,17 @@ import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
 import { Show } from '../types/items/Show'
-import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
 type ItemGridProps = {
   items: (Movie | Show)[]
-  className?: string
 }
 
-const ItemGrid = ({ items, className }: ItemGridProps) => {
+const ItemGrid = ({ items }: ItemGridProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={classNames('ItemGrid', className)}>
+    <div className="ItemGrid">
       {items.length > 0 ? (
         items.map((item) => (
           <div className="ItemGrid__item" key={item.id}>
