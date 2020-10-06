@@ -46,7 +46,7 @@ const AddProviderModal = ({
       onClose()
       setTimeout(() => setAuthResponse(undefined), MODAL_ANIMATION_DURATION)
     },
-    [authResponse, onAddProvider, setAuthResponse],
+    [authResponse, onAddProvider, onClose, setAuthResponse],
   )
 
   return (
