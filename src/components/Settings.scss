@@ -8,7 +8,7 @@
   section:not(.Settings__auth) {
     padding: $padding;
 
-    p {
+    & > p {
       margin: 0.3em 0 1em;
     }
   }
@@ -16,8 +16,8 @@
   &__auth {
     padding-top: $padding;
 
-    h2,
-    p {
+    & > h2,
+    & > p {
       margin-left: $padding;
       margin-right: $padding;
     }
@@ -31,50 +31,15 @@
       overflow-x: auto;
     }
 
-    &__flex {
+    &__providers {
       display: flex;
       float: left;
       padding: $padding;
 
-      button {
-        border: 0.1875rem solid $dark;
-        border-radius: 50%;
-        padding: 1.5625rem;
-        width: auto;
-
+      .Settings__auth__provider {
         &:not(:first-child) {
           margin-left: $spacing;
         }
-
-        &:disabled {
-          border-style: dashed !important;
-          cursor: not-allowed;
-        }
-
-        &.primary {
-          border: 0.1875rem solid $highlight;
-        }
-
-        &.warn {
-          background: $warn;
-          border: 0.1875rem solid $warn;
-
-          &:active,
-          &:focus,
-          &:hover {
-            box-shadow: 0 0 10px rgba($warn, 1);
-          }
-        }
-
-        .Icon {
-          height: 2rem;
-        }
-      }
-
-      button:disabled {
-        background: $background;
-        border: 0.1875rem solid $dark;
-        opacity: 0.5;
       }
     }
   }

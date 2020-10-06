@@ -58,11 +58,12 @@ button {
   font-weight: 700;
   justify-content: center;
   line-height: 1;
+  opacity: 1;
   padding: 1rem 1.5625rem;
   position: relative;
   text-decoration: none;
   top: 0;
-  transition: box-shadow 0.1s ease-out, top 0.1s ease-out;
+  transition: all 0.1s ease-out, top 0.1s ease-out;
   width: 100%;
 
   &:active,
@@ -70,6 +71,11 @@ button {
   &:hover {
     box-shadow: 0 4px 10px rgba($dark, 1);
     top: -0.125rem;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &.primary {
@@ -80,6 +86,17 @@ button {
     &:focus,
     &:hover {
       box-shadow: 0 0 10px rgba($highlight, 1);
+    }
+  }
+
+  &.warn {
+    background: $warn;
+    box-shadow: 0 0 6px rgba($warn, 0.16);
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: 0 0 10px rgba($warn, 1);
     }
   }
 }
@@ -148,6 +165,25 @@ p {
   }
 }
 
+input {
+  background: $dark;
+  border: none;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0 6px rgba($dark, 0.16);
+  color: $white;
+  font-family: 'Muli', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.8125rem;
+  text-decoration: none;
+
+  &::placeholder {
+    color: $white;
+    opacity: 0.2;
+  }
+}
+
 select {
   background: $dark;
   border: none;
@@ -158,6 +194,6 @@ select {
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1;
-  padding: 0.8125rem 0.625rem 0.8125rem 1.5625rem;
+  padding: 0.8125rem;
   text-decoration: none;
 }

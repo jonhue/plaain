@@ -1,11 +1,12 @@
 @import "../variables";
 
-$modal-overlay-opacity: 0.6;
+$modal-overlay-opacity: 0.5;
 $modal-animation-top-offset: 3%;
 $modal-max-width: 500px;
-$modal-background-blur: 1em;
+$modal-background-blur: 0.5rem;
 $modal-transition-duration: 0.25s;
-$modal-border-size: 0.15em;
+$modal-border-radius: 0.25rem;
+$modal-border-size: 0.0625rem;
 
 .Modal {
   backdrop-filter: none;
@@ -20,8 +21,9 @@ $modal-border-size: 0.15em;
   z-index: $z-overlay;
 
   &__wrapper {
-    background: $background;
-    border: $modal-border-size solid white;
+    background: $dark;
+    border: $modal-border-size solid $black;
+    border-radius: $modal-border-radius;
     left: 50%;
     max-width: $modal-max-width;
     opacity: 0;
@@ -31,11 +33,19 @@ $modal-border-size: 0.15em;
     transform: translateX(-50%) translateY(-50%);
     transition: all $modal-transition-duration ease-out;
     width: 80%;
+
+    a.button,
+    button,
+    input,
+    select {
+      background: $background;
+      border-color: $background;
+    }
   }
 
   &.active {
     backdrop-filter: blur($modal-background-blur);
-    background: rgba(var(--accent-color-rgb), $modal-overlay-opacity);
+    background: rgba($dark, $modal-overlay-opacity);
     visibility: visible;
 
     .Modal__wrapper {

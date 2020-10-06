@@ -1,38 +1,49 @@
 import './Settings.scss'
 import { Provider, ProviderKind } from '../types/providers/Provider'
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import AddIcon from './icons/Nucleo/e-add'
-import MicrosoftIcon from './icons/Nucleo/microsoft'
+import AddProviderModal from './authentication/AddProviderModal'
+import { AuthResponse } from '../services/auth/types'
+import ProviderButton from './ProviderButton'
 import { VERSION } from '../constants'
+import { buildProviderIcon } from '../util'
+import classNames from 'classnames'
 import styles from '../_variables.scss'
 import { useTranslation } from 'react-i18next'
 
-const providerIcon = {
-  [ProviderKind.OneDrive]: <MicrosoftIcon color={styles.white} />,
-}
-
 type SettingsViewProps = {
   providers: Provider[]
-  fetchMetadataAll: () => Promise<void>
-  index: (providers: Provider[]) => Promise<void>
+
+  onSetupAuth: (kind: ProviderKind) => Promise<AuthResponse | undefined>
+  onAddProvider: (provider: Provider) => void
+  onIndex: () => void
+  onFetchMetadataAll: () => void
 }
 
 const SettingsView = ({
   providers,
-  fetchMetadataAll,
-  index,
+  onSetupAuth,
+  onAddProvider,
+  onIndex,
+  onFetchMetadataAll,
 }: SettingsViewProps) => {
   const { t } = useTranslation()
 
-  const handleIndex = useCallback(() => {
-    index(providers)
-  }, [index, providers])
+  const [showAddProviderModal, setShowAddProviderModal] = useState(false)
 
-  const handleUpdateProvider = useCallback(
+  const handleShowUpdateProviderModal = useCallback(
     () => console.log('update provider'),
     [],
   )
-  const handleAddProvider = useCallback(() => console.log('add provider'), [])
+
+  const handleShowAddProviderModal = useCallback(
+    () => setShowAddProviderModal(true),
+    [setShowAddProviderModal],
+  )
+  const handleCloseAddProviderModal = useCallback(
+    () => setShowAddProviderModal(false),
+    [setShowAddProviderModal],
+  )
 
   return (
     <div className="Settings">
@@ -44,20 +55,34 @@ const SettingsView = ({
           )}
         </p>
         <div className="Settings__auth__scroll">
-          <div className="Settings__auth__flex">
+          <div className="Settings__auth__providers">
             {providers.map((provider, index) => (
-              <button
-                className="primary"
-                onClick={handleUpdateProvider}
-                key={index}
-              >
-                {providerIcon[provider.kind]}
-                {provider.name}
-              </button>
+              <div className="Settings__auth__provider" key={index}>
+                <ProviderButton
+                  className={classNames('primary', {
+                    warn:
+                      provider.moviesPath === undefined &&
+                      provider.showsPath === undefined,
+                  })}
+                  icon={buildProviderIcon(provider.kind, styles.white)}
+                  onClick={handleShowUpdateProviderModal}
+                />
+              </div>
             ))}
-            <button onClick={handleAddProvider}>
-              <AddIcon color={styles.white} />
-            </button>
+            <div className="Settings__auth__provider" key={providers.length}>
+              <ProviderButton
+                icon={<AddIcon color={styles.white} />}
+                onClick={handleShowAddProviderModal}
+                key={5}
+              />
+              <AddProviderModal
+                isActive={showAddProviderModal}
+                onClose={handleCloseAddProviderModal}
+                onSetupAuth={onSetupAuth}
+                onAddProvider={onAddProvider}
+                key={7}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -70,8 +95,8 @@ const SettingsView = ({
           )}
         </p>
         <div className="Settings__indexing__actions">
-          <button onClick={handleIndex}>{t('Index')}</button>
-          <button onClick={fetchMetadataAll}>{t('Update metadata')}</button>
+          <button onClick={onIndex}>{t('Index')}</button>
+          <button onClick={onFetchMetadataAll}>{t('Update metadata')}</button>
         </div>
       </section>
 

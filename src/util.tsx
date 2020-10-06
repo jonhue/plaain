@@ -3,11 +3,14 @@ import { FileProvider, VideoProvider } from './types/files/FileProvider'
 import { IMediaItem, Item, ItemKind } from './types/items/Item'
 import { Caption } from './types/files/captions/Caption'
 import ISO6391 from 'iso-639-1'
+import MicrosoftIcon from './components/icons/Nucleo/microsoft'
 import { ProviderKind } from './types/providers/Provider'
+import React from 'react'
 import { UseTranslationResponse } from 'react-i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
-export const notUndefined = <T>(x: T | undefined): x is T => x !== undefined
+export const notUndefined = <T extends unknown>(x: T | undefined): x is T =>
+  x !== undefined
 
 export const isInProgress = (item: IMediaItem) =>
   item.usage.progress !== undefined
@@ -82,9 +85,19 @@ export const buildVideoSize = (file: VideoProvider): number => {
 export const buildCaptionSrcLang = (caption: Caption): string =>
   ISO6391.getCode(caption.name)
 
-export const buildProviderName = (providerKind: ProviderKind): string => {
-  switch (providerKind) {
+export const buildProviderName = (kind: ProviderKind): string => {
+  switch (kind) {
     case ProviderKind.OneDrive:
       return 'OneDrive'
+  }
+}
+
+export const buildProviderIcon = (
+  kind: ProviderKind,
+  color: string,
+): JSX.Element => {
+  switch (kind) {
+    case ProviderKind.OneDrive:
+      return <MicrosoftIcon color={color} />
   }
 }

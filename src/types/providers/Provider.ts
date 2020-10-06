@@ -4,6 +4,8 @@ export enum ProviderKind {
   OneDrive,
 }
 
+export const PROVIDER_KINDS = [ProviderKind.OneDrive]
+
 export interface IProvider {
   kind: ProviderKind
   id: string

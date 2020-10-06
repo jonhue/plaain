@@ -13,14 +13,13 @@ const silentLogIn = async (userAgentApplication: UserAgentApplication) => {
     accessToken,
     account,
     expiresOn,
-    uniqueId,
   } = await userAgentApplication.acquireTokenSilent({
     scopes: SCOPES,
   })
 
   return {
     accessToken: { token: accessToken, validUntil: expiresOn },
-    id: uniqueId,
+    id: account.userName,
     name: account.name,
   }
 }

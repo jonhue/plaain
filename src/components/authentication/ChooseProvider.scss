@@ -1,0 +1,13 @@
+@import "../../variables";
+
+.ChooseProvider {
+  &__providers {
+    margin-top: $padding;
+
+    & > .ProviderButton {
+      &:not(:first-child) {
+        margin-left: $spacing;
+      }
+    }
+  }
+}

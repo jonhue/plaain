@@ -4,13 +4,13 @@ import { handleError } from '../../errors'
 
 export const load = <ReturnType>(
   fn: AppThunk<Promise<ReturnType>>,
-) => (): AppThunk<Promise<ReturnType | undefined>> => async (dispatch) => {
+): AppThunk<Promise<ReturnType | undefined>> => async (dispatch) => {
   dispatch(asyncBegin())
 
-  let result
+  let result: ReturnType | undefined
   try {
     result = await dispatch(fn)
-  } catch (error: unknown) {
+  } catch (error) {
     if (error instanceof Error) {
       dispatch(addNotification(handleError(error)))
     } else {

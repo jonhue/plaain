@@ -6,6 +6,7 @@ $dark: #182047;
 $black: #000;
 $highlight: #ff2fc1;
 $warn: #fe8a27;
+$success: #27fe4b;
 
 /* Sizes */
 $padding: 1.25rem;
@@ -21,6 +22,8 @@ $icon-stroke-width: 0.125rem;
 $z-back: -1;
 $z-front: 1;
 $z-overlay: 2;
+$z-loading: 3;
+$z-notification: 4;
 
 /* Breakpoints */
 $br-phone: 600px;
