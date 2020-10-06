@@ -6,7 +6,7 @@ type SoundWaveProps = {
 }
 
 const SoundWave = ({ color }: SoundWaveProps) => (
-  <Icon className="SoundWave">
+  <Icon className="SoundWave" height={50} width={50}>
     <path
       fill="none"
       d="M2.5 26.5h4l4-6 8 20 10-32 8 26 6-8h4"

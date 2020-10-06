@@ -81,3 +81,10 @@ export const buildVideoSize = (file: VideoProvider): number => {
 
 export const buildCaptionSrcLang = (caption: Caption): string =>
   ISO6391.getCode(caption.name)
+
+export const buildProviderName = (providerKind: ProviderKind): string => {
+  switch (providerKind) {
+    case ProviderKind.OneDrive:
+      return 'OneDrive'
+  }
+}

@@ -7,17 +7,17 @@ export enum NotificationKind {
   GenericError,
 }
 
-interface AuthenticationFailure {
+export interface AuthenticationFailure {
   kind: NotificationKind.AuthenticationFailure
   provider: ProviderKind
 }
 
-interface CannotFindFile {
+export interface CannotFindFile {
   kind: NotificationKind.CannotFindFile
   file: File
 }
 
-interface GenericError {
+export interface GenericError {
   kind: NotificationKind.GenericError
   error: Error
 }

@@ -17,6 +17,11 @@ $icon-size: 2rem;
 $icon-stroke-linecap: round;
 $icon-stroke-width: 0.125rem;
 
+/* z-index */
+$z-back: -1;
+$z-front: 1;
+$z-overlay: 2;
+
 /* Breakpoints */
 $br-phone: 600px;
 $br-phablet: 800px;

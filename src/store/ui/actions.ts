@@ -2,7 +2,7 @@ import {
   ADD_NOTIFICATION,
   ASYNC_BEGIN,
   ASYNC_END,
-  CLEAR_NOTIFICATIONS,
+  REMOVE_NOTIFICATION,
   UIActionTypes,
 } from './types'
 import { Notification } from '../../types/Notification'
@@ -20,6 +20,9 @@ export const addNotification = (notification: Notification): UIActionTypes => ({
   payload: { notification },
 })
 
-export const clearNotifications = (): UIActionTypes => ({
-  type: CLEAR_NOTIFICATIONS,
+export const removeNotification = (
+  notification: Notification,
+): UIActionTypes => ({
+  type: REMOVE_NOTIFICATION,
+  payload: { notification },
 })

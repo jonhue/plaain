@@ -17,7 +17,7 @@ $modal-border-size: 0.15em;
   transition: all $modal-transition-duration ease-in;
   visibility: hidden;
   width: 100%;
-  z-index: 10;
+  z-index: $z-overlay;
 
   &__wrapper {
     background: $background;

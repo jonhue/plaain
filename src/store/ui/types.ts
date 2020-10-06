@@ -3,7 +3,7 @@ import { Notification } from '../../types/Notification'
 export const ASYNC_BEGIN = 'ASYNC_BEGIN'
 export const ASYNC_END = 'ASYNC_END'
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
-export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS'
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
 
 export interface UIState {
   isLoading: boolean
@@ -25,12 +25,15 @@ interface AddNotificationAction {
   }
 }
 
-interface ClearNotificationsAction {
-  type: typeof CLEAR_NOTIFICATIONS
+interface RemoveNotificationAction {
+  type: typeof REMOVE_NOTIFICATION
+  payload: {
+    notification: Notification
+  }
 }
 
 export type UIActionTypes =
   | AsyncBeginAction
   | AsyncEndAction
   | AddNotificationAction
-  | ClearNotificationsAction
+  | RemoveNotificationAction

@@ -3,7 +3,7 @@
 .Backdrop {
   position: absolute;
   width: 100%;
-  z-index: -1;
+  z-index: $z-back;
 
   img {
     width: 100%;

@@ -31,4 +31,22 @@
       color: $white;
     }
   }
+
+  &__header{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+
+    &__close {
+      cursor: pointer;
+
+      .Icon {
+        height: 1.25rem;
+      }
+    }
+  }
 }

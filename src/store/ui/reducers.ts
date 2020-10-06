@@ -2,7 +2,7 @@ import {
   ADD_NOTIFICATION,
   ASYNC_BEGIN,
   ASYNC_END,
-  CLEAR_NOTIFICATIONS,
+  REMOVE_NOTIFICATION,
   UIActionTypes,
   UIState,
 } from './types'
@@ -29,10 +29,12 @@ export default (state = initialState, action: UIActionTypes): UIState => {
         ...state,
         notifications: [...state.notifications, action.payload.notification],
       }
-    case CLEAR_NOTIFICATIONS:
+    case REMOVE_NOTIFICATION:
       return {
         ...state,
-        notifications: [],
+        notifications: state.notifications.filter(
+          (notification) => notification !== action.payload.notification,
+        ),
       }
     default:
       return state

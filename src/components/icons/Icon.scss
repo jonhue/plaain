@@ -3,5 +3,7 @@
 .Icon {
   height: $icon-size;
   stroke-linecap: $icon-stroke-linecap;
+  stroke-linejoin: $icon-stroke-linecap;
+  stroke-miterlimit: 10;
   stroke-width: $icon-stroke-width;
 }
