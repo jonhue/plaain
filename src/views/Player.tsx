@@ -18,8 +18,8 @@ const mapDispatch = { updateEpisodeProgress, updateMovieProgress }
 const connector = connect(mapState, mapDispatch)
 
 interface PlayerViewParams {
-  id: string
-  type: string
+  id?: string
+  type?: string
 }
 
 type PlayerViewProps = ConnectedProps<typeof connector> &
@@ -33,12 +33,16 @@ const PlayerView = ({
   updateMovieProgress,
 }: PlayerViewProps) => {
   const kind: ItemKind | undefined = useMemo(() => {
+    if (match.params.type === undefined) return
+
     const kind = Number.parseInt(match.params.type)
 
     if (kind in ItemKind) return kind
   }, [match])
 
   const item = useMemo(() => {
+    if (match.params.id === undefined) return
+
     switch (kind) {
       case ItemKind.Episode:
         return episodeSelector(match.params.id)(episodes)
@@ -61,7 +65,7 @@ const PlayerView = ({
     [item, updateEpisodeProgress, updateMovieProgress],
   )
 
-  return item !== undefined ? (
+  return item !== undefined && item.sources.length > 0 ? (
     <Player item={item} onProgress={handleProgress} />
   ) : (
     <Redirect to="/app" />
