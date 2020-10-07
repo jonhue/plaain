@@ -184,8 +184,7 @@ input {
   text-decoration: none;
 
   &::placeholder {
-    color: $white;
-    opacity: 0.2;
+    color: $light;
   }
 }
 

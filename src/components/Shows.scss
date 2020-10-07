@@ -2,9 +2,10 @@
 
 .Shows {
   &__find {
+    padding: $padding;
     position: fixed;
-    right: $padding;
-    top: $padding;
+    right: 0;
+    top: 0;
     z-index: $z-front;
 
     .Icon {

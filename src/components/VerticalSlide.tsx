@@ -44,12 +44,8 @@ const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
       <div className="swiper-container">
         <div className="swiper-wrapper">
           {items.length > 0 ? (
-            items.map((item) => (
-              <div
-                className="swiper-slide"
-                data-history={item.id}
-                key={item.id}
-              >
+            items.map((item, index) => (
+              <div className="swiper-slide" data-history={item.id} key={index}>
                 <Link to={buildItemUrl(item)}>
                   <Cover
                     url={buildCoverUrl(item.posterPath)}

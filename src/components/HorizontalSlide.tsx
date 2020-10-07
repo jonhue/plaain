@@ -33,8 +33,8 @@ const HorizontalSlide = ({ id, items }: HorizontalSlideProps) => {
       <div className="swiper-container">
         <div className="swiper-wrapper">
           {items.length > 0 ? (
-            items.map((item) => (
-              <div className="swiper-slide" key={item.id}>
+            items.map((item, index) => (
+              <div className="swiper-slide" key={index}>
                 <Link to={buildItemUrl(item)}>
                   <Cover
                     url={buildCoverUrl(item.posterPath)}

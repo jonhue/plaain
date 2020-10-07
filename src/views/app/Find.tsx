@@ -2,15 +2,13 @@ import { ConnectedProps, connect } from 'react-redux'
 import React, { useMemo } from 'react'
 import Find from '../../components/Find'
 import { RootState } from '../../store'
-import { moviesSelector } from '../../store/movies/selectors'
-import { showsSelector } from '../../store/shows/selectors'
 import { useLocation } from 'react-router-dom'
 
 const QUERY_PARAMETER = 'q'
 
 const mapState = (state: RootState) => ({
-  movies: moviesSelector(state.movies),
-  shows: showsSelector(state.shows),
+  movies: state.movies,
+  shows: state.shows,
 })
 
 const connector = connect(mapState)
