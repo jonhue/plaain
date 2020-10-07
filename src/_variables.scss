@@ -32,6 +32,7 @@ $br-tablet: 1200px;
 $br-laptop: 1600px;
 $br-desktop: 2000px;
 
+/* stylelint-disable */
 :export {
   white: $white;
   light: $light;
@@ -47,3 +48,4 @@ $br-desktop: 2000px;
   brLaptop: $br-laptop;
   brDesktop: $br-desktop;
 }
+/* stylelint-enable */
