@@ -67,12 +67,19 @@ const indexEpisodes = async (
     seasonFolderId,
   )
 
-  return Promise.all(
-    episodesResponse.map(async (episodeResponse) => ({
-      name: episodeResponse.name,
-      files: await indexFiles(providerId, client, episodeResponse.id),
-    })),
+  const episodes = await Promise.all(
+    episodesResponse.map(async (episodeResponse) => {
+      const number = Number.parseInt(episodeResponse.name)
+      if (isNaN(number)) return
+
+      return {
+        number,
+        files: await indexFiles(providerId, client, episodeResponse.id),
+      }
+    }),
   )
+
+  return episodes.filter(notUndefined)
 }
 
 const indexSeasons = async (
@@ -85,12 +92,19 @@ const indexSeasons = async (
     showFolderId,
   )
 
-  return Promise.all(
-    seasonsResponse.map(async (seasonResponse) => ({
-      name: seasonResponse.name,
-      episodes: await indexEpisodes(providerId, client, seasonResponse.id),
-    })),
+  const seasons = await Promise.all(
+    seasonsResponse.map(async (seasonResponse) => {
+      const number = Number.parseInt(seasonResponse.name)
+      if (isNaN(number)) return
+
+      return {
+        number,
+        episodes: await indexEpisodes(providerId, client, seasonResponse.id),
+      }
+    }),
   )
+
+  return seasons.filter(notUndefined)
 }
 
 const indexShows = async (

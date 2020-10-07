@@ -55,10 +55,10 @@ const performAuth = async (
   userAgentApplication: UserAgentApplication,
   allowSilent: boolean,
 ): Promise<OneDriveAuthResponse> => {
-  if (!allowSilent) return popupLogIn(userAgentApplication)
+  if (!allowSilent) return await popupLogIn(userAgentApplication)
 
   try {
-    return silentLogIn(userAgentApplication)
+    return await silentLogIn(userAgentApplication)
   } catch (error) {
     return await popupLogIn(userAgentApplication)
   }

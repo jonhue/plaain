@@ -27,15 +27,9 @@ export const buildTMDbImageUrl = (path: string, size = 'original') =>
   `https://image.tmdb.org/t/p/${size}${path}`
 
 export const buildEpisode = (
-  {
-    seasonId,
-    seasonNumber,
-    showId,
-    showTmdbId,
-    sources,
-    captions,
-    usage,
-  }: EpisodeLike,
+  showId: string,
+  seasonId: string,
+  { seasonNumber, showTmdbId, sources, captions, usage }: EpisodeLike,
   {
     air_date: airDate,
     crew,
@@ -176,7 +170,8 @@ export const buildCrewMember = ({
 }
 
 export const buildSeason = (
-  { showId, showTmdbId, showTitle, showBackdropPath, usage }: SeasonLike,
+  { id: showId, title: showTitle, backdropPath: showBackdropPath }: Show,
+  { showTmdbId, usage }: SeasonLike,
   {
     air_date: airDate,
     id: tmdbId,

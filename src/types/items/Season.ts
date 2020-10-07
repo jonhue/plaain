@@ -20,9 +20,6 @@ export interface Season extends IMediaItem {
 export interface SeasonLike {
   kind: typeof ItemKind.Season
   number: number
-  showId: string
   showTmdbId: number
-  showTitle: string
-  showBackdropPath: string | undefined
   usage: Usage
 }

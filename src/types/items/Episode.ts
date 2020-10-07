@@ -21,9 +21,7 @@ export interface Episode extends IWatchableMediaItem {
 export interface EpisodeLike {
   kind: typeof ItemKind.Episode
   number: number
-  seasonId: string
   seasonNumber: number
-  showId: string
   showTmdbId: number
   sources: Video[]
   captions: Caption[]

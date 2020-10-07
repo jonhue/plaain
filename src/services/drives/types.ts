@@ -1,17 +1,17 @@
 import { File } from '../../types/files/File'
 
+export interface EpisodeIndexResponse {
+  number: number
+  files: File[]
+}
+
 export interface MovieIndexResponse {
   name: string
   files: File[]
 }
 
-export interface EpisodeIndexResponse {
-  name: string
-  files: File[]
-}
-
 export interface SeasonIndexResponse {
-  name: string
+  number: number
   episodes: EpisodeIndexResponse[]
 }
 

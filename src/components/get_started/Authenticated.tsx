@@ -1,6 +1,5 @@
 import './Authenticated.scss'
-import React, { useCallback } from 'react'
-import { Provider } from '../../types/providers/Provider'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 type AuthenticatedViewProps = {

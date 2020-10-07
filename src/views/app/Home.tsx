@@ -1,11 +1,11 @@
 import { ConnectedProps, connect } from 'react-redux'
+import React, { useCallback } from 'react'
 import {
   inProgressSelector,
   recentlyWatchedSelector,
 } from '../../store/selectors'
 import Authenticated from '../../components/get_started/Authenticated'
 import ForYou from '../../components/ForYou'
-import React, { useCallback } from 'react'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
 import Setup from '../../components/get_started/Setup'

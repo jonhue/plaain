@@ -1,7 +1,7 @@
 import { ConnectedProps, connect } from 'react-redux'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
-import { fetchMetadataAll, index, removeProvider } from '../../store/thunks'
+import { fetchAllMetadata, index, removeProvider } from '../../store/thunks'
 import { AuthResponse } from '../../services/auth/types'
 import { RootState } from '../../store'
 import Settings from '../../components/Settings'
@@ -45,7 +45,7 @@ const SettingsView = ({
     providers,
   ])
 
-  const handleFetchMetadataAll = useCallback(() => load(fetchMetadataAll()), [
+  const handleFetchMetadataAll = useCallback(() => load(fetchAllMetadata()), [
     load,
   ])
 
