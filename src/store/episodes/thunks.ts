@@ -10,7 +10,7 @@ export const updateEpisodeProgress = (
   progress: number,
 ) => (): AppThunk<void> => (dispatch, getState) => {
   const usage: Usage = {
-    lastWatched: new Date(),
+    lastWatched: new Date().toISOString(),
     progress,
   }
   dispatch(updateEpisode({ ...episode, usage }))

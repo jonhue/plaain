@@ -10,7 +10,7 @@ export interface Season extends IMediaItem {
   showTitle: string
   showBackdropPath: string | undefined
   summary: string
-  airDate: Date
+  airDate: string
   posterPath: string | undefined
   trailerUrl: string
   cast: CastMember[]

@@ -15,7 +15,7 @@ export enum ItemKind {
 }
 
 export interface Usage {
-  lastWatched: Date | undefined
+  lastWatched: string | undefined
   progress: number | undefined
 }
 

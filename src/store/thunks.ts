@@ -32,10 +32,10 @@ export const index = (providers: Provider[]): AppThunk<Promise<void>> => async (
 ) => {
   await Promise.all(
     providers.map(async (provider) => {
-      await dispatch(authCall(provider))
+      const updatedProvider = await dispatch(authCall(provider))
 
       await indexCall(
-        provider,
+        updatedProvider,
         (showId: string, seasonId: string, episode: EpisodeLike) =>
           dispatch(fetchEpisodeMetadata(showId, seasonId, episode)),
         (movie: MovieLike) => dispatch(fetchMovieMetadata(movie)),
@@ -56,9 +56,9 @@ export const updateFile = (file: File): AppThunk<Promise<void>> => async (
   if (provider === undefined)
     throw new Error('could not find provider for file')
 
-  await dispatch(authCall(provider))
+  const updatedProvider = await dispatch(authCall(provider))
 
-  await updateFileCall(provider, file)
+  await updateFileCall(updatedProvider, file)
 }
 
 const fetchEpisodeMetadata = (

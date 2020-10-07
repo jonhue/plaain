@@ -1,5 +1,6 @@
 import { Notification, NotificationKind } from '../../types/Notification'
 import React, { useCallback } from 'react'
+import APIErrorToast from './APIErrorToast'
 import AuthenticationFailureToast from './AuthenticationFailureToast'
 import CannotFindFileToast from './CannotFindFileToast'
 import GenericErrorToast from './GenericErrorToast'
@@ -23,6 +24,14 @@ export const NotificationsViewer = ({
   const renderNotification = useCallback(
     (notification: Notification, index: number): JSX.Element => {
       switch (notification.kind) {
+        case NotificationKind.APIError:
+          return (
+            <APIErrorToast
+              notification={notification}
+              onClose={handleClose(notification)}
+              key={index}
+            />
+          )
         case NotificationKind.AuthenticationFailure:
           return (
             <AuthenticationFailureToast

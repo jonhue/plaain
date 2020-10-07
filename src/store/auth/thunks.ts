@@ -20,18 +20,18 @@ const setupAuthHandleProvider = (kind: ProviderKind): Promise<AuthResponse> => {
   }
 }
 
-export const auth = (provider: Provider): AppThunk<Promise<void>> => async (
+export const auth = (provider: Provider): AppThunk<Promise<Provider>> => async (
   dispatch,
 ) => {
   const response = await authHandleProvider(provider)
+  const updatedProvider = {
+    ...response,
+    moviesPath: provider.moviesPath,
+    showsPath: provider.showsPath,
+  }
 
-  dispatch(
-    updateProvider({
-      ...response,
-      moviesPath: provider.moviesPath,
-      showsPath: provider.showsPath,
-    }),
-  )
+  dispatch(updateProvider(updatedProvider))
+  return updatedProvider
 }
 
 export const setupAuth = (

@@ -28,10 +28,10 @@ const App = ({ match, moviesCount, showsCount }: AppProps) => (
   <div className="App">
     <Switch>
       <Route path={`${match.path}/`} exact component={Home} />
-      <Route path={`${match.path}/movies`} component={Movies} />
       <Route path={`${match.path}/movies/:id`} exact component={Movie} />
-      <Route path={`${match.path}/shows`} component={Shows} />
+      <Route path={`${match.path}/movies`} component={Movies} />
       <Route path={`${match.path}/shows/:id`} exact component={Show} />
+      <Route path={`${match.path}/shows`} component={Shows} />
       <Route path={`${match.path}/seasons/:id`} exact component={Season} />
       <Route path={`${match.path}/people/:id`} exact component={Person} />
       <Route path={`${match.path}/settings`} exact component={Settings} />

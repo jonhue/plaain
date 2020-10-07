@@ -8,7 +8,7 @@ export interface Movie extends IWatchableMediaItem {
   title: string
   summary: string | undefined
   duration: number | undefined
-  releaseDate: Date
+  releaseDate: string
   isAdult: boolean
   budget: number
   revenue: number

@@ -5,6 +5,8 @@ import { Person } from '../types/items/Person'
 import { buildItemUrl } from '../util'
 import { useTranslation } from 'react-i18next'
 
+const WRAPPED_SIZE = 10
+
 type PersonListProps<T extends Person> = {
   people: T[]
 
@@ -23,23 +25,29 @@ const PersonList = <T extends Person>({
   ])
 
   const displayedPeople = useMemo(
-    () => people.slice(0, isWrapped ? 10 : people.length),
+    () => people.slice(0, isWrapped ? WRAPPED_SIZE : people.length),
     [isWrapped, people],
   )
 
   return (
     <div className="PersonList">
-      {displayedPeople.map((person, index) => {
-        return (
-          <p key={index}>
-            <Link to={buildItemUrl(person)}>{person.name}</Link> ·{' '}
-            <span>{details(person)}</span>
-          </p>
-        )
-      })}
-      <span onClick={toggleIsWrapped}>
-        {isWrapped ? t('Show more') : t('Show less')}
-      </span>
+      {people.length > 0 ? (
+        displayedPeople.map((person, index) => {
+          return (
+            <p key={index}>
+              <Link to={buildItemUrl(person)}>{person.name}</Link> ·{' '}
+              <span>{details(person)}</span>
+            </p>
+          )
+        })
+      ) : (
+        <p>{t('None')}</p>
+      )}
+      {people.length > WRAPPED_SIZE && (
+        <span onClick={toggleIsWrapped}>
+          {isWrapped ? t('Show more') : t('Show less')}
+        </span>
+      )}
     </div>
   )
 }

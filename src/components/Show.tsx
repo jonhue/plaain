@@ -24,7 +24,8 @@ const ShowView = ({ show, seasons }: ShowViewProps) => {
         <h1>{show.title}</h1>
         <div className="Show__information">
           <p className="small">
-            {show.firstAirDate.getFullYear()} - {show.lastAirDate.getFullYear()}
+            {new Date(show.firstAirDate).getFullYear()} -{' '}
+            {new Date(show.lastAirDate).getFullYear()}
           </p>
         </div>
         <p className="Show__overview">{show.summary}</p>

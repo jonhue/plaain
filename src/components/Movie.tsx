@@ -40,7 +40,7 @@ const MovieView = ({ movie }: MovieViewProps) => {
         <Cover url={buildCoverUrl(movie.posterPath)} alt="poster" />
         <h1>{movie.title}</h1>
         <div className="Movie__information">
-          <p className="small">{movie.releaseDate.getFullYear()}</p>
+          <p className="small">{new Date(movie.releaseDate).getFullYear()}</p>
           {movie.duration && (
             <p className="small">{splitHoursAndMinutes(t, movie.duration)}</p>
           )}

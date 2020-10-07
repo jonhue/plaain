@@ -14,7 +14,7 @@ const buildAuthResponse = (
   expiresOn: Date,
 ): OneDriveAuthResponse => ({
   kind: ProviderKind.OneDrive,
-  accessToken: { token: accessToken, validUntil: expiresOn },
+  accessToken: { token: accessToken, validUntil: expiresOn.toISOString() },
   id: buildAuthId(ProviderKind.OneDrive, name),
   name,
 })
@@ -68,7 +68,10 @@ export const auth = async (
   provider: OneDrive | undefined,
   allowSilent = true,
 ): Promise<OneDriveAuthResponse> => {
-  if (provider !== undefined && provider.accessToken.validUntil > new Date())
+  if (
+    provider !== undefined &&
+    new Date(provider.accessToken.validUntil) > new Date()
+  )
     return provider
 
   const userAgentApplication = new UserAgentApplication({

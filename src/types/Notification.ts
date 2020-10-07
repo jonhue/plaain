@@ -2,10 +2,17 @@ import { Provider, ProviderKind } from './providers/Provider'
 import { File } from './files/File'
 
 export enum NotificationKind {
+  APIError,
   AuthenticationFailure,
   CannotFindFile,
   GenericError,
   ProviderAlreadyExists,
+}
+
+export interface APIError {
+  kind: NotificationKind.APIError
+  status: number
+  message: string | undefined
 }
 
 export interface AuthenticationFailure {
@@ -29,6 +36,7 @@ export interface ProviderAlreadyExists {
 }
 
 export type Notification =
+  | APIError
   | AuthenticationFailure
   | CannotFindFile
   | GenericError

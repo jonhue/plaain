@@ -1,25 +1,10 @@
+import { APIError } from '../errors/APIError'
+
 enum HttpMethod {
   GET = 'GET',
 }
 
 type Params = Record<string, string>
-
-interface ErrorResponse {
-  error: {
-    code: number
-    message: string
-  }
-}
-
-export class APIError extends Error {
-  status: number
-
-  constructor(status: number, message: string) {
-    super(message)
-
-    this.status = status
-  }
-}
 
 const buildUrl = (baseUrl: string, path: string, params?: Params) => {
   const url = new URL(`${baseUrl}/${path}`)
@@ -53,8 +38,7 @@ const http = async <T>(
   const body = text ? JSON.parse(text) : {}
 
   if (response.ok) return body
-  else
-    throw new APIError(response.status, (body as ErrorResponse).error.message)
+  else throw new APIError(response.status, response.statusText)
 }
 
 export const get = <T>(

@@ -4,6 +4,7 @@ import { buildBackdropUrl, buildCoverUrl } from '../util'
 import Backdrop from './Backdrop'
 import Cover from './Cover'
 import { Episode } from '../types/items/Episode'
+import EpisodeEntry from './EpisodeEntry'
 import PersonList from './PersonList'
 import { Season } from '../types/items/Season'
 import { Show } from '../types/items/Show'
@@ -62,7 +63,7 @@ const SeasonView = ({
         </h1>
         <div className="Season__information">
           <p className="small">{show.title}</p>
-          <p className="small">{season.airDate.getFullYear()}</p>
+          <p className="small">{new Date(season.airDate).getFullYear()}</p>
         </div>
         <div className="Season__actions">
           {currentEpisode !== undefined && (
@@ -98,28 +99,16 @@ const SeasonView = ({
             {episodes
               .slice(0, showEpisodes ? episodes.length : 0)
               .map((episode, index) => (
-                <button
-                  className="Season__episode"
+                <EpisodeEntry
+                  episode={episode}
                   onClick={handleWatch(episode.number)}
-                  disabled={episode.sources.length === 0}
                   key={index}
-                >
-                  <div className="Season__episode__number">
-                    {episode.number}
-                  </div>
-                  <div className="Season__episode__details">
-                    <h2>{episode.title}</h2>
-                    <p className="small">
-                      {t('Aired')} {episode.airDate.toDateString()}
-                    </p>
-                    <p>{episode.summary}</p>
-                  </div>
-                </button>
+                />
               ))}
           </div>
           {episodes.length > 0 && (
             <span onClick={toggleEpisodes}>
-              {showEpisodes ? t('Show all episodes') : t('Hide episodes')}
+              {showEpisodes ? t('Hide episodes') : t('Show all episodes')}
             </span>
           )}
         </div>

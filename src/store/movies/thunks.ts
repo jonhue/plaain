@@ -8,7 +8,7 @@ export const updateMovieProgress = (
   progress: number,
 ) => (): AppThunk<void> => (dispatch) => {
   const usage: Usage = {
-    lastWatched: new Date(),
+    lastWatched: new Date().toISOString(),
     progress,
   }
   dispatch(updateMovie({ ...movie, usage }))
