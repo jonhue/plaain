@@ -4,6 +4,7 @@ import { ProviderKind } from '../providers/Provider'
 
 export interface IFileProvider {
   kind: ProviderKind
+  providerId: string
   id: string
   fileName: string
 }

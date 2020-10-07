@@ -1,7 +1,7 @@
 import { ConnectedProps, connect } from 'react-redux'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
-import { fetchMetadataAll, index } from '../../store/thunks'
+import { fetchMetadataAll, index, removeProvider } from '../../store/thunks'
 import { AuthResponse } from '../../services/auth/types'
 import { RootState } from '../../store'
 import Settings from '../../components/Settings'
@@ -14,7 +14,7 @@ const mapState = (state: RootState) => ({
   providers: providersSelector(state.auth),
 })
 
-const mapDispatch = { load, updateProvider }
+const mapDispatch = { load, removeProvider, updateProvider }
 
 const connector = connect(mapState, mapDispatch)
 
@@ -23,6 +23,7 @@ type SettingsViewProps = ConnectedProps<typeof connector>
 const SettingsView = ({
   providers,
   load,
+  removeProvider,
   updateProvider,
 }: SettingsViewProps) => {
   const handleSetupAuth = useCallback(
@@ -54,6 +55,7 @@ const SettingsView = ({
       onSetupAuth={handleSetupAuth}
       onAddProvider={handleUpdateProvider}
       onUpdateProvider={handleUpdateProvider}
+      onRemoveProvider={removeProvider}
       onIndex={handleIndex}
       onFetchMetadataAll={handleFetchMetadataAll}
     />

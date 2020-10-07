@@ -18,6 +18,7 @@ type SettingsViewProps = {
   onSetupAuth: (kind: ProviderKind) => Promise<AuthResponse | undefined>
   onAddProvider: (provider: Provider) => void
   onUpdateProvider: (provider: Provider) => void
+  onRemoveProvider: (id: string) => void
   onIndex: () => void
   onFetchMetadataAll: () => void
 }
@@ -27,6 +28,7 @@ const SettingsView = ({
   onSetupAuth,
   onAddProvider,
   onUpdateProvider,
+  onRemoveProvider,
   onIndex,
   onFetchMetadataAll,
 }: SettingsViewProps) => {
@@ -57,6 +59,11 @@ const SettingsView = ({
     [setShowAddProviderModal],
   )
 
+  const handleRemoveProvider = useCallback(
+    (id: string) => () => onRemoveProvider(id),
+    [onRemoveProvider],
+  )
+
   return (
     <div className="Settings">
       <section className="Settings__auth">
@@ -84,6 +91,7 @@ const SettingsView = ({
                   provider={provider}
                   onClose={handleCloseUpdateProviderModal(index)}
                   onUpdateProvider={onUpdateProvider}
+                  onRemoveProvider={handleRemoveProvider(provider.id)}
                   key={7}
                 />
               </div>

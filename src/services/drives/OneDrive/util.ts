@@ -11,6 +11,7 @@ import {
 import { ProviderKind } from '../../../types/providers/Provider'
 
 const buildCaption = (
+  providerId: string,
   type: CaptionType,
   name: string,
   {
@@ -28,6 +29,7 @@ const buildCaption = (
   name,
   provider: {
     kind: ProviderKind.OneDrive,
+    providerId,
     id,
     fileName,
     size,
@@ -38,6 +40,7 @@ const buildCaption = (
 })
 
 const buildVideo = (
+  providerId: string,
   type: VideoType,
   name: string,
   {
@@ -65,6 +68,7 @@ const buildVideo = (
   name,
   provider: {
     kind: ProviderKind.OneDrive,
+    providerId,
     id,
     fileName,
     size,
@@ -82,7 +86,9 @@ const buildVideo = (
   },
 })
 
-export const buildFile = (response: DriveItemResponse): File | undefined => {
+export const buildFile = (providerId: string) => (
+  response: DriveItemResponse,
+): File | undefined => {
   if (response.file === undefined) return
 
   const { name, extension } = parseFileName(response.name)
@@ -92,7 +98,14 @@ export const buildFile = (response: DriveItemResponse): File | undefined => {
   const videoType = parseVideoType(extension)
 
   if (captionType !== undefined)
-    return buildCaption(captionType, name, response, response.file)
+    return buildCaption(providerId, captionType, name, response, response.file)
   else if (videoType !== undefined && response.video !== undefined)
-    return buildVideo(videoType, name, response, response.file, response.video)
+    return buildVideo(
+      providerId,
+      videoType,
+      name,
+      response,
+      response.file,
+      response.video,
+    )
 }

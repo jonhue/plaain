@@ -83,7 +83,7 @@ const ProviderForm = ({
         {t('Movies path')}
         <p className="small">
           {t(
-            'The path to where you keep your movies from your home directory.',
+            'The path from your home directory to where you keep your movies.',
           )}
         </p>
         <div
@@ -106,7 +106,7 @@ const ProviderForm = ({
       <label>
         {t('Shows path')}
         <p className="small">
-          {t('The path to where you keep your shows from your home directory.')}
+          {t('The path from your home directory to where you keep your shows.')}
         </p>
         <div
           className={classNames('ProviderForm__input', {

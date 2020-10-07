@@ -1,9 +1,9 @@
 import { CastMember, CrewMember } from './Person'
-import { IMediaItem, ItemKind, Usage } from './Item'
+import { IWatchableMediaItem, ItemKind, Usage } from './Item'
 import { Caption } from '../files/captions/Caption'
 import { Video } from '../files/videos/Video'
 
-export interface Episode extends IMediaItem {
+export interface Episode extends IWatchableMediaItem {
   kind: typeof ItemKind.Episode
   number: number
   title: string
@@ -16,8 +16,6 @@ export interface Episode extends IMediaItem {
   stillPath: string | undefined
   guestStars: CastMember[]
   crew: CrewMember[]
-  sources: Video[]
-  captions: Caption[]
 }
 
 export interface EpisodeLike {

@@ -22,3 +22,20 @@ export const updateEpisodeProgress = (
 
   dispatch(updateSeasonProgress(season, episode.number))
 }
+
+export const removeFilesByProvider = (
+  episode: Episode,
+  providerId: string,
+) => (): AppThunk<void> => (dispatch) => {
+  dispatch(
+    updateEpisode({
+      ...episode,
+      sources: episode.sources.filter(
+        (source) => source.provider.providerId !== providerId,
+      ),
+      captions: episode.captions.filter(
+        (caption) => caption.provider.providerId !== providerId,
+      ),
+    }),
+  )
+}

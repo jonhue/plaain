@@ -12,6 +12,7 @@ type UpdateProviderModalProps = {
 
   onClose: () => void
   onUpdateProvider: (provider: Provider) => void
+  onRemoveProvider: () => void
 }
 
 const UpdateProviderModal = ({
@@ -19,6 +20,7 @@ const UpdateProviderModal = ({
   provider,
   onClose,
   onUpdateProvider,
+  onRemoveProvider,
 }: UpdateProviderModalProps) => {
   const { t } = useTranslation()
 
@@ -30,6 +32,13 @@ const UpdateProviderModal = ({
     [onClose, onUpdateProvider, provider],
   )
 
+  const handleRemoveProvider = useCallback(() => {
+    if (!window.confirm(t('Are you sure?'))) return
+
+    onRemoveProvider()
+    onClose()
+  }, [onClose, onRemoveProvider])
+
   return (
     <div className="UpdateProviderModal">
       <Modal isActive={isActive} onClose={onClose}>
@@ -40,6 +49,9 @@ const UpdateProviderModal = ({
           provider={provider}
           onSubmit={handleUpdate}
         />
+        <button className="secondary" onClick={handleRemoveProvider}>
+          {t('Remove')}
+        </button>
       </Modal>
     </div>
   )

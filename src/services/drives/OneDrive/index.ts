@@ -18,27 +18,30 @@ import { buildFile } from './util'
 import { notUndefined } from '../../../util'
 
 export const updateFile = async (
+  providerId: string,
   accessToken: string,
   file: File,
 ): Promise<File> => {
   const client = getClient(accessToken)
   const response = await fetchItem(client, file.provider.id)
-  const newFile = buildFile(response)
+  const newFile = buildFile(providerId)(response)
 
   if (newFile !== undefined) return newFile
   else throw new CannotFindFileError(file)
 }
 
 const indexFiles = async (
+  providerId: string,
   client: Client,
   folderId: string,
 ): Promise<File[]> => {
   const { value: filesResponse } = await fetchItemChildren(client, folderId)
 
-  return filesResponse.map(buildFile).filter(notUndefined)
+  return filesResponse.map(buildFile(providerId)).filter(notUndefined)
 }
 
 const indexMovies = async (
+  providerId: string,
   client: Client,
   path: string | undefined,
 ): Promise<MovieIndexResponse[]> => {
@@ -49,12 +52,13 @@ const indexMovies = async (
   return Promise.all(
     moviesResponse.map(async (movieResponse) => ({
       name: movieResponse.name,
-      files: await indexFiles(client, movieResponse.id),
+      files: await indexFiles(providerId, client, movieResponse.id),
     })),
   )
 }
 
 const indexEpisodes = async (
+  providerId: string,
   client: Client,
   seasonFolderId: string,
 ): Promise<EpisodeIndexResponse[]> => {
@@ -66,12 +70,13 @@ const indexEpisodes = async (
   return Promise.all(
     episodesResponse.map(async (episodeResponse) => ({
       name: episodeResponse.name,
-      files: await indexFiles(client, episodeResponse.id),
+      files: await indexFiles(providerId, client, episodeResponse.id),
     })),
   )
 }
 
 const indexSeasons = async (
+  providerId: string,
   client: Client,
   showFolderId: string,
 ): Promise<SeasonIndexResponse[]> => {
@@ -83,12 +88,13 @@ const indexSeasons = async (
   return Promise.all(
     seasonsResponse.map(async (seasonResponse) => ({
       name: seasonResponse.name,
-      episodes: await indexEpisodes(client, seasonResponse.id),
+      episodes: await indexEpisodes(providerId, client, seasonResponse.id),
     })),
   )
 }
 
 const indexShows = async (
+  providerId: string,
   client: Client,
   path: string | undefined,
 ): Promise<ShowIndexResponse[]> => {
@@ -99,12 +105,13 @@ const indexShows = async (
   return Promise.all(
     showsResponse.map(async (showResponse) => ({
       name: showResponse.name,
-      seasons: await indexSeasons(client, showResponse.id),
+      seasons: await indexSeasons(providerId, client, showResponse.id),
     })),
   )
 }
 
 export const index = async (
+  providerId: string,
   accessToken: string,
   moviesPath: string | undefined,
   showsPath: string | undefined,
@@ -112,7 +119,7 @@ export const index = async (
   const client = getClient(accessToken)
 
   return {
-    movies: await indexMovies(client, moviesPath),
-    shows: await indexShows(client, showsPath),
+    movies: await indexMovies(providerId, client, moviesPath),
+    shows: await indexShows(providerId, client, showsPath),
   }
 }

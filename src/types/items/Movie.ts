@@ -1,9 +1,9 @@
 import { CastMember, CrewMember } from './Person'
-import { IMediaItem, ItemKind, Usage } from './Item'
+import { IWatchableMediaItem, ItemKind, Usage } from './Item'
 import { Caption } from '../files/captions/Caption'
 import { Video } from '../files/videos/Video'
 
-export interface Movie extends IMediaItem {
+export interface Movie extends IWatchableMediaItem {
   kind: typeof ItemKind.Movie
   title: string
   summary: string | undefined
@@ -18,8 +18,6 @@ export interface Movie extends IMediaItem {
   trailerUrl: string
   cast: CastMember[]
   crew: CrewMember[]
-  sources: Video[]
-  captions: Caption[]
 }
 
 export interface MovieLike {
