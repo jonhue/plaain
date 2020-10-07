@@ -61,7 +61,10 @@ export const personSelector = (id: string) =>
           name: person.name,
           gender: person.gender,
           profilePath: person.profilePath,
-          jobs: [...new Set([...acc?.jobs, person.job])],
+          jobs:
+            acc !== undefined
+              ? [...new Set([...acc.jobs, person.job])]
+              : [person.job],
         }),
         undefined,
       )
