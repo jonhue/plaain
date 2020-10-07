@@ -68,23 +68,28 @@
   }
 
   &__episodes {
-    margin-bottom: $padding;
+    margin: 0 0 $padding;
+    padding: 0;
     text-align: center;
 
     @media only screen and (min-width: $br-phone) {
       text-align: left;
     }
 
-    & > div {
+    &__list {
       display: grid;
       grid-gap: $spacing;
 
       @media only screen and (min-width: $br-phablet) {
         grid-template-columns: 1fr 1fr;
       }
+
+      &.shown {
+        margin-bottom: $spacing;
+      }
     }
 
-    & > span {
+    &__toggle {
       color: $light;
       cursor: pointer;
     }

@@ -1,13 +1,17 @@
 import { ConnectedProps, connect } from 'react-redux'
-import React, { useCallback, useMemo } from 'react'
-import { Redirect, useLocation } from 'react-router'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ItemKind } from '../types/items/Item'
+import Loading from './Loading'
+import NotFound from './NotFound'
 import Player from '../components/Player'
 import { RootState } from '../store'
 import { episodeSelector } from '../store/episodes/selectors'
+import { load } from '../store/ui/thunks'
 import { movieSelector } from '../store/movies/selectors'
 import { updateEpisodeProgress } from '../store/episodes/thunks'
+import { updateFile } from '../store/thunks'
 import { updateMovieProgress } from '../store/movies/thunks'
+import { useLocation } from 'react-router'
 
 const KIND_PARAMETER = 'type'
 const ID_PARAMETER = 'id'
@@ -16,7 +20,7 @@ const mapState = (state: RootState) => ({
   episodes: state.episodes,
   movies: state.movies,
 })
-const mapDispatch = { updateEpisodeProgress, updateMovieProgress }
+const mapDispatch = { load, updateEpisodeProgress, updateMovieProgress }
 
 const connector = connect(mapState, mapDispatch)
 
@@ -25,10 +29,13 @@ type PlayerViewProps = ConnectedProps<typeof connector>
 const PlayerView = ({
   episodes,
   movies,
+  load,
   updateEpisodeProgress,
   updateMovieProgress,
 }: PlayerViewProps) => {
   const location = useLocation()
+
+  const [isLoading, setIsLoading] = useState(true)
 
   const kind: ItemKind | undefined = useMemo(() => {
     const rawKind = new URLSearchParams(location.search).get(KIND_PARAMETER)
@@ -65,10 +72,24 @@ const PlayerView = ({
     [item, updateEpisodeProgress, updateMovieProgress],
   )
 
-  return item !== undefined && item.sources.length > 0 ? (
+  useEffect(() => {
+    if (item === undefined) {
+      setIsLoading(false)
+      return
+    }
+
+    Promise.all([
+      ...item.sources.map((source) => load(updateFile(source))),
+      ...item.captions.map((caption) => load(updateFile(caption))),
+    ]).then(() => setIsLoading(false))
+  }, [load, item, setIsLoading])
+
+  return isLoading ? (
+    <Loading />
+  ) : item !== undefined && item.sources.length > 0 ? (
     <Player item={item} onProgress={handleProgress} />
   ) : (
-    <Redirect to="/app" />
+    <NotFound />
   )
 }
 

@@ -95,7 +95,11 @@ const SeasonView = ({
           </a>
         </div>
         <div className="Season__episodes">
-          <div>
+          <div
+            className={classNames('Season__episodes__list', {
+              shown: showEpisodes,
+            })}
+          >
             {episodes
               .slice(0, showEpisodes ? episodes.length : 0)
               .map((episode, index) => (
@@ -107,9 +111,9 @@ const SeasonView = ({
               ))}
           </div>
           {episodes.length > 0 && (
-            <span onClick={toggleEpisodes}>
+            <div className="Season__episodes__toggle" onClick={toggleEpisodes}>
               {showEpisodes ? t('Hide episodes') : t('Show all episodes')}
-            </span>
+            </div>
           )}
         </div>
         <p className="Season__overview">{season.summary}</p>
