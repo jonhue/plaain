@@ -1,7 +1,7 @@
 import './NotFound.scss'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 export const NotFound = () => {
   const { t } = useTranslation()
@@ -10,27 +10,23 @@ export const NotFound = () => {
     <div className="NotFound">
       <h2>{t('You want to get lost?')}</h2>
       <p>
-        {t(
-          'This path went astray... If you do want to get lost, we recommend {{link}} by {{author}}.',
-          {
-            link: (
-              <a
-                href="https://www.imdb.com/title/tt6969502/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Get Lost!
-              </a>
-            ),
-            author: 'Mirjam de With',
-          },
-        )}
+        <Trans>
+          This path went astray... If you do want to get lost, we recommend{' '}
+          <a
+            href="https://www.imdb.com/title/tt6969502/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Lost!
+          </a>{' '}
+          by Mirjam de With.
+        </Trans>
       </p>
       <p>
-        {t(
-          "If all you're looking for is to get back on track: you can {{link}}.",
-          { link: <Link to="/app">{t('find home this way')}</Link> },
-        )}
+        <Trans>
+          If all you&apos;re looking for is to get back on track: you can{' '}
+          <Link to="/app">find home this way</Link>.
+        </Trans>
       </p>
     </div>
   )

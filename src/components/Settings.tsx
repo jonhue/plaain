@@ -1,6 +1,7 @@
 import './Settings.scss'
 import { Provider, ProviderKind } from '../types/providers/Provider'
 import React, { useCallback, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import AddIcon from './icons/Nucleo/e-add'
 import AddProviderModal from './authentication/AddProviderModal'
 import { AuthResponse } from '../services/auth/types'
@@ -10,7 +11,6 @@ import { VERSION } from '../constants'
 import { buildProviderIcon } from '../util'
 import classNames from 'classnames'
 import styles from '../_variables.scss'
-import { useTranslation } from 'react-i18next'
 
 type SettingsViewProps = {
   providers: Provider[]
@@ -131,32 +131,32 @@ const SettingsView = ({
         <h2>{t('Version')}</h2>
         <p>{t('Plaain {{version}}.', { version: VERSION })}</p>
         <p className="small">
-          {t('Plaain is {{openSource}}. See the {{changelog}}.', {
-            openSource: (
-              <a
-                href="https://github.com/jonhue/plaain"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('open-source')}
-              </a>
-            ),
-            changelog: (
-              <a
-                href="https://github.com/jonhue/plaain/releases"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('changelog')}
-              </a>
-            ),
-          })}
+          <Trans>
+            Plaain is{' '}
+            <a
+              href="https://github.com/jonhue/plaain"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              open-source
+            </a>
+            . See the{' '}
+            <a
+              href="https://github.com/jonhue/plaain/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              changelog
+            </a>
+            .
+          </Trans>
         </p>
         <p className="small">
-          {t(
-            'Note that Plaain may {{not}} be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.',
-            { not: <span className="bold">{t('not')}</span> },
-          )}
+          <Trans>
+            Note that Plaain may <span className="bold">not</span> be used to
+            stream pirated content or publicly share your private media library.
+            You may only connect to your private cloud storage.
+          </Trans>
         </p>
       </section>
     </div>

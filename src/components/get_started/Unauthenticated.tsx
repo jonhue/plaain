@@ -1,7 +1,7 @@
 import './Unauthenticated.scss'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 const UnauthenticatedView = () => {
   const { t } = useTranslation()
@@ -18,10 +18,11 @@ const UnauthenticatedView = () => {
         {t('Authenticate')}
       </Link>
       <p className="small">
-        {t(
-          'Note that Plaain may {{not}} be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.',
-          { not: <span className="bold">{t('not')}</span> },
-        )}
+        <Trans>
+          Note that Plaain may <span className="bold">not</span> be used to
+          stream pirated content or publicly share your private media library.
+          You may only connect to your private cloud storage.
+        </Trans>
       </p>
     </div>
   )
