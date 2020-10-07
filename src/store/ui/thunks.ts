@@ -13,8 +13,6 @@ export const load = <ReturnType>(
   } catch (error) {
     if (error instanceof Error) {
       dispatch(addNotification(handleError(error)))
-    } else {
-      console.log(error)
     }
   }
 

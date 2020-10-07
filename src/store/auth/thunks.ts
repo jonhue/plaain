@@ -24,7 +24,6 @@ export const auth = (provider: Provider): AppThunk<Promise<void>> => async (
   dispatch,
 ) => {
   const response = await authHandleProvider(provider)
-  console.log(response)
 
   dispatch(
     updateProvider({
