@@ -1,9 +1,12 @@
 import { ConnectedProps, connect } from 'react-redux'
+import React, { useMemo } from 'react'
 import Find from '../../components/Find'
-import React from 'react'
 import { RootState } from '../../store'
 import { moviesSelector } from '../../store/movies/selectors'
 import { showsSelector } from '../../store/shows/selectors'
+import { useLocation } from 'react-router-dom'
+
+const QUERY_PARAMETER = 'q'
 
 const mapState = (state: RootState) => ({
   movies: moviesSelector(state.movies),
@@ -14,8 +17,14 @@ const connector = connect(mapState)
 
 type FindViewProps = ConnectedProps<typeof connector>
 
-const FindView = ({ movies, shows }: FindViewProps) => (
-  <Find movies={movies} shows={shows} />
-)
+const FindView = ({ movies, shows }: FindViewProps) => {
+  const location = useLocation()
+  const query = useMemo(
+    () => new URLSearchParams(location.search).get(QUERY_PARAMETER),
+    [location],
+  )
+
+  return <Find movies={movies} shows={shows} query={query} />
+}
 
 export default connector(FindView)

@@ -120,7 +120,7 @@ const buildJob = (
     else return Job.Actor
   }
 
-  if (job in Job) return job as Job
+  if (Object.values(Job).includes(job as Job)) return job as Job
 }
 
 export const buildCastMember = ({

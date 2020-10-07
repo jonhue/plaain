@@ -9,6 +9,18 @@ export enum Gender {
 export enum Job {
   Actor = 'Actor',
   Actress = 'Actress',
+  Casting = 'Casting',
+  CostumeDesign = 'Costume Design',
+  Director = 'Director',
+  DirectorOfPhotography = 'Director of Photography',
+  ExecutiveProducer = 'Executive Producer',
+  Editor = 'Editor',
+  OriginalMusicComposer = 'Original Music Composer',
+  Producer = 'Producer',
+  Screenplay = 'Screenplay',
+  SoundDesigner = 'Sound Designer',
+  UnitProductionManager = 'Unit Production Manager',
+  Writer = 'Writer',
 }
 
 interface IPerson extends IItem {

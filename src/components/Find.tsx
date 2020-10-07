@@ -1,12 +1,12 @@
 import './Find.scss'
 import FlexSearch, { Index } from 'flexsearch'
 import React, { useCallback, useMemo, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
 import HorizontalSlide from '../components/HorizontalSlide'
 import { IMediaItem } from '../types/items/Item'
 import { Movie } from '../types/items/Movie'
 import { Show } from '../types/items/Show'
 import { useAsyncMemo } from 'use-async-memo'
+import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 const QUERY_PARAMETER = 'q'
@@ -25,16 +25,14 @@ const find = async <T extends IMediaItem>(
 type FindViewProps = {
   movies: Movie[]
   shows: Show[]
+  query: string | null
 }
 
-const FindView = ({ movies, shows }: FindViewProps) => {
+const FindView = ({ movies, shows, query: initalQuery }: FindViewProps) => {
   const { t } = useTranslation()
   const history = useHistory()
-  const location = useLocation()
 
-  const [query, setQuery] = useState(
-    new URLSearchParams(location.search).get(QUERY_PARAMETER) || '',
-  )
+  const [query, setQuery] = useState(initalQuery || '')
 
   const moviesIndex = useMemo(() => buildIndex(movies), [movies])
   const showsIndex = useMemo(() => buildIndex(shows), [shows])

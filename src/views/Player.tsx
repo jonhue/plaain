@@ -1,6 +1,6 @@
 import { ConnectedProps, connect } from 'react-redux'
 import React, { useCallback, useMemo } from 'react'
-import { Redirect, RouteComponentProps } from 'react-router'
+import { Redirect, useLocation } from 'react-router'
 import { ItemKind } from '../types/items/Item'
 import Player from '../components/Player'
 import { RootState } from '../store'
@@ -8,6 +8,9 @@ import { episodeSelector } from '../store/episodes/selectors'
 import { movieSelector } from '../store/movies/selectors'
 import { updateEpisodeProgress } from '../store/episodes/thunks'
 import { updateMovieProgress } from '../store/movies/thunks'
+
+const KIND_PARAMETER = 'type'
+const ID_PARAMETER = 'id'
 
 const mapState = (state: RootState) => ({
   episodes: state.episodes,
@@ -17,39 +20,36 @@ const mapDispatch = { updateEpisodeProgress, updateMovieProgress }
 
 const connector = connect(mapState, mapDispatch)
 
-interface PlayerViewParams {
-  id?: string
-  type?: string
-}
-
-type PlayerViewProps = ConnectedProps<typeof connector> &
-  RouteComponentProps<PlayerViewParams>
+type PlayerViewProps = ConnectedProps<typeof connector>
 
 const PlayerView = ({
-  match,
   episodes,
   movies,
   updateEpisodeProgress,
   updateMovieProgress,
 }: PlayerViewProps) => {
+  const location = useLocation()
+
   const kind: ItemKind | undefined = useMemo(() => {
-    if (match.params.type === undefined) return
+    const rawKind = new URLSearchParams(location.search).get(KIND_PARAMETER)
+    if (rawKind === null) return
 
-    const kind = Number.parseInt(match.params.type)
+    const kind = Number.parseInt(rawKind)
 
-    if (kind in ItemKind) return kind
-  }, [match])
+    if (Object.values(ItemKind).includes(kind)) return kind
+  }, [location])
 
   const item = useMemo(() => {
-    if (match.params.id === undefined) return
+    const id = new URLSearchParams(location.search).get(ID_PARAMETER)
+    if (id === null) return
 
     switch (kind) {
       case ItemKind.Episode:
-        return episodeSelector(match.params.id)(episodes)
+        return episodeSelector(id)(episodes)
       case ItemKind.Movie:
-        return movieSelector(match.params.id)(movies)
+        return movieSelector(id)(movies)
     }
-  }, [episodes, kind, match, movies])
+  }, [episodes, kind, location, movies])
 
   const handleProgress = useCallback(
     (progress: number) => {
@@ -72,4 +72,4 @@ const PlayerView = ({
   )
 }
 
-export default PlayerView
+export default connector(PlayerView)
