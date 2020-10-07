@@ -1,10 +1,11 @@
+import { Provider, ProviderKind } from './providers/Provider'
 import { File } from './files/File'
-import { ProviderKind } from './providers/Provider'
 
 export enum NotificationKind {
   AuthenticationFailure,
   CannotFindFile,
   GenericError,
+  ProviderAlreadyExists,
 }
 
 export interface AuthenticationFailure {
@@ -22,4 +23,13 @@ export interface GenericError {
   error: Error
 }
 
-export type Notification = AuthenticationFailure | CannotFindFile | GenericError
+export interface ProviderAlreadyExists {
+  kind: NotificationKind.ProviderAlreadyExists
+  provider: Provider
+}
+
+export type Notification =
+  | AuthenticationFailure
+  | CannotFindFile
+  | GenericError
+  | ProviderAlreadyExists

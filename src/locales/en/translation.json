@@ -41,6 +41,7 @@
   "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.": "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.",
   "Plaain {{version}}.": "Plaain {{version}}.",
   "Play trailer": "Play trailer",
+  "Provider already exists": "Provider already exists",
   "Recently watched": "Recently watched",
   "Reference the getting started guide to learn how to organize your files so that Plaain finds them. After you're done, just re-index.": "Reference the getting started guide to learn how to organize your files so that Plaain finds them. After you're done, just re-index.",
   "Report": "Report",
@@ -71,5 +72,6 @@
   "We weren't able to locate the file named {{name}} located in your {{provider}} provider.": "We weren't able to locate the file named {{name}} located in your {{provider}} provider.",
   "You signed into a cloud service, but we didn't find any movies or TV shows.": "You signed into a cloud service, but we didn't find any movies or TV shows.",
   "You want to get lost?": "You want to get lost?",
-  "Your movies & TV shows. Anywhere.": "Your movies & TV shows. Anywhere."
+  "Your movies & TV shows. Anywhere.": "Your movies & TV shows. Anywhere.",
+  "You're already authenticated with {{provider}} and account {{name}}. You can change your settings by clicking on the provider in the authentication list on the settings page.": "You're already authenticated with {{provider}} and account {{name}}. You can change your settings by clicking on the provider in the authentication list on the settings page."
 }

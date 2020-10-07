@@ -8,7 +8,20 @@ import { buildAuthId } from './util'
 const CLIENT_ID = process.env.REACT_APP_MICROSOFT_CLIENT_ID!
 const SCOPES = ['user.read', 'files.read.all']
 
-const silentLogIn = async (userAgentApplication: UserAgentApplication) => {
+const buildAuthResponse = (
+  accessToken: string,
+  name: string,
+  expiresOn: Date,
+): OneDriveAuthResponse => ({
+  kind: ProviderKind.OneDrive,
+  accessToken: { token: accessToken, validUntil: expiresOn },
+  id: buildAuthId(ProviderKind.OneDrive, name),
+  name,
+})
+
+const silentLogIn = async (
+  userAgentApplication: UserAgentApplication,
+): Promise<OneDriveAuthResponse> => {
   const {
     accessToken,
     account,
@@ -17,14 +30,12 @@ const silentLogIn = async (userAgentApplication: UserAgentApplication) => {
     scopes: SCOPES,
   })
 
-  return {
-    accessToken: { token: accessToken, validUntil: expiresOn },
-    id: account.userName,
-    name: account.name,
-  }
+  return buildAuthResponse(accessToken, account.userName, expiresOn)
 }
 
-const popupLogIn = async (userAgentApplication: UserAgentApplication) => {
+const popupLogIn = async (
+  userAgentApplication: UserAgentApplication,
+): Promise<OneDriveAuthResponse> => {
   await userAgentApplication.loginPopup({
     scopes: SCOPES,
     prompt: 'select_account',
@@ -33,20 +44,29 @@ const popupLogIn = async (userAgentApplication: UserAgentApplication) => {
     accessToken,
     account,
     expiresOn,
-    uniqueId,
   } = await userAgentApplication.acquireTokenSilent({
     scopes: SCOPES,
   })
 
-  return {
-    accessToken: { token: accessToken, validUntil: expiresOn },
-    id: uniqueId,
-    name: account.name,
+  return buildAuthResponse(accessToken, account.userName, expiresOn)
+}
+
+const performAuth = async (
+  userAgentApplication: UserAgentApplication,
+  allowSilent: boolean,
+): Promise<OneDriveAuthResponse> => {
+  if (!allowSilent) return popupLogIn(userAgentApplication)
+
+  try {
+    return silentLogIn(userAgentApplication)
+  } catch (error) {
+    return await popupLogIn(userAgentApplication)
   }
 }
 
 export const auth = async (
-  provider?: OneDrive,
+  provider: OneDrive | undefined,
+  allowSilent = true,
 ): Promise<OneDriveAuthResponse> => {
   if (provider !== undefined && provider.accessToken.validUntil > new Date())
     return provider
@@ -57,16 +77,9 @@ export const auth = async (
     },
   })
 
-  const { accessToken, id, name } = await silentLogIn(userAgentApplication)
-    .catch(() => popupLogIn(userAgentApplication))
-    .catch(() => {
-      throw new AuthenticationFailure(ProviderKind.OneDrive)
-    })
-
-  return {
-    kind: ProviderKind.OneDrive,
-    id: buildAuthId(ProviderKind.OneDrive, id),
-    name,
-    accessToken,
+  try {
+    return await performAuth(userAgentApplication, allowSilent)
+  } catch (error) {
+    throw new AuthenticationFailure(ProviderKind.OneDrive)
   }
 }
