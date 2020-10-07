@@ -4,16 +4,11 @@ import { Provider } from '../../types/providers/Provider'
 import { useTranslation } from 'react-i18next'
 
 type AuthenticatedViewProps = {
-  providers: Provider[]
-  index: (providers: Provider[]) => Promise<void>
+  onIndex: () => void
 }
 
-const AuthenticatedView = ({ providers, index }: AuthenticatedViewProps) => {
+const AuthenticatedView = ({ onIndex }: AuthenticatedViewProps) => {
   const { t } = useTranslation()
-
-  const handleIndex = useCallback(() => {
-    index(providers)
-  }, [index, providers])
 
   return (
     <div className="Authenticated">
@@ -42,7 +37,7 @@ const AuthenticatedView = ({ providers, index }: AuthenticatedViewProps) => {
         >
           {t('Getting started')}
         </a>
-        <button onClick={handleIndex}>{t('Index')}</button>
+        <button onClick={onIndex}>{t('Index')}</button>
       </div>
     </div>
   )
