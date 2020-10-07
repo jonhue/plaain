@@ -64,14 +64,15 @@
   "To watch your movies and TV shows, you first have to sign in with the cloud service that hosts your media.": "To watch your movies and TV shows, you first have to sign in with the cloud service that hosts your media.",
   "TV seasons": "TV seasons",
   "TV shows": "TV shows",
+  "Update": "Update",
   "Update metadata": "Update metadata",
   "Unable to locate file": "Unable to locate file",
   "Version": "Version",
   "Versions": "Versions",
   "Watch": "Watch",
   "We weren't able to locate the file named {{name}} located in your {{provider}} provider.": "We weren't able to locate the file named {{name}} located in your {{provider}} provider.",
+  "You already linked your {{provider}} account {{name}} with Plaain. You can change your settings by clicking on the service in the authentication list on the settings page.": "You already linked your {{provider}} account {{name}} with Plaain. You can change your settings by clicking on the service in the authentication list on the settings page.",
   "You signed into a cloud service, but we didn't find any movies or TV shows.": "You signed into a cloud service, but we didn't find any movies or TV shows.",
   "You want to get lost?": "You want to get lost?",
-  "Your movies & TV shows. Anywhere.": "Your movies & TV shows. Anywhere.",
-  "You're already authenticated with {{provider}} and account {{name}}. You can change your settings by clicking on the provider in the authentication list on the settings page.": "You're already authenticated with {{provider}} and account {{name}}. You can change your settings by clicking on the provider in the authentication list on the settings page."
+  "Your movies & TV shows. Anywhere.": "Your movies & TV shows. Anywhere."
 }

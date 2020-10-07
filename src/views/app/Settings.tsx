@@ -31,7 +31,7 @@ const SettingsView = ({
     [load],
   )
 
-  const handleAddProvider = useCallback(
+  const handleUpdateProvider = useCallback(
     (provider: Provider) => {
       updateProvider(provider)
       load(index([provider]))
@@ -52,7 +52,8 @@ const SettingsView = ({
     <Settings
       providers={providers}
       onSetupAuth={handleSetupAuth}
-      onAddProvider={handleAddProvider}
+      onAddProvider={handleUpdateProvider}
+      onUpdateProvider={handleUpdateProvider}
       onIndex={handleIndex}
       onFetchMetadataAll={handleFetchMetadataAll}
     />

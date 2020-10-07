@@ -6,8 +6,6 @@ import ChooseProvider from './ChooseProvider'
 import Modal from '../Modal'
 import SetupProvider from './SetupProvider'
 
-const MODAL_ANIMATION_DURATION = 250
-
 type AddProviderModalProps = {
   isActive: boolean
 
@@ -24,11 +22,6 @@ const AddProviderModal = ({
 }: AddProviderModalProps) => {
   const [authResponse, setAuthResponse] = useState<AuthResponse | undefined>()
 
-  const handleClose = useCallback(() => {
-    onClose()
-    setTimeout(() => setAuthResponse(undefined), MODAL_ANIMATION_DURATION)
-  }, [onClose])
-
   const handleChoose = useCallback(
     async (kind: ProviderKind) => {
       const authResponse = await onSetupAuth(kind)
@@ -44,14 +37,13 @@ const AddProviderModal = ({
       const provider = { ...authResponse, moviesPath, showsPath }
       onAddProvider(provider)
       onClose()
-      setTimeout(() => setAuthResponse(undefined), MODAL_ANIMATION_DURATION)
     },
-    [authResponse, onAddProvider, onClose, setAuthResponse],
+    [authResponse, onAddProvider, onClose],
   )
 
   return (
     <div className="AddProviderModal">
-      <Modal isActive={isActive} onClose={handleClose}>
+      <Modal isActive={isActive} onClose={onClose}>
         {authResponse === undefined ? (
           <ChooseProvider onChoose={handleChoose} />
         ) : (

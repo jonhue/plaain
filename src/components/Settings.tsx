@@ -5,6 +5,7 @@ import AddIcon from './icons/Nucleo/e-add'
 import AddProviderModal from './authentication/AddProviderModal'
 import { AuthResponse } from '../services/auth/types'
 import ProviderButton from './ProviderButton'
+import UpdateProviderModal from './authentication/UpdateProviderModal'
 import { VERSION } from '../constants'
 import { buildProviderIcon } from '../util'
 import classNames from 'classnames'
@@ -16,6 +17,7 @@ type SettingsViewProps = {
 
   onSetupAuth: (kind: ProviderKind) => Promise<AuthResponse | undefined>
   onAddProvider: (provider: Provider) => void
+  onUpdateProvider: (provider: Provider) => void
   onIndex: () => void
   onFetchMetadataAll: () => void
 }
@@ -24,16 +26,26 @@ const SettingsView = ({
   providers,
   onSetupAuth,
   onAddProvider,
+  onUpdateProvider,
   onIndex,
   onFetchMetadataAll,
 }: SettingsViewProps) => {
   const { t } = useTranslation()
 
   const [showAddProviderModal, setShowAddProviderModal] = useState(false)
+  const [showUpdateProviderModals, setShowUpdateProviderModals] = useState<{
+    [index: number]: boolean
+  }>(providers.reduce((acc, _, index) => ({ ...acc, [index]: false }), {}))
 
   const handleShowUpdateProviderModal = useCallback(
-    () => console.log('update provider'),
-    [],
+    (index: number) => () =>
+      setShowUpdateProviderModals((state) => ({ ...state, [index]: true })),
+    [setShowUpdateProviderModals],
+  )
+  const handleCloseUpdateProviderModal = useCallback(
+    (index: number) => () =>
+      setShowUpdateProviderModals((state) => ({ ...state, [index]: false })),
+    [setShowUpdateProviderModals],
   )
 
   const handleShowAddProviderModal = useCallback(
@@ -65,7 +77,14 @@ const SettingsView = ({
                       provider.showsPath === undefined,
                   })}
                   icon={buildProviderIcon(provider.kind, styles.white)}
-                  onClick={handleShowUpdateProviderModal}
+                  onClick={handleShowUpdateProviderModal(index)}
+                />
+                <UpdateProviderModal
+                  isActive={showUpdateProviderModals[index]}
+                  provider={provider}
+                  onClose={handleCloseUpdateProviderModal(index)}
+                  onUpdateProvider={onUpdateProvider}
+                  key={7}
                 />
               </div>
             ))}

@@ -20,7 +20,7 @@ export const ProviderAlreadyExistsToast = ({
     <Toast
       title={t('Provider already exists')}
       text={t(
-        "You're already authenticated with {{provider}} and account {{name}}. You can change your settings by clicking on the provider in the authentication list on the settings page.",
+        'You already linked your {{provider}} account {{name}} with Plaain. You can change your settings by clicking on the service in the authentication list on the settings page.',
         {
           name: notification.provider.name,
           provider: buildProviderName(notification.provider.kind),

@@ -33,7 +33,7 @@
     }
   }
 
-  &__header{
+  &__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -44,6 +44,7 @@
 
     &__close {
       cursor: pointer;
+      line-height: 1;
 
       .Icon {
         height: 1.25rem;
