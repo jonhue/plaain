@@ -53,7 +53,7 @@ const ProviderForm = ({
       event.preventDefault()
       onSubmit(state.moviesPath, state.showsPath)
     },
-    [initalState, onSubmit, state],
+    [onSubmit, state],
   )
 
   const isSetupInput = useCallback(

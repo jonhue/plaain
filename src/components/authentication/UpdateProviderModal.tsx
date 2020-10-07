@@ -37,7 +37,7 @@ const UpdateProviderModal = ({
 
     onRemoveProvider()
     onClose()
-  }, [onClose, onRemoveProvider])
+  }, [onClose, onRemoveProvider, t])
 
   return (
     <div className="UpdateProviderModal">
