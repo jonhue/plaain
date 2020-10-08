@@ -1,0 +1,82 @@
+@import "../variables";
+
+.Settings {
+  h2 {
+    margin: 0;
+  }
+
+  section:not(.Settings__auth) {
+    padding: $padding;
+
+    & > p {
+      margin: 0.3em 0 1em;
+    }
+  }
+
+  &__auth {
+    padding-top: $padding;
+
+    & > h2,
+    & > p {
+      margin-left: $padding;
+      margin-right: $padding;
+    }
+
+    p {
+      margin-bottom: 0;
+      margin-top: 0.3em;
+    }
+
+    &__scroll {
+      overflow-x: auto;
+    }
+
+    &__providers {
+      display: flex;
+      float: left;
+      padding: $padding;
+
+      .Settings__auth__provider {
+        &:not(:first-child) {
+          margin-left: $spacing;
+        }
+      }
+    }
+  }
+
+  &__indexing {
+    &__actions {
+      button {
+        width: auto;
+
+        &:not(:first-child) {
+          margin-top: $padding;
+        }
+      }
+
+      @media only screen and (min-width: $br-phone) {
+        align-items: center;
+        display: flex;
+
+        button {
+          width: auto;
+
+          &:not(:first-child) {
+            margin-left: $spacing;
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &__version {
+    p {
+      margin-bottom: 1em !important;
+
+      &.small {
+        margin: 0 !important;
+      }
+    }
+  }
+}

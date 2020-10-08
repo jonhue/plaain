@@ -6,8 +6,48 @@ $dark: #182047;
 $black: #000;
 $highlight: #ff2fc1;
 $warn: #fe8a27;
+$success: #27fe4b;
 
 /* Sizes */
-$padding: 1.25rem;
-$spacing: 0.9375rem;
-$nav: 4.375rem;
+$border-radius: 0.3125em;
+$padding: 1.25em;
+$spacing: 0.9375em;
+$nav: 4.375em;
+
+/* Icons */
+$icon-size: 2em;
+$icon-stroke-linecap: round;
+$icon-stroke-width: 0.125em;
+
+/* z-index */
+$z-back: -1;
+$z-base: 0;
+$z-front: 1;
+$z-overlay: 2;
+$z-loading: 3;
+$z-notification: 4;
+
+/* Breakpoints */
+$br-phone: 600px;
+$br-phablet: 800px;
+$br-tablet: 1200px;
+$br-laptop: 1600px;
+$br-desktop: 2000px;
+
+/* stylelint-disable */
+:export {
+  white: $white;
+  light: $light;
+  background: $background;
+  dark: $dark;
+  black: $black;
+  highlight: $highlight;
+  warn: $warn;
+
+  brPhone: $br-phone;
+  brPhablet: $br-phablet;
+  brTablet: $br-tablet;
+  brLaptop: $br-laptop;
+  brDesktop: $br-desktop;
+}
+/* stylelint-enable */

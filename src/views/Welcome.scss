@@ -1,0 +1,47 @@
+@import "../variables";
+
+.Welcome {
+  h1 {
+    font-size: 2.25em;
+    margin: 2.25em $padding 0;
+  }
+
+  &__details {
+    bottom: 0;
+    padding: $padding;
+    position: absolute;
+
+    h3 {
+      margin-bottom: $padding;
+    }
+
+    a.button {
+      &:not(:first-of-type) {
+        margin-top: $spacing;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $br-phone) {
+    margin: 3.125em;
+
+    h1 {
+      margin: 0;
+    }
+
+    &__details {
+      max-width: 31.25em;
+      padding: 0 0 3.125em;
+
+      a.button {
+        float: left;
+        width: auto;
+
+        &:not(:first-of-type) {
+          margin-left: $spacing;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

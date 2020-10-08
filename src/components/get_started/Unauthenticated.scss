@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.Unauthenticated {
+  h2,
+  p {
+    margin: 0 $padding 0.2em;
+
+    &:first-child {
+      margin-top: $padding;
+    }
+  }
+
+  p.small {
+    margin-top: 0.625em;
+  }
+
+  a.button {
+    display: inline-block;
+    margin: $padding $padding 0;
+
+    &:not(:first-child) {
+      margin-top: $spacing;
+    }
+  }
+
+  a.button,
+  button {
+    width: auto;
+  }
+}

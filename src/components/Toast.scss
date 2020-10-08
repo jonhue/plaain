@@ -1,0 +1,54 @@
+@import "../variables";
+
+.Toast {
+  background: $warn;
+  left: 0;
+  padding: $padding;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-notification;
+
+  &:not(:first-of-type) {
+    border-top: 1px solid $background;
+  }
+
+  p {
+    color: $white;
+    margin-top: 0.3em;
+    opacity: 0.8;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    font-weight: 700;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+    }
+
+    &__close {
+      cursor: pointer;
+      line-height: 1;
+
+      .Icon {
+        height: 1.25em;
+      }
+    }
+  }
+}

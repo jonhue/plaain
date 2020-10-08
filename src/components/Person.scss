@@ -1,0 +1,41 @@
+@import "../variables";
+
+.Person {
+  &__details {
+    padding: $padding $padding $spacing;
+
+    @media only screen and (min-width: $br-laptop) {
+      padding-top: 5em;
+    }
+
+    .Cover {
+      max-width: 300px;
+      width: 50%;
+
+      @media only screen and (min-width: $br-tablet) {
+        max-width: 300px;
+      }
+    }
+
+    h1 {
+      margin: 0.4em 0 0.1em;
+    }
+
+    p {
+      margin: 0.3em 0 0;
+    }
+  }
+
+  h2 {
+    margin: $padding $padding 0;
+  }
+
+  &__details,
+  &__movies,
+  &__seasons {
+    @media only screen and (min-width: $br-laptop) {
+      margin: 0 auto;
+      max-width: 1600px;
+    }
+  }
+}

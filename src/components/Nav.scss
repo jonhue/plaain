@@ -12,7 +12,7 @@
   position: fixed;
   right: 0;
   width: 100%;
-  z-index: 1;
+  z-index: $z-front;
 
   a,
   button {
@@ -21,15 +21,15 @@
 
     p {
       color: $white;
-      font-size: 0.875rem;
+      font-size: 0.875em;
       font-weight: 700;
       line-height: 1;
-      margin: 0.5rem 0 0;
+      margin: 0.5em 0 0;
     }
 
-    svg {
-      height: 1.2rem;
-      width: 1.2rem;
+    .Icon {
+      height: 1.2em;
+      width: 1.2em;
 
       polygon,
       polyline,
@@ -59,12 +59,6 @@
           stroke: $highlight !important;
         }
       }
-    }
-
-    &[disabled] {
-      cursor: not-allowed;
-      opacity: 0.5;
-      pointer-events: none;
     }
   }
 

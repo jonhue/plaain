@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.ProviderForm {
+  &__input {
+    align-items: center;
+    display: flex;
+    margin-bottom: $padding;
+
+    input {
+      margin-top: $border-radius;
+      width: 100%;
+    }
+
+    .Icon {
+      margin-left: $spacing;
+      opacity: 0.2;
+    }
+
+    &.setup {
+      .Icon {
+        opacity: 1;
+
+        g,
+        path {
+          fill: $warn;
+        }
+      }
+    }
+
+    &.valid {
+      .Icon {
+        opacity: 1;
+
+        g,
+        path {
+          fill: $success;
+        }
+      }
+    }
+  }
+}

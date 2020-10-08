@@ -1,6 +1,6 @@
 @import "../variables";
 
 .Cover {
-  border-radius: 0.3125rem;
+  border-radius: $border-radius;
   box-shadow: 0 3px 20px rgba($black, 0.16);
 }

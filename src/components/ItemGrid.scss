@@ -6,19 +6,19 @@
   grid-template-columns: 1fr 1fr 1fr;
   padding: $padding;
 
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: $br-phablet) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 1200px) {
+  @media only screen and (min-width: $br-tablet) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 1600px) {
+  @media only screen and (min-width: $br-laptop) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
-  @media only screen and (min-width: 2000px) {
+  @media only screen and (min-width: $br-desktop) {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
@@ -33,16 +33,17 @@
       &:active,
       &:focus,
       &:hover {
-        top: -0.125rem;
+        top: -0.125em;
 
-        img {
+        .Cover {
           box-shadow: 0 4px 10px rgba($dark, 1);
         }
       }
 
-      img {
+      .Cover {
         box-shadow: 0 0 6px rgba($dark, 0.16);
         transition: box-shadow 0.1s ease-out;
+        width: 100%;
       }
     }
   }

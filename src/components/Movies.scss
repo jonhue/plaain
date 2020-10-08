@@ -1,0 +1,15 @@
+@import "../variables";
+
+.Movies {
+  &__find {
+    padding: $padding;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: $z-front;
+
+    .Icon {
+      height: 1.5em;
+    }
+  }
+}

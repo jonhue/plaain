@@ -1,0 +1,56 @@
+@import "../variables";
+
+$modal-overlay-opacity: 0.5;
+$modal-animation-top-offset: 3%;
+$modal-max-width: 500px;
+$modal-background-blur: 0.5em;
+$modal-transition-duration: 0.25s;
+$modal-border-radius: 0.25em;
+$modal-border-size: 0.0625em;
+
+.Modal {
+  backdrop-filter: none;
+  background: transparent;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: all $modal-transition-duration ease-in;
+  visibility: hidden;
+  width: 100%;
+  z-index: $z-overlay;
+
+  &__wrapper {
+    background: $dark;
+    border: $modal-border-size solid $black;
+    border-radius: $modal-border-radius;
+    left: 50%;
+    max-width: $modal-max-width;
+    opacity: 0;
+    padding: $padding;
+    position: fixed;
+    top: 50% - $modal-animation-top-offset;
+    transform: translateX(-50%) translateY(-50%);
+    transition: all $modal-transition-duration ease-out;
+    width: 80%;
+
+    a.button,
+    button,
+    input,
+    select {
+      background: $background;
+      border-color: $background;
+    }
+  }
+
+  &.active {
+    backdrop-filter: blur($modal-background-blur);
+    background: rgba($dark, $modal-overlay-opacity);
+    visibility: visible;
+
+    .Modal__wrapper {
+      opacity: 1;
+      top: 50%;
+    }
+  }
+}

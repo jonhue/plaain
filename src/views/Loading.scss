@@ -1,0 +1,22 @@
+@import "../variables";
+
+.Loading {
+  align-items: center;
+  background: $background;
+  display: flex;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-loading;
+
+  &__wrapper {
+    text-align: center;
+    width: 100%;
+
+    .Icon {
+      height: 4em;
+    }
+  }
+}

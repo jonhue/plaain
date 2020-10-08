@@ -1,0 +1,20 @@
+@import "../variables";
+
+.ProviderButton {
+  & > button {
+    border: none;
+    border-radius: 50%;
+    padding: 1.5625em;
+    width: auto;
+
+    &:disabled {
+      border-style: dashed;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .Icon {
+      height: 2em;
+    }
+  }
+}
