@@ -1,7 +1,7 @@
 import { CannotFindFile } from '../../types/Notification'
 import React from 'react'
 import Toast from '../Toast'
-import { buildProviderName } from '../../util'
+import { buildProviderKindName } from '../../util'
 import { useTranslation } from 'react-i18next'
 
 type CannotFindFileToastProps = {
@@ -23,7 +23,7 @@ export const CannotFindFileToast = ({
         "We weren't able to locate the file named {{name}} located in your {{provider}} provider.",
         {
           name: notification.file.name,
-          provider: buildProviderName(notification.file.provider.kind),
+          provider: buildProviderKindName(notification.file.provider.kind),
         },
       )}
       onClose={onClose}

@@ -3,7 +3,7 @@ import React, { useCallback } from 'react'
 import Modal from '../Modal'
 import { Provider } from '../../types/providers/Provider'
 import ProviderForm from './ProviderForm'
-import { buildProviderName } from '../../util'
+import { buildProviderKindName } from '../../util'
 import { useTranslation } from 'react-i18next'
 
 type UpdateProviderModalProps = {
@@ -42,7 +42,7 @@ const UpdateProviderModal = ({
   return (
     <div className="UpdateProviderModal">
       <Modal isActive={isActive} onClose={onClose}>
-        <h2>{buildProviderName(provider.kind)}</h2>
+        <h2>{buildProviderKindName(provider.kind)}</h2>
         <p>{provider.name}</p>
         <ProviderForm
           submitCaption={t('Update')}

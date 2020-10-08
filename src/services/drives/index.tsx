@@ -14,11 +14,10 @@ import { ShowLike } from '../../types/items/Show'
 import { Video } from '../../types/files/videos/Video'
 import { updateFile as oneDriveUpdateFile } from './OneDrive'
 
-export const isCaption = (file: File): file is Caption =>
+const isCaption = (file: File): file is Caption =>
   file.kind === FileKind.Caption
 
-export const isVideo = (file: File): file is Video =>
-  file.kind === FileKind.Video
+const isVideo = (file: File): file is Video => file.kind === FileKind.Video
 
 export const buildEpisodeLike = (showTmdbId: number, seasonNumber: number) => (
   item: EpisodeIndexResponse,

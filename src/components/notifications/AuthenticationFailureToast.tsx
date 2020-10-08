@@ -1,7 +1,7 @@
 import { AuthenticationFailure } from '../../types/Notification'
 import React from 'react'
 import Toast from '../Toast'
-import { buildProviderName } from '../../util'
+import { buildProviderKindName } from '../../util'
 import { useTranslation } from 'react-i18next'
 
 type AuthenticationFailureToastProps = {
@@ -21,7 +21,7 @@ export const AuthenticationFailureToast = ({
       title={t('Authentication unsuccessful')}
       text={t(
         "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.",
-        { provider: buildProviderName(notification.provider) },
+        { provider: buildProviderKindName(notification.provider) },
       )}
       action={{
         text: t('Report'),
