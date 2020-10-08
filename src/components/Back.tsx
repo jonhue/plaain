@@ -11,12 +11,12 @@ const Back: FunctionComponent = ({ children }) => {
   const handleClick = useCallback(() => history.goBack(), [history])
 
   return (
-    <button
+    <div
       className={classNames('Back', { disabled: isDisabled })}
       onClick={handleClick}
     >
       {children}
-    </button>
+    </div>
   )
 }
 

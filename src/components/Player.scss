@@ -1,0 +1,27 @@
+@import "../variables";
+
+.Player {
+  &__content {
+    padding: $padding;
+
+    button {
+      width: auto;
+    }
+
+    &__header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        margin: 0;
+      }
+    }
+
+    &__reload {
+      p {
+        max-width: 22em;
+      }
+    }
+  }
+}

@@ -2,8 +2,8 @@
 
 .Welcome {
   h1 {
-    font-size: 2.25rem;
-    margin: 2.25rem $padding 0;
+    font-size: 2.25em;
+    margin: 2.25em $padding 0;
   }
 
   &__details {
@@ -23,15 +23,15 @@
   }
 
   @media only screen and (min-width: $br-phone) {
-    margin: 3.125rem;
+    margin: 3.125em;
 
     h1 {
       margin: 0;
     }
 
     &__details {
-      max-width: 31.25rem;
-      padding: 0 0 3.125rem;
+      max-width: 31.25em;
+      padding: 0 0 3.125em;
 
       a.button {
         float: left;

@@ -1,6 +1,7 @@
 import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
 import { FileProvider, VideoProvider } from './types/files/FileProvider'
 import { IMediaItem, Item, ItemKind } from './types/items/Item'
+import { M4V_EXTENSION, MP4_EXTENSION, Video } from './types/files/videos/Video'
 import { Caption } from './types/files/captions/Caption'
 import ISO6391 from 'iso-639-1'
 import MicrosoftIcon from './components/icons/Nucleo/microsoft'
@@ -74,6 +75,15 @@ export const buildFileDownloadUrl = (file: FileProvider): string => {
   switch (file.kind) {
     case ProviderKind.OneDrive:
       return file.downloadUrl
+  }
+}
+
+export const buildVideoType = (file: Video): string => {
+  switch (file.type) {
+    case M4V_EXTENSION:
+      return MP4_EXTENSION
+    default:
+      return file.type
   }
 }
 

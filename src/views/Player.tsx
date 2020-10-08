@@ -1,7 +1,9 @@
 import { ConnectedProps, connect } from 'react-redux'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
+import { Episode } from '../types/items/Episode'
 import { ItemKind } from '../types/items/Item'
 import Loading from './Loading'
+import { Movie } from '../types/items/Movie'
 import NotFound from './NotFound'
 import Player from '../components/Player'
 import { RootState } from '../store'
@@ -9,12 +11,14 @@ import { episodeSelector } from '../store/episodes/selectors'
 import { load } from '../store/ui/thunks'
 import { movieSelector } from '../store/movies/selectors'
 import { updateEpisodeProgress } from '../store/episodes/thunks'
-import { updateFile } from '../store/thunks'
+import { updateFiles } from '../store/thunks'
 import { updateMovieProgress } from '../store/movies/thunks'
+import { useAsyncMemo } from 'use-async-memo'
 import { useLocation } from 'react-router'
 
 const KIND_PARAMETER = 'type'
 const ID_PARAMETER = 'id'
+const START_AT_PARAMETER = 's'
 
 const mapState = (state: RootState) => ({
   episodes: state.episodes,
@@ -37,6 +41,15 @@ const PlayerView = ({
 
   const [isLoading, setIsLoading] = useState(true)
 
+  const startAt: number | undefined = useMemo(() => {
+    const rawStartAt = new URLSearchParams(location.search).get(
+      START_AT_PARAMETER,
+    )
+    if (rawStartAt === null) return
+
+    return Number.parseInt(rawStartAt)
+  }, [location])
+
   const kind: ItemKind | undefined = useMemo(() => {
     const rawKind = new URLSearchParams(location.search).get(KIND_PARAMETER)
     if (rawKind === null) return
@@ -46,17 +59,29 @@ const PlayerView = ({
     if (Object.values(ItemKind).includes(kind)) return kind
   }, [location])
 
-  const item = useMemo(() => {
-    const id = new URLSearchParams(location.search).get(ID_PARAMETER)
-    if (id === null) return
-
+  const findItem = useCallback((kind: ItemKind, id: string) => {
     switch (kind) {
       case ItemKind.Episode:
         return episodeSelector(id)(episodes)
       case ItemKind.Movie:
         return movieSelector(id)(movies)
     }
-  }, [episodes, kind, location, movies])
+  }, [])
+
+  const item = useAsyncMemo(async () => {
+    if (kind === undefined) return
+
+    const id = new URLSearchParams(location.search).get(ID_PARAMETER)
+    if (id === null) return
+
+    const item = findItem(kind, id)
+    if (item === undefined) return
+
+    const updatedItem = (await load(updateFiles(item))) as Episode | Movie
+    setIsLoading(false)
+
+    return updatedItem
+  }, [episodes, kind, load, location, movies, setIsLoading])
 
   const handleProgress = useCallback(
     (progress: number) => {
@@ -72,22 +97,10 @@ const PlayerView = ({
     [item, updateEpisodeProgress, updateMovieProgress],
   )
 
-  useEffect(() => {
-    if (item === undefined) {
-      setIsLoading(false)
-      return
-    }
-
-    Promise.all([
-      ...item.sources.map((source) => load(updateFile(source))),
-      ...item.captions.map((caption) => load(updateFile(caption))),
-    ]).then(() => setIsLoading(false))
-  }, [load, item, setIsLoading])
-
   return isLoading ? (
     <Loading />
   ) : item !== undefined && item.sources.length > 0 ? (
-    <Player item={item} onProgress={handleProgress} />
+    <Player item={item} startAt={startAt} onProgress={handleProgress} />
   ) : (
     <NotFound />
   )

@@ -1,20 +1,20 @@
 import './PlyrPlayer.scss'
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import {
   buildCaptionSrcLang,
   buildFileDownloadUrl,
   buildVideoSize,
+  buildVideoType,
 } from '../util'
 import { Caption } from '../types/files/captions/Caption'
 import { Episode } from '../types/items/Episode'
-import { ItemKind } from '../types/items/Item'
 import { Movie } from '../types/items/Movie'
 import Plyr from 'plyr'
 import { Video } from '../types/files/videos/Video'
 
 const buildSource = (video: Video): Plyr.Source => ({
   src: buildFileDownloadUrl(video.provider),
-  type: `video/${video.type}`,
+  type: `video/${buildVideoType(video)}`,
   size: buildVideoSize(video.provider),
 })
 
@@ -28,19 +28,31 @@ const buildCaption = (caption: Caption): Plyr.Track => ({
 type PlyrPlayerProps = {
   id: string
   item: Movie | Episode
+  startAt?: number
 
   onProgress: (progress: number) => void
 }
 
-const PlyrPlayer = ({ id, item, onProgress }: PlyrPlayerProps) => {
-  const posterPath = useMemo(() => {
-    if (item.kind === ItemKind.Movie) return item.posterPath
-    else if (item.kind === ItemKind.Episode) return item.stillPath
-  }, [item])
-
+const PlyrPlayer = ({ id, item, startAt, onProgress }: PlyrPlayerProps) => {
   useEffect(() => {
     const player = new Plyr(`video.PlyrPlayer#${id}`, {
       debug: process.env.NODE_ENV === 'development',
+      controls: [
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'duration',
+        'mute',
+        'volume',
+        'captions',
+        'fullscreen',
+        'settings',
+      ],
+      settings: ['captions', 'quality'],
+      autoplay: true,
+      invertTime: true,
+      toggleInvert: true,
     })
 
     player.source = {
@@ -50,10 +62,14 @@ const PlyrPlayer = ({ id, item, onProgress }: PlyrPlayerProps) => {
       tracks: item.captions.map(buildCaption),
     }
 
+    player.on('ready', () => {
+      if (startAt !== undefined) player.forward(startAt)
+    })
+
     return () => {
       if (player.currentTime !== 0) onProgress(player.currentTime)
     }
-  }, [id, item, onProgress, posterPath])
+  }, [id, item, onProgress])
 
   return (
     <video

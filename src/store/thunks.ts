@@ -13,8 +13,11 @@ import { movieSelector, moviesSelector } from './movies/selectors'
 import { seasonSelector, seasonsSelector } from './seasons/selectors'
 import { showSelector, showsSelector } from './shows/selectors'
 import { AppThunk } from '.'
+import { Caption } from '../types/files/captions/Caption'
 import { File } from '../types/files/File'
+import { ItemKind } from '../types/items/Item'
 import { Provider } from '../types/providers/Provider'
+import { Video } from '../types/files/videos/Video'
 import { auth as authCall } from './auth/thunks'
 import { removeFilesByProvider as episodeRemoveFilesByProvider } from './episodes/thunks'
 import { index as indexCall } from '../services/indexing'
@@ -47,7 +50,7 @@ export const index = (providers: Provider[]): AppThunk<Promise<void>> => async (
   )
 }
 
-export const updateFile = (file: File): AppThunk<Promise<void>> => async (
+const updateFile = (file: File): AppThunk<Promise<File>> => async (
   dispatch,
   getState,
 ) => {
@@ -57,8 +60,41 @@ export const updateFile = (file: File): AppThunk<Promise<void>> => async (
     throw new Error('could not find provider for file')
 
   const updatedProvider = await dispatch(authCall(provider))
+  const updatedFile = await updateFileCall(updatedProvider, file)
 
-  await updateFileCall(updatedProvider, file)
+  return updatedFile
+}
+
+const handleUpdateWatchableItem = (item: Episode | Movie) => {
+  switch (item.kind) {
+    case ItemKind.Episode:
+      return updateEpisode(item)
+    case ItemKind.Movie:
+      return updateMovie(item)
+  }
+}
+
+export const updateFiles = (
+  item: Episode | Movie,
+): AppThunk<Promise<Episode | Movie>> => async (dispatch) => {
+  const sources = await Promise.all(
+    item.sources.map(
+      (source) => dispatch(updateFile(source)) as Promise<Video>,
+    ),
+  )
+  const captions = await Promise.all(
+    item.captions.map(
+      (caption) => dispatch(updateFile(caption)) as Promise<Caption>,
+    ),
+  )
+  const updatedItem = {
+    ...item,
+    sources,
+    captions,
+  }
+
+  handleUpdateWatchableItem(updatedItem)
+  return updatedItem
 }
 
 const fetchEpisodeMetadata = (
