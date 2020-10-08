@@ -8,7 +8,7 @@ import { updateSeasonProgress } from '../seasons/thunks'
 export const updateEpisodeProgress = (
   episode: Episode,
   progress: number,
-) => (): AppThunk<void> => (dispatch, getState) => {
+): AppThunk<void> => (dispatch, getState) => {
   const usage: Usage = {
     lastWatched: new Date().toISOString(),
     progress,
@@ -26,7 +26,7 @@ export const updateEpisodeProgress = (
 export const removeFilesByProvider = (
   episode: Episode,
   providerId: string,
-) => (): AppThunk<void> => (dispatch) => {
+): AppThunk<void> => (dispatch) => {
   dispatch(
     updateEpisode({
       ...episode,

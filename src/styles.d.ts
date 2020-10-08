@@ -8,11 +8,11 @@ declare module '*.scss' {
     highlight: string
     warn: string
 
-    brPhone: number
-    brPhablet: number
-    brTablet: number
-    brLaptop: number
-    brDesktop: number
+    brPhone: string
+    brPhablet: string
+    brTablet: string
+    brLaptop: string
+    brDesktop: string
   }
 
   export default styles

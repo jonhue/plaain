@@ -45,9 +45,13 @@ export const splitHoursAndMinutes = (
   const hours = Math.floor(duration / 60)
   const minutes = duration % 60
 
-  return `${hours > 0 && hours + t('h')}${
-    hours !== 0 && minutes !== 0 ? ' ' : ''
-  }${minutes > 0 && minutes + t('m')}`
+  return (
+    <>
+      {hours > 0 && hours + t('h')}
+      {hours !== 0 && minutes !== 0 ? ' ' : ''}
+      {minutes > 0 && minutes + t('m')}
+    </>
+  )
 }
 
 export const buildBackdropUrl = (backdropPath: string | undefined) =>

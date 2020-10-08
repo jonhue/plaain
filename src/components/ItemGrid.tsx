@@ -18,8 +18,8 @@ const ItemGrid = ({ items }: ItemGridProps) => {
   return (
     <div className="ItemGrid">
       {items.length > 0 ? (
-        items.map((item) => (
-          <div className="ItemGrid__item" key={item.id}>
+        items.map((item, index) => (
+          <div className="ItemGrid__item" key={index}>
             <Link to={buildItemUrl(item)}>
               <Cover url={buildCoverUrl(item.posterPath)} alt={item.title} />
             </Link>

@@ -18,7 +18,7 @@ const ShowsView = ({ shows }: ShowsViewProps) => (
         <ZoomIcon color={styles.white} />
       </Link>
     </div>
-    {window.innerWidth < styles.brPhone ? (
+    {window.innerWidth < Number.parseInt(styles.brPhone) ? (
       <VerticalSlide items={shows} path="shows" id="shows" />
     ) : (
       <ItemGrid items={shows} />

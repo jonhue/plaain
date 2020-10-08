@@ -6,7 +6,7 @@ import { updateShow } from './actions'
 export const updateShowProgress = (
   show: Show,
   progress: number,
-) => (): AppThunk<void> => (dispatch) => {
+): AppThunk<void> => (dispatch) => {
   const usage: Usage = {
     lastWatched: new Date().toISOString(),
     progress,

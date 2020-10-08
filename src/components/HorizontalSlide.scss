@@ -1,3 +1,4 @@
+@import "swiper/swiper.scss";
 @import "../variables";
 
 .HorizontalSlide {
@@ -7,6 +8,7 @@
   .swiper-container {
     padding: $spacing 0 $padding;
     width: 100%;
+    z-index: $z-base;
 
     .swiper-slide {
       top: 0;

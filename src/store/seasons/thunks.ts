@@ -8,7 +8,7 @@ import { updateShowProgress } from '../shows/thunks'
 export const updateSeasonProgress = (
   season: Season,
   progress: number,
-) => (): AppThunk<void> => (dispatch, getState) => {
+): AppThunk<void> => (dispatch, getState) => {
   const usage: Usage = {
     lastWatched: new Date().toISOString(),
     progress,

@@ -18,7 +18,7 @@ const MoviesView = ({ movies }: MoviesViewProps) => (
         <ZoomIcon color={styles.white} />
       </Link>
     </div>
-    {window.innerWidth < styles.brPhone ? (
+    {window.innerWidth < Number.parseInt(styles.brPhone) ? (
       <VerticalSlide items={movies} path="movies" id="movies" />
     ) : (
       <ItemGrid items={movies} />

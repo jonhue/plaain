@@ -6,7 +6,7 @@ import { updateMovie } from './actions'
 export const updateMovieProgress = (
   movie: Movie,
   progress: number,
-) => (): AppThunk<void> => (dispatch) => {
+): AppThunk<void> => (dispatch) => {
   const usage: Usage = {
     lastWatched: new Date().toISOString(),
     progress,
@@ -17,7 +17,7 @@ export const updateMovieProgress = (
 export const removeFilesByProvider = (
   movie: Movie,
   providerId: string,
-) => (): AppThunk<void> => (dispatch) => {
+): AppThunk<void> => (dispatch) => {
   dispatch(
     updateMovie({
       ...movie,
