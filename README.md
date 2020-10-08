@@ -2,41 +2,69 @@
 
 Stream your media from anywhere. No server. No fee. Plaain works by connecting your device directly to the cloud where your media is hosted. It then stores metadata to all your movies & TV shows on your device.
 
-#### Supported cloud providers
+### Getting started
+
+Plaain works by connecting media files you are hosting in a cloud, enriching them with metadata and making them available from everywhere.
+
+To get started, you first have to connect your preferred cloud.
+
+### Organize files
+
+Plaain expects your files to be organized in a certain way. Irrespectively of the folder you keep your movies/shows in these folders have to be structured as follows:
+
+#### Movies
+
+The movies folder must only contain other folders that each house the files for a movie.
+
+```
+Movies
+|--Argo
+|--|--1080.mp4
+|--|--720.mp4
+|--|--English.vtt
+```
+
+#### Shows
+
+The shows is structured similarly to the movies folder only that there is an additional folder for each show and season respectively.
+
+```
+Shows
+|--Dark
+|--|--1
+|--|--|--1
+|--|--|--|--1080.mp4
+|--|--|--2
+|--|--|--|--1080.mp4
+```
+
+#### Source files
+
+Plaain uses all video files with one of the following extensions
+
+* `mp4`
+* `m4v`
+* `kmv`
+* `webm`
+
+and captions with the `vtt` extension.
+
+**Note:** Plaain uses your folder names to fetch metadata on your movies and TV shows from TMDb. In the case that one of your movies/shows isn't added to Plaain even though it is located in your cloud, ensure that you can find the title on https://www.themoviedb.org/ by the name of the directory.
+
+### Connect with cloud provider
+
+When your files are setup, [open Plaain](https://jonhue.github.io/plaain) and connect to your preferred cloud.
+
+Currently this list of cloud providers is supported:
 
 * OneDrive
 
-### Getting started
+To wrap up setting up your cloud provider, Plaain will ask you where you stored your movies and TV shows.
+More specifically, Plaain will ask you for a path to your movies and a path to your TV shows. The paths should be relative to the root directory of your linked cloud.
 
-In your cloud you have to organize your files a certain way so that they are found by Plaain.
-1. Create a root folder called `Plaain`.
-2. Create the subfolders `Movies` and `Shows`
-3. Within `Movies`, create a folder for every movie you want to add to Plaain with the movies title as its name.
-4. Within `Shows`, create a folder for each TV show you intend to add to Plaain with the shows title as its name. Then create a subfolder for each season (use the season number as name, e.g. `1`). Yet one level deeper, create a subfolder for each episode (use the episode number as name).
-5. Within every folder for a watchable item (movie/episode), add your source files. Allowed file types for videos are `mp4`, `m4v`, `kmv` and `webm`. The only allowed file type for subtitles is `vtt`. You'll later be able to switch between the uploaded video sources and subtitles by filename.
+You don't have to setup everything at this stage. You will be able to go back and change these settings.
 
-A file structure could look like this:
-
-```
-Plaain
-|--Movies
-|--|--Argo
-|--|--|--1080.mp4
-|--|--|--720.mp4
-|--|--|--English.vtt
-|--Shows
-|--|--Game of Thrones
-|--|--|--1
-|--|--|--|--1
-|--|--|--|--|--1080.mp4
-|--|--|--|--2
-|--|--|--|--|--1080.mp4
-```
-
-To get started, launch [Plaain](https://jonhue.github.io/plaain) and authenticate with your cloud provider.
-Now enjoy your favorite movies & TV shows!
-
-**Note:** In the case that one of your movies/shows isn't added to Plaain even though it is located in your cloud, ensure that you can find the title on https://www.themoviedb.org/ by the name of the directory.
+When you finish setting up your provider, Plaain will index your files and enrich them with metadata. Then you're ready to enjoy your favorite movies & TV shows.
 
 ### Features
 
@@ -58,18 +86,15 @@ Plaain is built as a Progressive Web App with [React](https://reactjs.org/) & [R
 
 ### Development
 
-This project uses [asdf](https://github.com/asdf-vm/asdf) as version manager and [Yarn](https://github.com/yarnpkg/yarn) as JavaScript package manager.
-
-Dependencies are listed in the [.tool-versions](.tool-versions) file.
+This project uses [Yarn](https://github.com/yarnpkg/yarn) as package manager.
 
 1. Clone this repository
 
     `$ git clone ssh://git@github.com/jonhue/plaain.git`
 
-2. Install dependencies
+2. Install [Node.js](https://nodejs.org) and then fetch dependencies
 
     ```
-    $ asdf install
     $ yarn install
     ```
 
@@ -79,12 +104,10 @@ Dependencies are listed in the [.tool-versions](.tool-versions) file.
 
 ### Testing
 
-This project uses a react-scripts for testing and ESLint and StyleLint for linting:
-
 ```
+yarn prettierlint
 yarn eslint
 yarn stylelint
-yarn test
 ```
 
 ### Deployment
