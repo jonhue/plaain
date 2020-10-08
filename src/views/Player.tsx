@@ -59,14 +59,17 @@ const PlayerView = ({
     if (Object.values(ItemKind).includes(kind)) return kind
   }, [location])
 
-  const findItem = useCallback((kind: ItemKind, id: string) => {
-    switch (kind) {
-      case ItemKind.Episode:
-        return episodeSelector(id)(episodes)
-      case ItemKind.Movie:
-        return movieSelector(id)(movies)
-    }
-  }, [episodes, movies])
+  const findItem = useCallback(
+    (kind: ItemKind, id: string) => {
+      switch (kind) {
+        case ItemKind.Episode:
+          return episodeSelector(id)(episodes)
+        case ItemKind.Movie:
+          return movieSelector(id)(movies)
+      }
+    },
+    [episodes, movies],
+  )
 
   const item = useAsyncMemo(async () => {
     if (kind === undefined) return setIsNotFound(true)

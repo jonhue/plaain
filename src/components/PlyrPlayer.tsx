@@ -1,4 +1,3 @@
-import './PlyrPlayer.scss'
 import React, { useEffect } from 'react'
 import {
   buildCaptionSrcLang,
@@ -38,16 +37,14 @@ const PlyrPlayer = ({ id, item, startAt, onProgress }: PlyrPlayerProps) => {
     const player = new Plyr(`video.PlyrPlayer#${id}`, {
       debug: process.env.NODE_ENV === 'development',
       controls: [
-        'play-large',
         'play',
         'progress',
         'current-time',
-        'duration',
         'mute',
         'volume',
         'captions',
-        'fullscreen',
         'settings',
+        'fullscreen',
       ],
       settings: ['captions', 'quality'],
       autoplay: true,
