@@ -68,8 +68,10 @@ const PlyrPlayer = ({ id, item, startAt, onProgress }: PlyrPlayerProps) => {
 
     return () => {
       if (player.currentTime !== 0) onProgress(player.currentTime)
+
+      player.destroy()
     }
-  }, [id, item, onProgress])
+  }, [id, item, onProgress, startAt])
 
   return (
     <video

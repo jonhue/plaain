@@ -39,7 +39,7 @@ const PlayerView = ({
 }: PlayerViewProps) => {
   const location = useLocation()
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isNotFound, setIsNotFound] = useState(false)
 
   const startAt: number | undefined = useMemo(() => {
     const rawStartAt = new URLSearchParams(location.search).get(
@@ -66,22 +66,20 @@ const PlayerView = ({
       case ItemKind.Movie:
         return movieSelector(id)(movies)
     }
-  }, [])
+  }, [episodes, movies])
 
   const item = useAsyncMemo(async () => {
-    if (kind === undefined) return
+    if (kind === undefined) return setIsNotFound(true)
 
     const id = new URLSearchParams(location.search).get(ID_PARAMETER)
-    if (id === null) return
+    if (id === null) return setIsNotFound(true)
 
     const item = findItem(kind, id)
-    if (item === undefined) return
+    if (item === undefined) return setIsNotFound(true)
 
     const updatedItem = (await load(updateFiles(item))) as Episode | Movie
-    setIsLoading(false)
-
     return updatedItem
-  }, [episodes, kind, load, location, movies, setIsLoading])
+  }, [kind, load, location, setIsNotFound])
 
   const handleProgress = useCallback(
     (progress: number) => {
@@ -97,12 +95,12 @@ const PlayerView = ({
     [item, updateEpisodeProgress, updateMovieProgress],
   )
 
-  return isLoading ? (
-    <Loading />
-  ) : item !== undefined && item.sources.length > 0 ? (
+  return item !== undefined && item.sources.length > 0 ? (
     <Player item={item} startAt={startAt} onProgress={handleProgress} />
-  ) : (
+  ) : isNotFound ? (
     <NotFound />
+  ) : (
+    <Loading />
   )
 }
 
