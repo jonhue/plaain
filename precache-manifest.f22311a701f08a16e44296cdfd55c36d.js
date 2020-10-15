@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "971a32329f9563da0e4a7999f9058732",
+    "revision": "99bd4c4beeb6cf8acee588254af7e8bf",
     "url": "/plaain/index.html"
   },
   {
@@ -32,12 +32,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/plaain/static/js/1.0d1929bf.chunk.js"
   },
   {
-    "revision": "1248769a91f58922c962",
-    "url": "/plaain/static/js/4.9347bc33.chunk.js"
+    "revision": "8de1cfb91badc75df1eb",
+    "url": "/plaain/static/js/4.069b4333.chunk.js"
   },
   {
-    "revision": "a5da5d53dfba093fa63375799ffeddd6",
-    "url": "/plaain/static/js/4.9347bc33.chunk.js.LICENSE.txt"
+    "revision": "dde6dad2057ef0f882dd9ff0059c0180",
+    "url": "/plaain/static/js/4.069b4333.chunk.js.LICENSE.txt"
   },
   {
     "revision": "654b3cf1021a43b3444c",
