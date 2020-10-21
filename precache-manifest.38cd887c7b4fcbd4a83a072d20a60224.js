@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "723bab87e6d6ad88d83b19c31ce968f1",
+    "revision": "49d7d8ac2a304c4d295e89c701ca6548",
     "url": "/plaain/index.html"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/plaain/static/css/main.b13f506f.chunk.css"
   },
   {
-    "revision": "fada670536d5e979ad4b",
-    "url": "/plaain/static/js/0.2ca65e0a.chunk.js"
+    "revision": "68a32b204e0ba3730aab",
+    "url": "/plaain/static/js/0.91cd0827.chunk.js"
   },
   {
     "revision": "e9053f7f9365da8ed987e76206b33fd2",
-    "url": "/plaain/static/js/0.2ca65e0a.chunk.js.LICENSE.txt"
+    "url": "/plaain/static/js/0.91cd0827.chunk.js.LICENSE.txt"
   },
   {
     "revision": "5ab4a44dd4642b748a54",
@@ -64,8 +64,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/plaain/static/js/main.00c1088a.chunk.js"
   },
   {
-    "revision": "3bad918a2d815a00422b",
-    "url": "/plaain/static/js/runtime-main.3391f0db.js"
+    "revision": "9c3c33f631e69fbbcec7",
+    "url": "/plaain/static/js/runtime-main.7a5a68c7.js"
   },
   {
     "revision": "013f0b90a4cae7b8bbf13e3fd9e7dc4a",
