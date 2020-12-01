@@ -1135,10 +1135,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@microsoft/microsoft-graph-client@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-2.1.1.tgz#c226b9f68be8ab7d3541ffa6eaeb95780f03f479"
-  integrity sha512-ftMwWPn5QTMxWK/6ZHga5kmCMwE/XF2FNFf6Wo4smYSrqhWUQso9taJGGthqxaMB8L8ISq1HX6knxSr4zGHhFQ==
+"@microsoft/microsoft-graph-client@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-client/-/microsoft-graph-client-2.2.0.tgz#eed4de958771e50f62eada36adbdeeed5ebd79e0"
+  integrity sha512-GfgqjgvogwLDQzyWXt9iceZWhDK8jTu3mVCPeaCWmz0Ko+gygBCMHGyKVXjmhvFQK4ZDkzDWVKoWUOozyzHKJA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     tslib "^1.9.3"
