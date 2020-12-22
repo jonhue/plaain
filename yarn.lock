@@ -6187,10 +6187,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-iso-639-1@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-2.1.4.tgz#c08b3d43a1c18945b05e26a257991ae6e36693ee"
-  integrity sha512-pwJRHnpz1sCR5saQ+Hm1E2YESw2eLGKP5TzsYKXuQ7SIfvKWMRb9CHhptqunYpCIcRCpq3LgLuhYG5hiLPRbFQ==
+iso-639-1@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-2.1.5.tgz#53854a33dc38f16be429ce8e36c14af44911a37e"
+  integrity sha512-rWT3mmVolHcZ0ZCQOEiwHcudO6KVaAE0Z9ym6SZKJcvDvlS+sgXAh3gCxnqsUnv/6PUdS7eJXhBGCo1mjIediQ==
 
 isobject@^2.0.0:
   version "2.1.0"
