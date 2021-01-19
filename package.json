@@ -19,7 +19,7 @@
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.0.22",
-    "iso-639-1": "^2.1.5",
+    "iso-639-1": "^2.1.7",
     "msal": "^1.4.4",
     "node-sass": "^4.14.1",
     "plyr": "^3.6.3",
@@ -70,7 +70,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
