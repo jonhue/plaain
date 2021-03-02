@@ -1,53 +1,43 @@
-import { ConnectedProps, connect } from 'react-redux'
+import { AppDispatch, RootState } from '../../store'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
 import { fetchAllMetadata, index, removeProvider } from '../../store/thunks'
-import { AuthResponse } from '../../services/auth/types'
-import { RootState } from '../../store'
+import { useDispatch, useSelector } from 'react-redux'
 import Settings from '../../components/Settings'
 import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
 import { setupAuth } from '../../store/auth/thunks'
 import { updateProvider } from '../../store/auth/actions'
 
-const mapState = (state: RootState) => ({
-  providers: providersSelector(state.auth),
-})
+const SettingsView = () => {
+  const dispatch = useDispatch<AppDispatch>()
 
-const mapDispatch = { load, removeProvider, updateProvider }
+  const providers = useSelector((state: RootState) =>
+    providersSelector(state.auth),
+  )
 
-const connector = connect(mapState, mapDispatch)
-
-type SettingsViewProps = ConnectedProps<typeof connector>
-
-const SettingsView = ({
-  providers,
-  load,
-  removeProvider,
-  updateProvider,
-}: SettingsViewProps) => {
   const handleSetupAuth = useCallback(
-    (kind: ProviderKind) =>
-      load(setupAuth(kind)) as Promise<AuthResponse | undefined>,
+    (kind: ProviderKind) => dispatch(load(setupAuth(kind))),
     [load],
   )
 
   const handleUpdateProvider = useCallback(
     (provider: Provider) => {
-      updateProvider(provider)
-      load(index([provider]))
+      dispatch(updateProvider(provider))
+      dispatch(load(index([provider])))
     },
     [load, updateProvider],
   )
 
-  const handleIndex = useCallback(() => load(index(providers)), [
+  const handleIndex = useCallback(() => dispatch(load(index(providers))), [
     load,
     providers,
   ])
 
-  const handleFetchMetadataAll = useCallback(() => load(fetchAllMetadata()), [
-    load,
-  ])
+  const handleFetchMetadataAll = useCallback(
+    () => dispatch(load(fetchAllMetadata())),
+    [load],
+  )
 
   return (
     <Settings
@@ -62,4 +52,4 @@ const SettingsView = ({
   )
 }
 
-export default connector(SettingsView)
+export default SettingsView

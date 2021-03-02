@@ -1,4 +1,3 @@
-import { ConnectedProps, connect } from 'react-redux'
 import React, { useCallback } from 'react'
 import {
   inProgressSelector,
@@ -7,7 +6,6 @@ import {
 import Authenticated from '../../components/get_started/Authenticated'
 import ForYou from '../../components/ForYou'
 import { RootState } from '../../store'
-import { RouteComponentProps } from 'react-router-dom'
 import Setup from '../../components/get_started/Setup'
 import Unauthenticated from '../../components/get_started/Unauthenticated'
 import { index } from '../../store/thunks'
@@ -16,28 +14,19 @@ import { moviesSelector } from '../../store/movies/selectors'
 import { providersSelector } from '../../store/auth/selectors'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
+import { useSelector } from 'react-redux'
 
-const mapState = (state: RootState) => ({
-  inProgress: sortByLastWatched(inProgressSelector(state)),
-  movies: moviesSelector(state.movies),
-  providers: providersSelector(state.auth),
-  recentlyWatched: sortByLastWatched(recentlyWatchedSelector(state)),
-  shows: showsSelector(state.shows),
-})
-const mapDispatch = { load }
+const ForYouView = () => {
+  const { inProgress, movies, providers, recentlyWatched, shows } = useSelector(
+    (state: RootState) => ({
+      inProgress: sortByLastWatched(inProgressSelector(state)),
+      movies: moviesSelector(state.movies),
+      providers: providersSelector(state.auth),
+      recentlyWatched: sortByLastWatched(recentlyWatchedSelector(state)),
+      shows: showsSelector(state.shows),
+    }),
+  )
 
-const connector = connect(mapState, mapDispatch)
-
-type ForYouViewProps = ConnectedProps<typeof connector> & RouteComponentProps
-
-const ForYouView = ({
-  inProgress,
-  movies,
-  providers,
-  recentlyWatched,
-  shows,
-  load,
-}: ForYouViewProps) => {
   const handleIndex = useCallback(() => {
     load(index(providers))
   }, [load, providers])
@@ -53,4 +42,4 @@ const ForYouView = ({
   )
 }
 
-export default connector(ForYouView)
+export default ForYouView

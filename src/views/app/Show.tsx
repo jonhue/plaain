@@ -1,40 +1,32 @@
-import { ConnectedProps, connect } from 'react-redux'
-import React, { useMemo } from 'react'
 import NotFound from '../NotFound'
+import React from 'react'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
 import Show from '../../components/Show'
 import { seasonsByShowSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
 import { sortByNumber } from '../../util'
-
-const mapState = (state: RootState) => ({
-  seasons: state.seasons,
-  shows: state.shows,
-})
-
-const connector = connect(mapState)
+import { useSelector } from 'react-redux'
 
 interface ShowViewParams {
   id: string
 }
 
-type ShowViewProps = ConnectedProps<typeof connector> &
-  RouteComponentProps<ShowViewParams>
+type ShowViewProps = RouteComponentProps<ShowViewParams>
 
-const ShowView = ({ match, seasons, shows }: ShowViewProps) => {
-  const show = useMemo(() => showSelector(match.params.id)(shows), [
-    match,
-    shows,
-  ])
+const ShowView = ({ match }: ShowViewProps) => {
+  const show = useSelector((state: RootState) =>
+    showSelector(match.params.id)(state.shows),
+  )
 
-  const showSeasons = useMemo(() => {
-    if (show !== undefined)
-      return sortByNumber(
-        seasonsByShowSelector(show.id)(seasons),
+  const showSeasons = useSelector(
+    (state: RootState) =>
+      show &&
+      sortByNumber(
+        seasonsByShowSelector(show.id)(state.seasons),
         (season) => season.number,
-      )
-  }, [seasons, show])
+      ),
+  )
 
   return show !== undefined && showSeasons !== undefined ? (
     <Show show={show} seasons={showSeasons} />
@@ -43,4 +35,4 @@ const ShowView = ({ match, seasons, shows }: ShowViewProps) => {
   )
 }
 
-export default connector(ShowView)
+export default ShowView

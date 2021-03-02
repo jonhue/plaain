@@ -5,11 +5,11 @@ import { movieSelector, moviesSelector } from '../store/movies/selectors'
 import { showSelector, showsSelector } from '../store/shows/selectors'
 import HorizontalSlide from '../components/HorizontalSlide'
 import { Item } from '../types/items/Item'
-import { MoviesState } from '../store/movies/types'
-import { ShowsState } from '../store/shows/types'
+import { RootState } from '../store'
 import { notUndefined } from '../util'
 import { useAsyncMemo } from 'use-async-memo'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 const QUERY_PARAMETER = 'q'
@@ -29,14 +29,17 @@ const buildIndex = <T extends Item>(
 }
 
 type FindViewProps = {
-  movies: MoviesState
-  shows: ShowsState
   query: string | null
 }
 
-const FindView = ({ movies, shows, query: initalQuery }: FindViewProps) => {
+const FindView = ({ query: initalQuery }: FindViewProps) => {
   const { t } = useTranslation()
   const history = useHistory()
+
+  const { movies, shows } = useSelector((state: RootState) => ({
+    movies: state.movies,
+    shows: state.shows,
+  }))
 
   const [query, setQuery] = useState(initalQuery || '')
 

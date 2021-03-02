@@ -1,5 +1,4 @@
 import './index.scss'
-import { ConnectedProps, connect } from 'react-redux'
 import { Route, RouteComponentProps, Switch } from 'react-router-dom'
 import Find from './Find'
 import Home from './Home'
@@ -14,33 +13,37 @@ import Season from './Season'
 import Settings from './Settings'
 import Show from './Show'
 import Shows from './Shows'
+import { useSelector } from 'react-redux'
 
-const mapState = (state: RootState) => ({
-  moviesCount: Object.keys(state.movies).length,
-  showsCount: Object.keys(state.shows).length,
-})
+type AppProps = RouteComponentProps
 
-const connector = connect(mapState)
+const App = ({ match }: AppProps) => {
+  const { moviesCount, showsCount } = useSelector((state: RootState) => ({
+    moviesCount: Object.keys(state.movies).length,
+    showsCount: Object.keys(state.shows).length,
+  }))
 
-type AppProps = ConnectedProps<typeof connector> & RouteComponentProps
+  return (
+    <div className="App">
+      <Switch>
+        <Route path={`${match.path}/`} exact component={Home} />
+        <Route path={`${match.path}/movies/:id`} exact component={Movie} />
+        <Route path={`${match.path}/movies`} component={Movies} />
+        <Route path={`${match.path}/shows/:id`} exact component={Show} />
+        <Route path={`${match.path}/shows`} component={Shows} />
+        <Route path={`${match.path}/seasons/:id`} exact component={Season} />
+        <Route path={`${match.path}/people/:id`} exact component={Person} />
+        <Route path={`${match.path}/settings`} exact component={Settings} />
+        <Route path={`${match.path}/find`} exact component={Find} />
+        <Route component={NotFound} />
+      </Switch>
 
-const App = ({ match, moviesCount, showsCount }: AppProps) => (
-  <div className="App">
-    <Switch>
-      <Route path={`${match.path}/`} exact component={Home} />
-      <Route path={`${match.path}/movies/:id`} exact component={Movie} />
-      <Route path={`${match.path}/movies`} component={Movies} />
-      <Route path={`${match.path}/shows/:id`} exact component={Show} />
-      <Route path={`${match.path}/shows`} component={Shows} />
-      <Route path={`${match.path}/seasons/:id`} exact component={Season} />
-      <Route path={`${match.path}/people/:id`} exact component={Person} />
-      <Route path={`${match.path}/settings`} exact component={Settings} />
-      <Route path={`${match.path}/find`} exact component={Find} />
-      <Route component={NotFound} />
-    </Switch>
+      <Nav
+        moviesDisabled={moviesCount === 0}
+        showsDisabled={showsCount === 0}
+      />
+    </div>
+  )
+}
 
-    <Nav moviesDisabled={moviesCount === 0} showsDisabled={showsCount === 0} />
-  </div>
-)
-
-export default connector(App)
+export default App

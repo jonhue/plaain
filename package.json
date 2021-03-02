@@ -41,7 +41,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "engines": {
-    "node": "14.13.0"
+    "node": "15.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,7 +53,8 @@
     "prettierlint": "prettier --check .",
     "eslint": "eslint src --ext .ts,.tsx",
     "stylelint": "stylelint 'src/**/*.scss'",
-    "lint": "yarn prettierlint && yarn eslint && yarn stylelint"
+    "lint": "yarn prettierlint && yarn eslint && yarn stylelint",
+    "fix": "yarn prettier && yarn eslint --fix"
   },
   "browserslist": {
     "production": [

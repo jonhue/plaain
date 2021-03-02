@@ -1,5 +1,5 @@
 import { Action, applyMiddleware, createStore } from 'redux'
-import { ThunkAction } from 'redux-thunk'
+import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import auth from './auth/reducers'
 import { combineReducers } from 'redux'
 import episodes from './episodes/reducers'
@@ -38,5 +38,7 @@ export type AppThunk<ReturnType> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
-  Action<string>
+  Action
 >
+
+export type AppDispatch = ThunkDispatch<RootState, unknown, Action>

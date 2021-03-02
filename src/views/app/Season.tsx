@@ -1,4 +1,3 @@
-import { ConnectedProps, connect } from 'react-redux'
 import React, { useMemo } from 'react'
 import NotFound from '../NotFound'
 import { RootState } from '../../store'
@@ -8,37 +7,27 @@ import { episodesBySeasonSelector } from '../../store/episodes/selectors'
 import { seasonSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
 import { sortByNumber } from '../../util'
-
-const mapState = (state: RootState) => ({
-  episodes: state.episodes,
-  seasons: state.seasons,
-  shows: state.shows,
-})
-
-const connector = connect(mapState)
+import { useSelector } from 'react-redux'
 
 interface SeasonViewParams {
   id: string
 }
 
-type SeasonViewProps = ConnectedProps<typeof connector> &
-  RouteComponentProps<SeasonViewParams>
+type SeasonViewProps = RouteComponentProps<SeasonViewParams>
 
-const SeasonView = ({ episodes, match, seasons, shows }: SeasonViewProps) => {
-  const season = useMemo(() => seasonSelector(match.params.id)(seasons), [
-    match,
-    seasons,
-  ])
-  const show = useMemo(() => {
-    if (season !== undefined) return showSelector(season.showId)(shows)
-  }, [season, shows])
-  const seasonEpisodes = useMemo(() => {
-    if (season !== undefined)
-      return sortByNumber(
-        episodesBySeasonSelector(season.id)(episodes),
+const SeasonView = ({ match }: SeasonViewProps) => {
+  const season = useSelector((state: RootState) =>
+    seasonSelector(match.params.id)(state.seasons),
+  )
+  const { show, seasonEpisodes } = useSelector((state: RootState) => ({
+    show: season && showSelector(season.showId)(state.shows),
+    seasonEpisodes:
+      season &&
+      sortByNumber(
+        episodesBySeasonSelector(season.id)(state.episodes),
         (episode) => episode.number,
-      )
-  }, [episodes, season])
+      ),
+  }))
   const currentEpisode = useMemo(() => {
     if (season !== undefined && seasonEpisodes !== undefined)
       return seasonEpisodes.find(
@@ -60,4 +49,4 @@ const SeasonView = ({ episodes, match, seasons, shows }: SeasonViewProps) => {
   )
 }
 
-export default connector(SeasonView)
+export default SeasonView

@@ -1,23 +1,24 @@
 import { Notification, NotificationKind } from '../../types/Notification'
 import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import APIErrorToast from './APIErrorToast'
 import AuthenticationFailureToast from './AuthenticationFailureToast'
 import CannotFindFileToast from './CannotFindFileToast'
 import GenericErrorToast from './GenericErrorToast'
 import ProviderAlreadyExistsToast from './ProviderAlreadyExistsToast'
+import { RootState } from '../../store'
+import { removeNotification } from '../../store/ui/actions'
 
-type NotificationsViewerProps = {
-  notifications: Notification[]
+export const NotificationsViewer = () => {
+  const dispatch = useDispatch()
 
-  removeNotification: (notification: Notification) => void
-}
+  const notifications = useSelector(
+    (state: RootState) => state.ui.notifications,
+  )
 
-export const NotificationsViewer = ({
-  notifications,
-  removeNotification,
-}: NotificationsViewerProps) => {
   const handleClose = useCallback(
-    (notification: Notification) => () => removeNotification(notification),
+    (notification: Notification) => () =>
+      dispatch(removeNotification(notification)),
     [removeNotification],
   )
 
