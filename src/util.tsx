@@ -7,7 +7,7 @@ import ISO6391 from 'iso-639-1'
 import MicrosoftIcon from './components/icons/Nucleo/microsoft'
 import { ProviderKind } from './types/providers/Provider'
 import React from 'react'
-import { UseTranslationResponse } from 'react-i18next'
+import { TFunction } from 'i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
 export const notUndefined = <T extends unknown>(x: T | undefined): x is T =>
@@ -39,7 +39,7 @@ export const sortAlphabetically = <T extends unknown>(
 ) => items.sort((a, b) => (getAttr(a) < getAttr(b) ? -1 : 1))
 
 export const splitHoursAndMinutes = (
-  t: UseTranslationResponse[0],
+  t: TFunction,
   duration: number,
 ) => {
   const hours = Math.floor(duration / 60)

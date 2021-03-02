@@ -41,7 +41,7 @@
     "whatwg-fetch": "^3.6.1"
   },
   "engines": {
-    "node": "14.13.0"
+    "node": "15.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
