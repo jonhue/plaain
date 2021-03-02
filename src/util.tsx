@@ -38,10 +38,7 @@ export const sortAlphabetically = <T extends unknown>(
   getAttr: (item: T) => string,
 ) => items.sort((a, b) => (getAttr(a) < getAttr(b) ? -1 : 1))
 
-export const splitHoursAndMinutes = (
-  t: TFunction,
-  duration: number,
-) => {
+export const splitHoursAndMinutes = (t: TFunction, duration: number) => {
   const hours = Math.floor(duration / 60)
   const minutes = duration % 60
 
