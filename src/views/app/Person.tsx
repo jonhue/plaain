@@ -1,38 +1,30 @@
-import { ConnectedProps, connect } from 'react-redux'
-import React, { useMemo } from 'react'
 import NotFound from '../NotFound'
 import Person from '../../components/Person'
+import React from 'react'
 import { RootState } from '../../store'
 import { RouteComponentProps } from 'react-router-dom'
 import { moviesByPersonSelector } from '../../store/movies/selectors'
 import { personSelector } from '../../store/selectors'
 import { seasonsByPersonSelector } from '../../store/seasons/selectors'
-
-const mapState = (state: RootState) => ({
-  movies: state.movies,
-  seasons: state.seasons,
-})
-
-const connector = connect(mapState)
+import { useSelector } from 'react-redux'
 
 interface PersonViewParams {
   id: string
 }
 
-type PersonViewProps = ConnectedProps<typeof connector> &
-  RouteComponentProps<PersonViewParams>
+type PersonViewProps = RouteComponentProps<PersonViewParams>
 
-const PersonView = ({ match, movies, seasons }: PersonViewProps) => {
-  const person = useMemo(
-    () => personSelector(match.params.id)({ movies, seasons }),
-    [match, movies, seasons],
+const PersonView = ({ match }: PersonViewProps) => {
+  const person = useSelector((state: RootState) =>
+    personSelector(match.params.id)(state),
   )
-  const involvedMovies = useMemo(() => {
-    if (person !== undefined) return moviesByPersonSelector(person.id)(movies)
-  }, [movies, person])
-  const involvedSeasons = useMemo(() => {
-    if (person !== undefined) return seasonsByPersonSelector(person.id)(seasons)
-  }, [person, seasons])
+  const { involvedMovies, involvedSeasons } = useSelector(
+    (state: RootState) => ({
+      involvedMovies: person && moviesByPersonSelector(person.id)(state.movies),
+      involvedSeasons:
+        person && seasonsByPersonSelector(person.id)(state.seasons),
+    }),
+  )
 
   return person !== undefined &&
     involvedMovies !== undefined &&
@@ -43,4 +35,4 @@ const PersonView = ({ match, movies, seasons }: PersonViewProps) => {
   )
 }
 
-export default connector(PersonView)
+export default PersonView

@@ -1,4 +1,3 @@
-import { ConnectedProps, connect } from 'react-redux'
 import React, { lazy } from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import Loading from './Loading'
@@ -7,38 +6,30 @@ import NotificationsViewer from '../components/notifications/NotificationsViewer
 import { RootState } from '../store'
 import ScrollToTop from '../components/ScrollToTop'
 import Welcome from './Welcome'
-import { removeNotification } from '../store/ui/actions'
+import { useSelector } from 'react-redux'
 
 const App = lazy(() => import('./app'))
 const Player = lazy(() => import('./Player'))
 
-const mapState = (state: RootState) => ({
-  isLoading: state.ui.isLoading,
-  notifications: state.ui.notifications,
-})
-const mapDispatch = { removeNotification }
-const connector = connect(mapState, mapDispatch)
+const Base = () => {
+  const isLoading = useSelector((state: RootState) => state.ui.isLoading)
 
-type BaseProps = ConnectedProps<typeof connector>
+  return (
+    <div className="Base">
+      {isLoading && <Loading />}
+      <Router basename="/plaain">
+        <ScrollToTop />
+        <Switch>
+          <Route path="/" exact component={Welcome} />
+          <Route path="/app" component={App} />
+          <Route path="/player" exact component={Player} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
 
-const Base = ({ notifications, isLoading, removeNotification }: BaseProps) => (
-  <div className="Base">
-    {isLoading && <Loading />}
-    <Router basename="/plaain">
-      <ScrollToTop />
-      <Switch>
-        <Route path="/" exact component={Welcome} />
-        <Route path="/app" component={App} />
-        <Route path="/player" exact component={Player} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+      <NotificationsViewer />
+    </div>
+  )
+}
 
-    <NotificationsViewer
-      notifications={notifications}
-      removeNotification={removeNotification}
-    />
-  </div>
-)
-
-export default connector(Base)
+export default Base

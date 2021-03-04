@@ -1,13 +1,12 @@
-import { ConnectedProps, connect } from 'react-redux'
 import React, { useCallback } from 'react'
 import {
   inProgressSelector,
   recentlyWatchedSelector,
 } from '../../store/selectors'
+import { useDispatch, useSelector } from 'react-redux'
 import Authenticated from '../../components/get_started/Authenticated'
 import ForYou from '../../components/ForYou'
 import { RootState } from '../../store'
-import { RouteComponentProps } from 'react-router-dom'
 import Setup from '../../components/get_started/Setup'
 import Unauthenticated from '../../components/get_started/Unauthenticated'
 import { index } from '../../store/thunks'
@@ -17,30 +16,22 @@ import { providersSelector } from '../../store/auth/selectors'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
 
-const mapState = (state: RootState) => ({
-  inProgress: sortByLastWatched(inProgressSelector(state)),
-  movies: moviesSelector(state.movies),
-  providers: providersSelector(state.auth),
-  recentlyWatched: sortByLastWatched(recentlyWatchedSelector(state)),
-  shows: showsSelector(state.shows),
-})
-const mapDispatch = { load }
+const ForYouView = () => {
+  const dispatch = useDispatch()
 
-const connector = connect(mapState, mapDispatch)
+  const { inProgress, movies, providers, recentlyWatched, shows } = useSelector(
+    (state: RootState) => ({
+      inProgress: sortByLastWatched(inProgressSelector(state)),
+      movies: moviesSelector(state.movies),
+      providers: providersSelector(state.auth),
+      recentlyWatched: sortByLastWatched(recentlyWatchedSelector(state)),
+      shows: showsSelector(state.shows),
+    }),
+  )
 
-type ForYouViewProps = ConnectedProps<typeof connector> & RouteComponentProps
-
-const ForYouView = ({
-  inProgress,
-  movies,
-  providers,
-  recentlyWatched,
-  shows,
-  load,
-}: ForYouViewProps) => {
   const handleIndex = useCallback(() => {
-    load(index(providers))
-  }, [load, providers])
+    dispatch(load(index(providers)))
+  }, [dispatch, providers])
 
   return inProgress.length > 0 || recentlyWatched.length > 0 ? (
     <ForYou inProgress={inProgress} recentlyWatched={recentlyWatched} />
@@ -53,4 +44,4 @@ const ForYouView = ({
   )
 }
 
-export default connector(ForYouView)
+export default ForYouView

@@ -1,12 +1,10 @@
-import { ConnectedProps, connect } from 'react-redux'
+import { AppDispatch, RootState } from '../store'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Episode } from '../types/items/Episode'
+import { useDispatch, useSelector } from 'react-redux'
 import { ItemKind } from '../types/items/Item'
 import Loading from './Loading'
-import { Movie } from '../types/items/Movie'
 import NotFound from './NotFound'
 import Player from '../components/Player'
-import { RootState } from '../store'
 import { episodeSelector } from '../store/episodes/selectors'
 import { load } from '../store/ui/thunks'
 import { movieSelector } from '../store/movies/selectors'
@@ -20,24 +18,14 @@ const KIND_PARAMETER = 'type'
 const ID_PARAMETER = 'id'
 const START_AT_PARAMETER = 's'
 
-const mapState = (state: RootState) => ({
-  episodes: state.episodes,
-  movies: state.movies,
-})
-const mapDispatch = { load, updateEpisodeProgress, updateMovieProgress }
-
-const connector = connect(mapState, mapDispatch)
-
-type PlayerViewProps = ConnectedProps<typeof connector>
-
-const PlayerView = ({
-  episodes,
-  movies,
-  load,
-  updateEpisodeProgress,
-  updateMovieProgress,
-}: PlayerViewProps) => {
+const PlayerView = () => {
+  const dispatch = useDispatch<AppDispatch>()
   const location = useLocation()
+
+  const { episodes, movies } = useSelector((state: RootState) => ({
+    episodes: state.episodes,
+    movies: state.movies,
+  }))
 
   const [isNotFound, setIsNotFound] = useState(false)
 
@@ -80,9 +68,9 @@ const PlayerView = ({
     const item = findItem(kind, id)
     if (item === undefined) return setIsNotFound(true)
 
-    const updatedItem = (await load(updateFiles(item))) as Episode | Movie
+    const updatedItem = await dispatch(load(updateFiles(item)))
     return updatedItem
-  }, [kind, load, location, setIsNotFound])
+  }, [dispatch, kind, location, setIsNotFound])
 
   const handleProgress = useCallback(
     (progress: number) => {
@@ -90,12 +78,12 @@ const PlayerView = ({
 
       switch (item.kind) {
         case ItemKind.Episode:
-          return updateEpisodeProgress(item, progress)
+          return dispatch(updateEpisodeProgress(item, progress))
         case ItemKind.Movie:
-          return updateMovieProgress(item, progress)
+          return dispatch(updateMovieProgress(item, progress))
       }
     },
-    [item, updateEpisodeProgress, updateMovieProgress],
+    [dispatch, item],
   )
 
   return item !== undefined && item.sources.length > 0 ? (
@@ -107,4 +95,4 @@ const PlayerView = ({
   )
 }
 
-export default connector(PlayerView)
+export default PlayerView
