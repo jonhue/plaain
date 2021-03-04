@@ -98,7 +98,7 @@ function registerValidSW(swUrl: string, config?: Config) {
         }
       }
     })
-    .catch((error) => {
+    .catch((error: unknown) => {
       console.error('Error during service worker registration:', error)
     })
 }
@@ -127,7 +127,7 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       }
     })
     .catch(() => {
-      console.log(
+      console.error(
         'No internet connection found. App is running in offline mode.',
       )
     })
@@ -139,8 +139,8 @@ export function unregister() {
       .then((registration) => {
         registration.unregister()
       })
-      .catch((error) => {
-        console.error(error.message)
+      .catch((error: unknown) => {
+        if (error instanceof Error) console.error(error.message)
       })
   }
 }

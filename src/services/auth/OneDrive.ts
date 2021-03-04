@@ -59,7 +59,7 @@ const performAuth = async (
 
   try {
     return await silentLogIn(userAgentApplication)
-  } catch (error) {
+  } catch (error: unknown) {
     return await popupLogIn(userAgentApplication)
   }
 }
@@ -82,7 +82,7 @@ export const auth = async (
 
   try {
     return await performAuth(userAgentApplication, allowSilent)
-  } catch (error) {
+  } catch (error: unknown) {
     throw new AuthenticationFailure(ProviderKind.OneDrive)
   }
 }
