@@ -10,7 +10,7 @@ export const load = <ReturnType>(
   let result: ReturnType | undefined
   try {
     result = await dispatch(fn)
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       dispatch(addNotification(handleError(error)))
     }
