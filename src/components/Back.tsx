@@ -3,7 +3,7 @@ import React, { FunctionComponent, useCallback } from 'react'
 import classNames from 'classnames'
 import { useHistory } from 'react-router'
 
-const Back: FunctionComponent = ({ children }) => {
+export const Back: FunctionComponent = ({ children }) => {
   const history = useHistory()
 
   const isDisabled = history.length <= 2
@@ -19,5 +19,3 @@ const Back: FunctionComponent = ({ children }) => {
     </div>
   )
 }
-
-export default Back

@@ -25,5 +25,3 @@ export const Modal: FunctionComponent<ModalProps> = ({
     </div>
   )
 }
-
-export default Modal

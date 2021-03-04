@@ -1,11 +1,11 @@
 import { Notification, NotificationKind } from '../../types/Notification'
 import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import APIErrorToast from './APIErrorToast'
-import AuthenticationFailureToast from './AuthenticationFailureToast'
-import CannotFindFileToast from './CannotFindFileToast'
-import GenericErrorToast from './GenericErrorToast'
-import ProviderAlreadyExistsToast from './ProviderAlreadyExistsToast'
+import { APIErrorToast } from './APIErrorToast'
+import { AuthenticationFailureToast } from './AuthenticationFailureToast'
+import { CannotFindFileToast } from './CannotFindFileToast'
+import { GenericErrorToast } from './GenericErrorToast'
+import { ProviderAlreadyExistsToast } from './ProviderAlreadyExistsToast'
 import { RootState } from '../../store'
 import { removeNotification } from '../../store/ui/actions'
 
@@ -76,5 +76,3 @@ export const NotificationsViewer = () => {
     </div>
   ) : null
 }
-
-export default NotificationsViewer

@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type FindIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const FindIcon = ({ color }: FindIconProps) => (
   <Icon className="zoom" width={24} height={24}>
     <title>zoom</title>
     <g fill={color}>

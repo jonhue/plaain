@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type SettingsIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const SettingsIcon = ({ color }: SettingsIconProps) => (
   <Icon className="settings-gear" width={24} height={24}>
     <title>settings gear</title>
     <g fill={color} stroke={color}>

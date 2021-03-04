@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type OneDriveIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const OneDriveIcon = ({ color }: OneDriveIconProps) => (
   <Icon className="microsoft" width={32} height={32}>
     <title>microsoft</title>
     <g fill={color}>

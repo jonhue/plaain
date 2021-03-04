@@ -10,7 +10,7 @@ type EpisodeEntryProps = {
   onClick: () => void
 }
 
-const EpisodeEntry = ({ episode, onClick }: EpisodeEntryProps) => {
+export const EpisodeEntry = ({ episode, onClick }: EpisodeEntryProps) => {
   const { t } = useTranslation()
 
   return (
@@ -31,5 +31,3 @@ const EpisodeEntry = ({ episode, onClick }: EpisodeEntryProps) => {
     </div>
   )
 }
-
-export default EpisodeEntry

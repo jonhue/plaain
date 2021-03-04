@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-const UnauthenticatedView = () => {
+export const Unauthenticated = () => {
   const { t } = useTranslation()
 
   return (
@@ -27,5 +27,3 @@ const UnauthenticatedView = () => {
     </div>
   )
 }
-
-export default UnauthenticatedView

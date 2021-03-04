@@ -2,11 +2,11 @@ import './Authenticated.scss'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-type AuthenticatedViewProps = {
+type AuthenticatedProps = {
   onIndex: () => void
 }
 
-const AuthenticatedView = ({ onIndex }: AuthenticatedViewProps) => {
+export const Authenticated = ({ onIndex }: AuthenticatedProps) => {
   const { t } = useTranslation()
 
   return (
@@ -41,5 +41,3 @@ const AuthenticatedView = ({ onIndex }: AuthenticatedViewProps) => {
     </div>
   )
 }
-
-export default AuthenticatedView

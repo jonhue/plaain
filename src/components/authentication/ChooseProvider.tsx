@@ -1,7 +1,7 @@
 import './ChooseProvider.scss'
 import { PROVIDER_KINDS, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
-import ProviderButton from '../ProviderButton'
+import { ProviderButton } from '../ProviderButton'
 import { buildProviderIcon } from '../../util'
 import styles from '../../_variables.scss'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +10,7 @@ type ChooseProviderProps = {
   onChoose: (kind: ProviderKind) => Promise<void>
 }
 
-const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
+export const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
   const { t } = useTranslation()
 
   const handleChoose = useCallback(
@@ -38,5 +38,3 @@ const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
     </div>
   )
 }
-
-export default ChooseProvider

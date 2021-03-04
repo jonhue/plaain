@@ -10,7 +10,7 @@ type TabProps = {
   disabled?: boolean
 }
 
-const Tab: FunctionComponent<TabProps> = ({
+export const Tab: FunctionComponent<TabProps> = ({
   children,
   to,
   exact,
@@ -25,5 +25,3 @@ const Tab: FunctionComponent<TabProps> = ({
     </Link>
   )
 }
-
-export default Tab

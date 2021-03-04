@@ -1,6 +1,6 @@
 import './ProviderForm.scss'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import CheckIcon from '../icons/Nucleo/c-check'
+import { CheckIcon } from '../icons/Nucleo/CheckIcon'
 import { Provider } from '../../types/providers/Provider'
 import classNames from 'classnames'
 import styles from '../../_variables.scss'
@@ -21,7 +21,7 @@ type ProviderFormState = {
   showsPath?: string
 }
 
-const ProviderForm = ({
+export const ProviderForm = ({
   submitCaption,
   provider,
   onSubmit,
@@ -133,5 +133,3 @@ const ProviderForm = ({
     </form>
   )
 }
-
-export default ProviderForm

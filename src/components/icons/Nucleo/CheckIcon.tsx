@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type CheckIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const CheckIcon = ({ color }: CheckIconProps) => (
   <Icon className="c-check" width={24} height={24}>
     <title>c check</title>
     <g fill={color}>

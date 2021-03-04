@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type AddIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const AddIcon = ({ color }: AddIconProps) => (
   <Icon className="e-add" width={32} height={32}>
     <title>e add</title>
     <g fill={color} stroke={color}>

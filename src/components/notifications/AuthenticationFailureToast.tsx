@@ -1,6 +1,6 @@
 import { AuthenticationFailure } from '../../types/Notification'
 import React from 'react'
-import Toast from '../Toast'
+import { Toast } from '../Toast'
 import { buildProviderKindName } from '../../util'
 import { useTranslation } from 'react-i18next'
 
@@ -31,5 +31,3 @@ export const AuthenticationFailureToast = ({
     />
   )
 }
-
-export default AuthenticationFailureToast

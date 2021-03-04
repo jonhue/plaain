@@ -1,11 +1,11 @@
 import React, { lazy } from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import Loading from './Loading'
-import NotFound from './NotFound'
-import NotificationsViewer from '../components/notifications/NotificationsViewer'
+import { Loading } from './Loading'
+import { NotFound } from './NotFound'
+import { NotificationsViewer } from '../components/notifications/NotificationsViewer'
 import { RootState } from '../store'
-import ScrollToTop from '../components/ScrollToTop'
-import Welcome from './Welcome'
+import { ScrollToTop } from '../components/ScrollToTop'
+import { Welcome } from './Welcome'
 import { useSelector } from 'react-redux'
 
 const App = lazy(() => import('./app'))

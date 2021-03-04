@@ -8,12 +8,14 @@ type ProviderButtonProps = {
   onClick: (event: React.MouseEvent) => void
 }
 
-const ProviderButton = ({ className, icon, onClick }: ProviderButtonProps) => (
+export const ProviderButton = ({
+  className,
+  icon,
+  onClick,
+}: ProviderButtonProps) => (
   <div className="ProviderButton">
     <button className={className} onClick={onClick}>
       {icon}
     </button>
   </div>
 )
-
-export default ProviderButton

@@ -1,8 +1,8 @@
 import './UpdateProviderModal.scss'
 import React, { useCallback } from 'react'
-import Modal from '../Modal'
+import { Modal } from '../Modal'
 import { Provider } from '../../types/providers/Provider'
-import ProviderForm from './ProviderForm'
+import { ProviderForm } from './ProviderForm'
 import { buildProviderKindName } from '../../util'
 import { useTranslation } from 'react-i18next'
 
@@ -15,7 +15,7 @@ type UpdateProviderModalProps = {
   onRemoveProvider: () => void
 }
 
-const UpdateProviderModal = ({
+export const UpdateProviderModal = ({
   isActive,
   provider,
   onClose,
@@ -56,5 +56,3 @@ const UpdateProviderModal = ({
     </div>
   )
 }
-
-export default UpdateProviderModal

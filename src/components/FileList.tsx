@@ -6,7 +6,7 @@ type FileListProps = {
   files: File[]
 }
 
-const FileList = ({ files }: FileListProps) => {
+export const FileList = ({ files }: FileListProps) => {
   const { t } = useTranslation()
 
   return (
@@ -22,5 +22,3 @@ const FileList = ({ files }: FileListProps) => {
     </div>
   )
 }
-
-export default FileList

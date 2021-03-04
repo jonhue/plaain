@@ -13,7 +13,7 @@ type PersonListProps<T extends Person> = {
   details: (person: T) => string
 }
 
-const PersonList = <T extends Person>({
+export const PersonList = <T extends Person>({
   people,
   details,
 }: PersonListProps<T>) => {
@@ -51,5 +51,3 @@ const PersonList = <T extends Person>({
     </div>
   )
 }
-
-export default PersonList

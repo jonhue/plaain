@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type ShowProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const ShowIcon = ({ color }: ShowProps) => (
   <Icon className="desktop-screen" width={24} height={24}>
     <title>desktop screen</title>
     <g fill={color}>
