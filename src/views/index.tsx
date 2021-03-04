@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 const App = lazy(() => import('./app'))
 const Player = lazy(() => import('./Player'))
 
-export const Base = () => {
+const Base = () => {
   const isLoading = useSelector((state: RootState) => state.ui.isLoading)
 
   return (
@@ -31,3 +31,5 @@ export const Base = () => {
     </div>
   )
 }
+
+export default Base
