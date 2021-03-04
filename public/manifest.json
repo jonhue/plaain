@@ -1,12 +1,32 @@
 {
   "short_name": "Plaain",
   "name": "Plaain",
+  "description": "A serverless web app to organize and stream media from anywhere.",
+  "categories": ["media", "movies", "shows", "player"],
+  "lang": "en-US",
+  "dir": "ltr",
   "start_url": "/plaain/app",
   "scope": "/plaain",
   "display": "standalone",
-  "orientation": "portrait",
-  "dir": "rtl",
-  "lang": "en-US",
+  "orientation": "any",
+  "shortcuts": [
+    {
+      "name": "Movies",
+      "url": "/plaain/app/movies"
+    },
+    {
+      "name": "Shows",
+      "url": "/plaain/app/shows"
+    },
+    {
+      "name": "Find",
+      "url": "/plaain/app/find"
+    },
+    {
+      "name": "Settings",
+      "url": "/plaain/app/settings"
+    }
+  ],
   "theme_color": "#283057",
   "background_color": "#283057",
   "icons": [
@@ -55,5 +75,7 @@
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
-  ]
+  ],
+  "screenshots" : [],
+  "related_applications": []
 }
