@@ -47,13 +47,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/components/icons/Nucleo/*.tsx'],
-      rules: {
-        'react/display-name': 'off',
-      },
-    },
-    {
-      files: ['src/serviceWorker.ts'],
+      files: ['src/serviceWorkerRegistration.ts'],
       rules: {
         'no-console': 'off',
       },
