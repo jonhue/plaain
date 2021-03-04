@@ -1,10 +1,10 @@
 import './Player.scss'
 import React, { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Back from './Back'
+import { Back } from './Back'
 import { Episode } from '../types/items/Episode'
 import { Movie } from '../types/items/Movie'
-import PlyrPlayer from './PlyrPlayer'
+import { PlyrPlayer } from './PlyrPlayer'
 
 type PlayerProps = {
   item: Movie | Episode
@@ -13,7 +13,7 @@ type PlayerProps = {
   onProgress: (progress: number) => void
 }
 
-const Player = ({ item, startAt, onProgress }: PlayerProps) => {
+export const Player = ({ item, startAt, onProgress }: PlayerProps) => {
   const { t } = useTranslation()
 
   const handleReload = useCallback(() => window.location.reload(), [])
@@ -53,5 +53,3 @@ const Player = ({ item, startAt, onProgress }: PlayerProps) => {
     </div>
   )
 }
-
-export default Player

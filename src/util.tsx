@@ -4,7 +4,7 @@ import { IMediaItem, Item, ItemKind } from './types/items/Item'
 import { M4V_EXTENSION, MP4_EXTENSION, Video } from './types/files/videos/Video'
 import { Caption } from './types/files/captions/Caption'
 import ISO6391 from 'iso-639-1'
-import MicrosoftIcon from './components/icons/Nucleo/microsoft'
+import { OneDriveIcon } from './components/icons/Nucleo/OneDriveIcon'
 import { ProviderKind } from './types/providers/Provider'
 import React from 'react'
 import { TFunction } from 'i18next'
@@ -111,6 +111,6 @@ export const buildProviderIcon = (
 ): JSX.Element => {
   switch (kind) {
     case ProviderKind.OneDrive:
-      return <MicrosoftIcon color={color} />
+      return <OneDriveIcon color={color} />
   }
 }

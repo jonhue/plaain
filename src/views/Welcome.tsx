@@ -30,5 +30,3 @@ export const Welcome = () => {
     </div>
   )
 }
-
-export default Welcome

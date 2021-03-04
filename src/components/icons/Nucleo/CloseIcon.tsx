@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type CloseIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const CloseIcon = ({ color }: CloseIconProps) => (
   <Icon className="e-remove" width={24} height={24}>
     <title>e remove</title>
     <g fill={color} stroke={color}>

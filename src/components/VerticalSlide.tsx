@@ -2,7 +2,7 @@ import './VerticalSlide.scss'
 import 'swiper/swiper.scss'
 import React, { useEffect } from 'react'
 import { buildCoverUrl, buildItemUrl } from '../util'
-import Cover from './Cover'
+import { Cover } from './Cover'
 import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import { Season } from '../types/items/Season'
@@ -16,7 +16,7 @@ type VerticalSlideProps = {
   path: string
 }
 
-const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
+export const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -64,5 +64,3 @@ const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
     </div>
   )
 }
-
-export default VerticalSlide

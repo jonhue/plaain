@@ -32,7 +32,12 @@ type PlyrPlayerProps = {
   onProgress: (progress: number) => void
 }
 
-const PlyrPlayer = ({ id, item, startAt, onProgress }: PlyrPlayerProps) => {
+export const PlyrPlayer = ({
+  id,
+  item,
+  startAt,
+  onProgress,
+}: PlyrPlayerProps) => {
   useEffect(() => {
     const player = new Plyr(`video.PlyrPlayer#${id}`, {
       debug: process.env.NODE_ENV === 'development',
@@ -80,5 +85,3 @@ const PlyrPlayer = ({ id, item, startAt, onProgress }: PlyrPlayerProps) => {
     />
   )
 }
-
-export default PlyrPlayer

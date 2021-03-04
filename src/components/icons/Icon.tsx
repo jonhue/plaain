@@ -22,5 +22,3 @@ export const Icon: FunctionComponent<IconProps> = ({
     {children}
   </svg>
 )
-
-export default Icon

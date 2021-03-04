@@ -6,8 +6,6 @@ type CoverProps = {
   alt: string
 }
 
-const Cover = ({ url, alt }: CoverProps) => (
+export const Cover = ({ url, alt }: CoverProps) => (
   <img className="Cover" src={url} alt={alt} />
 )
-
-export default Cover

@@ -1,6 +1,6 @@
 import { GenericError } from '../../types/Notification'
 import React from 'react'
-import Toast from '../Toast'
+import { Toast } from '../Toast'
 import { useTranslation } from 'react-i18next'
 
 type GenericErrorToastProps = {
@@ -23,5 +23,3 @@ export const GenericErrorToast = ({
     />
   )
 }
-
-export default GenericErrorToast

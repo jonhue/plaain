@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type ForYouIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const ForYouIcon = ({ color }: ForYouIconProps) => (
   <Icon className="popcorn" width={24} height={24}>
     <title>popcorn</title>
     <g fill={color}>

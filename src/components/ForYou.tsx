@@ -1,16 +1,16 @@
 import './ForYou.scss'
-import HorizontalSlide from './HorizontalSlide'
+import { HorizontalSlide } from './HorizontalSlide'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
 import { Season } from '../types/items/Season'
 import { useTranslation } from 'react-i18next'
 
-type ForYouViewProps = {
+type ForYouProps = {
   inProgress: (Movie | Season)[]
   recentlyWatched: (Movie | Season)[]
 }
 
-const ForYouView = ({ inProgress, recentlyWatched }: ForYouViewProps) => {
+export const ForYou = ({ inProgress, recentlyWatched }: ForYouProps) => {
   const { t } = useTranslation()
 
   return (
@@ -31,5 +31,3 @@ const ForYouView = ({ inProgress, recentlyWatched }: ForYouViewProps) => {
     </div>
   )
 }
-
-export default ForYouView

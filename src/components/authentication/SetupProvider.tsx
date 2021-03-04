@@ -1,5 +1,5 @@
 import './SetupProvider.scss'
-import ProviderForm from './ProviderForm'
+import { ProviderForm } from './ProviderForm'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -10,7 +10,7 @@ type SetupProviderProps = {
   ) => void
 }
 
-const SetupProvider = ({ onSetup }: SetupProviderProps) => {
+export const SetupProvider = ({ onSetup }: SetupProviderProps) => {
   const { t } = useTranslation()
 
   return (
@@ -25,5 +25,3 @@ const SetupProvider = ({ onSetup }: SetupProviderProps) => {
     </div>
   )
 }
-
-export default SetupProvider

@@ -2,9 +2,9 @@ import './AddProviderModal.scss'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback, useState } from 'react'
 import { AuthResponse } from '../../services/auth/types'
-import ChooseProvider from './ChooseProvider'
-import Modal from '../Modal'
-import SetupProvider from './SetupProvider'
+import { ChooseProvider } from './ChooseProvider'
+import { Modal } from '../Modal'
+import { SetupProvider } from './SetupProvider'
 
 type AddProviderModalProps = {
   isActive: boolean
@@ -14,7 +14,7 @@ type AddProviderModalProps = {
   onAddProvider: (provider: Provider) => void
 }
 
-const AddProviderModal = ({
+export const AddProviderModal = ({
   isActive,
   onClose,
   onSetupAuth,
@@ -53,5 +53,3 @@ const AddProviderModal = ({
     </div>
   )
 }
-
-export default AddProviderModal

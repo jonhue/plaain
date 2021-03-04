@@ -1,6 +1,6 @@
 import './ItemGrid.scss'
 import { buildCoverUrl, buildItemUrl } from '../util'
-import Cover from './Cover'
+import { Cover } from './Cover'
 import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
@@ -12,7 +12,7 @@ type ItemGridProps = {
   items: (Movie | Season | Show)[]
 }
 
-const ItemGrid = ({ items }: ItemGridProps) => {
+export const ItemGrid = ({ items }: ItemGridProps) => {
   const { t } = useTranslation()
 
   return (
@@ -33,5 +33,3 @@ const ItemGrid = ({ items }: ItemGridProps) => {
     </div>
   )
 }
-
-export default ItemGrid

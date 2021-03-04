@@ -2,7 +2,7 @@ import './HorizontalSlide.scss'
 import 'swiper/swiper.scss'
 import React, { useEffect } from 'react'
 import { buildCoverUrl, buildItemUrl } from '../util'
-import Cover from './Cover'
+import { Cover } from './Cover'
 import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import { Season } from '../types/items/Season'
@@ -15,7 +15,7 @@ type HorizontalSlideProps = {
   items: (Movie | Season | Show)[]
 }
 
-const HorizontalSlide = ({ id, items }: HorizontalSlideProps) => {
+export const HorizontalSlide = ({ id, items }: HorizontalSlideProps) => {
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -53,5 +53,3 @@ const HorizontalSlide = ({ id, items }: HorizontalSlideProps) => {
     </div>
   )
 }
-
-export default HorizontalSlide

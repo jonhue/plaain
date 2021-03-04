@@ -1,10 +1,10 @@
 import './Nav.scss'
-import GearIcon from './icons/Nucleo/settings-gear'
-import MovieIcon from './icons/Nucleo/movie-61'
-import PopcornIcon from './icons/Nucleo/popcorn'
+import { ForYouIcon } from './icons/Nucleo/ForYouIcon'
+import { MovieIcon } from './icons/Nucleo/MovieIcon'
 import React from 'react'
-import ShowIcon from './icons/Nucleo/desktop-screen'
-import Tab from './Tab'
+import { SettingsIcon } from './icons/Nucleo/SettingsIcon'
+import { ShowIcon } from './icons/Nucleo/ShowIcon'
+import { Tab } from './Tab'
 import styles from '../_variables.scss'
 
 type NavProps = {
@@ -12,10 +12,10 @@ type NavProps = {
   showsDisabled?: boolean
 }
 
-const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => (
+export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => (
   <div className="Nav">
     <Tab to="/app" exact>
-      <PopcornIcon color={styles.white} />
+      <ForYouIcon color={styles.white} />
       <p>For you</p>
     </Tab>
     <Tab disabled={moviesDisabled} to="/app/movies">
@@ -27,10 +27,8 @@ const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => (
       <p>Shows</p>
     </Tab>
     <Tab to="/app/settings">
-      <GearIcon color={styles.white} />
+      <SettingsIcon color={styles.white} />
       <p>Settings</p>
     </Tab>
   </div>
 )
-
-export default Nav

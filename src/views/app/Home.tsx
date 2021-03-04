@@ -4,11 +4,11 @@ import {
   recentlyWatchedSelector,
 } from '../../store/selectors'
 import { useDispatch, useSelector } from 'react-redux'
-import Authenticated from '../../components/get_started/Authenticated'
-import ForYou from '../../components/ForYou'
+import { Authenticated } from '../../components/get_started/Authenticated'
+import { ForYou } from '../../components/ForYou'
 import { RootState } from '../../store'
-import Setup from '../../components/get_started/Setup'
-import Unauthenticated from '../../components/get_started/Unauthenticated'
+import { Setup } from '../../components/get_started/Setup'
+import { Unauthenticated } from '../../components/get_started/Unauthenticated'
 import { index } from '../../store/thunks'
 import { load } from '../../store/ui/thunks'
 import { moviesSelector } from '../../store/movies/selectors'
@@ -16,7 +16,7 @@ import { providersSelector } from '../../store/auth/selectors'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
 
-const ForYouView = () => {
+export const Home = () => {
   const dispatch = useDispatch()
 
   const { inProgress, movies, providers, recentlyWatched, shows } = useSelector(
@@ -43,5 +43,3 @@ const ForYouView = () => {
     <Setup movies={movies} shows={shows} />
   )
 }
-
-export default ForYouView

@@ -1,5 +1,5 @@
 import './Toast.scss'
-import CloseIcon from './icons/Nucleo/e-remove'
+import { CloseIcon } from './icons/Nucleo/CloseIcon'
 import React from 'react'
 import styles from '../_variables.scss'
 
@@ -14,7 +14,7 @@ type ToastProps = {
   onClose: () => void
 }
 
-const Toast = ({ title, text, action, onClose }: ToastProps) => (
+export const Toast = ({ title, text, action, onClose }: ToastProps) => (
   <div className="Toast">
     <div className="Toast__header">
       <h2>{title}</h2>
@@ -30,5 +30,3 @@ const Toast = ({ title, text, action, onClose }: ToastProps) => (
     )}
   </div>
 )
-
-export default Toast

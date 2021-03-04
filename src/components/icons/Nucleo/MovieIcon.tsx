@@ -1,11 +1,11 @@
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 import React from 'react'
 
-type Props = {
+type MovieIconProps = {
   color: string
 }
 
-export default ({ color }: Props) => (
+export const MovieIcon = ({ color }: MovieIconProps) => (
   <Icon className="movie-61" width={24} height={24}>
     <title>movie 61</title>
     <g fill={color}>
