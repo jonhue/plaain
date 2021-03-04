@@ -31,7 +31,7 @@ const ForYouView = () => {
 
   const handleIndex = useCallback(() => {
     dispatch(load(index(providers)))
-  }, [dispatch])
+  }, [dispatch, providers])
 
   return inProgress.length > 0 || recentlyWatched.length > 0 ? (
     <ForYou inProgress={inProgress} recentlyWatched={recentlyWatched} />

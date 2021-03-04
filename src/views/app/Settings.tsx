@@ -31,6 +31,7 @@ const SettingsView = () => {
 
   const handleIndex = useCallback(() => dispatch(load(index(providers))), [
     dispatch,
+    providers,
   ])
 
   const handleFetchMetadataAll = useCallback(
