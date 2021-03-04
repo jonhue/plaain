@@ -1,5 +1,4 @@
 import './VerticalSlide.scss'
-import 'swiper/swiper.scss'
 import React, { useEffect } from 'react'
 import { buildCoverUrl, buildItemUrl } from '../util'
 import { Cover } from './Cover'
