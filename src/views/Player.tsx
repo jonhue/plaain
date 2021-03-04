@@ -70,7 +70,7 @@ const PlayerView = () => {
 
     const updatedItem = await dispatch(load(updateFiles(item)))
     return updatedItem
-  }, [kind, load, location, setIsNotFound])
+  }, [dispatch, kind, location, setIsNotFound])
 
   const handleProgress = useCallback(
     (progress: number) => {
@@ -83,7 +83,7 @@ const PlayerView = () => {
           return dispatch(updateMovieProgress(item, progress))
       }
     },
-    [item, updateEpisodeProgress, updateMovieProgress],
+    [dispatch, item],
   )
 
   return item !== undefined && item.sources.length > 0 ? (

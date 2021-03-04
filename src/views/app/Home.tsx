@@ -3,6 +3,7 @@ import {
   inProgressSelector,
   recentlyWatchedSelector,
 } from '../../store/selectors'
+import { useDispatch, useSelector } from 'react-redux'
 import Authenticated from '../../components/get_started/Authenticated'
 import ForYou from '../../components/ForYou'
 import { RootState } from '../../store'
@@ -14,9 +15,10 @@ import { moviesSelector } from '../../store/movies/selectors'
 import { providersSelector } from '../../store/auth/selectors'
 import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
-import { useSelector } from 'react-redux'
 
 const ForYouView = () => {
+  const dispatch = useDispatch()
+
   const { inProgress, movies, providers, recentlyWatched, shows } = useSelector(
     (state: RootState) => ({
       inProgress: sortByLastWatched(inProgressSelector(state)),
@@ -28,8 +30,8 @@ const ForYouView = () => {
   )
 
   const handleIndex = useCallback(() => {
-    load(index(providers))
-  }, [load, providers])
+    dispatch(load(index(providers)))
+  }, [dispatch])
 
   return inProgress.length > 0 || recentlyWatched.length > 0 ? (
     <ForYou inProgress={inProgress} recentlyWatched={recentlyWatched} />

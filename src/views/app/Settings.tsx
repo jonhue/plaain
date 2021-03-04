@@ -18,7 +18,7 @@ const SettingsView = () => {
 
   const handleSetupAuth = useCallback(
     (kind: ProviderKind) => dispatch(load(setupAuth(kind))),
-    [load],
+    [dispatch],
   )
 
   const handleUpdateProvider = useCallback(
@@ -26,17 +26,16 @@ const SettingsView = () => {
       dispatch(updateProvider(provider))
       dispatch(load(index([provider])))
     },
-    [load, updateProvider],
+    [dispatch],
   )
 
   const handleIndex = useCallback(() => dispatch(load(index(providers))), [
-    load,
-    providers,
+    dispatch,
   ])
 
   const handleFetchMetadataAll = useCallback(
     () => dispatch(load(fetchAllMetadata())),
-    [load],
+    [dispatch],
   )
 
   return (

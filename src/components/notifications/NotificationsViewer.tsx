@@ -19,7 +19,7 @@ export const NotificationsViewer = () => {
   const handleClose = useCallback(
     (notification: Notification) => () =>
       dispatch(removeNotification(notification)),
-    [removeNotification],
+    [dispatch],
   )
 
   const renderNotification = useCallback(
