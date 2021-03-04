@@ -33,43 +33,53 @@
     {
       "src": "/plaain/logo_70.png",
       "sizes": "70x70",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_76.png",
       "sizes": "76x76",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_120.png",
       "sizes": "120x120",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_150.png",
       "sizes": "150x150",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_152.png",
       "sizes": "152x152",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_256.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_310.png",
       "sizes": "310x310",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_384.png",
       "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/logo_512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }, {
       "src": "/plaain/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
