@@ -35,6 +35,7 @@
   "None": "None",
   "Note that Plaain may <1>not</1> be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.": "Note that Plaain may <1>not</1> be used to stream pirated content or publicly share your private media library. You may only connect to your private cloud storage.",
   "Nothing found.": "Nothing found.",
+  "Plaain <1>1.0.0</1> (commit <2>sha</2>).": "Plaain <1>1.0.0</1> (commit <2>sha</2>).",
   "Plaain is <2>open-source</2>. See the <5>changelog</5>.": "Plaain is <2>open-source</2>. See the <5>changelog</5>.",
   "Plaain lets you stream and maintain your media library from anywhere. No server needed, no fee required.": "Plaain lets you stream and maintain your media library from anywhere. No server needed, no fee required.",
   "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.": "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.",
