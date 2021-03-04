@@ -1,7 +1,7 @@
 import './i18n.ts'
 import './index.scss'
 import 'whatwg-fetch'
-import * as serviceWorker from './serviceWorker'
+import { register } from './service-worker'
 import React, { Suspense } from 'react'
 import Base from './views'
 import { Loading } from './views/Loading'
@@ -10,6 +10,8 @@ import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import { persistStore } from 'redux-persist'
 import store from './store'
+
+register()
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,5 +25,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 )
-
-serviceWorker.register()
