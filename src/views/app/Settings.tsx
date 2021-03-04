@@ -146,7 +146,19 @@ export const Settings = () => {
 
       <section className="Settings__version">
         <h2>{t('Version')}</h2>
-        <p>{t('Plaain {{version}}.', { version: VERSION })}</p>
+        <p>
+          <Trans>
+            Plaain {VERSION} (commit{' '}
+            <a
+              href={`https://github.com/jonhue/plaain/tree/${process.env.REACT_APP_GIT_SHA}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {process.env.REACT_APP_GIT_SHA}
+            </a>
+            ).
+          </Trans>
+        </p>
         <p className="small">
           <Trans>
             Plaain is{' '}
