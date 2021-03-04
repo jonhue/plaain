@@ -12,4 +12,22 @@
       height: 1.5em;
     }
   }
+
+  .ItemGrid {
+    display: none;
+  }
+
+  .VerticalSlide {
+    display: block;
+  }
+
+  @media only screen and (min-width: $br-phone) {
+    .ItemGrid {
+      display: grid;
+    }
+
+    .VerticalSlide {
+      display: none;
+    }
+  }
 }

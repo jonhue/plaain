@@ -22,11 +22,8 @@ export const Movies = () => {
           <FindIcon color={styles.white} />
         </Link>
       </div>
-      {window.innerWidth < Number.parseInt(styles.brPhone) ? (
-        <VerticalSlide items={movies} path="movies" id="movies" />
-      ) : (
-        <ItemGrid items={movies} />
-      )}
+      <VerticalSlide items={movies} path="movies" id="movies" />
+      <ItemGrid items={movies} />
     </div>
   ) : (
     <Redirect to="/app" />
