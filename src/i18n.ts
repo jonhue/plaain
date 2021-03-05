@@ -5,7 +5,7 @@ import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 const EN = 'en'
-const LANGUAGES = [EN]
+export const LANGUAGES = [EN]
 
 const resources = {
   [EN]: {

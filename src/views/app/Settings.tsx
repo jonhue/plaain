@@ -8,6 +8,7 @@ import { removeProvider, updateProvider } from '../../store/auth/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddIcon } from '../../components/icons/Nucleo/AddIcon'
 import { AddProviderModal } from '../../components/authentication/AddProviderModal'
+import { LanguageSelector } from '../../components/LanguageSelector'
 import { ProviderButton } from '../../components/ProviderButton'
 import { UpdateProviderModal } from '../../components/authentication/UpdateProviderModal'
 import { VERSION } from '../../constants'
@@ -146,6 +147,12 @@ export const Settings = () => {
             {t('Update metadata')}
           </button>
         </div>
+      </section>
+
+      <section className="Settings__language">
+        <h2>{t('Language')}</h2>
+        <p>{t('Change the display language.')}</p>
+        <LanguageSelector />
       </section>
 
       <section className="Settings__version">
