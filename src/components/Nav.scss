@@ -1,14 +1,11 @@
 @import "../variables";
 
 .Nav {
-  align-items: center;
   background: $background;
   bottom: 0;
   box-shadow: 0 3px 20px rgba($black, 0.4);
-  display: flex;
-  height: $nav;
-  justify-content: center;
   left: 0;
+  overflow-x: auto;
   position: fixed;
   right: 0;
   width: 100%;
@@ -17,8 +14,10 @@
   &__wrapper {
     align-items: center;
     display: flex;
+    height: $nav;
     justify-content: space-evenly;
     max-width: 30em;
+    min-width: 28em;
     width: 100%;
   }
 
