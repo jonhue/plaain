@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from '../../store'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { buildCommitId, buildProviderIcon } from '../../util'
 import { fetchAllMetadata, index } from '../../store/thunks'
 import { removeProvider, updateProvider } from '../../store/auth/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,7 +13,6 @@ import { LanguageSelector } from '../../components/LanguageSelector'
 import { ProviderButton } from '../../components/ProviderButton'
 import { UpdateProviderModal } from '../../components/authentication/UpdateProviderModal'
 import { VERSION } from '../../constants'
-import { buildProviderIcon } from '../../util'
 import classNames from 'classnames'
 import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
@@ -187,7 +187,9 @@ export const Settings = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {process.env.REACT_APP_GIT_SHA || 'SHA'}
+              {process.env.REACT_APP_GIT_SHA
+                ? buildCommitId(process.env.REACT_APP_GIT_SHA)
+                : t('Unknown')}
             </a>
             .
           </Trans>

@@ -5,7 +5,7 @@ import React from 'react'
 import { SettingsIcon } from './icons/Nucleo/SettingsIcon'
 import { ShowIcon } from './icons/Nucleo/ShowIcon'
 import { Tab } from './Tab'
-import { useTranslation } from 'react-i18next/*'
+import { useTranslation } from 'react-i18next'
 
 type NavProps = {
   moviesDisabled?: boolean
