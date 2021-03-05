@@ -50,7 +50,7 @@
         width: auto;
 
         &:not(:first-child) {
-          margin-top: $padding;
+          margin-top: $spacing;
         }
       }
 
