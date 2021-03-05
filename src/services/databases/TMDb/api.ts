@@ -13,16 +13,13 @@ import i18next from 'i18next'
 
 const BASE_URL = 'https://api.themoviedb.org/3'
 const ACCESS_TOKEN = process.env.REACT_APP_TMDB_API_READ_ACCESS_TOKEN!
-const PARAMS = {
-  language: i18next.languages[0],
-}
 
 export const findMovie = async (query: string) => {
   const { results } = await get<SearchMoviesResponse>(
     BASE_URL,
     'search/movie',
     ACCESS_TOKEN,
-    { ...PARAMS, query },
+    { language: i18next.language, query },
   )
 
   if (results.length === 0) return undefined
@@ -34,7 +31,7 @@ export const findShow = async (query: string) => {
     BASE_URL,
     'search/tv',
     ACCESS_TOKEN,
-    { ...PARAMS, query },
+    { language: i18next.language, query },
   )
 
   if (results.length === 0) return undefined
@@ -42,25 +39,26 @@ export const findShow = async (query: string) => {
 }
 
 export const fetchMovie = (id: number) =>
-  get<MovieDetailsResponse>(BASE_URL, `movie/${id}`, ACCESS_TOKEN, PARAMS)
+  get<MovieDetailsResponse>(BASE_URL, `movie/${id}`, ACCESS_TOKEN, {
+    language: i18next.language,
+  })
 
 export const fetchMovieCredits = (id: number) =>
-  get<MovieCreditsResponse>(
-    BASE_URL,
-    `movie/${id}/credits`,
-    ACCESS_TOKEN,
-    PARAMS,
-  )
+  get<MovieCreditsResponse>(BASE_URL, `movie/${id}/credits`, ACCESS_TOKEN, {
+    language: i18next.language,
+  })
 
 export const fetchShow = (id: number) =>
-  get<TVShowDetailsResponse>(BASE_URL, `tv/${id}`, ACCESS_TOKEN, PARAMS)
+  get<TVShowDetailsResponse>(BASE_URL, `tv/${id}`, ACCESS_TOKEN, {
+    language: i18next.language,
+  })
 
 export const fetchSeason = (showId: number, seasonNumber: number) =>
   get<TVSeasonDetailsResponse>(
     BASE_URL,
     `tv/${showId}/season/${seasonNumber}`,
     ACCESS_TOKEN,
-    PARAMS,
+    { language: i18next.language },
   )
 
 export const fetchSeasonCredits = (showId: number, seasonNumber: number) =>
@@ -68,7 +66,7 @@ export const fetchSeasonCredits = (showId: number, seasonNumber: number) =>
     BASE_URL,
     `tv/${showId}/season/${seasonNumber}/credits`,
     ACCESS_TOKEN,
-    PARAMS,
+    { language: i18next.language },
   )
 
 export const fetchEpisode = (
@@ -80,5 +78,5 @@ export const fetchEpisode = (
     BASE_URL,
     `tv/${showId}/season/${seasonNumber}/episode/${episodeNumber}`,
     ACCESS_TOKEN,
-    PARAMS,
+    { language: i18next.language },
   )

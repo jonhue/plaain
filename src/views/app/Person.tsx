@@ -1,6 +1,6 @@
 import './Person.scss'
 import React, { useMemo } from 'react'
-import { buildBackdropUrl, buildCoverUrl } from '../../util'
+import { buildBackdropUrl, buildCoverUrl, buildJobTitle } from '../../util'
 import { Backdrop } from '../../components/Backdrop'
 import { Cover } from '../../components/Cover'
 import { HorizontalSlide } from '../../components/HorizontalSlide'
@@ -44,8 +44,13 @@ export const Person = ({ match }: PersonProps) => {
       <div className="Person__details">
         <Cover url={buildCoverUrl(person.profilePath)} alt="profile" />
         <h1>{person.name}</h1>
-        <h5>{t('Known as')}</h5>
-        <p>{person.jobs.join(', ')}</p>
+        {person.jobs && (
+          <p>
+            {person.jobs
+              .map((job) => buildJobTitle(t, job, person.gender))
+              .join(', ')}
+          </p>
+        )}
       </div>
 
       {movies.length > 0 && (

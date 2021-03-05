@@ -1,5 +1,6 @@
 import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
 import { FileProvider, VideoProvider } from './types/files/FileProvider'
+import { Gender, Job } from './types/items/Person'
 import { IMediaItem, Item, ItemKind } from './types/items/Item'
 import { M4V_EXTENSION, MP4_EXTENSION, Video } from './types/files/videos/Video'
 import { Caption } from './types/files/captions/Caption'
@@ -110,4 +111,14 @@ export const buildProviderIcon = (kind: ProviderKind): JSX.Element => {
     case ProviderKind.OneDrive:
       return <OneDriveIcon />
   }
+}
+
+export const buildJobTitle = (
+  t: TFunction,
+  job: Job | undefined,
+  gender: Gender,
+): string => {
+  if (job === undefined) return t('Unknown')
+  if (gender === Gender.Male) return t(`JOB [M] ${job}`)
+  return t(`JOB [F] ${job}`)
 }

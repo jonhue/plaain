@@ -3,12 +3,19 @@ import { LANGUAGES } from '../i18n'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
 
-export const LanguageSelector = () => {
+type LanguageSelectorProps = {
+  onChange?: (lng: string | undefined) => void
+}
+
+export const LanguageSelector = ({ onChange }: LanguageSelectorProps) => {
   const { t } = useTranslation()
 
   const handleChange = useCallback(
-    (event) => i18next.changeLanguage(event.target.value),
-    [],
+    (event) => {
+      i18next.changeLanguage(event.target.value)
+      if (onChange) onChange(event.target.value)
+    },
+    [onChange],
   )
 
   return (

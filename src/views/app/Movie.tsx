@@ -4,6 +4,7 @@ import { RouteComponentProps, useHistory } from 'react-router-dom'
 import {
   buildBackdropUrl,
   buildCoverUrl,
+  buildJobTitle,
   isInProgress,
   splitHoursAndMinutes,
 } from '../../util'
@@ -93,7 +94,10 @@ export const Movie = ({ match }: MovieProps) => {
           </div>
           <div className="Movie__people__crew">
             <h4>{t('Crew')}</h4>
-            <PersonList people={movie.crew} details={(person) => person.job} />
+            <PersonList
+              people={movie.crew}
+              details={(person) => buildJobTitle(t, person.job, person.gender)}
+            />
           </div>
         </div>
       </div>

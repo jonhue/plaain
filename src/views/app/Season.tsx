@@ -1,7 +1,12 @@
 import './Season.scss'
 import React, { useCallback, useMemo, useState } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import { buildBackdropUrl, buildCoverUrl, sortByNumber } from '../../util'
+import {
+  buildBackdropUrl,
+  buildCoverUrl,
+  buildJobTitle,
+  sortByNumber,
+} from '../../util'
 import { Backdrop } from '../../components/Backdrop'
 import { Cover } from '../../components/Cover'
 import { Episode } from '../../types/items/Episode'
@@ -148,7 +153,10 @@ export const Season = ({ match }: SeasonProps) => {
           </div>
           <div className="Season__people__crew">
             <h4>{t('Crew')}</h4>
-            <PersonList people={season.crew} details={(person) => person.job} />
+            <PersonList
+              people={season.crew}
+              details={(person) => buildJobTitle(t, person.job, person.gender)}
+            />
           </div>
         </div>
       </div>
