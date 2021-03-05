@@ -137,8 +137,13 @@ export const Settings = () => {
           )}
         </p>
         <div className="Settings__indexing__actions">
-          <button onClick={handleIndex}>{t('Index')}</button>
-          <button onClick={handleFetchMetadataAll}>
+          <button disabled={providers.length === 0} onClick={handleIndex}>
+            {t('Index')}
+          </button>
+          <button
+            disabled={providers.length === 0}
+            onClick={handleFetchMetadataAll}
+          >
             {t('Update metadata')}
           </button>
         </div>
