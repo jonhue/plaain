@@ -7,8 +7,7 @@ export enum Gender {
 }
 
 export enum Job {
-  Actor = 'Actor',
-  Actress = 'Actress',
+  Acting = 'Acting',
   Casting = 'Casting',
   CostumeDesign = 'Costume Design',
   Director = 'Director',
@@ -31,11 +30,11 @@ interface IPerson extends IItem {
 }
 
 export interface AccPerson extends IPerson {
-  jobs: Job[]
+  jobs: Job[] | undefined
 }
 
 export interface Person extends IPerson {
-  job: Job
+  job: Job | undefined
 }
 
 export interface CastMember extends Person {

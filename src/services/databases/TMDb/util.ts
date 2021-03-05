@@ -111,14 +111,8 @@ const buildGender = (gender: number | undefined): Gender => {
   }
 }
 
-const buildJob = (
-  job: string | undefined,
-  gender?: Gender,
-): Job | undefined => {
-  if (job === undefined) {
-    if (gender === Gender.Female) return Job.Actress
-    else return Job.Actor
-  }
+const buildJob = (job?: string): Job | undefined => {
+  if (job === undefined) return Job.Acting
 
   if (Object.values(Job).includes(job as Job)) return job as Job
 }
@@ -131,7 +125,7 @@ export const buildCastMember = ({
   profile_path: profilePath,
 }: CastResponse): CastMember => {
   const gender = buildGender(rawGender)
-  const job = buildJob(undefined, gender)!
+  const job = buildJob()
 
   return {
     kind: ItemKind.Person,
