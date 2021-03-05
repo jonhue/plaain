@@ -25,14 +25,16 @@ $modal-border-size: 0.0625em;
     border: $modal-border-size solid $black;
     border-radius: $modal-border-radius;
     left: 50%;
+    max-height: 90vh;
     max-width: $modal-max-width;
     opacity: 0;
+    overflow-y: auto;
     padding: $padding;
     position: fixed;
     top: 50% - $modal-animation-top-offset;
     transform: translateX(-50%) translateY(-50%);
     transition: all $modal-transition-duration ease-out;
-    width: 80%;
+    width: 85%;
 
     a.button,
     button,
