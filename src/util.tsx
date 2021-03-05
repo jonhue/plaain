@@ -29,7 +29,7 @@ export const sortByNumber = <T extends unknown>(
 export const sortByLastWatched = <T extends IMediaItem>(items: T[]) =>
   sortByNumber(items, (item) =>
     item.usage.lastWatched !== undefined
-      ? new Date(item.usage.lastWatched).getTime()
+      ? -new Date(item.usage.lastWatched).getTime()
       : 0,
   )
 
