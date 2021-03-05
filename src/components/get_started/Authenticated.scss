@@ -1,6 +1,9 @@
 @import "../../variables";
 
 .Authenticated {
+  margin: 0 auto;
+  max-width: 800px;
+
   h2,
   p {
     margin: 0 $padding 0.2em;

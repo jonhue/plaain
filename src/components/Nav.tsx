@@ -13,21 +13,23 @@ type NavProps = {
 
 export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => (
   <div className="Nav">
-    <Tab to="/app" exact>
-      <ForYouIcon />
-      <p>For you</p>
-    </Tab>
-    <Tab disabled={moviesDisabled} to="/app/movies">
-      <MovieIcon />
-      <p>Movies</p>
-    </Tab>
-    <Tab disabled={showsDisabled} to="/app/shows">
-      <ShowIcon />
-      <p>Shows</p>
-    </Tab>
-    <Tab to="/app/settings">
-      <SettingsIcon />
-      <p>Settings</p>
-    </Tab>
+    <div className="Nav__wrapper">
+      <Tab to="/app" exact>
+        <ForYouIcon />
+        <p>For you</p>
+      </Tab>
+      <Tab disabled={moviesDisabled} to="/app/movies">
+        <MovieIcon />
+        <p>Movies</p>
+      </Tab>
+      <Tab disabled={showsDisabled} to="/app/shows">
+        <ShowIcon />
+        <p>Shows</p>
+      </Tab>
+      <Tab to="/app/settings">
+        <SettingsIcon />
+        <p>Settings</p>
+      </Tab>
+    </div>
   </div>
 )
