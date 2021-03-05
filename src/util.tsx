@@ -105,12 +105,9 @@ export const buildProviderKindName = (kind: ProviderKind): string => {
   }
 }
 
-export const buildProviderIcon = (
-  kind: ProviderKind,
-  color: string,
-): JSX.Element => {
+export const buildProviderIcon = (kind: ProviderKind): JSX.Element => {
   switch (kind) {
     case ProviderKind.OneDrive:
-      return <OneDriveIcon color={color} />
+      return <OneDriveIcon />
   }
 }

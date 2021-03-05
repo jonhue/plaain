@@ -16,7 +16,6 @@ import classNames from 'classnames'
 import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
 import { setupAuth } from '../../store/auth/thunks'
-import styles from '../../_variables.scss'
 
 export const Settings = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -98,7 +97,7 @@ export const Settings = () => {
                       provider.moviesPath === undefined &&
                       provider.showsPath === undefined,
                   })}
-                  icon={buildProviderIcon(provider.kind, styles.white)}
+                  icon={buildProviderIcon(provider.kind)}
                   onClick={handleShowUpdateProviderModal(index)}
                 />
                 <UpdateProviderModal
@@ -113,7 +112,7 @@ export const Settings = () => {
             ))}
             <div className="Settings__auth__provider" key={providers.length}>
               <ProviderButton
-                icon={<AddIcon color={styles.white} />}
+                icon={<AddIcon />}
                 onClick={handleShowAddProviderModal}
                 key={5}
               />

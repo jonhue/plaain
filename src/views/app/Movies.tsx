@@ -7,7 +7,6 @@ import { RootState } from '../../store'
 import { VerticalSlide } from '../../components/VerticalSlide'
 import { moviesSelector } from '../../store/movies/selectors'
 import { sortAlphabetically } from '../../util'
-import styles from '../../_variables.scss'
 import { useSelector } from 'react-redux'
 
 export const Movies = () => {
@@ -19,7 +18,7 @@ export const Movies = () => {
     <div className="Movies">
       <div className="Movies__find">
         <Link to="/app/find">
-          <FindIcon color={styles.white} />
+          <FindIcon />
         </Link>
       </div>
       <VerticalSlide items={movies} path="movies" id="movies" />

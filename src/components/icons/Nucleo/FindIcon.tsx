@@ -1,23 +1,19 @@
 import { Icon } from '../Icon'
 import React from 'react'
 
-type FindIconProps = {
-  color: string
-}
-
-export const FindIcon = ({ color }: FindIconProps) => (
+export const FindIcon = () => (
   <Icon className="zoom" width={24} height={24}>
-    <title>zoom</title>
-    <g fill={color}>
+    <title>Find</title>
+    <g fill="#ffffff">
       <line
         fill="none"
-        stroke={color}
+        stroke="#ffffff"
         x1="22"
         x2="15.656"
         y1="22"
         y2="15.656"
       />
-      <circle cx="10" cy="10" fill="none" r="8" stroke={color} />
+      <circle cx="10" cy="10" fill="none" r="8" stroke="#ffffff" />
     </g>
   </Icon>
 )

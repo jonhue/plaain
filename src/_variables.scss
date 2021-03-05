@@ -33,21 +33,3 @@ $br-phablet: 800px;
 $br-tablet: 1200px;
 $br-laptop: 1600px;
 $br-desktop: 2000px;
-
-/* stylelint-disable */
-:export {
-  white: $white;
-  light: $light;
-  background: $background;
-  dark: $dark;
-  black: $black;
-  highlight: $highlight;
-  warn: $warn;
-
-  brPhone: $br-phone;
-  brPhablet: $br-phablet;
-  brTablet: $br-tablet;
-  brLaptop: $br-laptop;
-  brDesktop: $br-desktop;
-}
-/* stylelint-enable */
