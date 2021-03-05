@@ -7,12 +7,20 @@
   box-shadow: 0 3px 20px rgba($black, 0.4);
   display: flex;
   height: $nav;
-  justify-content: space-evenly;
+  justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   width: 100%;
   z-index: $z-front;
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 30em;
+    width: 100%;
+  }
 
   a,
   button {
