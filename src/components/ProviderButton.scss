@@ -3,7 +3,7 @@
 .ProviderButton {
   & > button {
     border: none;
-    border-radius: 50%;
+    border-radius: 2em;
     padding: $padding;
     width: auto;
 
@@ -16,5 +16,14 @@
     .Icon {
       height: 2.25em;
     }
+
+    h3 {
+      margin: 0;
+      margin-left: $spacing;
+    }
+  }
+
+  &.large > button {
+    width: 100%;
   }
 }

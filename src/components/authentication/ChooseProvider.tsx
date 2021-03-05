@@ -1,8 +1,8 @@
 import './ChooseProvider.scss'
 import { PROVIDER_KINDS, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
+import { buildProviderIcon, buildProviderKindName } from '../../util'
 import { ProviderButton } from '../ProviderButton'
-import { buildProviderIcon } from '../../util'
 import { useTranslation } from 'react-i18next'
 
 type ChooseProviderProps = {
@@ -29,6 +29,7 @@ export const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
         {PROVIDER_KINDS.map((kind, index) => (
           <ProviderButton
             icon={buildProviderIcon(kind)}
+            title={buildProviderKindName(kind)}
             onClick={handleChoose(kind)}
             key={index}
           />
