@@ -152,7 +152,7 @@ export const Settings = () => {
       <section className="Settings__language">
         <h2>{t('Language')}</h2>
         <p>{t('Change the display language.')}</p>
-        <LanguageSelector />
+        <LanguageSelector onChange={handleFetchMetadataAll} />
       </section>
 
       <section className="Settings__version">
