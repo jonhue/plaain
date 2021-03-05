@@ -79,6 +79,10 @@
 
       &.small {
         margin: 0 !important;
+        
+        &:last-child {
+          margin-top: 1em !important;
+        }
       }
     }
   }
