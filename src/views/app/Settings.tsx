@@ -174,6 +174,19 @@ export const Settings = () => {
         </p>
         <p className="small">
           <Trans>
+            You are running commit{' '}
+            <a
+              href={`https://github.com/jonhue/plaain/commit/${process.env.REACT_APP_GIT_SHA}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {process.env.REACT_APP_GIT_SHA || 'SHA'}
+            </a>
+            .
+          </Trans>
+        </p>
+        <p className="small">
+          <Trans>
             Note that Plaain may <span className="bold">not</span> be used to
             stream pirated content or publicly share your private media library.
             You may only connect to your private cloud storage.
