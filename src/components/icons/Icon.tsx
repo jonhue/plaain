@@ -6,6 +6,8 @@ type IconProps = {
   className: string
   height: number
   width: number
+  x?: number
+  y?: number
 }
 
 export const Icon: FunctionComponent<IconProps> = ({
@@ -13,10 +15,12 @@ export const Icon: FunctionComponent<IconProps> = ({
   className,
   height,
   width,
+  x,
+  y,
 }) => (
   <svg
     className={classNames('Icon', className)}
-    viewBox={`0 0 ${width} ${height}`}
+    viewBox={`${x || 0} ${y || 0} ${width} ${height}`}
     xmlns="http://www.w3.org/2000/svg"
   >
     {children}
