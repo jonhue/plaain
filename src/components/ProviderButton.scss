@@ -4,7 +4,7 @@
   & > button {
     border: none;
     border-radius: 2em;
-    padding: 1.5625em;
+    padding: $padding;
     width: auto;
 
     &:disabled {
@@ -14,7 +14,7 @@
     }
 
     .Icon {
-      height: 2em;
+      height: 2.25em;
     }
 
     h3 {
