@@ -1,18 +1,14 @@
 import { Icon } from '../Icon'
 import React from 'react'
 
-type OneDriveIconProps = {
-  color: string
-}
-
-export const OneDriveIcon = ({ color }: OneDriveIconProps) => (
+export const OneDriveIcon = () => (
   <Icon className="microsoft" width={32} height={32}>
-    <title>microsoft</title>
-    <g fill={color}>
-      <rect height="14" width="14" fill={color} x="1" y="1" />
+    <title>OneDrive</title>
+    <g fill="#ffffff">
+      <rect height="14" width="14" fill="#ffffff" x="1" y="1" />
       <rect height="14" width="14" x="17" y="1" />
       <rect height="14" width="14" x="1" y="17" />
-      <rect height="14" width="14" fill={color} x="17" y="17" />
+      <rect height="14" width="14" fill="#ffffff" x="17" y="17" />
     </g>
   </Icon>
 )

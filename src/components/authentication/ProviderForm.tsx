@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { CheckIcon } from '../icons/Nucleo/CheckIcon'
 import { Provider } from '../../types/providers/Provider'
 import classNames from 'classnames'
-import styles from '../../_variables.scss'
 import { useTranslation } from 'react-i18next'
 
 type ProviderFormProps = {
@@ -99,7 +98,7 @@ export const ProviderForm = ({
             placeholder="/Plaain/movies"
             onChange={handleChange}
           />
-          <CheckIcon color={styles.white} />
+          <CheckIcon />
         </div>
       </label>
 
@@ -121,7 +120,7 @@ export const ProviderForm = ({
             placeholder="/Plaain/shows"
             onChange={handleChange}
           />
-          <CheckIcon color={styles.white} />
+          <CheckIcon />
         </div>
       </label>
 

@@ -5,7 +5,6 @@ import React from 'react'
 import { SettingsIcon } from './icons/Nucleo/SettingsIcon'
 import { ShowIcon } from './icons/Nucleo/ShowIcon'
 import { Tab } from './Tab'
-import styles from '../_variables.scss'
 
 type NavProps = {
   moviesDisabled?: boolean
@@ -15,19 +14,19 @@ type NavProps = {
 export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => (
   <div className="Nav">
     <Tab to="/app" exact>
-      <ForYouIcon color={styles.white} />
+      <ForYouIcon />
       <p>For you</p>
     </Tab>
     <Tab disabled={moviesDisabled} to="/app/movies">
-      <MovieIcon color={styles.white} />
+      <MovieIcon />
       <p>Movies</p>
     </Tab>
     <Tab disabled={showsDisabled} to="/app/shows">
-      <ShowIcon color={styles.white} />
+      <ShowIcon />
       <p>Shows</p>
     </Tab>
     <Tab to="/app/settings">
-      <SettingsIcon color={styles.white} />
+      <SettingsIcon />
       <p>Settings</p>
     </Tab>
   </div>
