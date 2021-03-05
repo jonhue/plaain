@@ -122,3 +122,5 @@ export const buildJobTitle = (
   if (gender === Gender.Male) return t(`JOB [M] ${job}`)
   return t(`JOB [F] ${job}`)
 }
+
+export const buildCommitId = (sha: string) => sha.substring(0, 7)
