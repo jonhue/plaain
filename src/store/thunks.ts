@@ -36,6 +36,10 @@ export const index = (providers: Provider[]): AppThunk<Promise<void>> => async (
   await Promise.all(
     providers.map(async (provider) => {
       const updatedProvider = await dispatch(authCall(provider))
+      if (updatedProvider === undefined)
+        throw new Error(
+          'cannot sign in using the redirect flow while updating files',
+        )
 
       await indexCall(
         updatedProvider,
@@ -60,6 +64,11 @@ const updateFile = (file: File): AppThunk<Promise<File>> => async (
     throw new Error('could not find provider for file')
 
   const updatedProvider = await dispatch(authCall(provider))
+  if (updatedProvider === undefined)
+    throw new Error(
+      'cannot sign in using the redirect flow while updating files',
+    )
+
   const updatedFile = await updateFileCall(updatedProvider, file)
 
   return updatedFile

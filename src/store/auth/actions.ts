@@ -1,10 +1,36 @@
 import {
   AuthActionTypes,
+  EXPECT_LOGIN_REDIRECT,
+  EXPECT_SETUP_REDIRECT,
+  HANDLED_REDIRECT,
   REMOVE_PROVIDER,
   UPDATE_PROVIDER,
   UPDATE_VERSION,
 } from './types'
-import { Provider } from '../../types/providers/Provider'
+import {
+  Provider,
+  ProviderKindWithRedirect,
+} from '../../types/providers/Provider'
+
+export const expectLoginRedirect = (provider: Provider): AuthActionTypes => ({
+  type: EXPECT_LOGIN_REDIRECT,
+  payload: {
+    provider,
+  },
+})
+
+export const expectSetupRedirect = (
+  kind: ProviderKindWithRedirect,
+): AuthActionTypes => ({
+  type: EXPECT_SETUP_REDIRECT,
+  payload: {
+    kind,
+  },
+})
+
+export const handledRedirect = (): AuthActionTypes => ({
+  type: HANDLED_REDIRECT,
+})
 
 export const updateProvider = (provider: Provider): AuthActionTypes => ({
   type: UPDATE_PROVIDER,

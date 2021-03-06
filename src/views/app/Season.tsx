@@ -1,5 +1,5 @@
 import './Season.scss'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
 import {
   buildBackdropUrl,
@@ -19,6 +19,7 @@ import { episodesBySeasonSelector } from '../../store/episodes/selectors'
 import { seasonSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
 import { useSelector } from 'react-redux'
+import { useToggle } from '../../hooks/toggle'
 import { useTranslation } from 'react-i18next'
 
 interface SeasonParams {
@@ -50,10 +51,7 @@ export const Season = ({ match }: SeasonProps) => {
       )
   }, [season, episodes])
 
-  const [showEpisodes, setShowEpisodes] = useState(false)
-  const toggleEpisodes = useCallback(() => setShowEpisodes((state) => !state), [
-    setShowEpisodes,
-  ])
+  const [showEpisodes, toggleEpisodes] = useToggle(false)
 
   const handleContinue = useCallback(
     (episode: Episode) => () => {

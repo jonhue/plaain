@@ -1,8 +1,9 @@
 import './PersonList.scss'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Person } from '../types/items/Person'
 import { buildItemUrl } from '../util'
+import { useToggle } from '../hooks/toggle'
 import { useTranslation } from 'react-i18next'
 
 const WRAPPED_SIZE = 10
@@ -19,10 +20,7 @@ export const PersonList = <T extends Person>({
 }: PersonListProps<T>) => {
   const { t } = useTranslation()
 
-  const [isWrapped, setIsWrapped] = useState(true)
-  const toggleIsWrapped = useCallback(() => setIsWrapped((state) => !state), [
-    setIsWrapped,
-  ])
+  const [isWrapped, toggleIsWrapped] = useToggle(true)
 
   const displayedPeople = useMemo(
     () => people.slice(0, isWrapped ? WRAPPED_SIZE : people.length),
