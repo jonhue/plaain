@@ -83,7 +83,7 @@
   "Watch": "Ansehen",
   "We weren't able to locate the file named {{name}} located in your {{provider}} provider.": "In deinem Provider {{provider}} konnten wir die Datei {{name}} nicht finden.",
   "You already linked your {{provider}} account {{name}} with Plaain. You can change your settings by clicking on the service in the authentication list on the settings page.": "Du hast Deinen {{provider}}-Account {{name}} bereits mit Plaain verbunden. Du kannst Deine Einstellungen ändern, indem du in den Einstellungen auf den Service unter Authentifizieren klickst.",
-  "You are running commit <4>SHA</4>.": "Du verwendest Commit <4>SHA</4>.",
+  "You are running commit <4>Unknown</4>.": "Du verwendest Commit <4>Unbekannt</4>.",
   "You signed into a cloud service, but we didn't find any movies or TV shows.": "Du hast dich mit einem Cloud-Service verbunden, aber wir konnten noch keine FIlme oder Serien finden.",
   "You want to get lost?": "Du willst dich verirren?",
   "Your movies & TV shows. Anywhere.": "Deine Filme & Serien. Überall.",

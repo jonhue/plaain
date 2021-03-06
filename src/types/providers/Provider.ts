@@ -4,6 +4,8 @@ export enum ProviderKind {
   OneDrive,
 }
 
+export type ProviderKindWithRedirect = ProviderKind.OneDrive
+
 export const PROVIDER_KINDS = [ProviderKind.OneDrive]
 
 export interface IProvider {

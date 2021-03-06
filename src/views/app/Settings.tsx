@@ -17,6 +17,7 @@ import classNames from 'classnames'
 import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
 import { setupAuth } from '../../store/auth/thunks'
+import { useModal } from '../../hooks/modal'
 
 export const Settings = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -54,11 +55,15 @@ export const Settings = () => {
     [dispatch],
   )
 
-  const [showAddProviderModal, setShowAddProviderModal] = useState(false)
+  const [
+    showAddProviderModal,
+    handleShowAddProviderModal,
+    handleCloseAddProviderModal,
+  ] = useModal()
+
   const [showUpdateProviderModals, setShowUpdateProviderModals] = useState<{
     [index: number]: boolean
   }>(providers.reduce((acc, _, index) => ({ ...acc, [index]: false }), {}))
-
   const handleShowUpdateProviderModal = useCallback(
     (index: number) => () =>
       setShowUpdateProviderModals((state) => ({ ...state, [index]: true })),
@@ -68,15 +73,6 @@ export const Settings = () => {
     (index: number) => () =>
       setShowUpdateProviderModals((state) => ({ ...state, [index]: false })),
     [setShowUpdateProviderModals],
-  )
-
-  const handleShowAddProviderModal = useCallback(
-    () => setShowAddProviderModal(true),
-    [setShowAddProviderModal],
-  )
-  const handleCloseAddProviderModal = useCallback(
-    () => setShowAddProviderModal(false),
-    [setShowAddProviderModal],
   )
 
   return (

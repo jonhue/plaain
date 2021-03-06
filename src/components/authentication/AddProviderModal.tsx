@@ -5,6 +5,8 @@ import { AuthResponse } from '../../services/auth/types'
 import { ChooseProvider } from './ChooseProvider'
 import { Modal } from '../Modal'
 import { SetupProvider } from './SetupProvider'
+import { useModal } from '../../hooks/modal'
+import { useSetupAuthRedirect } from '../../hooks/auth'
 
 type AddProviderModalProps = {
   isActive: boolean
@@ -20,7 +22,13 @@ export const AddProviderModal = ({
   onSetupAuth,
   onAddProvider,
 }: AddProviderModalProps) => {
+  const [show, handleOpen] = useModal()
+
   const [authResponse, setAuthResponse] = useState<AuthResponse | undefined>()
+  useSetupAuthRedirect((response) => {
+    setAuthResponse(response)
+    handleOpen()
+  })
 
   const handleChoose = useCallback(
     async (kind: ProviderKind) => {
@@ -43,7 +51,7 @@ export const AddProviderModal = ({
 
   return (
     <div className="AddProviderModal">
-      <Modal isActive={isActive} onClose={onClose}>
+      <Modal isActive={isActive || show} onClose={onClose}>
         {authResponse === undefined ? (
           <ChooseProvider onChoose={handleChoose} />
         ) : (
