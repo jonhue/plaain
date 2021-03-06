@@ -91,12 +91,9 @@ export const authHandleRedirect = async (): Promise<OneDriveAuthResponse> => {
   })
 
   return new Promise<OneDriveAuthResponse>((resolve) => {
-    userAgentApplication.handleRedirectCallback((error, response) => {
-      if (response === undefined) {
-        console.error(error)
+    userAgentApplication.handleRedirectCallback((_, response) => {
+      if (response === undefined)
         throw new AuthenticationFailure(ProviderKind.OneDrive)
-      }
-      console.log(error, response)
       resolve(
         buildAuthResponse(
           response.accessToken,
