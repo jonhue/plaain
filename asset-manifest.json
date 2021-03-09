@@ -7,13 +7,13 @@
     "main.css": "/plaain/static/css/main.f2dd0681.chunk.css",
     "main.js": "/plaain/static/js/main.39ade09b.chunk.js",
     "main.js.map": "/plaain/static/js/main.39ade09b.chunk.js.map",
-    "runtime-main.js": "/plaain/static/js/runtime-main.73a53f1d.js",
-    "runtime-main.js.map": "/plaain/static/js/runtime-main.73a53f1d.js.map",
+    "runtime-main.js": "/plaain/static/js/runtime-main.87fd91b9.js",
+    "runtime-main.js.map": "/plaain/static/js/runtime-main.87fd91b9.js.map",
     "static/js/4.c43e9dd9.chunk.js": "/plaain/static/js/4.c43e9dd9.chunk.js",
     "static/js/4.c43e9dd9.chunk.js.map": "/plaain/static/js/4.c43e9dd9.chunk.js.map",
     "static/css/5.e76d80ec.chunk.css": "/plaain/static/css/5.e76d80ec.chunk.css",
-    "static/js/5.ca69c35d.chunk.js": "/plaain/static/js/5.ca69c35d.chunk.js",
-    "static/js/5.ca69c35d.chunk.js.map": "/plaain/static/js/5.ca69c35d.chunk.js.map",
+    "static/js/5.73f7d734.chunk.js": "/plaain/static/js/5.73f7d734.chunk.js",
+    "static/js/5.73f7d734.chunk.js.map": "/plaain/static/js/5.73f7d734.chunk.js.map",
     "static/js/6.91ee17d4.chunk.js": "/plaain/static/js/6.91ee17d4.chunk.js",
     "static/js/6.91ee17d4.chunk.js.map": "/plaain/static/js/6.91ee17d4.chunk.js.map",
     "static/css/7.c0eb2f59.chunk.css": "/plaain/static/css/7.c0eb2f59.chunk.css",
@@ -35,7 +35,7 @@
     "static/media/getFetch.cjs": "/plaain/static/media/getFetch.d7d6010d.cjs"
   },
   "entrypoints": [
-    "static/js/runtime-main.73a53f1d.js",
+    "static/js/runtime-main.87fd91b9.js",
     "static/js/4.c43e9dd9.chunk.js",
     "static/css/main.f2dd0681.chunk.css",
     "static/js/main.39ade09b.chunk.js"
