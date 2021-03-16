@@ -47,7 +47,7 @@
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.1.1",
     "iso-639-1": "^2.1.8",
-    "msal": "^1.4.6",
+    "msal": "^1.4.8",
     "node-sass": "^5.0.0",
     "plyr": "^3.6.4",
     "react": "^16.14.0",
