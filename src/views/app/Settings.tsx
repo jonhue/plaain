@@ -25,7 +25,7 @@ export const Settings = () => {
   const { t } = useTranslation()
 
   useAuthRedirect()
-  useSetupAuthRedirect(console.log)
+  useSetupAuthRedirect(console.log) // eslint-disable-line no-console
 
   const providers = useSelector((state: RootState) =>
     providersSelector(state.auth),

@@ -113,9 +113,9 @@ export const authHandleRedirect = async (): Promise<OneDriveAuthResponse> => {
       clientId: CLIENT_ID,
     },
   })
-  console.log(window.location.hash)
+  console.log(window.location.hash) // eslint-disable-line no-console
   const response = await app.handleRedirectPromise()
-  console.log(response)
+  console.log(response) // eslint-disable-line no-console
   if (!response?.account) throw new AuthenticationFailure(ProviderKind.OneDrive)
   return silentLogIn(app, response.account)
 }
