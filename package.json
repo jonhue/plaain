@@ -45,7 +45,7 @@
     "flexsearch": "^0.6.32",
     "i18next": "^19.9.2",
     "i18next-browser-languagedetector": "^6.0.1",
-    "i18next-http-backend": "^1.1.1",
+    "i18next-http-backend": "^1.2.0",
     "iso-639-1": "^2.1.8",
     "msal": "^1.4.8",
     "node-sass": "^5.0.0",
