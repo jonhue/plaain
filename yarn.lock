@@ -2,6 +2,20 @@
 # yarn lockfile v1
 
 
+"@azure/msal-browser@^2.12.0":
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-2.12.0.tgz#c1fb66c08bd28a34ca5bda2677db50ffde789cc0"
+  integrity sha512-yBbP/1W3bMTvRIZ7QAKiS3Euz+8NpRQ0rpqvbkT/UPu6uoCKOkHpIjYpRYa67O5wMavwjHobW7fESqVw6tDGkg==
+  dependencies:
+    "@azure/msal-common" "^4.0.2"
+
+"@azure/msal-common@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-4.0.2.tgz#6489d66929ba71fb30e03f559f2e9ee792088827"
+  integrity sha512-Z6FiDV+uWUZ4jcchRciKYYYKRWOc0sh/UaF5evfx7lXEp/8+KxO7cY1efgD7VOK75FkpRI5YyUzZAdX7I7sTAg==
+  dependencies:
+    debug "^4.1.1"
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -7927,7 +7941,7 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msal@^1.4.4, msal@^1.4.6:
+msal@^1.4.4:
   version "1.4.6"
   resolved "https://registry.yarnpkg.com/msal/-/msal-1.4.6.tgz#add7d81d5c931c3a6722bf0ff3315a1d6c67a724"
   integrity sha512-tPwgKoWBRf+d2YG4CgCm2C9MiRUwzdn2aOwlLtaBCj3ekM1afkWMKbAsbKuuWSdoMPhhxrvALIOV0FfX3WKJlg==

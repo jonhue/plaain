@@ -1,3 +1,4 @@
+import { AccountInfo } from '@azure/msal-common'
 import { AccessToken } from '../../types/AccessToken'
 import { ProviderKind } from '../../types/providers/Provider'
 
@@ -6,6 +7,7 @@ export interface OneDriveAuthResponse {
   id: string
   name: string
   accessToken: AccessToken
+  account: AccountInfo
 }
 
 export type AuthResponse = OneDriveAuthResponse

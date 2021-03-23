@@ -11,6 +11,7 @@ export const load = <ReturnType>(
   try {
     result = await dispatch(fn)
   } catch (error: unknown) {
+    console.error(error)
     if (error instanceof Error) {
       dispatch(addNotification(handleError(error)))
     }

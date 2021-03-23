@@ -6,14 +6,12 @@ import { NotificationsViewer } from '../components/notifications/NotificationsVi
 import { RootState } from '../store'
 import { ScrollToTop } from '../components/ScrollToTop'
 import { Welcome } from './Welcome'
-import { useAuthRedirect } from '../hooks/auth'
 import { useSelector } from 'react-redux'
 
 const App = lazy(() => import('./app'))
 const Player = lazy(() => import('./Player'))
 
 const Base = () => {
-  useAuthRedirect()
   const isLoading = useSelector((state: RootState) => state.ui.isLoading)
 
   return (
