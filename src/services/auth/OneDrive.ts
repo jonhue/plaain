@@ -1,8 +1,12 @@
+import {
+  AccountInfo,
+  InteractionRequiredAuthError,
+  PublicClientApplication,
+} from '@azure/msal-browser'
 import { AuthenticationFailure } from '../../errors/AuthenticationFailure'
 import { OneDrive } from '../../types/providers/OneDrive'
 import { OneDriveAuthResponse } from './types'
 import { ProviderKind } from '../../types/providers/Provider'
-import { UserAgentApplication } from 'msal'
 import { buildAuthId } from './util'
 import { isMobile } from 'react-device-detect'
 
@@ -11,58 +15,78 @@ const SCOPES = ['user.read', 'files.read.all']
 
 const buildAuthResponse = (
   accessToken: string,
-  name: string,
+  account: AccountInfo,
   expiresOn: Date,
 ): OneDriveAuthResponse => ({
   kind: ProviderKind.OneDrive,
   accessToken: { token: accessToken, validUntil: expiresOn.toISOString() },
-  id: buildAuthId(ProviderKind.OneDrive, name),
-  name,
+  id: buildAuthId(ProviderKind.OneDrive, account.username),
+  name: account.username,
+  account,
 })
 
 const silentLogIn = async (
-  userAgentApplication: UserAgentApplication,
+  app: PublicClientApplication,
+  account: AccountInfo,
 ): Promise<OneDriveAuthResponse> => {
   const {
     accessToken,
-    account,
+    account: newAccount,
     expiresOn,
-  } = await userAgentApplication.acquireTokenSilent({
+  } = await app.acquireTokenSilent({
     scopes: SCOPES,
+    account,
   })
-  return buildAuthResponse(accessToken, account.userName, expiresOn)
+  if (!newAccount || !expiresOn)
+    throw new AuthenticationFailure(ProviderKind.OneDrive)
+  return buildAuthResponse(accessToken, newAccount, expiresOn)
 }
 
 const popupLogIn = async (
-  userAgentApplication: UserAgentApplication,
+  app: PublicClientApplication,
 ): Promise<OneDriveAuthResponse> => {
-  await userAgentApplication.loginPopup({
+  const { account } = await app.loginPopup({
     scopes: SCOPES,
-    prompt: 'select_account',
   })
-  return silentLogIn(userAgentApplication)
+  if (!account) throw new AuthenticationFailure(ProviderKind.OneDrive)
+  return silentLogIn(app, account)
 }
 
-const redirectLogIn = (userAgentApplication: UserAgentApplication) =>
-  userAgentApplication.loginRedirect({
+const redirectLogIn = (app: PublicClientApplication) =>
+  app.loginRedirect({
     scopes: SCOPES,
-    prompt: 'select_account',
   })
 
+const interactiveLogIn = async (
+  app: PublicClientApplication,
+  onRedirect: () => void,
+) => {
+  if (isMobile) {
+    onRedirect()
+    return redirectLogIn(app)
+  }
+  return await popupLogIn(app)
+}
+
 const performAuth = async (
-  userAgentApplication: UserAgentApplication,
+  app: PublicClientApplication,
+  account: AccountInfo | undefined,
+  onRedirect: () => void,
 ): Promise<OneDriveAuthResponse | void> => {
+  if (account === undefined) return await interactiveLogIn(app, onRedirect)
+
   try {
-    return await silentLogIn(userAgentApplication)
+    return await silentLogIn(app, account)
   } catch (error: unknown) {
-    return isMobile
-      ? redirectLogIn(userAgentApplication)
-      : await popupLogIn(userAgentApplication)
+    if (error instanceof InteractionRequiredAuthError)
+      return await interactiveLogIn(app, onRedirect)
+    else throw error
   }
 }
 
 export const auth = async (
   provider: OneDrive | undefined,
+  onRedirect: () => void,
 ): Promise<OneDriveAuthResponse | void> => {
   if (
     provider !== undefined &&
@@ -70,37 +94,28 @@ export const auth = async (
   )
     return provider
 
-  const userAgentApplication = new UserAgentApplication({
+  const app = new PublicClientApplication({
     auth: {
       clientId: CLIENT_ID,
     },
   })
 
   try {
-    return await performAuth(userAgentApplication)
+    return await performAuth(app, provider?.account, onRedirect)
   } catch (error: unknown) {
     throw new AuthenticationFailure(ProviderKind.OneDrive)
   }
 }
 
 export const authHandleRedirect = async (): Promise<OneDriveAuthResponse> => {
-  const userAgentApplication = new UserAgentApplication({
+  const app = new PublicClientApplication({
     auth: {
       clientId: CLIENT_ID,
     },
   })
-
-  return new Promise<OneDriveAuthResponse>((resolve) => {
-    userAgentApplication.handleRedirectCallback((_, response) => {
-      if (response === undefined)
-        throw new AuthenticationFailure(ProviderKind.OneDrive)
-      resolve(
-        buildAuthResponse(
-          response.accessToken,
-          response.account.userName,
-          response.expiresOn,
-        ),
-      )
-    })
-  })
+  console.log(window.location.hash) // eslint-disable-line no-console
+  const response = await app.handleRedirectPromise()
+  console.log(response) // eslint-disable-line no-console
+  if (!response?.account) throw new AuthenticationFailure(ProviderKind.OneDrive)
+  return silentLogIn(app, response.account)
 }

@@ -7,7 +7,6 @@ import {
 import {
   expectLoginRedirect,
   expectSetupRedirect,
-  handledRedirect,
   updateProvider,
 } from './actions'
 import {
@@ -21,19 +20,21 @@ import { providersSelector } from './selectors'
 
 const authHandleProvider = (
   provider: Provider,
+  onRedirect: () => void,
 ): Promise<AuthResponse | void> => {
   switch (provider.kind) {
     case ProviderKind.OneDrive:
-      return oneDriveAuthCall(provider)
+      return oneDriveAuthCall(provider, onRedirect)
   }
 }
 
 const setupAuthHandleProvider = (
   kind: ProviderKind,
+  onRedirect: () => void,
 ): Promise<AuthResponse | void> => {
   switch (kind) {
     case ProviderKind.OneDrive:
-      return oneDriveAuthCall(undefined)
+      return oneDriveAuthCall(undefined, onRedirect)
   }
 }
 
@@ -62,11 +63,10 @@ const authHandleResponse = (
 export const auth = (
   provider: Provider,
 ): AppThunk<Promise<Provider | undefined>> => async (dispatch) => {
-  const response = await authHandleProvider(provider)
-  if (response === undefined) {
-    dispatch(expectLoginRedirect(provider))
-    return
-  }
+  const response = await authHandleProvider(provider, () =>
+    dispatch(expectLoginRedirect(provider)),
+  )
+  if (response === undefined) return
   return dispatch(authHandleResponse(provider, response))
 }
 
@@ -85,11 +85,10 @@ const setupAuthHandleResponse = (
 export const setupAuth = (
   kind: ProviderKind,
 ): AppThunk<Promise<AuthResponse | undefined>> => async (dispatch) => {
-  const response = await setupAuthHandleProvider(kind)
-  if (response === undefined) {
-    dispatch(expectSetupRedirect(kind))
-    return
-  }
+  const response = await setupAuthHandleProvider(kind, () =>
+    dispatch(expectSetupRedirect(kind)),
+  )
+  if (response === undefined) return
   return dispatch(setupAuthHandleResponse(kind, response))
 }
 
@@ -97,7 +96,6 @@ export const authHandleRedirect = (
   cache: LoginRedirectCache,
 ): AppThunk<Promise<Provider>> => async (dispatch) => {
   const response = await authHandleRedirectHandleProvider(cache.provider.kind)
-  dispatch(handledRedirect())
   return dispatch(authHandleResponse(cache.provider, response))
 }
 
@@ -105,6 +103,5 @@ export const setupAuthHandleRedirect = (
   cache: SetupRedirectCache,
 ): AppThunk<Promise<AuthResponse>> => async (dispatch) => {
   const response = await authHandleRedirectHandleProvider(cache.kind)
-  dispatch(handledRedirect())
   return dispatch(setupAuthHandleResponse(cache.kind, response))
 }
