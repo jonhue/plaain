@@ -7,7 +7,6 @@ export const getClient = async (
   password: string,
   secure: boolean,
 ) => {
-  console.log(host, port, user, password, secure)
   const client = new Client()
   if (process.env.NODE_ENV === 'development') client.ftp.verbose = true
   await client.access({ host, port, user, password, secure })
