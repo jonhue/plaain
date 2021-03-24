@@ -18,13 +18,10 @@ import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
 import { setupAuth } from '../../store/auth/thunks'
 import { useModal } from '../../hooks/modal'
-import { useSetupAuthRedirect } from '../../hooks/auth'
 
 export const Settings = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
-
-  useSetupAuthRedirect(console.log) // eslint-disable-line no-console
 
   const providers = useSelector((state: RootState) =>
     providersSelector(state.auth),
