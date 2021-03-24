@@ -6,7 +6,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { buildCommitId, buildProviderIcon } from '../../util'
 import { fetchAllMetadata, index } from '../../store/thunks'
 import { removeProvider, updateProvider } from '../../store/auth/actions'
-import { useAuthRedirect, useSetupAuthRedirect } from '../../hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddIcon } from '../../components/icons/Nucleo/AddIcon'
 import { AddProviderModal } from '../../components/authentication/AddProviderModal'
@@ -19,12 +18,12 @@ import { load } from '../../store/ui/thunks'
 import { providersSelector } from '../../store/auth/selectors'
 import { setupAuth } from '../../store/auth/thunks'
 import { useModal } from '../../hooks/modal'
+import { useSetupAuthRedirect } from '../../hooks/auth'
 
 export const Settings = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
 
-  useAuthRedirect()
   useSetupAuthRedirect(console.log) // eslint-disable-line no-console
 
   const providers = useSelector((state: RootState) =>
