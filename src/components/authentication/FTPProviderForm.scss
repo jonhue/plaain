@@ -38,4 +38,12 @@
       }
     }
   }
+
+  &__checkbox {
+    margin-bottom: $padding;
+
+    input {
+      margin-right: $spacing;
+    }
+  }
 }

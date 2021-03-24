@@ -1,7 +1,7 @@
 import './AddProviderModal.scss'
 import { AuthResponse, AuthSetup } from '../../services/auth/types'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { ChooseProvider } from './ChooseProvider'
 import { EnterDetailsProvider } from './EnterDetailsProvider'
 import { Modal } from '../Modal'
@@ -31,13 +31,23 @@ export const AddProviderModal = ({
 }: AddProviderModalProps) => {
   const [show, handleOpen] = useModal()
 
-  const [state, setState] = useState(State.Choose)
+  const initialState = useMemo(() => State.Choose, [])
+  const [state, setState] = useState(initialState)
   const [kind, setKind] = useState<ProviderKind | undefined>()
   const [authResponse, setAuthResponse] = useState<AuthResponse | undefined>()
   useSetupAuthRedirect((response) => {
     setAuthResponse(response)
     handleOpen()
   })
+
+  const handleClose = useCallback(() => {
+    onClose()
+    setTimeout(() => {
+      setState(initialState)
+      setKind(undefined)
+      setAuthResponse(undefined)
+    }, 500)
+  }, [initialState, onClose, setAuthResponse, setKind, setState])
 
   const handleChoose = useCallback(
     async (kind: ProviderKind) => {
@@ -71,14 +81,14 @@ export const AddProviderModal = ({
 
       const provider = { ...authResponse, moviesPath, showsPath }
       onAddProvider(provider)
-      onClose()
+      handleClose()
     },
-    [authResponse, onAddProvider, onClose],
+    [authResponse, onAddProvider, handleClose],
   )
 
   return (
     <div className="AddProviderModal">
-      <Modal isActive={isActive || show} onClose={onClose}>
+      <Modal isActive={isActive || show} onClose={handleClose}>
         {state === State.Choose ? (
           <ChooseProvider onChoose={handleChoose} />
         ) : state === State.EnterDetails ? (

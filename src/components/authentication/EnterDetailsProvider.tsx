@@ -19,7 +19,7 @@ export const EnterDetailsProvider = ({
   return (
     <div className="EnterDetailsProvider">
       <h2>{t('Configure your provider')}</h2>
-      <p>{t('Plaain need some more details to connect to your provider.')}</p>
+      <p>{t('Plaain needs some more details to connect to your provider.')}</p>
       {kind === ProviderKind.FTP ? (
         <FTPProviderForm
           submitCaption={t('Complete')}

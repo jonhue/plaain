@@ -34,7 +34,7 @@ export const FTPProviderForm = ({
     () => ({
       name: provider?.name,
       host: provider?.host,
-      port: provider?.port,
+      port: provider?.port || 21,
       username: provider?.username,
       password: provider?.password,
       secure: provider?.secure || true,
@@ -48,7 +48,12 @@ export const FTPProviderForm = ({
       const target = event.currentTarget
       setState((state) => ({
         ...state,
-        [target.name]: target.value === '' ? undefined : target.value,
+        [target.name]:
+          target.type === 'checkbox'
+            ? target.checked
+            : target.value === ''
+            ? undefined
+            : target.value,
       }))
     },
     [setState],
@@ -116,7 +121,7 @@ export const FTPProviderForm = ({
           })}
         >
           <input
-            type="url"
+            type="text"
             name="host"
             value={state.host || ''}
             placeholder="example.com"
@@ -138,7 +143,7 @@ export const FTPProviderForm = ({
             min={0}
             step={1}
             name="port"
-            value={state.port || '21'}
+            value={state.port || ''}
             onChange={handleChange}
           />
           <CheckIcon />
@@ -179,17 +184,17 @@ export const FTPProviderForm = ({
         </div>
       </label>
 
-      <label>
-        {t('Secure (explicit FTPS over TLS)')}
-        <div className="FTPProviderForm__input">
+      <div className="FTPProviderForm__checkbox">
+        <label>
           <input
             type="checkbox"
             name="secure"
             checked={state.secure}
             onChange={handleChange}
           />
-        </div>
-      </label>
+          {t('Secure (explicit FTPS over TLS)')}
+        </label>
+      </div>
 
       <div className="FTPProviderForm__actions">
         <button type="submit" disabled={!isValid}>

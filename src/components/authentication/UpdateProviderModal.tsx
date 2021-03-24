@@ -1,7 +1,7 @@
 import './UpdateProviderModal.scss'
 import { AuthResponse, AuthSetup } from '../../services/auth/types'
 import { Provider, ProviderKind } from '../../types/providers/Provider'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { FTPProviderForm } from './FTPProviderForm'
 import { Modal } from '../Modal'
 import { ProviderForm } from './ProviderForm'
@@ -33,10 +33,20 @@ export const UpdateProviderModal = ({
 }: UpdateProviderModalProps) => {
   const { t } = useTranslation()
 
-  const [state, setState] = useState(
-    provider.kind === ProviderKind.FTP ? State.Specific : State.General,
+  const initialState = useMemo(
+    () => (provider.kind === ProviderKind.FTP ? State.Specific : State.General),
+    [provider],
   )
+  const [state, setState] = useState(initialState)
   const [details, setDetails] = useState<AuthResponse | undefined>()
+
+  const handleClose = useCallback(() => {
+    onClose()
+    setTimeout(() => {
+      setState(initialState)
+      setDetails(undefined)
+    }, 500)
+  }, [initialState, onClose, setDetails, setState])
 
   const handleDetails = useCallback(
     async (config: AuthSetup) => {
@@ -54,21 +64,21 @@ export const UpdateProviderModal = ({
           ? { ...details, moviesPath, showsPath }
           : { ...provider, moviesPath, showsPath }
       onUpdateProvider(newProvider)
-      onClose()
+      handleClose()
     },
-    [details, onClose, onUpdateProvider, provider],
+    [details, handleClose, onUpdateProvider, provider],
   )
 
   const handleRemoveProvider = useCallback(() => {
     if (!window.confirm(t('Are you sure?'))) return
 
     onRemoveProvider()
-    onClose()
-  }, [onClose, onRemoveProvider, t])
+    handleClose()
+  }, [handleClose, onRemoveProvider, t])
 
   return (
     <div className="UpdateProviderModal">
-      <Modal isActive={isActive} onClose={onClose}>
+      <Modal isActive={isActive} onClose={handleClose}>
         <h2>{buildProviderKindName(t, provider.kind)}</h2>
         <p>{provider.name}</p>
         {state === State.Specific ? (

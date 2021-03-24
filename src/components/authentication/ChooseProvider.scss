@@ -6,7 +6,7 @@
 
     & > .ProviderButton {
       &:not(:first-child) {
-        margin-left: $spacing;
+        margin-top: $spacing;
       }
     }
   }
