@@ -11,6 +11,13 @@ object-assign
 */
 
 /*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
  * UAParser.js v0.7.24
  * Lightweight JavaScript-based User-Agent string parser
  * https://github.com/faisalman/ua-parser-js
@@ -37,6 +44,10 @@ PERFORMANCE OF THIS SOFTWARE.
 /*! @azure/msal-browser v2.12.1 2021-03-15 */
 
 /*! @azure/msal-common v4.0.3 2021-03-15 */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /** @license React v0.19.1
  * scheduler.production.min.js
