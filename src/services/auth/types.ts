@@ -1,13 +1,18 @@
-import { AccessToken } from '../../types/AccessToken'
-import { AccountInfo } from '@azure/msal-common'
+import { IFTP } from '../../types/providers/FTP'
+import { IOneDrive } from '../../types/providers/OneDrive'
 import { ProviderKind } from '../../types/providers/Provider'
 
-export interface OneDriveAuthResponse {
-  kind: typeof ProviderKind.OneDrive
+interface IAuth {
   id: string
   name: string
-  accessToken: AccessToken
-  account: AccountInfo
 }
 
-export type AuthResponse = OneDriveAuthResponse
+export type FTPAuthSetup = { name: string } & IFTP
+export type OneDriveAuthSetup = { kind: ProviderKind.OneDrive }
+
+export type AuthSetup = FTPAuthSetup | OneDriveAuthSetup
+
+export type FTPAuthResponse = IAuth & IFTP
+export type OneDriveAuthResponse = IAuth & IOneDrive
+
+export type AuthResponse = FTPAuthResponse | OneDriveAuthResponse

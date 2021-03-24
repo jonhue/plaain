@@ -23,7 +23,7 @@ export const CannotFindFileToast = ({
         "We weren't able to locate the file named {{name}} located in your {{provider}} provider.",
         {
           name: notification.file.name,
-          provider: buildProviderKindName(notification.file.provider.kind),
+          provider: buildProviderKindName(t, notification.file.provider.kind),
         },
       )}
       onClose={onClose}

@@ -1,6 +1,5 @@
 import './Settings.scss'
 import { AppDispatch, RootState } from '../../store'
-import { Provider, ProviderKind } from '../../types/providers/Provider'
 import React, { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { buildCommitId, buildProviderIcon } from '../../util'
@@ -9,7 +8,9 @@ import { removeProvider, updateProvider } from '../../store/auth/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { AddIcon } from '../../components/icons/Nucleo/AddIcon'
 import { AddProviderModal } from '../../components/authentication/AddProviderModal'
+import { AuthSetup } from '../../services/auth/types'
 import { LanguageSelector } from '../../components/LanguageSelector'
+import { Provider } from '../../types/providers/Provider'
 import { ProviderButton } from '../../components/ProviderButton'
 import { UpdateProviderModal } from '../../components/authentication/UpdateProviderModal'
 import { VERSION } from '../../constants'
@@ -28,7 +29,7 @@ export const Settings = () => {
   )
 
   const handleSetupAuth = useCallback(
-    (kind: ProviderKind) => dispatch(load(setupAuth(kind))),
+    (config: AuthSetup) => dispatch(load(setupAuth(config))),
     [dispatch],
   )
 
@@ -101,6 +102,7 @@ export const Settings = () => {
                   isActive={showUpdateProviderModals[index]}
                   provider={provider}
                   onClose={handleCloseUpdateProviderModal(index)}
+                  onSetupAuth={handleSetupAuth}
                   onUpdateProvider={handleUpdateProvider}
                   onRemoveProvider={handleRemoveProvider(provider.id)}
                   key={7}

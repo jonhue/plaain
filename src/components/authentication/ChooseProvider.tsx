@@ -29,7 +29,7 @@ export const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
         {PROVIDER_KINDS.map((kind, index) => (
           <ProviderButton
             icon={buildProviderIcon(kind)}
-            title={buildProviderKindName(kind)}
+            title={buildProviderKindName(t, kind)}
             onClick={handleChoose(kind)}
             key={index}
           />

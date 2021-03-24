@@ -12,6 +12,7 @@ import { MovieLike } from '../../types/items/Movie'
 import { SeasonLike } from '../../types/items/Season'
 import { ShowLike } from '../../types/items/Show'
 import { Video } from '../../types/files/videos/Video'
+import { updateFile as ftpUpdateFile } from './FTP'
 import { updateFile as oneDriveUpdateFile } from './OneDrive'
 
 const isCaption = (file: File): file is Caption =>
@@ -70,7 +71,9 @@ export const buildShowLike = (tmdbId: number) => (): ShowLike => ({
 
 export const updateFile = (provider: Provider, file: File): Promise<File> => {
   switch (provider.kind) {
+    case ProviderKind.FTP:
+      return ftpUpdateFile(provider, file)
     case ProviderKind.OneDrive:
-      return oneDriveUpdateFile(provider.id, provider.accessToken.token, file)
+      return oneDriveUpdateFile(provider, file)
   }
 }

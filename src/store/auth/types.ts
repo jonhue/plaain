@@ -1,6 +1,7 @@
 import {
   Provider,
   ProviderKindWithRedirect,
+  ProviderWithRedirect,
 } from '../../types/providers/Provider'
 
 export const EXPECT_LOGIN_REDIRECT = 'EXPECT_LOGIN_REDIRECT'
@@ -17,7 +18,7 @@ export enum RedirectCacheOrigin {
 
 export type LoginRedirectCache = {
   origin: typeof RedirectCacheOrigin.Login
-  provider: Provider
+  provider: ProviderWithRedirect
 }
 
 export type SetupRedirectCache = {
@@ -38,7 +39,7 @@ export interface AuthState {
 interface ExpectLoginRedirectAction {
   type: typeof EXPECT_LOGIN_REDIRECT
   payload: {
-    provider: Provider
+    provider: ProviderWithRedirect
   }
 }
 

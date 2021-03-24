@@ -10,9 +10,12 @@ import {
 import {
   Provider,
   ProviderKindWithRedirect,
+  ProviderWithRedirect,
 } from '../../types/providers/Provider'
 
-export const expectLoginRedirect = (provider: Provider): AuthActionTypes => ({
+export const expectLoginRedirect = (
+  provider: ProviderWithRedirect,
+): AuthActionTypes => ({
   type: EXPECT_LOGIN_REDIRECT,
   payload: {
     provider,

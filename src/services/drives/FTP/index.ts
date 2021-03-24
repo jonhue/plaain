@@ -5,31 +5,30 @@ import {
   SeasonIndexResponse,
   ShowIndexResponse,
 } from '../types'
-import {
-  fetchItem,
-  fetchItemChildren,
-  fetchPathChildren,
-  getClient,
-} from './api'
+import { fetchItem, fetchItems, getClient } from './api'
 import { CannotFindFileError } from '../../../errors/CannotFindFileError'
-import { Client } from '@microsoft/microsoft-graph-client'
+import { Client } from 'basic-ftp'
+import { FTP } from '../../../types/providers/FTP'
 import { File } from '../../../types/files/File'
-import { OneDrive } from '../../../types/providers/OneDrive'
 import { ProviderKind } from '../../../types/providers/Provider'
 import { buildFile } from './util'
 import { notUndefined } from '../../../util'
 
-export const updateFile = async (
-  provider: OneDrive,
-  file: File,
-): Promise<File> => {
-  const client = getClient(provider.accessToken.token)
-  if (file.provider.kind !== ProviderKind.OneDrive)
+export const updateFile = async (provider: FTP, file: File): Promise<File> => {
+  const client = await getClient(
+    provider.host,
+    provider.port,
+    provider.username,
+    provider.password,
+    provider.secure,
+  )
+  const response = await fetchItem(client, file.provider.fileName)
+  if (response === undefined) throw new CannotFindFileError(file)
+  if (file.provider.kind !== ProviderKind.FTP)
     throw new Error(
       'Internal error: attempted to update file with the wrong provider.',
     )
-  const response = await fetchItem(client, file.provider.id)
-  const newFile = buildFile(provider.id)(response)
+  const newFile = buildFile(provider.id, file.provider.path)(response)
 
   if (newFile !== undefined) return newFile
   else throw new CannotFindFileError(file)
@@ -38,11 +37,10 @@ export const updateFile = async (
 const indexFiles = async (
   providerId: string,
   client: Client,
-  folderId: string,
+  path: string,
 ): Promise<File[]> => {
-  const { value: filesResponse } = await fetchItemChildren(client, folderId)
-
-  return filesResponse.map(buildFile(providerId)).filter(notUndefined)
+  const filesResponse = await fetchItems(client, path)
+  return filesResponse.map(buildFile(providerId, path)).filter(notUndefined)
 }
 
 const indexMovies = async (
@@ -52,12 +50,16 @@ const indexMovies = async (
 ): Promise<MovieIndexResponse[]> => {
   if (path === undefined) return []
 
-  const { value: moviesResponse } = await fetchPathChildren(client, path)
+  const moviesResponse = await fetchItems(client, path)
 
   return Promise.all(
     moviesResponse.map(async (movieResponse) => ({
       name: movieResponse.name,
-      files: await indexFiles(providerId, client, movieResponse.id),
+      files: await indexFiles(
+        providerId,
+        client,
+        `${path}/${movieResponse.name}`,
+      ),
     })),
   )
 }
@@ -65,12 +67,9 @@ const indexMovies = async (
 const indexEpisodes = async (
   providerId: string,
   client: Client,
-  seasonFolderId: string,
+  seasonFolderPath: string,
 ): Promise<EpisodeIndexResponse[]> => {
-  const { value: episodesResponse } = await fetchItemChildren(
-    client,
-    seasonFolderId,
-  )
+  const episodesResponse = await fetchItems(client, seasonFolderPath)
 
   const episodes = await Promise.all(
     episodesResponse.map(async (episodeResponse) => {
@@ -79,7 +78,11 @@ const indexEpisodes = async (
 
       return {
         number,
-        files: await indexFiles(providerId, client, episodeResponse.id),
+        files: await indexFiles(
+          providerId,
+          client,
+          `${seasonFolderPath}/${episodeResponse.name}`,
+        ),
       }
     }),
   )
@@ -90,12 +93,9 @@ const indexEpisodes = async (
 const indexSeasons = async (
   providerId: string,
   client: Client,
-  showFolderId: string,
+  showFolderPath: string,
 ): Promise<SeasonIndexResponse[]> => {
-  const { value: seasonsResponse } = await fetchItemChildren(
-    client,
-    showFolderId,
-  )
+  const seasonsResponse = await fetchItems(client, showFolderPath)
 
   const seasons = await Promise.all(
     seasonsResponse.map(async (seasonResponse) => {
@@ -104,7 +104,11 @@ const indexSeasons = async (
 
       return {
         number,
-        episodes: await indexEpisodes(providerId, client, seasonResponse.id),
+        episodes: await indexEpisodes(
+          providerId,
+          client,
+          `${showFolderPath}/${seasonResponse.name}`,
+        ),
       }
     }),
   )
@@ -119,18 +123,28 @@ const indexShows = async (
 ): Promise<ShowIndexResponse[]> => {
   if (path === undefined) return []
 
-  const { value: showsResponse } = await fetchPathChildren(client, path)
+  const showsResponse = await fetchItems(client, path)
 
   return Promise.all(
     showsResponse.map(async (showResponse) => ({
       name: showResponse.name,
-      seasons: await indexSeasons(providerId, client, showResponse.id),
+      seasons: await indexSeasons(
+        providerId,
+        client,
+        `${path}/${showResponse.name}`,
+      ),
     })),
   )
 }
 
-export const index = async (provider: OneDrive): Promise<IndexResponse> => {
-  const client = getClient(provider.accessToken.token)
+export const index = async (provider: FTP): Promise<IndexResponse> => {
+  const client = await getClient(
+    provider.host,
+    provider.port,
+    provider.username,
+    provider.password,
+    provider.secure,
+  )
 
   return {
     movies: await indexMovies(provider.id, client, provider.moviesPath),

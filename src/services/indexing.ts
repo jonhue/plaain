@@ -17,17 +17,15 @@ import {
   buildShowLike,
 } from './drives'
 import { findMovie, findShow } from './databases/TMDb/api'
+import { index as ftpIndex } from '../services/drives/FTP'
 import { index as oneDriveIndex } from '../services/drives/OneDrive'
 
 const handleProvider = (provider: Provider): Promise<IndexResponse> => {
   switch (provider.kind) {
+    case ProviderKind.FTP:
+      return ftpIndex(provider)
     case ProviderKind.OneDrive:
-      return oneDriveIndex(
-        provider.id,
-        provider.accessToken.token,
-        provider.moviesPath,
-        provider.showsPath,
-      )
+      return oneDriveIndex(provider)
   }
 }
 

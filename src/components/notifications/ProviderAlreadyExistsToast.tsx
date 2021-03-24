@@ -23,7 +23,7 @@ export const ProviderAlreadyExistsToast = ({
         'You already linked your {{provider}} account {{name}} with Plaain. You can change your settings by clicking on the service in the authentication list on the settings page.',
         {
           name: notification.provider.name,
-          provider: buildProviderKindName(notification.provider.kind),
+          provider: buildProviderKindName(t, notification.provider.kind),
         },
       )}
       onClose={onClose}

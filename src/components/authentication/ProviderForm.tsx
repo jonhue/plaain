@@ -56,20 +56,20 @@ export const ProviderForm = ({
   )
 
   const isSetupInput = useCallback(
-    (value: string | undefined) => value !== undefined,
+    (value: string | undefined) => value !== undefined && value !== '',
     [],
   )
 
-  const isValidInput = useCallback(
+  const isValidPath = useCallback(
     (value: string | undefined) => value !== undefined && value.startsWith('/'),
     [],
   )
 
   const isValid = useMemo(
     () =>
-      (!isSetupInput(state.moviesPath) || isValidInput(state.moviesPath)) &&
-      (!isSetupInput(state.showsPath) || isValidInput(state.showsPath)),
-    [isSetupInput, isValidInput, state],
+      (!isSetupInput(state.moviesPath) || isValidPath(state.moviesPath)) &&
+      (!isSetupInput(state.showsPath) || isValidPath(state.showsPath)),
+    [isSetupInput, isValidPath, state],
   )
 
   useEffect(() => {
@@ -87,8 +87,8 @@ export const ProviderForm = ({
         </p>
         <div
           className={classNames('ProviderForm__input', {
-            setup: isSetupInput(state.moviesPath),
-            valid: isValidInput(state.moviesPath),
+            warn: isSetupInput(state.moviesPath),
+            valid: isValidPath(state.moviesPath),
           })}
         >
           <input
@@ -109,8 +109,8 @@ export const ProviderForm = ({
         </p>
         <div
           className={classNames('ProviderForm__input', {
-            setup: isSetupInput(state.showsPath),
-            valid: isValidInput(state.showsPath),
+            warn: isSetupInput(state.showsPath),
+            valid: isValidPath(state.showsPath),
           })}
         >
           <input
