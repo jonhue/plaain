@@ -1,6 +1,13 @@
 @import "../../variables";
 
 .ProviderForm {
+  label {
+    p.small {
+      margin: 0;
+      margin-bottom: 0.25em;
+    }
+  }
+
   &__input {
     align-items: center;
     display: flex;

@@ -22,7 +22,7 @@ export const EnterDetailsProvider = ({
       <p>{t('Plaain needs some more details to connect to your provider.')}</p>
       {kind === ProviderKind.FTP ? (
         <FTPProviderForm
-          submitCaption={t('Complete')}
+          submitCaption={t('Continue')}
           onSubmit={onEnteredDetails}
         />
       ) : null}

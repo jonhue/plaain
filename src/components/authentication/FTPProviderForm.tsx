@@ -98,6 +98,9 @@ export const FTPProviderForm = ({
     <form className="FTPProviderForm" onSubmit={handleSubmit}>
       <label>
         {t('Name')}
+        <p className="small">
+          {t('Friendly name to identify server, not used for connecting.')}
+        </p>
         <div
           className={classNames('FTPProviderForm__input', 'warn', {
             valid: isSetupInput(state.name),
@@ -185,14 +188,15 @@ export const FTPProviderForm = ({
       </label>
 
       <div className="FTPProviderForm__checkbox">
+        <input
+          type="checkbox"
+          name="secure"
+          checked={state.secure}
+          onChange={handleChange}
+        />
         <label>
-          <input
-            type="checkbox"
-            name="secure"
-            checked={state.secure}
-            onChange={handleChange}
-          />
-          {t('Secure (explicit FTPS over TLS)')}
+          {t('Secure')}
+          <p className="small">{t('Explicit FTPS over TLS.')}</p>
         </label>
       </div>
 
