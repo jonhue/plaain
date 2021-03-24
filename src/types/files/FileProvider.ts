@@ -1,5 +1,5 @@
-import { FTPCaption, OneDriveCaption } from './captions/OneDriveCaption'
-import { FTPVideo, OneDriveVideo } from './videos/OneDriveVideo'
+import { FTPCaption, OneDriveCaption } from './Caption'
+import { FTPVideo, OneDriveVideo } from './Video'
 import { ProviderKind } from '../providers/Provider'
 
 export interface IFileProvider {

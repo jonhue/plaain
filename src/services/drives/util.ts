@@ -1,11 +1,11 @@
-import { CaptionType, VTT_EXTENSION } from '../../types/files/captions/Caption'
+import { CaptionType, VTT_EXTENSION } from '../../types/files/Caption'
 import {
   M4V_EXTENSION,
   MKV_EXTENSION,
   MP4_EXTENSION,
   VideoType,
   WEBM_EXTENSION,
-} from '../../types/files/videos/Video'
+} from '../../types/files/Video'
 import { ProviderKind } from '../../types/providers/Provider'
 
 export const parseFileName = (fileName: string) => ({

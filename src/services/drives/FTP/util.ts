@@ -1,6 +1,6 @@
-import { Caption, CaptionType } from '../../../types/files/captions/Caption'
+import { Caption, CaptionType } from '../../../types/files/Caption'
 import { File, FileKind } from '../../../types/files/File'
-import { Video, VideoType } from '../../../types/files/videos/Video'
+import { Video, VideoType } from '../../../types/files/Video'
 import {
   buildFileId,
   parseCaptionType,

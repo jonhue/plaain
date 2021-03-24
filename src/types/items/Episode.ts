@@ -1,7 +1,7 @@
 import { CastMember, CrewMember } from './Person'
 import { IWatchableMediaItem, ItemKind, Usage } from './Item'
-import { Caption } from '../files/captions/Caption'
-import { Video } from '../files/videos/Video'
+import { Caption } from '../files/Caption'
+import { Video } from '../files/Video'
 
 export interface Episode extends IWatchableMediaItem {
   kind: typeof ItemKind.Episode

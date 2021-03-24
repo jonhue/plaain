@@ -5,13 +5,13 @@ import {
   buildVideoSize,
   buildVideoType,
 } from '../util'
-import { Caption } from '../types/files/captions/Caption'
+import { Caption } from '../types/files/Caption'
 import { Episode } from '../types/items/Episode'
 import { Movie } from '../types/items/Movie'
 import Plyr from 'plyr'
 import { Provider } from '../types/providers/Provider'
 import { RootState } from '../store'
-import { Video } from '../types/files/videos/Video'
+import { Video } from '../types/files/Video'
 import { providersSelector } from '../store/auth/selectors'
 import { useSelector } from 'react-redux'
 

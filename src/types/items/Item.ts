@@ -2,9 +2,9 @@ import { Episode, EpisodeLike } from './Episode'
 import { Movie, MovieLike } from './Movie'
 import { Season, SeasonLike } from './Season'
 import { Show, ShowLike } from './Show'
-import { Caption } from '../files/captions/Caption'
+import { Caption } from '../files/Caption'
 import { Person } from './Person'
-import { Video } from '../files/videos/Video'
+import { Video } from '../files/Video'
 
 export enum ItemKind {
   Episode,
