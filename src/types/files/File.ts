@@ -1,6 +1,6 @@
-import { Caption } from './captions/Caption'
+import { Caption } from './Caption'
 import { FileProvider } from './FileProvider'
-import { Video } from './videos/Video'
+import { Video } from './Video'
 
 export enum FileKind {
   Video,

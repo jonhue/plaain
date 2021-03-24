@@ -1,12 +1,14 @@
+import { FTP } from './FTP'
 import { OneDrive } from './OneDrive'
 
 export enum ProviderKind {
+  FTP,
   OneDrive,
 }
 
 export type ProviderKindWithRedirect = ProviderKind.OneDrive
 
-export const PROVIDER_KINDS = [ProviderKind.OneDrive]
+export const PROVIDER_KINDS = [ProviderKind.OneDrive, ProviderKind.FTP]
 
 export interface IProvider {
   kind: ProviderKind
@@ -16,4 +18,6 @@ export interface IProvider {
   showsPath: string | undefined
 }
 
-export type Provider = OneDrive
+export type Provider = FTP | OneDrive
+
+export type ProviderWithRedirect = Provider & { kind: ProviderKindWithRedirect }

@@ -1,8 +1,10 @@
+import { AuthResponse, AuthSetup } from '../../services/auth/types'
 import { LoginRedirectCache, SetupRedirectCache } from './types'
 import {
   Provider,
   ProviderKind,
   ProviderKindWithRedirect,
+  ProviderWithRedirect,
 } from '../../types/providers/Provider'
 import {
   expectLoginRedirect,
@@ -14,27 +16,31 @@ import {
   authHandleRedirect as oneDriveAuthHandleRedirectCall,
 } from '../../services/auth/OneDrive'
 import { AppThunk } from '../index'
-import { AuthResponse } from '../../services/auth/types'
 import { ProviderAlreadyExists } from '../../errors/ProviderAlreadyExists'
+import { auth as ftpAuthCall } from '../../services/auth/FTP'
 import { providersSelector } from './selectors'
 
 const authHandleProvider = (
   provider: Provider,
-  onRedirect: () => void,
+  onRedirect: (provider: ProviderWithRedirect) => () => void,
 ): Promise<AuthResponse | void> => {
   switch (provider.kind) {
+    case ProviderKind.FTP:
+      return ftpAuthCall(provider)
     case ProviderKind.OneDrive:
-      return oneDriveAuthCall(provider, onRedirect)
+      return oneDriveAuthCall(provider, onRedirect(provider))
   }
 }
 
 const setupAuthHandleProvider = (
-  kind: ProviderKind,
-  onRedirect: () => void,
+  config: AuthSetup,
+  onRedirect: (kind: ProviderKindWithRedirect) => () => void,
 ): Promise<AuthResponse | void> => {
-  switch (kind) {
+  switch (config.kind) {
+    case ProviderKind.FTP:
+      return ftpAuthCall(config)
     case ProviderKind.OneDrive:
-      return oneDriveAuthCall(undefined, onRedirect)
+      return oneDriveAuthCall(undefined, onRedirect(ProviderKind.OneDrive))
   }
 }
 
@@ -63,7 +69,7 @@ const authHandleResponse = (
 export const auth = (
   provider: Provider,
 ): AppThunk<Promise<Provider | undefined>> => async (dispatch) => {
-  const response = await authHandleProvider(provider, () =>
+  const response = await authHandleProvider(provider, (provider) => () =>
     dispatch(expectLoginRedirect(provider)),
   )
   if (response === undefined) return
@@ -83,13 +89,13 @@ const setupAuthHandleResponse = (
 }
 
 export const setupAuth = (
-  kind: ProviderKind,
+  config: AuthSetup,
 ): AppThunk<Promise<AuthResponse | undefined>> => async (dispatch) => {
-  const response = await setupAuthHandleProvider(kind, () =>
+  const response = await setupAuthHandleProvider(config, (kind) => () =>
     dispatch(expectSetupRedirect(kind)),
   )
   if (response === undefined) return
-  return dispatch(setupAuthHandleResponse(kind, response))
+  return dispatch(setupAuthHandleResponse(config.kind, response))
 }
 
 export const authHandleRedirect = (

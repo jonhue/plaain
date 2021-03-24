@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.ProviderForm {
+.FTPProviderForm {
   label {
     p.small {
       margin: 0;
@@ -43,6 +43,16 @@
           fill: $success;
         }
       }
+    }
+  }
+
+  &__checkbox {
+    align-items: baseline;
+    display: flex;
+    margin-bottom: $padding;
+
+    input {
+      margin-right: $spacing;
     }
   }
 }

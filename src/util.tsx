@@ -2,11 +2,12 @@ import { FALLBACK_BACKDROP_URL, FALLBACK_COVER_URL } from './constants'
 import { FileProvider, VideoProvider } from './types/files/FileProvider'
 import { Gender, Job } from './types/items/Person'
 import { IMediaItem, Item, ItemKind } from './types/items/Item'
-import { M4V_EXTENSION, MP4_EXTENSION, Video } from './types/files/videos/Video'
-import { Caption } from './types/files/captions/Caption'
+import { M4V_EXTENSION, MP4_EXTENSION, Video } from './types/files/Video'
+import { Provider, ProviderKind } from './types/providers/Provider'
+import { Caption } from './types/files/Caption'
+import { FTPIcon } from './components/icons/Nucleo/FTPIcon'
 import ISO6391 from 'iso-639-1'
 import { OneDriveIcon } from './components/icons/Nucleo/OneDriveIcon'
-import { ProviderKind } from './types/providers/Provider'
 import React from 'react'
 import { TFunction } from 'i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
@@ -73,8 +74,17 @@ export const buildItemUrl = (item: Item): string => {
   }
 }
 
-export const buildFileDownloadUrl = (file: FileProvider): string => {
+export const buildFileDownloadUrl = (
+  provider: Provider,
+  file: FileProvider,
+): string => {
   switch (file.kind) {
+    case ProviderKind.FTP:
+      if (provider.kind !== ProviderKind.FTP)
+        throw new Error(
+          'Internal error: attempted to determine download URL with the wrong provider.',
+        )
+      return `ftp://${provider.username}:${provider.password}@${provider.host}:${provider.port}/${file.path}/${file.fileName}`
     case ProviderKind.OneDrive:
       return file.downloadUrl
   }
@@ -89,8 +99,10 @@ export const buildVideoType = (file: Video): string => {
   }
 }
 
-export const buildVideoSize = (file: VideoProvider): number => {
+export const buildVideoSize = (file: VideoProvider): number | undefined => {
   switch (file.kind) {
+    case ProviderKind.FTP:
+      return undefined
     case ProviderKind.OneDrive:
       return file.height
   }
@@ -99,15 +111,22 @@ export const buildVideoSize = (file: VideoProvider): number => {
 export const buildCaptionSrcLang = (caption: Caption): string =>
   ISO6391.getCode(caption.name)
 
-export const buildProviderKindName = (kind: ProviderKind): string => {
+export const buildProviderKindName = (
+  t: TFunction,
+  kind: ProviderKind,
+): string => {
   switch (kind) {
+    case ProviderKind.FTP:
+      return t('FTP Server')
     case ProviderKind.OneDrive:
-      return 'OneDrive'
+      return t('OneDrive')
   }
 }
 
 export const buildProviderIcon = (kind: ProviderKind): JSX.Element => {
   switch (kind) {
+    case ProviderKind.FTP:
+      return <FTPIcon />
     case ProviderKind.OneDrive:
       return <OneDriveIcon />
   }

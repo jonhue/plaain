@@ -21,7 +21,7 @@ export const AuthenticationFailureToast = ({
       title={t('Authentication unsuccessful')}
       text={t(
         "Plaain wasn't able to authenticate with {{provider}}. Please report this error if it persists.",
-        { provider: buildProviderKindName(notification.provider) },
+        { provider: buildProviderKindName(t, notification.provider) },
       )}
       action={{
         text: t('Report'),
