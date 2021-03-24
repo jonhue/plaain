@@ -12,8 +12,6 @@ import React from 'react'
 import { TFunction } from 'i18next'
 import { buildTMDbImageUrl } from './services/databases/TMDb/util'
 
-const DEFAULT_VIDEO_SIZE = 1080
-
 export const notUndefined = <T extends unknown>(x: T | undefined): x is T =>
   x !== undefined
 
@@ -101,10 +99,10 @@ export const buildVideoType = (file: Video): string => {
   }
 }
 
-export const buildVideoSize = (file: VideoProvider): number => {
+export const buildVideoSize = (file: VideoProvider): number | undefined => {
   switch (file.kind) {
     case ProviderKind.FTP:
-      return DEFAULT_VIDEO_SIZE
+      return undefined
     case ProviderKind.OneDrive:
       return file.height
   }
