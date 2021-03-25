@@ -42,7 +42,7 @@
     "@types/react-router": "^5.1.12",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux": "^3.6.0",
-    "basic-ftp": "^4.6.3",
+    "basic-ftp": "^4.6.4",
     "classnames": "^2.2.6",
     "flexsearch": "^0.6.32",
     "i18next": "^20.0.0",
