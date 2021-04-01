@@ -32,7 +32,7 @@
     ]
   },
   "dependencies": {
-    "@azure/msal-browser": "^2.13.0",
+    "@azure/msal-browser": "^2.13.1",
     "@microsoft/microsoft-graph-client": "^2.2.1",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.37",
