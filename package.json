@@ -70,7 +70,7 @@
     "use-onclickoutside": "^0.3.2",
     "web-vitals": "^1.1.1",
     "whatwg-fetch": "^3.6.2",
-    "workbox-background-sync": "^6.1.2",
+    "workbox-background-sync": "^6.1.5",
     "workbox-broadcast-update": "^6.1.5",
     "workbox-cacheable-response": "^6.1.2",
     "workbox-core": "^6.1.1",
