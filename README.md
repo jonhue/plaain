@@ -55,9 +55,10 @@ and captions with the `vtt` extension.
 
 When your files are setup, [open Plaain](https://jonhue.github.io/plaain) and connect to your preferred cloud.
 
-Currently this list of cloud providers is supported:
+Currently these cloud providers are supported:
 
 * OneDrive
+* FTP Servers
 
 To wrap up setting up your cloud provider, Plaain will ask you where you stored your movies and TV shows.
 More specifically, Plaain will ask you for a path to your movies and a path to your TV shows. The paths should be relative to the root directory of your linked cloud.
