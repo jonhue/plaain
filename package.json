@@ -50,7 +50,7 @@
     "i18next-http-backend": "^1.2.1",
     "iso-639-1": "^2.1.9",
     "node-sass": "^5.0.0",
-    "plyr": "^3.6.4",
+    "plyr": "^3.6.6",
     "react": "^16.14.0",
     "react-device-detect": "^1.17.0",
     "react-dom": "^16.14.0",
