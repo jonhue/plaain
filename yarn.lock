@@ -12371,10 +12371,10 @@ use-async-effect@^2.2.3:
   resolved "https://registry.yarnpkg.com/use-async-effect/-/use-async-effect-2.2.3.tgz#752cc065b7d002c177e754cd0624a166018341bc"
   integrity sha512-l/FSqFyqPwhpDJseKyJ9/FZi3PBat2LOcspAqFJznm6H8pgWs67WIjMDr1s3WFBd6cS9zvQrySX0HyHfZi/Upg==
 
-use-async-memo@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/use-async-memo/-/use-async-memo-1.2.2.tgz#6549579335c00afc0fff6f18eafc4a9d29596ece"
-  integrity sha512-xJ6a+yE7l8rtCKYDEhIS4S1lQF5mNPHF5nD2bLFVh9eTePuWuOCMHZBNv5S8Jy0Mj9mYVBJWUzBiIoKNBE71eA==
+use-async-memo@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/use-async-memo/-/use-async-memo-1.2.3.tgz#fe49d7ae1cd850199cf9e4a8ee483e31ed85659f"
+  integrity sha512-AjZ1Wy1vfOSlaxohqoLIpauV+jwph/p0N72PBzxeEcjrZ4Mf/4o1Vav4bLaAPYuHLJZo+4M/4TIcAk7XC6H98g==
 
 use-isomorphic-layout-effect@^1.0.0:
   version "1.1.1"
