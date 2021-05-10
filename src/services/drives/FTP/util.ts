@@ -50,17 +50,17 @@ const buildVideo = (
   },
 })
 
-export const buildFile = (providerId: string, path: string) => (
-  response: FileInfo,
-): File | undefined => {
-  const { name, extension } = parseFileName(response.name)
-  if (extension === undefined) return
+export const buildFile =
+  (providerId: string, path: string) =>
+  (response: FileInfo): File | undefined => {
+    const { name, extension } = parseFileName(response.name)
+    if (extension === undefined) return
 
-  const captionType = parseCaptionType(extension)
-  const videoType = parseVideoType(extension)
+    const captionType = parseCaptionType(extension)
+    const videoType = parseVideoType(extension)
 
-  if (captionType !== undefined)
-    return buildCaption(providerId, path, captionType, name, response)
-  else if (videoType !== undefined)
-    return buildVideo(providerId, path, videoType, name, response)
-}
+    if (captionType !== undefined)
+      return buildCaption(providerId, path, captionType, name, response)
+    else if (videoType !== undefined)
+      return buildVideo(providerId, path, videoType, name, response)
+  }
