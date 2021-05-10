@@ -86,26 +86,32 @@ const buildVideo = (
   },
 })
 
-export const buildFile = (providerId: string) => (
-  response: DriveItemResponse,
-): File | undefined => {
-  if (response.file === undefined) return
+export const buildFile =
+  (providerId: string) =>
+  (response: DriveItemResponse): File | undefined => {
+    if (response.file === undefined) return
 
-  const { name, extension } = parseFileName(response.name)
-  if (extension === undefined) return
+    const { name, extension } = parseFileName(response.name)
+    if (extension === undefined) return
 
-  const captionType = parseCaptionType(extension)
-  const videoType = parseVideoType(extension)
+    const captionType = parseCaptionType(extension)
+    const videoType = parseVideoType(extension)
 
-  if (captionType !== undefined)
-    return buildCaption(providerId, captionType, name, response, response.file)
-  else if (videoType !== undefined && response.video !== undefined)
-    return buildVideo(
-      providerId,
-      videoType,
-      name,
-      response,
-      response.file,
-      response.video,
-    )
-}
+    if (captionType !== undefined)
+      return buildCaption(
+        providerId,
+        captionType,
+        name,
+        response,
+        response.file,
+      )
+    else if (videoType !== undefined && response.video !== undefined)
+      return buildVideo(
+        providerId,
+        videoType,
+        name,
+        response,
+        response.file,
+        response.video,
+      )
+  }

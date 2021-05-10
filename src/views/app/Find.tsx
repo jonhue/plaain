@@ -21,7 +21,7 @@ const buildIndex = <T extends Item>(
   const index: Index<string> = FlexSearch.create()
   items.forEach((item) => {
     // a workaround to use strings as keys
-    const key = (item.id as unknown) as number
+    const key = item.id as unknown as number
 
     index.add(key, itemToText(item))
   })

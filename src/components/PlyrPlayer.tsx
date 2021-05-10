@@ -22,26 +22,28 @@ const findProvider = (providers: Provider[], providerId: string) => {
   return provider
 }
 
-const buildSource = (providers: Provider[]) => (video: Video): Plyr.Source => {
-  const provider = findProvider(providers, video.provider.providerId)
-  return {
-    src: buildFileDownloadUrl(provider, video.provider),
-    type: `video/${buildVideoType(video)}`,
-    size: buildVideoSize(video.provider),
+const buildSource =
+  (providers: Provider[]) =>
+  (video: Video): Plyr.Source => {
+    const provider = findProvider(providers, video.provider.providerId)
+    return {
+      src: buildFileDownloadUrl(provider, video.provider),
+      type: `video/${buildVideoType(video)}`,
+      size: buildVideoSize(video.provider),
+    }
   }
-}
 
-const buildCaption = (providers: Provider[]) => (
-  caption: Caption,
-): Plyr.Track => {
-  const provider = findProvider(providers, caption.provider.providerId)
-  return {
-    kind: 'captions',
-    label: caption.name,
-    srcLang: buildCaptionSrcLang(caption),
-    src: buildFileDownloadUrl(provider, caption.provider),
+const buildCaption =
+  (providers: Provider[]) =>
+  (caption: Caption): Plyr.Track => {
+    const provider = findProvider(providers, caption.provider.providerId)
+    return {
+      kind: 'captions',
+      label: caption.name,
+      srcLang: buildCaptionSrcLang(caption),
+      src: buildFileDownloadUrl(provider, caption.provider),
+    }
   }
-}
 
 type PlyrPlayerProps = {
   id: string

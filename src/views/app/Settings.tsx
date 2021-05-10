@@ -41,10 +41,10 @@ export const Settings = () => {
     [dispatch],
   )
 
-  const handleIndex = useCallback(() => dispatch(load(index(providers))), [
-    dispatch,
-    providers,
-  ])
+  const handleIndex = useCallback(
+    () => dispatch(load(index(providers))),
+    [dispatch, providers],
+  )
 
   const handleFetchMetadataAll = useCallback(
     () => dispatch(load(fetchAllMetadata())),

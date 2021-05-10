@@ -20,45 +20,45 @@ const isCaption = (file: File): file is Caption =>
 
 const isVideo = (file: File): file is Video => file.kind === FileKind.Video
 
-export const buildEpisodeLike = (showTmdbId: number, seasonNumber: number) => (
-  item: EpisodeIndexResponse,
-): EpisodeLike => ({
-  kind: ItemKind.Episode,
-  number: item.number,
-  seasonNumber,
-  showTmdbId,
-  sources: item.files.filter(isVideo),
-  captions: item.files.filter(isCaption),
-  usage: {
-    lastWatched: undefined,
-    progress: undefined,
-  },
-})
+export const buildEpisodeLike =
+  (showTmdbId: number, seasonNumber: number) =>
+  (item: EpisodeIndexResponse): EpisodeLike => ({
+    kind: ItemKind.Episode,
+    number: item.number,
+    seasonNumber,
+    showTmdbId,
+    sources: item.files.filter(isVideo),
+    captions: item.files.filter(isCaption),
+    usage: {
+      lastWatched: undefined,
+      progress: undefined,
+    },
+  })
 
-export const buildMovieLike = (tmdbId: number) => (
-  item: MovieIndexResponse,
-): MovieLike => ({
-  kind: ItemKind.Movie,
-  tmdbId,
-  sources: item.files.filter(isVideo),
-  captions: item.files.filter(isCaption),
-  usage: {
-    lastWatched: undefined,
-    progress: undefined,
-  },
-})
+export const buildMovieLike =
+  (tmdbId: number) =>
+  (item: MovieIndexResponse): MovieLike => ({
+    kind: ItemKind.Movie,
+    tmdbId,
+    sources: item.files.filter(isVideo),
+    captions: item.files.filter(isCaption),
+    usage: {
+      lastWatched: undefined,
+      progress: undefined,
+    },
+  })
 
-export const buildSeasonLike = (showTmdbId: number) => (
-  item: SeasonIndexResponse,
-): SeasonLike => ({
-  kind: ItemKind.Season,
-  number: item.number,
-  showTmdbId,
-  usage: {
-    lastWatched: undefined,
-    progress: undefined,
-  },
-})
+export const buildSeasonLike =
+  (showTmdbId: number) =>
+  (item: SeasonIndexResponse): SeasonLike => ({
+    kind: ItemKind.Season,
+    number: item.number,
+    showTmdbId,
+    usage: {
+      lastWatched: undefined,
+      progress: undefined,
+    },
+  })
 
 export const buildShowLike = (tmdbId: number) => (): ShowLike => ({
   kind: ItemKind.Show,
