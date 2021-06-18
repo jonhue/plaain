@@ -45,7 +45,7 @@
     "basic-ftp": "jonhue/basic-ftp",
     "classnames": "^2.3.1",
     "flexsearch": "^0.6.32",
-    "i18next": "^20.3.1",
+    "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",
     "iso-639-1": "^2.1.9",
