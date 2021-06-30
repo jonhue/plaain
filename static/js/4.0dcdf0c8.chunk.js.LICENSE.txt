@@ -48,9 +48,9 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-/*! @azure/msal-browser v2.14.2 2021-05-12 */
+/*! @azure/msal-browser v2.15.0 2021-06-29 */
 
-/*! @azure/msal-common v4.3.0 2021-05-12 */
+/*! @azure/msal-common v4.4.0 2021-06-29 */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
