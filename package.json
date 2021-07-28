@@ -35,7 +35,7 @@
     "@azure/msal-browser": "^2.16.0",
     "@microsoft/microsoft-graph-client": "^2.2.1",
     "@types/classnames": "^2.3.1",
-    "@types/node": "^16.4.3",
+    "@types/node": "^16.4.5",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",
