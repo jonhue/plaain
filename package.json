@@ -90,7 +90,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.25.1",
     "gh-pages": "^3.2.3",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
