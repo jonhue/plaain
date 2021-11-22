@@ -32,11 +32,7 @@ export const recentlyWatchedSelector = createSelector(
 )
 
 export const personSelector = (id: string) =>
-  createSelector<
-    { movies: MoviesState; seasons: SeasonsState },
-    Person[],
-    AccPerson | undefined
-  >(
+  createSelector(
     [
       ({ movies }) => moviesPersonSelector(id, (movie) => movie.cast)(movies),
       ({ movies }) => moviesPersonSelector(id, (movie) => movie.crew)(movies),

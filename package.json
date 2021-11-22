@@ -50,6 +50,8 @@
     "i18next-http-backend": "^1.3.1",
     "iso-639-1": "^2.1.10",
     "plyr": "^3.6.9",
+    "postcss": "^8.3.11",
+    "postcss-custom-properties": "^12.0.0",
     "react": "^17.0.2",
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
@@ -61,7 +63,7 @@
     "redux": "^4.1.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0",
+    "reselect": "^4.1.4",
     "sass": "^1.39.2",
     "swiper": "^6.8.1",
     "typescript": "^4.5.2",
@@ -86,7 +88,6 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
-    "@typescript-eslint/typescript-estree": "^5.4.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -97,5 +98,8 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.21.0"
+  },
+  "resolutions": {
+    "react-scripts/postcss-preset-env/postcss-custom-properties": "^12.0.0"
   }
 }
