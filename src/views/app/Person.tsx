@@ -6,25 +6,18 @@ import { Cover } from '../../components/Cover'
 import { HorizontalSlide } from '../../components/HorizontalSlide'
 import { NotFound } from '../NotFound'
 import { RootState } from '../../store'
-import { RouteComponentProps } from 'react-router'
 import { moviesByPersonSelector } from '../../store/movies/selectors'
 import { personSelector } from '../../store/selectors'
 import { seasonsByPersonSelector } from '../../store/seasons/selectors'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-interface PersonParams {
-  id: string
-}
-
-type PersonProps = RouteComponentProps<PersonParams>
-
-export const Person = ({ match }: PersonProps) => {
+export const Person = () => {
   const { t } = useTranslation()
+  const { id } = useParams()
 
-  const person = useSelector((state: RootState) =>
-    personSelector(match.params.id)(state),
-  )
+  const person = useSelector((state: RootState) => personSelector(id!)(state))
   const { movies, seasons } = useSelector((state: RootState) => ({
     movies: person && moviesByPersonSelector(person.id)(state.movies),
     seasons: person && seasonsByPersonSelector(person.id)(state.seasons),

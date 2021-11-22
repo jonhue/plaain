@@ -1,23 +1,21 @@
 import './Tab.scss'
+import { Link, useMatch } from 'react-router-dom'
 import React, { FunctionComponent } from 'react'
-import { matchPath, useLocation } from 'react-router'
-import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
 type TabProps = {
   to: string
-  exact?: boolean
+  end?: boolean
   disabled?: boolean
 }
 
 export const Tab: FunctionComponent<TabProps> = ({
   children,
   to,
-  exact,
+  end,
   disabled,
 }) => {
-  const location = useLocation()
-  const isActive = !!matchPath(location.pathname, { path: to, exact })
+  const isActive = !!useMatch({ path: to, end })
 
   return (
     <Link className={classNames('Tab', { active: isActive, disabled })} to={to}>

@@ -24,3 +24,5 @@ yarn-error.log*
 
 # local
 .tool-versions
+
+.eslintcache
