@@ -34,12 +34,12 @@
         top: -0.125em;
 
         img {
-          box-shadow: 0 4px 10px rgba($dark, 1);
+          box-shadow: 0 4px 10px rgb($dark 1);
         }
       }
 
       .Cover {
-        box-shadow: 0 0 6px rgba($dark, 0.16);
+        box-shadow: 0 0 6px rgb($dark 0.16);
         transition: box-shadow 0.1s ease-out;
         width: 100%;
       }
