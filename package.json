@@ -94,10 +94,10 @@
     "eslint-plugin-react": "^7.26.1",
     "gh-pages": "^3.2.3",
     "prettier": "^2.4.1",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.21.0"
+    "stylelint": "^14.1.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.0.0"
   },
   "resolutions": {
     "react-scripts/postcss-preset-env/postcss-custom-properties": "^12.0.0"

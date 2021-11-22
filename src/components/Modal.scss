@@ -47,7 +47,7 @@ $modal-border-size: 0.0625em;
 
   &.active {
     backdrop-filter: blur($modal-background-blur);
-    background: rgba($dark, $modal-overlay-opacity);
+    background: rgb($dark, $modal-overlay-opacity);
     visibility: visible;
 
     .Modal__wrapper {
