@@ -1,5 +1,5 @@
 import './HorizontalSlide.scss'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js'
 import { buildCoverUrl, buildItemUrl } from '../util'
 import { Cover } from './Cover'
 import { Link } from 'react-router-dom'
