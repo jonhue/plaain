@@ -1,4 +1,4 @@
-@import "plyr/src/sass/plyr.scss";
+@import "plyr/src/sass/plyr";
 @import "./variables";
 
 .plyr {
@@ -16,15 +16,15 @@
   --plyr-video-control-background-hover: transparent;
   --plyr-menu-background: #{rgb($dark, 0.9)};
   --plyr-menu-color: #{$light};
-  --plyr-menu-shadow: #{0 0 6px rgb($black 0.16)};
+  --plyr-menu-shadow: #{0 0 6px rgb($black, 0.16)};
   --plyr-menu-radius: #{$border-radius};
   --plyr-menu-arrow-color: #{$light};
   --plyr-menu-back-border-color: transparent;
   --plyr-menu-back-border-shadow-color: transparent;
   --plyr-progress-loading-size: 1.5em;
-  --plyr-progress-loading-background: rgb(35 40 47 / 60%);
-  --plyr-video-progress-buffered-background: rgb(255 255 255 / 25%);
-  --plyr-audio-progress-buffered-background: rgb(193 200 209 / 60%);
+  --plyr-progress-loading-background: rgb(35, 40, 47, 60%);
+  --plyr-video-progress-buffered-background: rgb(255, 255, 255, 25%);
+  --plyr-audio-progress-buffered-background: rgb(193, 200, 209, 60%);
   --plyr-range-thumb-height: 0.625em;
   --plyr-range-thumb-background: #{$white};
   --plyr-range-track-height: 0.25em;

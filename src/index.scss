@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:600,700,900");
-@import "swiper/swiper.scss";
+@import "swiper/swiper";
 @import "./plyr";
 @import "./variables";
 
@@ -53,7 +53,7 @@ button {
   background: $dark;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgb($dark 0.16);
+  box-shadow: 0 0 6px rgb($dark, 0.16);
   color: $white;
   cursor: pointer;
   display: flex;
@@ -77,7 +77,7 @@ button {
   &:active,
   &:focus,
   &:hover {
-    box-shadow: 0 4px 10px rgb($dark 0.7);
+    box-shadow: 0 4px 10px rgb($dark, 0.7);
     top: -0.125em;
   }
 
@@ -89,23 +89,23 @@ button {
 
   &.primary {
     background: $highlight;
-    box-shadow: 0 0 6px rgb($highlight 0.16);
+    box-shadow: 0 0 6px rgb($highlight, 0.16);
 
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgb($highlight 0.7);
+      box-shadow: 0 0 10px rgb($highlight, 0.7);
     }
   }
 
   &.warn {
     background: $warn;
-    box-shadow: 0 0 6px rgb($warn 0.16);
+    box-shadow: 0 0 6px rgb($warn, 0.16);
 
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgb($warn 0.7);
+      box-shadow: 0 0 10px rgb($warn, 0.7);
     }
   }
 
@@ -116,7 +116,7 @@ button {
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 4px 10px rgb($dark 0.5);
+      box-shadow: 0 4px 10px rgb($dark, 0.5);
     }
   }
 
@@ -199,7 +199,7 @@ input {
   background: $dark;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgb($dark 0.16);
+  box-shadow: 0 0 6px rgb($dark, 0.16);
   color: $white;
   font-family: Muli, sans-serif;
   font-size: 1em;
@@ -221,7 +221,7 @@ select {
   background: $dark;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgb($dark 0.16);
+  box-shadow: 0 0 6px rgb($dark, 0.16);
   color: $white;
   font-family: Muli, sans-serif;
   font-size: 1em;
