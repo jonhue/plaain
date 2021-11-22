@@ -14,7 +14,7 @@
   --plyr-video-control-color: #{$light};
   --plyr-video-control-color-hover: #{$white};
   --plyr-video-control-background-hover: transparent;
-  --plyr-menu-background: #{rgb($dark, 0.9)};
+  --plyr-menu-background: #{rgb($dark-background, 0.9)};
   --plyr-menu-color: #{$light};
   --plyr-menu-shadow: #{0 0 6px rgb($black, 0.16)};
   --plyr-menu-radius: #{$border-radius};
@@ -28,7 +28,7 @@
   --plyr-range-thumb-height: 0.625em;
   --plyr-range-thumb-background: #{$white};
   --plyr-range-track-height: 0.25em;
-  --plyr-tooltip-background: #{rgb($dark, 0.9)};
+  --plyr-tooltip-background: #{rgb($dark-background, 0.9)};
   --plyr-tooltip-color: #{$light};
   --plyr-tooltip-radius: #{$border-radius};
   --plyr-font-family: "Muli", sans-serif;
