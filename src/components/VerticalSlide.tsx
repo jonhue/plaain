@@ -1,5 +1,5 @@
 import './VerticalSlide.scss'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js'
 import SwiperCore, { EffectCoverflow } from 'swiper'
 import { buildCoverUrl, buildItemUrl } from '../util'
 import { Cover } from './Cover'
