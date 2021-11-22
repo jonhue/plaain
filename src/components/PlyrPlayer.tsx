@@ -64,6 +64,8 @@ export const PlyrPlayer = ({
   )
 
   useEffect(() => {
+    let hasForwarded = false
+
     const player = new Plyr(`video.PlyrPlayer#${id}`, {
       debug: process.env.NODE_ENV === 'development',
       controls: [
@@ -89,8 +91,11 @@ export const PlyrPlayer = ({
       tracks: item.captions.map(buildCaption(providers)),
     }
 
-    player.on('ready', () => {
-      if (startAt !== undefined) player.forward(startAt)
+    player.on('canplay', () => {
+      if (hasForwarded || startAt === undefined || player.duration < startAt)
+        return
+      player.forward(startAt)
+      hasForwarded = true
     })
 
     return () => {

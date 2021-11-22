@@ -12,7 +12,7 @@ import { updateEpisodeProgress } from '../store/episodes/thunks'
 import { updateFiles } from '../store/thunks'
 import { updateMovieProgress } from '../store/movies/thunks'
 import { useAsyncMemo } from 'use-async-memo'
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router-dom'
 
 const KIND_PARAMETER = 'type'
 const ID_PARAMETER = 'id'

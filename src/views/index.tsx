@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Loading } from './Loading'
 import { NotFound } from './NotFound'
 import { NotificationsViewer } from '../components/notifications/NotificationsViewer'
@@ -22,12 +22,12 @@ const Base = () => {
       {isLoading && <Loading />}
       <Router basename="/plaain">
         <ScrollToTop />
-        <Switch>
-          <Route path="/" exact component={Welcome} />
-          <Route path="/app" component={App} />
-          <Route path="/player" exact component={Player} />
-          <Route component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="app/*" element={<App />} />
+          <Route path="player" element={<Player />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Router>
 
       <NotificationsViewer />

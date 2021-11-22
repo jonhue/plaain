@@ -30,7 +30,7 @@ export const Player = ({ item, startAt, onProgress }: PlayerProps) => {
         <div className="Player__content__header">
           <h1>{item.title}</h1>
           <Back>
-            <button className="secondary">{t('Go back')}</button>
+            <button className="secondary small">{t('Go back')}</button>
           </Back>
         </div>
         <div className="Player__content__reload">
@@ -47,7 +47,9 @@ export const Player = ({ item, startAt, onProgress }: PlayerProps) => {
               if it persists.
             </Trans>
           </p>
-          <button onClick={handleReload}>{t('Reload')}</button>
+          <button className="small" onClick={handleReload}>
+            {t('Reload')}
+          </button>
         </div>
       </div>
     </div>

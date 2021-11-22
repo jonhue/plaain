@@ -1,7 +1,7 @@
 import './Movies.scss'
 import { ItemGrid } from '../../components/ItemGrid'
+import { Navigate } from 'react-router-dom'
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { RootState } from '../../store'
 import { VerticalSlide } from '../../components/VerticalSlide'
 import { moviesSelector } from '../../store/movies/selectors'
@@ -19,6 +19,6 @@ export const Movies = () => {
       <ItemGrid items={movies} />
     </div>
   ) : (
-    <Redirect to="/app" />
+    <Navigate to="/app" />
   )
 }
