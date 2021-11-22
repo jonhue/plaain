@@ -2,44 +2,76 @@
 
 .Welcome {
   h1 {
-    font-size: 2.25em;
-    margin: 2.25rem $padding 0;
+    font-size: 2.5em;
+    margin: 2em 0 0;
+    text-align: center;
+
+    @media only screen and (min-width: $br-phone) {
+      font-size: 4em;
+      line-height: 1;
+    }
+
+    @media only screen and (min-width: $br-phablet) {
+      font-size: 5em;
+    }
+
+    @media only screen and (min-width: $br-laptop) {
+      font-size: 7em;
+    }
+  }
+
+  &__backdrop {
+    height: 100vh;
+    margin: -2em;
+    overflow-x: clip;
+    position: fixed;
+    width: 200%;
+
+    @media only screen and (min-width: $br-phone) {
+      margin: -2em;
+      width: 125%;
+    }
+  }
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 3.125em;
+    position: relative;
   }
 
   &__details {
-    bottom: 0;
-    padding: $padding;
-    position: absolute;
+    margin-top: 8em;
+    max-width: 31.25em;
+    padding: 0 0 3.125em;
+    text-align: center;
 
-    h3 {
-      margin-bottom: $padding;
+    @media only screen and (min-width: $br-laptop) {
+      font-size: 1.25em;
     }
 
-    a.button {
-      &:not(:first-of-type) {
-        margin-top: $spacing;
+    &__actions {
+      margin-top: 1em;
+
+      @media only screen and (min-width: $br-phone) {
+        align-items: center;
+        display: flex;
+        justify-content: center;
       }
-    }
-  }
-
-  @media only screen and (min-width: $br-phone) {
-    margin: 3.125em;
-
-    h1 {
-      margin: 0;
-    }
-
-    &__details {
-      max-width: 31.25em;
-      padding: 0 0 3.125em;
 
       a.button {
-        float: left;
         width: auto;
 
         &:not(:first-of-type) {
-          margin-left: $spacing;
-          margin-top: 0;
+          margin-top: $spacing;
+
+          @media only screen and (min-width: $br-phone) {
+            margin-left: $spacing;
+            margin-top: 0;
+          }
         }
       }
     }
