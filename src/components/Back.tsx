@@ -1,14 +1,14 @@
 import './Back.scss'
 import React, { FunctionComponent, useCallback } from 'react'
 import classNames from 'classnames'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 export const Back: FunctionComponent = ({ children }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const isDisabled = history.length <= 2
 
-  const handleClick = useCallback(() => history.goBack(), [history])
+  const handleClick = useCallback(() => navigate(-1), [navigate])
 
   return (
     <div

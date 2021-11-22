@@ -35,6 +35,7 @@ html {
 
 a {
   color: $white;
+  // font-weight: 700;
   text-decoration: none;
   transition: color 0.1s ease-out;
 
@@ -65,7 +66,7 @@ button {
   position: relative;
   text-decoration: none;
   top: 0;
-  transition: all 0.1s ease-out;
+  transition: all 0.15s ease-out;
   width: 100%;
 
   @media only screen and (min-width: $br-laptop) {
@@ -75,7 +76,7 @@ button {
   &:active,
   &:focus,
   &:hover {
-    box-shadow: 0 4px 10px rgba($dark, 1);
+    box-shadow: 0 4px 10px rgba($dark, 0.7);
     top: -0.125em;
   }
 
@@ -92,7 +93,7 @@ button {
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgba($highlight, 1);
+      box-shadow: 0 0 10px rgba($highlight, 0.7);
     }
   }
 
@@ -103,13 +104,28 @@ button {
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgba($warn, 1);
+      box-shadow: 0 0 10px rgba($warn, 0.7);
     }
   }
 
   &.secondary {
     background: transparent !important;
     border: 0.125em solid $dark;
+
+    &:active,
+    &:focus,
+    &:hover {
+      box-shadow: 0 4px 10px rgba($dark, 0.5);
+    }
+  }
+
+  &.small {
+    font-size: 0.9em;
+    padding: 0.5em 0.5625em;
+
+    @media only screen and (min-width: $br-laptop) {
+      font-size: 0.8em;
+    }
   }
 }
 
