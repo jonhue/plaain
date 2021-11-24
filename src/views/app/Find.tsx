@@ -1,14 +1,13 @@
 import './Find.scss'
-import FlexSearch, { Index } from 'flexsearch'
 import React, { useCallback, useMemo, useState } from 'react'
 import { movieSelector, moviesSelector } from '../../store/movies/selectors'
 import { showSelector, showsSelector } from '../../store/shows/selectors'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { HorizontalSlide } from '../../components/HorizontalSlide'
+import { Index } from 'flexsearch'
 import { Item } from '../../types/items/Item'
 import { RootState } from '../../store'
 import { notUndefined } from '../../util'
-import { useAsyncMemo } from 'use-async-memo'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
@@ -18,13 +17,10 @@ const buildIndex = <T extends Item>(
   items: T[],
   itemToText: (item: T) => string,
 ) => {
-  const index: Index<string> = FlexSearch.create()
-  items.forEach((item) => {
-    // a workaround to use strings as keys
-    const key = item.id as unknown as number
-
-    index.add(key, itemToText(item))
+  const index = new Index({
+    tokenize: 'forward',
   })
+  items.forEach((item) => index.add(item.id, itemToText(item)))
   return index
 }
 
@@ -62,13 +58,17 @@ export const Find = () => {
     [shows],
   )
 
-  const foundMovies = useAsyncMemo(async () => {
-    const result = await moviesIndex.search(query)
-    return result.map((id) => movieSelector(id)(movies)).filter(notUndefined)
+  const foundMovies = useMemo(() => {
+    const result = moviesIndex.search(query)
+    return result
+      .map((id) => movieSelector(id as string)(movies))
+      .filter(notUndefined)
   }, [moviesIndex, query])
-  const foundShows = useAsyncMemo(async () => {
-    const result = await showsIndex.search(query)
-    return result.map((id) => showSelector(id)(shows)).filter(notUndefined)
+  const foundShows = useMemo(() => {
+    const result = showsIndex.search(query)
+    return result
+      .map((id) => showSelector(id as string)(shows))
+      .filter(notUndefined)
   }, [showsIndex, query])
 
   const handleInputChange = useCallback(

@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://jonhue.github.io/plaain",
   "engines": {
-    "node": "16.7.0"
+    "node": "16.13.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,6 +35,7 @@
     "@azure/msal-browser": "^2.18.0",
     "@microsoft/microsoft-graph-client": "^3.0.0",
     "@types/classnames": "^2.3.1",
+    "@types/flexsearch": "^0.7.2",
     "@types/node": "^16.11.3",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
@@ -44,7 +45,7 @@
     "@types/redux": "^3.6.0",
     "basic-ftp": "jonhue/basic-ftp",
     "classnames": "^2.3.1",
-    "flexsearch": "^0.6.32",
+    "flexsearch": "^0.7.21",
     "i18next": "^21.5.3",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.3.1",
