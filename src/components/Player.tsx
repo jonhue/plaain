@@ -1,10 +1,14 @@
 import './Player.scss'
-import React, { useCallback } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
 import { Back } from './Back'
 import { Episode } from '../types/items/Episode'
+import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import { PlyrPlayer } from './PlyrPlayer'
+import React from 'react'
+import { VideoDoesNotLoadModal } from './player/VideoDoesNotLoadModal'
+import { buildItemUrl } from '../util'
+import { useModal } from '../hooks/modal'
+import { useTranslation } from 'react-i18next'
 
 type PlayerProps = {
   item: Movie | Episode
@@ -16,7 +20,11 @@ type PlayerProps = {
 export const Player = ({ item, startAt, onProgress }: PlayerProps) => {
   const { t } = useTranslation()
 
-  const handleReload = useCallback(() => window.location.reload(), [])
+  const [
+    showVideoDoesNotLoadModal,
+    handleShowVideoDoesNotLoadModal,
+    handleCloseVideoDoesNotLoadModal,
+  ] = useModal()
 
   return (
     <div className="Player">
@@ -28,28 +36,26 @@ export const Player = ({ item, startAt, onProgress }: PlayerProps) => {
       />
       <div className="Player__content">
         <div className="Player__content__header">
-          <h1>{item.title}</h1>
-          <Back>
-            <button className="secondary small">{t('Go back')}</button>
-          </Back>
-        </div>
-        <div className="Player__content__reload">
-          <p className="small">
-            <Trans>
-              The video doesn&apos;t load? Restarting may help. Please{' '}
-              <a
-                href="https://github.com/jonhue/plaain/issues/new"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                report the issue
-              </a>{' '}
-              if it persists.
-            </Trans>
-          </p>
-          <button className="small" onClick={handleReload}>
-            {t('Reload')}
-          </button>
+          <h1>
+            <Link to={buildItemUrl(item)}>{item.title}</Link>
+          </h1>
+          <div className="Player__content__header__actions">
+            <a
+              onClick={(e) => {
+                e.preventDefault()
+                handleShowVideoDoesNotLoadModal()
+              }}
+            >
+              {t('Video not loading?')}
+            </a>
+            <VideoDoesNotLoadModal
+              isActive={showVideoDoesNotLoadModal}
+              onClose={handleCloseVideoDoesNotLoadModal}
+            />
+            <Back>
+              <button className="secondary small">{t('Go back')}</button>
+            </Back>
+          </div>
         </div>
       </div>
     </div>
