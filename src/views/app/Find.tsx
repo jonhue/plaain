@@ -1,5 +1,5 @@
 import './Find.scss'
-import FlexSearch, { Index } from 'flexsearch'
+import { Index } from 'flexsearch'
 import React, { useCallback, useMemo, useState } from 'react'
 import { movieSelector, moviesSelector } from '../../store/movies/selectors'
 import { showSelector, showsSelector } from '../../store/shows/selectors'
@@ -18,7 +18,7 @@ const buildIndex = <T extends Item>(
   items: T[],
   itemToText: (item: T) => string,
 ) => {
-  const index: Index<string> = FlexSearch.create()
+  const index = new Index()
   items.forEach((item) => {
     // a workaround to use strings as keys
     const key = item.id as unknown as number
@@ -63,11 +63,11 @@ export const Find = () => {
   )
 
   const foundMovies = useAsyncMemo(async () => {
-    const result = await moviesIndex.search(query)
+    const result = moviesIndex.search(query).map((id) => id.toString())
     return result.map((id) => movieSelector(id)(movies)).filter(notUndefined)
   }, [moviesIndex, query])
   const foundShows = useAsyncMemo(async () => {
-    const result = await showsIndex.search(query)
+    const result = showsIndex.search(query).map((id) => id.toString())
     return result.map((id) => showSelector(id)(shows)).filter(notUndefined)
   }, [showsIndex, query])
 

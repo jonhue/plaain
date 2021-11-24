@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://jonhue.github.io/plaain",
   "engines": {
-    "node": "16.7.0"
+    "node": "17.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,6 +35,7 @@
     "@azure/msal-browser": "^2.16.1",
     "@microsoft/microsoft-graph-client": "^2.2.1",
     "@types/classnames": "^2.3.1",
+    "@types/flexsearch": "^0.7.2",
     "@types/node": "^16.4.12",
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.9",
