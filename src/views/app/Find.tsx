@@ -1,8 +1,8 @@
 import './Find.scss'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import React, { useCallback, useMemo, useState } from 'react'
 import { movieSelector, moviesSelector } from '../../store/movies/selectors'
 import { showSelector, showsSelector } from '../../store/shows/selectors'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { HorizontalSlide } from '../../components/HorizontalSlide'
 import { Index } from 'flexsearch'
 import { Item } from '../../types/items/Item'
@@ -81,7 +81,8 @@ export const Find = () => {
     [navigate, setQuery],
   )
 
-  return (
+  return moviesSelector(movies).length > 0 ||
+    showsSelector(shows).length > 0 ? (
     <div className="Find">
       <form>
         <input
@@ -106,5 +107,7 @@ export const Find = () => {
         </section>
       )}
     </div>
+  ) : (
+    <Navigate to="/app" />
   )
 }
