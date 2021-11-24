@@ -19,15 +19,15 @@ export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => {
   return (
     <div className="Nav">
       <div className="Nav__wrapper">
-        <Tab to="/app" end>
+        <Tab to="/app">
           <ForYouIcon />
           <p>{t('For you')}</p>
         </Tab>
-        <Tab disabled={moviesDisabled} to="/app/movies">
+        <Tab disabled={moviesDisabled} to="/app/movies" inexact>
           <MovieIcon />
           <p>{t('Movies')}</p>
         </Tab>
-        <Tab disabled={showsDisabled} to="/app/shows">
+        <Tab disabled={showsDisabled} to="/app/shows" inexact>
           <ShowIcon />
           <p>{t('Shows')}</p>
         </Tab>
