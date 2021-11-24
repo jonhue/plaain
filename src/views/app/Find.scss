@@ -6,25 +6,11 @@
   }
 
   form {
-    input {
-      background: $background;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      color: $white;
-      font-family: Muli, sans-serif;
-      font-size: 1.125em;
-      font-weight: 700;
-      padding: $padding;
-      text-decoration: none;
-      transition: background 0.1s ease-out;
-      width: 100%;
+    padding: $padding;
 
-      &:active,
-      &:focus,
-      &:hover {
-        background: $dark-background;
-      }
+    input {
+      padding: $spacing;
+      width: 100%;
     }
   }
 
