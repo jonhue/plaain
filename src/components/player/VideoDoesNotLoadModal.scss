@@ -1,0 +1,16 @@
+@import "../../variables";
+
+.VideoDoesNotLoadModal {
+  h2,
+  p {
+    margin: 0.3em 0;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  p {
+    margin-bottom: $padding;
+  }
+}

@@ -6,13 +6,9 @@
   }
 
   &__details {
+    margin: 0 auto;
+    max-width: $max-width;
     padding: $padding;
-
-    @media only screen and (min-width: $br-laptop) {
-      margin: 0 auto;
-      max-width: 1600px;
-      padding: 5em $padding;
-    }
 
     .Cover {
       max-width: 300px;

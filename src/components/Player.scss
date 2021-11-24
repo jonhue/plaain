@@ -17,15 +17,21 @@
       justify-content: space-between;
 
       h1 {
+        font-size: 1.5em;
         margin: 0;
       }
-    }
 
-    &__reload {
-      margin-top: 2em;
+      &__actions {
+        align-items: center;
+        display: flex;
 
-      p {
-        max-width: 22em;
+        & > :not(:first-child) {
+          margin-left: 0.35em;
+        }
+
+        & > a {
+          font-size: 0.8em;
+        }
       }
     }
   }

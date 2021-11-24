@@ -33,9 +33,7 @@
   &__details,
   &__movies,
   &__seasons {
-    @media only screen and (min-width: $br-laptop) {
-      margin: 0 auto;
-      max-width: 1600px;
-    }
+    margin: 0 auto;
+    max-width: $max-width;
   }
 }
