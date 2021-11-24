@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   buildCaptionSrcLang,
   buildFileDownloadUrl,
+  buildItemUrl,
   buildVideoSize,
   buildVideoType,
 } from '../util'
@@ -13,6 +14,7 @@ import { Provider } from '../types/providers/Provider'
 import { RootState } from '../store'
 import { Video } from '../types/files/Video'
 import { providersSelector } from '../store/auth/selectors'
+import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 
 const findProvider = (providers: Provider[], providerId: string) => {
@@ -59,11 +61,15 @@ export const PlyrPlayer = ({
   startAt,
   onProgress,
 }: PlyrPlayerProps) => {
+  const navigate = useNavigate()
+
   const providers = useSelector((state: RootState) =>
     providersSelector(state.auth),
   )
 
   useEffect(() => {
+    let hasForwarded = false
+
     const player = new Plyr(`video.PlyrPlayer#${id}`, {
       debug: process.env.NODE_ENV === 'development',
       controls: [
@@ -89,16 +95,24 @@ export const PlyrPlayer = ({
       tracks: item.captions.map(buildCaption(providers)),
     }
 
-    player.on('ready', () => {
-      if (startAt !== undefined) player.forward(startAt)
+    player.on('canplay', () => {
+      if (hasForwarded || startAt === undefined || player.duration < startAt)
+        return
+      player.forward(startAt)
+      hasForwarded = true
+    })
+
+    player.on('ended', () => {
+      navigate(buildItemUrl(item))
     })
 
     return () => {
-      if (player.currentTime !== 0) onProgress(player.currentTime)
+      if (player.ended) onProgress(0)
+      else if (player.currentTime !== 0) onProgress(player.currentTime)
 
       player.destroy()
     }
-  }, [id, item, onProgress, providers, startAt])
+  }, [id, item, navigate, onProgress, providers, startAt])
 
   return (
     <video

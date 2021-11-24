@@ -1,6 +1,9 @@
 @import "../variables";
 
 .Player {
+  background: $black;
+  min-height: 100vh;
+
   &__content {
     padding: $padding;
 
@@ -19,6 +22,8 @@
     }
 
     &__reload {
+      margin-top: 2em;
+
       p {
         max-width: 22em;
       }

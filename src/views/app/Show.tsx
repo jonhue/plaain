@@ -6,25 +6,18 @@ import { HorizontalSlide } from '../../components/HorizontalSlide'
 import { NotFound } from '../NotFound'
 import React from 'react'
 import { RootState } from '../../store'
-import { RouteComponentProps } from 'react-router'
 import { seasonsByShowSelector } from '../../store/seasons/selectors'
 import { showSelector } from '../../store/shows/selectors'
 import { sortByNumber } from '../../util'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-interface ShowParams {
-  id: string
-}
-
-type ShowProps = RouteComponentProps<ShowParams>
-
-export const Show = ({ match }: ShowProps) => {
+export const Show = () => {
   const { t } = useTranslation()
+  const { id } = useParams()
 
-  const show = useSelector((state: RootState) =>
-    showSelector(match.params.id)(state.shows),
-  )
+  const show = useSelector((state: RootState) => showSelector(id!)(state.shows))
 
   const seasons = useSelector(
     (state: RootState) =>

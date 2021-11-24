@@ -1,6 +1,5 @@
 import './Movie.scss'
 import React, { useCallback } from 'react'
-import { RouteComponentProps, useHistory } from 'react-router-dom'
 import {
   buildBackdropUrl,
   buildCoverUrl,
@@ -8,6 +7,7 @@ import {
   isInProgress,
   splitHoursAndMinutes,
 } from '../../util'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Backdrop } from '../../components/Backdrop'
 import { Cover } from '../../components/Cover'
 import { FileList } from '../../components/FileList'
@@ -19,31 +19,26 @@ import { movieSelector } from '../../store/movies/selectors'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-interface MovieParams {
-  id: string
-}
-
-type MovieProps = RouteComponentProps<MovieParams>
-
-export const Movie = ({ match }: MovieProps) => {
+export const Movie = () => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   const movie = useSelector((state: RootState) =>
-    movieSelector(match.params.id)(state.movies),
+    movieSelector(id!)(state.movies),
   )
 
   const handleContinue = useCallback(() => {
     if (movie === undefined) return
-    history.push(
+    navigate(
       `/player?id=${movie.id}&type=${movie.kind}&s=${movie.usage.progress}`,
     )
-  }, [history, movie])
+  }, [movie, navigate])
 
   const handleWatch = useCallback(() => {
     if (movie === undefined) return
-    history.push(`/player?id=${movie.id}&type=${movie.kind}`)
-  }, [history, movie])
+    navigate(`/player?id=${movie.id}&type=${movie.kind}`)
+  }, [movie, navigate])
 
   return movie !== undefined ? (
     <div className="Movie">

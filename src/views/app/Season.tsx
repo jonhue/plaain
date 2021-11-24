@@ -1,12 +1,12 @@
 import './Season.scss'
 import React, { useCallback, useMemo } from 'react'
-import { RouteComponentProps, useHistory } from 'react-router-dom'
 import {
   buildBackdropUrl,
   buildCoverUrl,
   buildJobTitle,
   sortByNumber,
 } from '../../util'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Backdrop } from '../../components/Backdrop'
 import { Cover } from '../../components/Cover'
 import { Episode } from '../../types/items/Episode'
@@ -22,18 +22,13 @@ import { useSelector } from 'react-redux'
 import { useToggle } from '../../hooks/toggle'
 import { useTranslation } from 'react-i18next'
 
-interface SeasonParams {
-  id: string
-}
-
-type SeasonProps = RouteComponentProps<SeasonParams>
-
-export const Season = ({ match }: SeasonProps) => {
+export const Season = () => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   const season = useSelector((state: RootState) =>
-    seasonSelector(match.params.id)(state.seasons),
+    seasonSelector(id!)(state.seasons),
   )
   const { show, episodes } = useSelector((state: RootState) => ({
     show: season && showSelector(season.showId)(state.shows),
@@ -55,11 +50,11 @@ export const Season = ({ match }: SeasonProps) => {
 
   const handleContinue = useCallback(
     (episode: Episode) => () => {
-      history.push(
+      navigate(
         `/player?id=${episode.id}&type=${episode.kind}&s=${episode.usage.progress}`,
       )
     },
-    [history],
+    [navigate],
   )
 
   const handleWatch = useCallback(
@@ -70,9 +65,9 @@ export const Season = ({ match }: SeasonProps) => {
         (episode) => episode.number === episodeNumber,
       )!
 
-      history.push(`/player?id=${episode.id}&type=${episode.kind}`)
+      navigate(`/player?id=${episode.id}&type=${episode.kind}`)
     },
-    [episodes, history],
+    [episodes, navigate],
   )
 
   return show !== undefined &&

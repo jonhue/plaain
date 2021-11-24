@@ -3,7 +3,7 @@ import { Index } from 'flexsearch'
 import React, { useCallback, useMemo, useState } from 'react'
 import { movieSelector, moviesSelector } from '../../store/movies/selectors'
 import { showSelector, showsSelector } from '../../store/shows/selectors'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { HorizontalSlide } from '../../components/HorizontalSlide'
 import { Item } from '../../types/items/Item'
 import { RootState } from '../../store'
@@ -30,7 +30,7 @@ const buildIndex = <T extends Item>(
 
 export const Find = () => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   const initialQuery = useMemo(
@@ -73,10 +73,12 @@ export const Find = () => {
 
   const handleInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      history.replace(`/app/find?${QUERY_PARAMETER}=${event.target.value}`)
+      navigate(`/app/find?${QUERY_PARAMETER}=${event.target.value}`, {
+        replace: true,
+      })
       setQuery(event.target.value)
     },
-    [history, setQuery],
+    [navigate, setQuery],
   )
 
   return (

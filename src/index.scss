@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:600,700,900');
-@import "swiper/swiper.scss";
+@import url("https://fonts.googleapis.com/css?family=Muli:600,700,900");
+@import "swiper/swiper";
 @import "./plyr";
 @import "./variables";
 
@@ -12,7 +12,7 @@ body {
 html {
   background: $background;
   color: $white;
-  font-family: 'Muli', sans-serif;
+  font-family: Muli, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,6 +35,8 @@ html {
 
 a {
   color: $white;
+
+  // font-weight: 700;
   text-decoration: none;
   transition: color 0.1s ease-out;
 
@@ -48,14 +50,14 @@ a {
 a.button,
 button {
   align-items: center;
-  background: $dark;
+  background: $light-background;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgba($dark, 0.16);
+  box-shadow: 0 0 6px rgb($dark-background, 0.16);
   color: $white;
   cursor: pointer;
   display: flex;
-  font-family: 'Muli', sans-serif;
+  font-family: Muli, sans-serif;
   font-size: 1em;
   font-weight: 700;
   justify-content: center;
@@ -65,7 +67,7 @@ button {
   position: relative;
   text-decoration: none;
   top: 0;
-  transition: all 0.1s ease-out;
+  transition: all 0.15s ease-out;
   width: 100%;
 
   @media only screen and (min-width: $br-laptop) {
@@ -75,7 +77,7 @@ button {
   &:active,
   &:focus,
   &:hover {
-    box-shadow: 0 4px 10px rgba($dark, 1);
+    box-shadow: 0 4px 10px rgb($dark-background, 1);
     top: -0.125em;
   }
 
@@ -87,29 +89,44 @@ button {
 
   &.primary {
     background: $highlight;
-    box-shadow: 0 0 6px rgba($highlight, 0.16);
+    box-shadow: 0 0 6px rgb($highlight, 0.16);
 
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgba($highlight, 1);
+      box-shadow: 0 0 10px rgb($highlight, 1);
     }
   }
 
   &.warn {
     background: $warn;
-    box-shadow: 0 0 6px rgba($warn, 0.16);
+    box-shadow: 0 0 6px rgb($warn, 0.16);
 
     &:active,
     &:focus,
     &:hover {
-      box-shadow: 0 0 10px rgba($warn, 1);
+      box-shadow: 0 0 10px rgb($warn, 1);
     }
   }
 
   &.secondary {
     background: transparent !important;
-    border: 0.125em solid $dark;
+    border: 0.125em solid $light-background;
+
+    // &:active,
+    // &:focus,
+    // &:hover {
+    //   box-shadow: 0 4px 10px rgb($dark-background, 0.5);
+    // }
+  }
+
+  &.small {
+    font-size: 0.9em;
+    padding: 0.5em 0.5625em;
+
+    @media only screen and (min-width: $br-laptop) {
+      font-size: 0.8em;
+    }
   }
 }
 
@@ -179,12 +196,12 @@ p {
 }
 
 input {
-  background: $dark;
+  background: $light-background;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgba($dark, 0.16);
+  box-shadow: 0 0 6px rgb($dark-background, 0.16);
   color: $white;
-  font-family: 'Muli', sans-serif;
+  font-family: Muli, sans-serif;
   font-size: 1em;
   font-weight: 700;
   line-height: 1;
@@ -201,12 +218,12 @@ input {
 }
 
 select {
-  background: $dark;
+  background: $light-background;
   border: none;
   border-radius: $border-radius;
-  box-shadow: 0 0 6px rgba($dark, 0.16);
+  box-shadow: 0 0 6px rgb($dark-background, 0.16);
   color: $white;
-  font-family: 'Muli', sans-serif;
+  font-family: Muli, sans-serif;
   font-size: 1em;
   font-weight: 700;
   line-height: 1;

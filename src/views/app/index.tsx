@@ -1,5 +1,5 @@
 import './index.scss'
-import { Route, RouteComponentProps, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Find } from './Find'
 import { Home } from './Home'
 import { Movie } from './Movie'
@@ -15,9 +15,7 @@ import { Show } from './Show'
 import { Shows } from './Shows'
 import { useSelector } from 'react-redux'
 
-type AppProps = RouteComponentProps
-
-const App = ({ match }: AppProps) => {
+const App = () => {
   const { moviesCount, showsCount } = useSelector((state: RootState) => ({
     moviesCount: Object.keys(state.movies).length,
     showsCount: Object.keys(state.shows).length,
@@ -25,18 +23,18 @@ const App = ({ match }: AppProps) => {
 
   return (
     <div className="App">
-      <Switch>
-        <Route path={`${match.path}/`} exact component={Home} />
-        <Route path={`${match.path}/movies/:id`} exact component={Movie} />
-        <Route path={`${match.path}/movies`} component={Movies} />
-        <Route path={`${match.path}/shows/:id`} exact component={Show} />
-        <Route path={`${match.path}/shows`} component={Shows} />
-        <Route path={`${match.path}/seasons/:id`} exact component={Season} />
-        <Route path={`${match.path}/people/:id`} exact component={Person} />
-        <Route path={`${match.path}/settings`} exact component={Settings} />
-        <Route path={`${match.path}/find`} exact component={Find} />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path={'/'} element={<Home />} />
+        <Route path={'movies/:id'} element={<Movie />} />
+        <Route path={'movies'} element={<Movies />} />
+        <Route path={'shows/:id'} element={<Show />} />
+        <Route path={'shows'} element={<Shows />} />
+        <Route path={'seasons/:id'} element={<Season />} />
+        <Route path={'people/:id'} element={<Person />} />
+        <Route path={'settings'} element={<Settings />} />
+        <Route path={'find'} element={<Find />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       <Nav
         moviesDisabled={moviesCount === 0}

@@ -1,4 +1,3 @@
-import { AccPerson, Person } from '../types/items/Person'
 import {
   inProgressSelector as inProgressMoviesSelector,
   moviesPersonSelector,
@@ -9,10 +8,9 @@ import {
   recentlyWatchedSelector as recentlyWatchedSeasonsSelector,
   seasonsPersonSelector,
 } from './seasons/selectors'
+import { AccPerson } from '../types/items/Person'
 import { ItemKind } from '../types/items/Item'
-import { MoviesState } from './movies/types'
 import { RootState } from '.'
-import { SeasonsState } from './seasons/types'
 import { createSelector } from 'reselect'
 
 export const inProgressSelector = createSelector(
@@ -32,11 +30,7 @@ export const recentlyWatchedSelector = createSelector(
 )
 
 export const personSelector = (id: string) =>
-  createSelector<
-    { movies: MoviesState; seasons: SeasonsState },
-    Person[],
-    AccPerson | undefined
-  >(
+  createSelector(
     [
       ({ movies }) => moviesPersonSelector(id, (movie) => movie.cast)(movies),
       ({ movies }) => moviesPersonSelector(id, (movie) => movie.crew)(movies),

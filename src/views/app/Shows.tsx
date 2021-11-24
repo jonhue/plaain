@@ -1,7 +1,7 @@
 import './Shows.scss'
 import { ItemGrid } from '../../components/ItemGrid'
+import { Navigate } from 'react-router-dom'
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { RootState } from '../../store'
 import { VerticalSlide } from '../../components/VerticalSlide'
 import { showsSelector } from '../../store/shows/selectors'
@@ -19,6 +19,6 @@ export const Shows = () => {
       <ItemGrid items={shows} />
     </div>
   ) : (
-    <Redirect to="/app" />
+    <Navigate to="/app" />
   )
 }

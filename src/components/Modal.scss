@@ -21,7 +21,7 @@ $modal-border-size: 0.0625em;
   z-index: $z-overlay;
 
   &__wrapper {
-    background: $dark;
+    background: $dark-background;
     border: $modal-border-size solid $black;
     border-radius: $modal-border-radius;
     left: 50%;
@@ -47,7 +47,7 @@ $modal-border-size: 0.0625em;
 
   &.active {
     backdrop-filter: blur($modal-background-blur);
-    background: rgba($dark, $modal-overlay-opacity);
+    background: rgb($dark-background, $modal-overlay-opacity);
     visibility: visible;
 
     .Modal__wrapper {

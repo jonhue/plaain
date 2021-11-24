@@ -16,7 +16,7 @@ export const notUndefined = <T extends unknown>(x: T | undefined): x is T =>
   x !== undefined
 
 export const isInProgress = (item: IMediaItem) =>
-  item.usage.progress !== undefined
+  item.usage.progress !== undefined && item.usage.progress != 0
 
 export const wasRecentlyWatched = (item: IMediaItem, thresh: Date) =>
   !isInProgress(item) &&

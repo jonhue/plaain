@@ -19,7 +19,7 @@ export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => {
   return (
     <div className="Nav">
       <div className="Nav__wrapper">
-        <Tab to="/app" exact>
+        <Tab to="/app" end>
           <ForYouIcon />
           <p>{t('For you')}</p>
         </Tab>
