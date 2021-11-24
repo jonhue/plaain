@@ -37,6 +37,7 @@ export const AddProviderModal = ({
   const [authResponse, setAuthResponse] = useState<AuthResponse | undefined>()
   useSetupAuthRedirect((response) => {
     setAuthResponse(response)
+    setState(State.Setup)
     handleOpen()
   })
 
