@@ -75,16 +75,16 @@
     "whatwg-fetch": "^3.6.2",
     "workbox-background-sync": "^6.2.4",
     "workbox-broadcast-update": "^6.3.0",
-    "workbox-cacheable-response": "^6.4.1",
+    "workbox-cacheable-response": "^6.4.2",
     "workbox-core": "^6.2.4",
-    "workbox-expiration": "^6.3.0",
+    "workbox-expiration": "^6.4.2",
     "workbox-google-analytics": "^6.3.0",
     "workbox-navigation-preload": "^6.3.0",
     "workbox-precaching": "^6.3.0",
     "workbox-range-requests": "^6.3.0",
     "workbox-routing": "^6.2.4",
     "workbox-strategies": "^6.2.4",
-    "workbox-streams": "^6.4.1"
+    "workbox-streams": "^6.4.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.0",
