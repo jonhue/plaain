@@ -3,7 +3,7 @@
 .VerticalSlide {
   padding: 0 $padding;
 
-  .swiper-container {
+  .swiper-wrapper {
     height: calc(100vh - #{$nav});
     width: 100%;
     z-index: $z-base;
