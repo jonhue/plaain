@@ -27,7 +27,12 @@ export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => {
           <MovieIcon />
           <p>{t('Movies')}</p>
         </Tab>
-        <Tab disabled={showsDisabled} to="/app/shows" inexact>
+        <Tab
+          disabled={showsDisabled}
+          to="/app/shows"
+          inexact
+          activePaths={['/app/seasons']}
+        >
           <ShowIcon />
           <p>{t('Shows')}</p>
         </Tab>
