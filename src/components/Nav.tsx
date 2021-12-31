@@ -6,6 +6,7 @@ import React from 'react'
 import { SettingsIcon } from './icons/Nucleo/SettingsIcon'
 import { ShowIcon } from './icons/Nucleo/ShowIcon'
 import { Tab } from './Tab'
+import { useMatch } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 type NavProps = {
@@ -31,7 +32,7 @@ export const Nav = ({ moviesDisabled, showsDisabled }: NavProps) => {
           disabled={showsDisabled}
           to="/app/shows"
           inexact
-          activePaths={['/app/seasons']}
+          forceActive={!!useMatch('/app/seasons/*')}
         >
           <ShowIcon />
           <p>{t('Shows')}</p>
