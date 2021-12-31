@@ -36,14 +36,16 @@ export const Person = () => {
       <Backdrop url={buildBackdropUrl(backdropPath)} />
       <div className="Person__details">
         <Cover url={buildCoverUrl(person.posterPath)} alt="profile" />
-        <h1>{person.title}</h1>
-        {person.jobs && (
-          <p>
-            {person.jobs
-              .map((job) => buildJobTitle(t, job, person.gender))
-              .join(', ')}
-          </p>
-        )}
+        <div className="Person__details__wrapper">
+          <h1>{person.title}</h1>
+          {person.jobs && (
+            <p>
+              {person.jobs
+                .map((job) => buildJobTitle(t, job, person.gender))
+                .join(', ')}
+            </p>
+          )}
+        </div>
       </div>
 
       {movies.length > 0 && (
