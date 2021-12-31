@@ -9,6 +9,7 @@ export enum ProviderKind {
 export type ProviderKindWithRedirect = ProviderKind.OneDrive
 
 export const PROVIDER_KINDS = [ProviderKind.OneDrive, ProviderKind.FTP]
+export const DISABLED_PROVIDER_KINDS = [ProviderKind.FTP]
 
 export interface IProvider {
   kind: ProviderKind
