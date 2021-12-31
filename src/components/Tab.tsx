@@ -7,6 +7,7 @@ type TabProps = {
   to: string
   inexact?: boolean
   disabled?: boolean
+  activePaths?: string[]
 }
 
 export const Tab: FunctionComponent<TabProps> = ({
@@ -14,8 +15,11 @@ export const Tab: FunctionComponent<TabProps> = ({
   to,
   inexact,
   disabled,
+  activePaths,
 }) => {
-  const isActive = !!useMatch({ path: `${to}${inexact ? '/*' : ''}` })
+  const isActive = [to, ...(activePaths || [])].some(
+    (path) => !!useMatch({ path: `${path}${inexact ? '/*' : ''}` }),
+  )
 
   return (
     <Link className={classNames('Tab', { active: isActive, disabled })} to={to}>
