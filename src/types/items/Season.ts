@@ -13,6 +13,7 @@ export interface Season extends IMediaItem {
   airDate: string
   posterPath: string | undefined
   trailerUrl: string
+  episodes: number[] // episode numbers
   cast: CastMember[]
   crew: CrewMember[]
 }

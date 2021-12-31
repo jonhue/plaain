@@ -1,4 +1,5 @@
 import { CaptionType, VTT_EXTENSION } from '../../types/files/Caption'
+import { EpisodeIndexResponse, SeasonIndexResponse } from './types'
 import {
   M4V_EXTENSION,
   MKV_EXTENSION,
@@ -6,6 +7,7 @@ import {
   VideoType,
   WEBM_EXTENSION,
 } from '../../types/files/Video'
+import { File } from '../../types/files/File'
 import { ProviderKind } from '../../types/providers/Provider'
 
 export const parseFileName = (fileName: string) => ({
@@ -36,3 +38,13 @@ export const parseVideoType = (extension: string): VideoType | undefined => {
 }
 
 export const buildFileId = (kind: ProviderKind, id: string) => `${kind}@${id}`
+
+export const buildEpisodeIndexResponse = (
+  number: number,
+  files: File[] = [],
+): EpisodeIndexResponse => ({ number, files })
+
+export const buildSeasonIndexResponse = (
+  number: number,
+  episodes: EpisodeIndexResponse[] = [],
+): SeasonIndexResponse => ({ number, episodes })

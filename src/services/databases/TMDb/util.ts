@@ -173,6 +173,7 @@ export const buildSeason = (
     overview: summary,
     poster_path: posterPath,
     season_number: number,
+    episodes,
   }: TVSeasonDetailsResponse,
   { cast, crew }: TVSeasonCreditsResponse,
 ): Season => ({
@@ -189,6 +190,7 @@ export const buildSeason = (
   airDate: new Date(airDate).toISOString(),
   posterPath,
   trailerUrl: buildTrailerUrl(`${showTitle} season ${number}`),
+  episodes: episodes.map((episode) => episode.episode_number),
   cast: cast.map(buildCastMember),
   crew: crew.map(buildCrewMember).filter(notUndefined),
   usage,
@@ -204,10 +206,9 @@ export const buildShow = (
     id: tmdbId,
     last_air_date: lastAirDate,
     name: title,
-    number_of_episodes: numberOfEpisodes,
-    number_of_seasons: numberOfSeasons,
     overview: summary,
     poster_path: posterPath,
+    seasons,
   }: TVShowDetailsResponse,
 ): Show => ({
   kind: ItemKind.Show,
@@ -219,9 +220,8 @@ export const buildShow = (
   firstAirDate: new Date(firstAirDate).toISOString(),
   lastAirDate: new Date(lastAirDate).toISOString(),
   homepage,
-  numberOfEpisodes,
-  numberOfSeasons,
   posterPath,
   backdropPath,
   usage,
+  seasons: seasons.map((season) => season.season_number),
 })
