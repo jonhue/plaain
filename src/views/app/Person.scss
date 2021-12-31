@@ -2,27 +2,42 @@
 
 .Person {
   &__details {
-    padding: $padding $padding $spacing;
+    align-items: center;
+    display: flex;
+    padding: 5em $padding $spacing;
 
-    @media only screen and (min-width: $br-laptop) {
-      padding-top: 5em;
+    @media only screen and (min-width: $br-phablet) {
+      padding-top: 10em;
+    }
+
+    @media only screen and (min-width: $br-tablet) {
+      padding-top: 20em;
     }
 
     .Cover {
-      max-width: 300px;
-      width: 50%;
+      height: 6em;
+      max-width: 100px;
 
       @media only screen and (min-width: $br-tablet) {
+        height: 10em;
         max-width: 300px;
       }
     }
 
-    h1 {
-      margin: 0.4em 0 0.1em;
-    }
+    &__wrapper {
+      margin-left: $spacing;
 
-    p {
-      margin: 0.3em 0 0;
+      @media only screen and (min-width: $br-tablet) {
+        margin-left: $padding;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+      }
     }
   }
 
