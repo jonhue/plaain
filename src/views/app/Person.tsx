@@ -35,9 +35,9 @@ export const Person = () => {
     <div className="Person">
       <Backdrop url={buildBackdropUrl(backdropPath)} />
       <div className="Person__details">
-        <Cover url={buildCoverUrl(person.profilePath)} alt="profile" />
+        <Cover url={buildCoverUrl(person.posterPath)} alt="profile" />
         <div className="Person__details__wrapper">
-          <h1>{person.name}</h1>
+          <h1>{person.title}</h1>
           {person.jobs && (
             <p>
               {person.jobs

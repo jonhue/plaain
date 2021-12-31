@@ -47,14 +47,19 @@ export const personSelector = (id: string) =>
         ...seasonsCrew,
       ]
 
+      const characters = moviesCast
+        .concat(seasonsCast)
+        .map((person) => person.character)
+
       return roles.reduce<AccPerson | undefined>(
         (acc, person) => ({
           kind: ItemKind.Person,
           id,
           tmdbId: person.tmdbId,
-          name: person.name,
+          title: person.title,
           gender: person.gender,
-          profilePath: person.profilePath,
+          posterPath: person.posterPath,
+          characters,
           jobs:
             person.job === undefined
               ? acc?.jobs

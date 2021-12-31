@@ -121,8 +121,8 @@ export const buildCastMember = ({
   character,
   gender: rawGender,
   id: tmdbId,
-  name,
-  profile_path: profilePath,
+  name: title,
+  profile_path: posterPath,
 }: CastResponse): CastMember => {
   const gender = buildGender(rawGender)
   const job = buildJob()
@@ -131,9 +131,9 @@ export const buildCastMember = ({
     kind: ItemKind.Person,
     id: buildItemId(tmdbId),
     tmdbId,
-    name,
+    title,
     gender,
-    profilePath,
+    posterPath,
     job,
     character,
   }
@@ -144,8 +144,8 @@ export const buildCrewMember = ({
   gender: rawGender,
   id: tmdbId,
   job: rawJob,
-  name,
-  profile_path: profilePath,
+  name: title,
+  profile_path: posterPath,
 }: CrewResponse): CrewMember | undefined => {
   const gender = buildGender(rawGender)
   const job = buildJob(rawJob)
@@ -155,9 +155,9 @@ export const buildCrewMember = ({
     kind: ItemKind.Person,
     id: buildItemId(tmdbId),
     tmdbId,
-    name,
+    title,
     gender,
-    profilePath,
+    posterPath,
     job,
     department,
   }

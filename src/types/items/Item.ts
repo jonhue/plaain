@@ -1,9 +1,9 @@
+import { AccPerson, Person } from './Person'
 import { Episode, EpisodeLike } from './Episode'
 import { Movie, MovieLike } from './Movie'
 import { Season, SeasonLike } from './Season'
 import { Show, ShowLike } from './Show'
 import { Caption } from '../files/Caption'
-import { Person } from './Person'
 import { Video } from '../files/Video'
 
 export enum ItemKind {
@@ -34,6 +34,6 @@ export interface IWatchableMediaItem extends IMediaItem {
   captions: Caption[]
 }
 
-export type Item = Episode | Movie | Person | Season | Show
+export type Item = Episode | Movie | Person | AccPerson | Season | Show
 
 export type ItemLike = Item | EpisodeLike | MovieLike | SeasonLike | ShowLike

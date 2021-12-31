@@ -2,6 +2,7 @@ import { Episode, EpisodeLike } from '../types/items/Episode'
 import { Movie, MovieLike } from '../types/items/Movie'
 import { Season, SeasonLike } from '../types/items/Season'
 import { Show, ShowLike } from '../types/items/Show'
+import { addPerson, resetPeople } from './people/actions'
 import { episodeSelector, episodesSelector } from './episodes/selectors'
 import {
   fetchEpisodeMetadata as fetchEpisodeMetadataCall,
@@ -16,6 +17,7 @@ import { AppThunk } from '.'
 import { Caption } from '../types/files/Caption'
 import { File } from '../types/files/File'
 import { ItemKind } from '../types/items/Item'
+import { Person } from '../types/items/Person'
 import { Provider } from '../types/providers/Provider'
 import { Video } from '../types/files/Video'
 import { auth as authCall } from './auth/thunks'
@@ -33,6 +35,8 @@ import { updateShow } from './shows/actions'
 export const index =
   (providers: Provider[]): AppThunk<Promise<void>> =>
   async (dispatch) => {
+    dispatch(resetPeople())
+
     await Promise.all(
       providers.map(async (provider) => {
         const updatedProvider = await dispatch(authCall(provider))
@@ -73,14 +77,16 @@ const updateFile =
     return updatedFile
   }
 
-const handleUpdateWatchableItem = (item: Episode | Movie) => {
-  switch (item.kind) {
-    case ItemKind.Episode:
-      return updateEpisode(item)
-    case ItemKind.Movie:
-      return updateMovie(item)
+const handleUpdateWatchableItem =
+  (item: Episode | Movie): AppThunk<void> =>
+  async (dispatch) => {
+    switch (item.kind) {
+      case ItemKind.Episode:
+        return dispatch(updateEpisode(item))
+      case ItemKind.Movie:
+        return dispatch(updateMovie(item))
+    }
   }
-}
 
 export const updateFiles =
   (item: Episode | Movie): AppThunk<Promise<Episode | Movie>> =>
@@ -101,9 +107,14 @@ export const updateFiles =
       captions,
     }
 
-    handleUpdateWatchableItem(updatedItem)
+    dispatch(handleUpdateWatchableItem(updatedItem))
     return updatedItem
   }
+
+const handleNewPeople =
+  ({ cast, crew }: { cast: Person[]; crew: Person[] }): AppThunk<void> =>
+  async (dispatch) =>
+    cast.concat(crew).forEach((person) => dispatch(addPerson(person.id)))
 
 const fetchEpisodeMetadata =
   (
@@ -132,6 +143,7 @@ const fetchMovieMetadata =
     if (oldMovie !== undefined) newMovie.usage = oldMovie.usage
 
     dispatch(updateMovie(newMovie))
+    dispatch(handleNewPeople(newMovie))
     return newMovie
   }
 
@@ -145,6 +157,7 @@ const fetchSeasonMetadata =
     if (oldSeason !== undefined) newSeason.usage = oldSeason.usage
 
     dispatch(updateSeason(newSeason))
+    dispatch(handleNewPeople(newSeason))
     return newSeason
   }
 
@@ -212,6 +225,8 @@ const fetchShowsMetadata =
 
 export const fetchAllMetadata =
   (): AppThunk<Promise<void>> => async (dispatch) => {
+    dispatch(resetPeople())
+
     await dispatch(fetchMoviesMetadata())
     await dispatch(fetchShowsMetadata())
     await dispatch(fetchSeasonsMetadata())
