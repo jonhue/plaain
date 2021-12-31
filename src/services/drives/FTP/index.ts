@@ -15,6 +15,8 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const updateFile = async (provider: FTP, file: File): Promise<File> => {
+  throw new CannotFindFileError(file)
+
   // const client = await getClient(
   //   provider.host,
   //   provider.port,
@@ -32,7 +34,6 @@ export const updateFile = async (provider: FTP, file: File): Promise<File> => {
 
   // if (newFile !== undefined) return newFile
   // else throw new CannotFindFileError(file)
-  throw new CannotFindFileError(file)
 }
 
 // const indexFiles = async (
