@@ -24,12 +24,13 @@ export enum Job {
 
 interface IPerson extends IItem {
   kind: typeof ItemKind.Person
-  name: string
+  title: string
   gender: Gender
-  profilePath: string | undefined
+  posterPath: string | undefined
 }
 
 export interface AccPerson extends IPerson {
+  characters: string[]
   jobs: Job[] | undefined
 }
 

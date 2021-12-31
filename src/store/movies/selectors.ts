@@ -27,9 +27,9 @@ export const moviesByPersonSelector = (id: string) =>
     ),
   )
 
-export const moviesPersonSelector = (
+export const moviesPersonSelector = <T extends Person>(
   id: string,
-  fn: (movie: Movie) => Person[],
+  fn: (movie: Movie) => T[],
 ) =>
   createSelector(moviesSelector, (movies) =>
     movies

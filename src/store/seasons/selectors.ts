@@ -32,9 +32,9 @@ export const seasonsByPersonSelector = (id: string) =>
     ),
   )
 
-export const seasonsPersonSelector = (
+export const seasonsPersonSelector = <T extends Person>(
   id: string,
-  fn: (season: Season) => Person[],
+  fn: (season: Season) => T[],
 ) =>
   createSelector(seasonsSelector, (seasons) =>
     seasons

@@ -33,7 +33,7 @@ export const PersonList = <T extends Person>({
         displayedPeople.map((person, index) => {
           return (
             <p key={index}>
-              <Link to={buildItemUrl(person)}>{person.name}</Link> ·{' '}
+              <Link to={buildItemUrl(person)}>{person.title}</Link> ·{' '}
               <span>{details(person)}</span>
             </p>
           )
