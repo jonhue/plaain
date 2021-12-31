@@ -113,10 +113,8 @@ export const updateFiles =
 
 const handleNewPeople =
   ({ cast, crew }: { cast: Person[]; crew: Person[] }): AppThunk<void> =>
-  async (dispatch) => {
-    // console.log(cast, crew)
+  async (dispatch) =>
     cast.concat(crew).forEach((person) => dispatch(addPerson(person.id)))
-  }
 
 const fetchEpisodeMetadata =
   (
