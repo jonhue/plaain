@@ -1,33 +1,38 @@
 @import "../variables";
 
 .VerticalSlide {
-  padding: 0 $padding;
-
-  .swiper-wrapper {
+  &__wrapper {
+    align-items: center;
+    display: flex;
     height: calc(100vh - #{$nav});
-    width: 100%;
-    z-index: $z-base;
 
-    .swiper-slide {
-      height: auto;
+    .swiper {
+      padding: 0 $padding;
+      width: 100%;
 
-      &.swiper-slide-active img {
-        opacity: 1;
-      }
+      .swiper-wrapper {
+        .swiper-slide {
+          height: auto;
 
-      &.swiper-slide-next img,
-      &.swiper-slide-prev img {
-        opacity: 0.9;
-      }
+          &.swiper-slide-active img {
+            opacity: 1;
+          }
 
-      a {
-        line-height: 0;
-      }
+          &.swiper-slide-next img,
+          &.swiper-slide-prev img {
+            opacity: 0.9;
+          }
 
-      .Cover {
-        opacity: 0.8;
-        transition: opacity 0.25s ease-out;
-        width: 100%;
+          a {
+            line-height: 0;
+          }
+
+          .Cover {
+            opacity: 0.8;
+            transition: opacity 0.25s ease-out;
+            width: 100%;
+          }
+        }
       }
     }
   }
