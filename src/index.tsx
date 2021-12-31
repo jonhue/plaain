@@ -1,6 +1,5 @@
 import './i18n.ts'
 import './index.scss'
-import 'swiper/scss'
 import 'whatwg-fetch'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import React, { Suspense } from 'react'
