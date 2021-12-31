@@ -11,6 +11,10 @@ import { Provider, ProviderKind } from '../types/providers/Provider'
 import { Season, SeasonLike } from '../types/items/Season'
 import { Show, ShowLike } from '../types/items/Show'
 import {
+  buildEpisodeIndexResponse,
+  buildSeasonIndexResponse,
+} from './drives/util'
+import {
   buildEpisodeLike,
   buildMovieLike,
   buildSeasonLike,
@@ -61,7 +65,13 @@ const indexShows = (
       const showAlike = buildShowLike(tmdbId)()
       const show = await fetchShowMetadata(showAlike)
       await indexSeasons(
-        showResponse.seasons,
+        show.seasons.map((number) =>
+          buildSeasonIndexResponse(
+            number,
+            showResponse.seasons.find((season) => season.number === number)
+              ?.episodes,
+          ),
+        ),
         show,
         fetchEpisodeMetadata,
         fetchSeasonMetadata,
@@ -84,7 +94,13 @@ const indexSeasons = (
       const seasonAlike = buildSeasonLike(show.tmdbId)(seasonResponse)
       const season = await fetchSeasonMetadata(show, seasonAlike)
       await indexEpisodes(
-        seasonResponse.episodes,
+        season.episodes.map((number) =>
+          buildEpisodeIndexResponse(
+            number,
+            seasonResponse.episodes.find((episode) => episode.number === number)
+              ?.files,
+          ),
+        ),
         show,
         season,
         fetchEpisodeMetadata,

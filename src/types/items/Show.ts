@@ -8,10 +8,9 @@ export interface Show extends IMediaItem {
   firstAirDate: string
   lastAirDate: string
   homepage: string | undefined
-  numberOfEpisodes: number
-  numberOfSeasons: number
   posterPath: string | undefined
   backdropPath: string | undefined
+  seasons: number[] // season numbers
 }
 
 export interface ShowLike {
