@@ -1,5 +1,9 @@
 import './ChooseProvider.scss'
-import { PROVIDER_KINDS, ProviderKind } from '../../types/providers/Provider'
+import {
+  DISABLED_PROVIDER_KINDS,
+  PROVIDER_KINDS,
+  ProviderKind,
+} from '../../types/providers/Provider'
 import React, { useCallback } from 'react'
 import { buildProviderIcon, buildProviderKindName } from '../../util'
 import { ProviderButton } from '../ProviderButton'
@@ -30,6 +34,7 @@ export const ChooseProvider = ({ onChoose }: ChooseProviderProps) => {
           <ProviderButton
             icon={buildProviderIcon(kind)}
             title={buildProviderKindName(t, kind)}
+            disabled={DISABLED_PROVIDER_KINDS.includes(kind)}
             onClick={handleChoose(kind)}
             key={index}
           />
