@@ -10,9 +10,9 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
-/*! @azure/msal-browser v2.20.0 2021-12-07 */
+/*! @azure/msal-browser v2.21.0 2022-01-04 */
 
-/*! @azure/msal-common v5.2.0 2021-12-07 */
+/*! @azure/msal-common v6.0.0 2022-01-04 */
 
 /**
  * React Router DOM v6.2.1
