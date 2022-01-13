@@ -9264,10 +9264,10 @@ url-polyfill@^1.1.12:
   resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.12.tgz#6cdaa17f6b022841b3aec0bf8dbd87ac0cd33331"
   integrity sha512-mYFmBHCapZjtcNHW0MDq9967t+z4Dmg5CJ0KqysK3+ZbyoNOWQHksGCTWwDhxGXllkWlOc10Xfko6v4a3ucM6A==
 
-use-async-effect@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/use-async-effect/-/use-async-effect-2.2.4.tgz#7f4a403afc365d42748d0b69b3f2c8ade94779be"
-  integrity sha512-XdwGDED5iAjEMTOQjogJ7ZK4vdfq/c00HoJouCV8MBEJbPyf3aHgtrBpx3uguRFSzqaDbek09hCeyWV60Xc+JA==
+use-async-effect@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/use-async-effect/-/use-async-effect-2.2.5.tgz#f58edb50376723ae0ea7674e7428c3f8dde894df"
+  integrity sha512-0TBhYJ0K6aN7jG8niDDO570ZXoCaIjMCryG0FBNvC9RkHqhb4m8LQlTlkhw40sXtZPwNN1QoYkSlCXB4enaFsQ==
 
 use-async-memo@^1.2.3:
   version "1.2.3"
