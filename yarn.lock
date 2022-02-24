@@ -9721,12 +9721,19 @@ workbox-google-analytics@6.4.2, workbox-google-analytics@^6.4.2:
     workbox-routing "6.4.2"
     workbox-strategies "6.4.2"
 
-workbox-navigation-preload@6.4.2, workbox-navigation-preload@^6.4.2:
+workbox-navigation-preload@6.4.2:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/workbox-navigation-preload/-/workbox-navigation-preload-6.4.2.tgz#35cd4ba416a530796af135410ca07db5bee11668"
   integrity sha512-viyejlCtlKsbJCBHwhSBbWc57MwPXvUrc8P7d+87AxBGPU+JuWkT6nvBANgVgFz6FUhCvRC8aYt+B1helo166g==
   dependencies:
     workbox-core "6.4.2"
+
+workbox-navigation-preload@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/workbox-navigation-preload/-/workbox-navigation-preload-6.5.0.tgz#3b73753a40e4d0cbae9520de232f2fc515f2c0f5"
+  integrity sha512-ktrRQzXJ0zFy0puOtCa49wE3BSBGUB8KRMot3tEieikCkSO0wMLmiCb9GwTVvNMJLl0THRlsdFoI93si04nTxA==
+  dependencies:
+    workbox-core "6.5.0"
 
 workbox-precaching@6.4.2, workbox-precaching@^6.4.2:
   version "6.4.2"
