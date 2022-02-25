@@ -9760,12 +9760,19 @@ workbox-precaching@^6.5.0:
     workbox-routing "6.5.0"
     workbox-strategies "6.5.0"
 
-workbox-range-requests@6.4.2, workbox-range-requests@^6.4.2:
+workbox-range-requests@6.4.2:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-6.4.2.tgz#050f0dfbb61cd1231e609ed91298b6c2442ae41b"
   integrity sha512-SowF3z69hr3Po/w7+xarWfzxJX/3Fo0uSG72Zg4g5FWWnHpq2zPvgbWerBZIa81zpJVUdYpMa3akJJsv+LaO1Q==
   dependencies:
     workbox-core "6.4.2"
+
+workbox-range-requests@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-6.5.0.tgz#f36006f11aa86736ff815d200d0a5baf0e66c66e"
+  integrity sha512-+qTELdGZE5rOjuv+ifFrfRDN8Uvzpbm5Fal7qSUqB1V1DLCMxPwHCj6mWwQBRKBpW7G09kAwewH7zA3Asjkf/Q==
+  dependencies:
+    workbox-core "6.5.0"
 
 workbox-recipes@6.4.2:
   version "6.4.2"
