@@ -10,7 +10,7 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
-/*! @azure/msal-browser v2.22.0 2022-02-08 */
+/*! @azure/msal-browser v2.22.1 2022-03-07 */
 
 /*! @azure/msal-common v6.1.0 2022-02-08 */
 
