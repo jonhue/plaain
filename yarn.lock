@@ -9650,12 +9650,12 @@ workbox-broadcast-update@6.4.2:
   dependencies:
     workbox-core "6.4.2"
 
-workbox-broadcast-update@^6.5.1:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/workbox-broadcast-update/-/workbox-broadcast-update-6.5.1.tgz#9aecb116979b0709480b84cfd1beca7a901d01d4"
-  integrity sha512-mb/oyblyEpDbw167cCTyHnC3RqCnCQHtFYuYZd+QTpuExxM60qZuBH1AuQCgvLtDcztBKdEYK2VFD9SZYgRbaQ==
+workbox-broadcast-update@^6.5.2:
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/workbox-broadcast-update/-/workbox-broadcast-update-6.5.2.tgz#b1f32bb40a9dcb5b05ca27e09fb7c01a0a126182"
+  integrity sha512-DjJYraYnprTZE/AQNoeogaxI1dPuYmbw+ZJeeP8uXBSbg9SNv5wLYofQgywXeRepv4yr/vglMo9yaHUmBMc+4Q==
   dependencies:
-    workbox-core "6.5.1"
+    workbox-core "6.5.2"
 
 workbox-build@6.4.2:
   version "6.4.2"
