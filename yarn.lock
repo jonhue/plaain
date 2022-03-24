@@ -9773,12 +9773,12 @@ workbox-navigation-preload@6.4.2:
   dependencies:
     workbox-core "6.4.2"
 
-workbox-navigation-preload@^6.5.1:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/workbox-navigation-preload/-/workbox-navigation-preload-6.5.1.tgz#a244e3bdf99ce86da7210315ca1ba5aef3710825"
-  integrity sha512-aKrgAbn2IMgzTowTi/ZyKdQUcES2m++9aGtpxqsX7Gn9ovCY8zcssaMEAMMwrIeveij5HiWNBrmj6MWDHi+0rg==
+workbox-navigation-preload@^6.5.2:
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/workbox-navigation-preload/-/workbox-navigation-preload-6.5.2.tgz#ffb3d9d5cdb881a3824851707da221dbb0bb3f23"
+  integrity sha512-iqDNWWMswjCsZuvGFDpcX1Z8InBVAlVBELJ28xShsWWntALzbtr0PXMnm2WHkXCc56JimmGldZi1N5yDPiTPOg==
   dependencies:
-    workbox-core "6.5.1"
+    workbox-core "6.5.2"
 
 workbox-precaching@6.4.2:
   version "6.4.2"
