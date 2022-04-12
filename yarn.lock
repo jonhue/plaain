@@ -9803,12 +9803,12 @@ workbox-range-requests@6.4.2:
   dependencies:
     workbox-core "6.4.2"
 
-workbox-range-requests@^6.5.2:
-  version "6.5.2"
-  resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-6.5.2.tgz#b8b7e5b5830fecc22f0a1d8815457921df2e5bf9"
-  integrity sha512-zi5VqF1mWqfCyJLTMXn1EuH/E6nisqWDK1VmOJ+TnjxGttaQrseOhMn+BMvULFHeF8AvrQ0ogfQ6bSv0rcfAlg==
+workbox-range-requests@^6.5.3:
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-6.5.3.tgz#e624ac82ff266a5e4f236d055797def07949d941"
+  integrity sha512-pGCP80Bpn/0Q0MQsfETSfmtXsQcu3M2QCJwSFuJ6cDp8s2XmbUXkzbuQhCUzKR86ZH2Vex/VUjb2UaZBGamijA==
   dependencies:
-    workbox-core "6.5.2"
+    workbox-core "6.5.3"
 
 workbox-recipes@6.4.2:
   version "6.4.2"
