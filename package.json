@@ -83,7 +83,7 @@
     "workbox-range-requests": "^6.5.3",
     "workbox-routing": "^6.5.3",
     "workbox-strategies": "^6.5.3",
-    "workbox-streams": "^6.5.2"
+    "workbox-streams": "^6.5.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.0",
