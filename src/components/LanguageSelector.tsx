@@ -11,7 +11,7 @@ export const LanguageSelector = ({ onChange }: LanguageSelectorProps) => {
   const { t } = useTranslation()
 
   const handleChange = useCallback(
-    (event) => {
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
       i18next.changeLanguage(event.target.value)
       if (onChange) onChange(event.target.value)
     },
