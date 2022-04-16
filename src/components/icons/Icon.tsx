@@ -8,6 +8,7 @@ type IconProps = {
   width: number
   x?: number
   y?: number
+  children?: React.ReactNode
 }
 
 export const Icon: FunctionComponent<IconProps> = ({

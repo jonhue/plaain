@@ -3,7 +3,11 @@ import React, { FunctionComponent, useCallback } from 'react'
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-export const Back: FunctionComponent = ({ children }) => {
+type BackProps = {
+  children?: React.ReactNode
+}
+
+export const Back: FunctionComponent<BackProps> = ({ children }) => {
   const navigate = useNavigate()
 
   const isDisabled = history.length <= 2

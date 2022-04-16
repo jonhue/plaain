@@ -8,6 +8,7 @@ type TabProps = {
   inexact?: boolean
   disabled?: boolean
   forceActive?: boolean
+  children?: React.ReactNode
 }
 
 export const Tab: FunctionComponent<TabProps> = ({

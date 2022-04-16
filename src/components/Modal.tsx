@@ -5,6 +5,7 @@ import useOnClickOutside from 'use-onclickoutside'
 
 type ModalProps = {
   isActive: boolean
+  children?: React.ReactNode
 
   onClose: () => void
 }
