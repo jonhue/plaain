@@ -23,9 +23,9 @@ export const EpisodeEntry = ({ episode, onClick }: EpisodeEntryProps) => {
       <div className="EpisodeEntry__number">{episode.number}</div>
       <div className="EpisodeEntry__details">
         <h2>{episode.title}</h2>
-        <p className="small">
+        {episode.airDate && <p className="small">
           {t('Aired')} {new Date(episode.airDate).toDateString()}
-        </p>
+        </p>}
         <p>{episode.summary}</p>
       </div>
     </div>
