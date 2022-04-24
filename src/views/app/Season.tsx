@@ -82,7 +82,9 @@ export const Season = () => {
         </h1>
         <div className="Season__information">
           <p className="small">{show.title}</p>
-          {season.airDate && <p className="small">{new Date(season.airDate).getFullYear()}</p>}
+          {season.airDate && (
+            <p className="small">{new Date(season.airDate).getFullYear()}</p>
+          )}
         </div>
         <div className="Season__actions">
           {currentEpisode !== undefined && (

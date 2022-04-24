@@ -35,10 +35,12 @@ export const Show = () => {
         <Cover url={buildCoverUrl(show.posterPath)} alt="poster" />
         <h1>{show.title}</h1>
         <div className="Show__information">
-          {show.firstAirDate && show.lastAirDate && <p className="small">
-            {new Date(show.firstAirDate).getFullYear()} -{' '}
-            {new Date(show.lastAirDate).getFullYear()}
-          </p>}
+          {show.firstAirDate && show.lastAirDate && (
+            <p className="small">
+              {new Date(show.firstAirDate).getFullYear()} -{' '}
+              {new Date(show.lastAirDate).getFullYear()}
+            </p>
+          )}
         </div>
         <p className="Show__overview">{show.summary}</p>
       </div>
