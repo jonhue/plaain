@@ -19,8 +19,8 @@ import { Movie, MovieLike } from '../../../types/items/Movie'
 import { Season, SeasonLike } from '../../../types/items/Season'
 import { Show, ShowLike } from '../../../types/items/Show'
 import { buildItemId, buildTrailerUrl } from '../util'
+import { notUndefined, parseDateToISOString } from '../../../util'
 import { ItemKind } from '../../../types/items/Item'
-import { notUndefined } from '../../../util'
 
 // https://developers.themoviedb.org/3/getting-started/images
 export const buildTMDbImageUrl = (path: string, size = 'original') =>
@@ -51,7 +51,7 @@ export const buildEpisode = (
   showId,
   showTmdbId,
   summary,
-  airDate: new Date(airDate).toISOString(),
+  airDate: parseDateToISOString(airDate),
   stillPath,
   guestStars: guestStars.map(buildCastMember),
   crew: crew.map(buildCrewMember).filter(notUndefined),
@@ -83,7 +83,7 @@ export const buildMovie = (
   title,
   summary,
   duration,
-  releaseDate: new Date(releaseDate).toISOString(),
+  releaseDate: parseDateToISOString(releaseDate),
   isAdult,
   budget,
   revenue,
@@ -187,7 +187,7 @@ export const buildSeason = (
   showTitle,
   showBackdropPath,
   summary,
-  airDate: new Date(airDate).toISOString(),
+  airDate: parseDateToISOString(airDate),
   posterPath,
   trailerUrl: buildTrailerUrl(`${showTitle} season ${number}`),
   episodes: episodes.map((episode) => episode.episode_number),
@@ -217,8 +217,8 @@ export const buildShow = (
   title,
   summary,
   episodeRunTime,
-  firstAirDate: new Date(firstAirDate).toISOString(),
-  lastAirDate: new Date(lastAirDate).toISOString(),
+  firstAirDate: parseDateToISOString(firstAirDate),
+  lastAirDate: parseDateToISOString(lastAirDate),
   homepage,
   posterPath,
   backdropPath,

@@ -12,7 +12,7 @@ export interface Episode extends IWatchableMediaItem {
   showId: string
   showTmdbId: number
   summary: string
-  airDate: string
+  airDate: string | undefined
   stillPath: string | undefined
   guestStars: CastMember[]
   crew: CrewMember[]

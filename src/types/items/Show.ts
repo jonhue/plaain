@@ -5,8 +5,8 @@ export interface Show extends IMediaItem {
   title: string
   summary: string
   episodeRunTime: number[]
-  firstAirDate: string
-  lastAirDate: string
+  firstAirDate: string | undefined
+  lastAirDate: string | undefined
   homepage: string | undefined
   posterPath: string | undefined
   backdropPath: string | undefined
