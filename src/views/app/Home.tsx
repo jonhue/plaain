@@ -1,3 +1,4 @@
+import { AppDispatch, RootState } from '../../store'
 import React, { useCallback } from 'react'
 import {
   inProgressSelector,
@@ -6,7 +7,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Authenticated } from '../../components/get_started/Authenticated'
 import { ForYou } from '../../components/ForYou'
-import { RootState } from '../../store'
 import { Setup } from '../../components/get_started/Setup'
 import { Unauthenticated } from '../../components/get_started/Unauthenticated'
 import { index } from '../../store/thunks'
@@ -17,7 +17,7 @@ import { showsSelector } from '../../store/shows/selectors'
 import { sortByLastWatched } from '../../util'
 
 export const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const { inProgress, movies, providers, recentlyWatched, shows } = useSelector(
     (state: RootState) => ({
