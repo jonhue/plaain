@@ -10,7 +10,7 @@ export interface Season extends IMediaItem {
   showTitle: string
   showBackdropPath: string | undefined
   summary: string
-  airDate: string
+  airDate: string | undefined
   posterPath: string | undefined
   trailerUrl: string
   episodes: number[] // episode numbers

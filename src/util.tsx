@@ -143,3 +143,12 @@ export const buildJobTitle = (
 }
 
 export const buildCommitId = (sha: string) => sha.substring(0, 7)
+
+export const parseDateToISOString = (date: string) => {
+  try {
+    return new Date(date).toISOString()
+  } catch (error: unknown) {
+    console.error(error) // eslint-disable-line no-console
+    return undefined
+  }
+}
