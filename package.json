@@ -49,7 +49,7 @@
     "i18next-http-backend": "^1.4.0",
     "iso-639-1": "^2.1.13",
     "plyr": "^3.7.2",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.13",
     "postcss-custom-properties": "^12.1.7",
     "react": "^17.0.2",
     "react-device-detect": "^2.2.2",
