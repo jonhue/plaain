@@ -51,7 +51,7 @@
     "plyr": "^3.7.2",
     "postcss": "^8.4.13",
     "postcss-custom-properties": "^12.1.7",
-    "react": "^17.0.2",
+    "react": "^18.1.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",
     "react-i18next": "^11.16.9",
