@@ -47,7 +47,7 @@
     "i18next": "^21.8.5",
     "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
-    "iso-639-1": "^2.1.13",
+    "iso-639-1": "^2.1.14",
     "plyr": "^3.7.2",
     "postcss": "^8.4.14",
     "postcss-custom-properties": "^12.1.7",
