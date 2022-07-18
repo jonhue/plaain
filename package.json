@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://jonhue.github.io/plaain",
   "engines": {
-    "node": "16.13.0"
+    "node": "18.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -95,7 +95,7 @@
     "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
-    "stylelint-config-standard-scss": "^4.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.3.0"
   },
