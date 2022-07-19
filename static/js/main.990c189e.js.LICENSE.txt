@@ -4,9 +4,9 @@
   http://jedwatson.github.io/classnames
 */
 
-/*! @azure/msal-browser v2.27.0 2022-07-05 */
+/*! @azure/msal-browser v2.28.0 2022-07-18 */
 
-/*! @azure/msal-common v7.1.0 2022-07-05 */
+/*! @azure/msal-common v7.2.0 2022-07-18 */
 
 /**
  * @license React
