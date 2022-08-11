@@ -45,7 +45,7 @@
     "classnames": "^2.3.1",
     "flexsearch": "^0.7.21",
     "i18next": "^21.9.0",
-    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.1",
     "iso-639-1": "^2.1.15",
     "plyr": "^3.7.2",
