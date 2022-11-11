@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@azure/msal-browser": "^2.31.0",
-    "@microsoft/microsoft-graph-client": "^3.0.3",
+    "@microsoft/microsoft-graph-client": "^3.0.4",
     "@types/classnames": "^2.3.1",
     "@types/flexsearch": "^0.7.3",
     "@types/node": "^18.11.9",
