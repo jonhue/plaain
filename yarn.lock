@@ -7215,10 +7215,10 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-plyr@^3.7.3:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.7.3.tgz#31465bb45dc910babed5f05f4cf2667604898fa5"
-  integrity sha512-ORULENBvEvvzMYXRQBALDmEi8P+wZt1Hr/NvHqchu/t7E2xJKNkRYWx0qCA1HETIGZ6zobrOVgqeAUqWimS7fQ==
+plyr@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.7.4.tgz#d90ae679a2b5beb9536771fc7caf66e094d5eb3c"
+  integrity sha512-e0/XRhRA1airPX2zUam4bqCJdT72viKAoDlskOsy6CyZXC8i+bsdyuLiuvpGmPJPpSzfLOkNAAqZj1Y9zn2o6w==
   dependencies:
     core-js "^3.26.1"
     custom-event-polyfill "^1.0.7"
