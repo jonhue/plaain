@@ -64,7 +64,7 @@
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.8",
     "sass": "^1.64.1",
-    "swiper": "^9.4.1",
+    "swiper": "^10.1.0",
     "typescript": "^5.1.6",
     "use-async-effect": "^2.2.7",
     "use-async-memo": "^1.2.4",
