@@ -1,16 +1,14 @@
 import './VerticalSlide.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { EffectCards } from 'swiper'
 import { buildCoverUrl, buildItemUrl } from '../util'
 import { Cover } from './Cover'
+import { EffectCards } from 'swiper/modules'
 import { Link } from 'react-router-dom'
 import { Movie } from '../types/items/Movie'
 import React from 'react'
 import { Season } from '../types/items/Season'
 import { Show } from '../types/items/Show'
 import { useTranslation } from 'react-i18next'
-
-SwiperCore.use([EffectCards])
 
 type VerticalSlideProps = {
   id: string
@@ -33,6 +31,7 @@ export const VerticalSlide = ({ id, items, path }: VerticalSlideProps) => {
             replaceState: true,
             key: path,
           }}
+          modules={[EffectCards]}
         >
           {items.length > 0 ? (
             items.map((item, index) => (
