@@ -118,7 +118,7 @@ export const PlyrPlayer = ({
     <video
       className="PlyrPlayer"
       id={id}
-      crossOrigin="true"
+      crossOrigin="anonymous"
       playsInline
       controls
     />
