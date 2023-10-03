@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://jonhue.github.io/plaain",
   "engines": {
-    "node": "18.4.0"
+    "node": "20.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
