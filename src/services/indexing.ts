@@ -139,9 +139,8 @@ export const index = async (
   fetchSeasonMetadata: (show: Show, season: SeasonLike) => Promise<Season>,
   fetchShowMetadata: (show: ShowLike) => Promise<Show>,
 ) => {
-  const { movies: moviesResponse, shows: showsResponse } = await handleProvider(
-    provider,
-  )
+  const { movies: moviesResponse, shows: showsResponse } =
+    await handleProvider(provider)
 
   await indexMovies(moviesResponse, fetchMovieMetadata)
   await indexShows(

@@ -7,7 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -36,6 +36,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unnecessary-type-constraint': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
