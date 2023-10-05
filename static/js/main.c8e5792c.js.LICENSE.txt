@@ -4,9 +4,9 @@
 	http://jedwatson.github.io/classnames
 */
 
-/*! @azure/msal-browser v2.38.0 2023-07-05 */
+/*! @azure/msal-browser v3.1.0 2023-09-05 */
 
-/*! @azure/msal-common v13.2.0 2023-07-05 */
+/*! @azure/msal-common v14.0.3 2023-09-05 */
 
 /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
 
