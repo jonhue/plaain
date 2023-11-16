@@ -67,7 +67,7 @@
     "swiper": "^11.0.4",
     "typescript": "^5.2.2",
     "use-async-effect": "^2.2.7",
-    "use-async-memo": "^1.2.4",
+    "use-async-memo": "^1.2.5",
     "use-onclickoutside": "^0.4.1",
     "web-vitals": "^3.5.0",
     "whatwg-fetch": "^3.6.19",
