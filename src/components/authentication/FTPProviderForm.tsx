@@ -52,8 +52,8 @@ export const FTPProviderForm = ({
           target.type === 'checkbox'
             ? target.checked
             : target.value === ''
-            ? undefined
-            : target.value,
+              ? undefined
+              : target.value,
       }))
     },
     [setState],

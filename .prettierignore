@@ -3,7 +3,16 @@
 *.md
 *.scss
 *.svg
+*.ico
+*.png
 *.yml
+*.lock
+*.txt
+*.env
+
+LICENSE
+.prettierignore
+.gitignore
 
 build
 node_modules
