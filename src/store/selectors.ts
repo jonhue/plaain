@@ -64,8 +64,8 @@ export const personSelector = (id: string) =>
             person.job === undefined
               ? acc?.jobs
               : acc !== undefined && acc.jobs !== undefined
-              ? [...new Set([...acc.jobs, person.job])]
-              : [person.job],
+                ? [...new Set([...acc.jobs, person.job])]
+                : [person.job],
         }),
         undefined,
       )
