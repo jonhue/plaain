@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/plaain/static/css/main.b33c9716.css",
-    "main.js": "/plaain/static/js/main.99282d4f.js",
+    "main.js": "/plaain/static/js/main.829df4ea.js",
     "static/css/924.d4785440.chunk.css": "/plaain/static/css/924.d4785440.chunk.css",
-    "static/js/924.ca5379b3.chunk.js": "/plaain/static/js/924.ca5379b3.chunk.js",
+    "static/js/924.3b5c7156.chunk.js": "/plaain/static/js/924.3b5c7156.chunk.js",
     "static/css/827.54991a14.chunk.css": "/plaain/static/css/827.54991a14.chunk.css",
-    "static/js/827.25b696ac.chunk.js": "/plaain/static/js/827.25b696ac.chunk.js",
+    "static/js/827.09631a62.chunk.js": "/plaain/static/js/827.09631a62.chunk.js",
     "static/js/839.171552b1.chunk.js": "/plaain/static/js/839.171552b1.chunk.js",
     "static/js/496.56ed15c6.chunk.js": "/plaain/static/js/496.56ed15c6.chunk.js",
     "static/js/626.fd07ca37.chunk.js": "/plaain/static/js/626.fd07ca37.chunk.js",
@@ -16,11 +16,11 @@
     "index.html": "/plaain/index.html",
     "static/media/getFetch.cjs": "/plaain/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.b33c9716.css.map": "/plaain/static/css/main.b33c9716.css.map",
-    "main.99282d4f.js.map": "/plaain/static/js/main.99282d4f.js.map",
+    "main.829df4ea.js.map": "/plaain/static/js/main.829df4ea.js.map",
     "924.d4785440.chunk.css.map": "/plaain/static/css/924.d4785440.chunk.css.map",
-    "924.ca5379b3.chunk.js.map": "/plaain/static/js/924.ca5379b3.chunk.js.map",
+    "924.3b5c7156.chunk.js.map": "/plaain/static/js/924.3b5c7156.chunk.js.map",
     "827.54991a14.chunk.css.map": "/plaain/static/css/827.54991a14.chunk.css.map",
-    "827.25b696ac.chunk.js.map": "/plaain/static/js/827.25b696ac.chunk.js.map",
+    "827.09631a62.chunk.js.map": "/plaain/static/js/827.09631a62.chunk.js.map",
     "839.171552b1.chunk.js.map": "/plaain/static/js/839.171552b1.chunk.js.map",
     "496.56ed15c6.chunk.js.map": "/plaain/static/js/496.56ed15c6.chunk.js.map",
     "626.fd07ca37.chunk.js.map": "/plaain/static/js/626.fd07ca37.chunk.js.map",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.b33c9716.css",
-    "static/js/main.99282d4f.js"
+    "static/js/main.829df4ea.js"
   ]
 }
