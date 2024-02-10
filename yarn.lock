@@ -16,17 +16,17 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@azure/msal-browser@^3.7.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-3.7.1.tgz#66e3eb39cd144e54ffbbe8351a27d258799a2fd6"
-  integrity sha512-EZnk81zn1/5/jv/VVN2Tp+dUVchHmwbbt7pn654Eqa+ua7wtEIg1btuW/mowB13BV2nGYcvniY9Mf+3Sbe0cCg==
+"@azure/msal-browser@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-3.9.0.tgz#86dc08f93ebc4876d6af811cdb17a81c5bc97c7c"
+  integrity sha512-Ts+Q3fw9u92koCkk+oZgL6lhwDrwWSyXBcKdsKJko1Ra7ZzDl0z7pod+1g+v4Qbt8l1YqSX4wXbXs5sWUv0VWw==
   dependencies:
-    "@azure/msal-common" "14.6.1"
+    "@azure/msal-common" "14.7.0"
 
-"@azure/msal-common@14.6.1":
-  version "14.6.1"
-  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-14.6.1.tgz#1c76084ae5b0870fe0b15b9469c9bce0036acc15"
-  integrity sha512-yL97p2La0WrgU3MdXThOLOpdmBMvH8J69vwQ/skOqORYwOW/UYPdp9nZpvvfBO+zFZB5M3JkqA2NKtn4GfVBHw==
+"@azure/msal-common@14.7.0":
+  version "14.7.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-14.7.0.tgz#29e6f6ae9cb4c32dc4eeba13c3eb59078c4fb487"
+  integrity sha512-WexujW5jKWib7xtIxR7fEVyd5xcA3FNwenELy2HO4YC/ivTFdsEcDhtpKQuRUHqXRwxoqBblyZzTAhBm4v6fHA==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.8.3":
   version "7.16.0"
