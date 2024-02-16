@@ -6095,10 +6095,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-iso-639-1@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-3.1.0.tgz#62611c680eba80ccedb57c3fa00d048f7c866693"
-  integrity sha512-rWcHp9dcNbxa5C8jA/cxFlWNFNwy5Vup0KcFvgA8sPQs9ZeJHj/Eq0Y8Yz2eL8XlWYpxw4iwh9FfTeVxyqdRMw==
+iso-639-1@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/iso-639-1/-/iso-639-1-3.1.1.tgz#bb4994266d12df135d4cc8ce5c8b321a2bef50ee"
+  integrity sha512-5gT/IjVnt/ZDkAzd2pseoxlI5iAgxz/2ZJIrtdyFu9iqeK5/NpgowYwsFy1p5x6+jjG+r7vmik7r4XImSpaSOw==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
   version "3.2.0"
