@@ -1,1 +1,1 @@
-/*! @azure/msal-browser v3.9.0 2024-02-07 */
+/*! @azure/msal-browser v3.10.0 2024-02-17 */
