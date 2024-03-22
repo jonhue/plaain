@@ -65,7 +65,7 @@
     "reselect": "^5.1.0",
     "sass": "^1.72.0",
     "swiper": "^11.0.7",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.3",
     "use-async-effect": "^2.2.7",
     "use-async-memo": "^1.2.5",
     "use-onclickoutside": "^0.4.1",
