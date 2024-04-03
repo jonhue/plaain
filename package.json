@@ -36,7 +36,7 @@
     "@microsoft/microsoft-graph-client": "^3.0.7",
     "@types/classnames": "^2.3.1",
     "@types/flexsearch": "^0.7.3",
-    "@types/node": "^20.12.2",
+    "@types/node": "^20.12.3",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.23",
     "@types/react-router": "^5.1.20",
