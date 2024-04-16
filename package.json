@@ -37,7 +37,7 @@
     "@types/classnames": "^2.3.1",
     "@types/flexsearch": "^0.7.3",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
