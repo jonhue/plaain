@@ -11052,13 +11052,6 @@ workbox-routing@6.4.2:
   dependencies:
     workbox-core "6.4.2"
 
-workbox-routing@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-7.0.0.tgz#6668438a06554f60645aedc77244a4fe3a91e302"
-  integrity sha512-8YxLr3xvqidnbVeGyRGkaV4YdlKkn5qZ1LfEePW3dq+ydE73hUUJJuLmGEykW3fMX8x8mNdL0XrWgotcuZjIvA==
-  dependencies:
-    workbox-core "7.0.0"
-
 workbox-routing@7.1.0, workbox-routing@^7.0.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-7.1.0.tgz#c44bda350d1c5eb633ee97a660e64ce5473250c4"
@@ -11088,13 +11081,13 @@ workbox-streams@6.4.2:
     workbox-core "6.4.2"
     workbox-routing "6.4.2"
 
-workbox-streams@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-7.0.0.tgz#36722aecd04785f88b6f709e541c094fc658c0f9"
-  integrity sha512-moVsh+5to//l6IERWceYKGiftc+prNnqOp2sgALJJFbnNVpTXzKISlTIsrWY+ogMqt+x1oMazIdHj25kBSq/HQ==
+workbox-streams@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-7.1.0.tgz#8e080e56b5dee7aa0f956fdd3a10506821d2e786"
+  integrity sha512-WyHAVxRXBMfysM8ORwiZnI98wvGWTVAq/lOyBjf00pXFvG0mNaVz4Ji+u+fKa/mf1i2SnTfikoYKto4ihHeS6w==
   dependencies:
-    workbox-core "7.0.0"
-    workbox-routing "7.0.0"
+    workbox-core "7.1.0"
+    workbox-routing "7.1.0"
 
 workbox-sw@6.4.2:
   version "6.4.2"
