@@ -63,7 +63,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "reselect": "^5.1.0",
-    "sass": "^1.77.2",
+    "sass": "^1.77.3",
     "swiper": "^11.1.1",
     "typescript": "^5.4.5",
     "use-async-effect": "^2.2.7",
