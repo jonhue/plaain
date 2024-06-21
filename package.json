@@ -69,7 +69,7 @@
     "use-async-effect": "^2.2.7",
     "use-async-memo": "^1.2.5",
     "use-onclickoutside": "^0.4.1",
-    "web-vitals": "^3.5.2",
+    "web-vitals": "^4.2.0",
     "whatwg-fetch": "^3.6.20",
     "workbox-background-sync": "^7.1.0",
     "workbox-broadcast-update": "^7.1.0",
