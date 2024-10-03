@@ -4,7 +4,7 @@
 	http://jedwatson.github.io/classnames
 */
 
-/*! @azure/msal-browser v3.24.0 2024-09-20 */
+/*! @azure/msal-browser v3.25.0 2024-10-03 */
 
 /*! @azure/msal-common v14.15.0 2024-09-20 */
 
