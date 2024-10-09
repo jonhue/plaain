@@ -16,10 +16,10 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@azure/msal-browser@^3.25.0":
-  version "3.25.0"
-  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-3.25.0.tgz#7ce0949977bc9e0c58319f7090c44fe5537104d4"
-  integrity sha512-a0Y7pmSy8SC1s9bvwr+REvyAA1nQcITlZvkElM2gNUPYFTTNUTEdcpg73TmawNucyMdZ9xb/GFcuhrLOqYAzwg==
+"@azure/msal-browser@^3.26.0":
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-3.26.0.tgz#def8f1998e446d92432595577709d0cb6afc72fe"
+  integrity sha512-kiksPQPqsOBiXXFXN5UatcBZafFGCKbVXRulyV3gZ11OsOt/PdlbBUEM36KvDboJzAXJpvn9bvD8A5IwwXBc1w==
   dependencies:
     "@azure/msal-common" "14.15.0"
 
