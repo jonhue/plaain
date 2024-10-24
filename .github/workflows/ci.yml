@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-node@v4.0.4
+    - uses: actions/setup-node@v4.1.0
       with:
         node-version: '20.8.0'
     - name: Install dependencies
