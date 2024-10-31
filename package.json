@@ -73,7 +73,7 @@
     "whatwg-fetch": "^3.6.20",
     "workbox-background-sync": "^7.1.0",
     "workbox-broadcast-update": "^7.3.0",
-    "workbox-cacheable-response": "^7.1.0",
+    "workbox-cacheable-response": "^7.3.0",
     "workbox-core": "^7.0.0",
     "workbox-expiration": "^7.1.0",
     "workbox-google-analytics": "^7.3.0",
